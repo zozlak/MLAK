@@ -1,0 +1,4 @@
+Zmiany w PEJK 0.1 (2014-09-05)
+  
+  * dodanie funkcji generujRaporty()
+  * dodanie funkcji formatujących N() i E()
