@@ -80,7 +80,7 @@ pliki i katalogi:
   podgrupy populacji oraz obliczane dla nich statystyki.
 
 - [opcjonalnie] Skrypt R generujący raporty dla poszczególnych grup odbiorców
-  (tu _R2-uczelnia.R*). Jest to prosty skrypt, który ma na celu jedynie:
+  (tu _R2-uczelnia.R_). Jest to prosty skrypt, który ma na celu jedynie:
   - wczytanie zbioru danych;
   - zdefiniowanie listy odbiorców
   - uruchomienie funkcji _generujRaporty()_
@@ -178,7 +178,7 @@ if(all(!grepl('dane', ls()))){ # nie ma zmiennej "dane"
 Służy on pobraniu przykładowych danych i zdefiniowaniu przykładowej grupy
 odbiorców na czas tworzenia szablonu raportu. Docelowo, przy generowaniu
 raportów w ich ostatecznym kształcie, odpowiadać będzie za to skrypt 
-_R2-uczelnia.R*, ale w momencie, gdy szablon dopiero powstaje i chcemy mieć
+_R2-uczelnia.R_, ale w momencie, gdy szablon dopiero powstaje i chcemy mieć
 możliwość szybkiego podejrzenia podglądu, wygodnie jest zdefiniować przykładową
 grupę odbiorców w samym pliku szablonu. Aby nie przeszkadzała ona przy wsadowym
 generowaniu raportów skryptem _R2-uczelnia.R_ kod ten wykonywany jest 
