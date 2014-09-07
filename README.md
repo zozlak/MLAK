@@ -412,7 +412,7 @@ lataStart = lataStart[order(lataStart)]
 
 3. Sekcji opisującej kontrolki, za pomocą których użytkownik określa parametry
    raportu:
-```
+```r
 inputPanel(
   selectInput(
     'etap', 
@@ -434,7 +434,7 @@ inputPanel(
    http://shiny.rstudio.com/tutorial/lesson3/.
 
 4. Sekcji generującej sparametryzowany raport:
-```
+```r
 renderUI({
    dane = dane # głupie, ale potrzebne - osadza zmienną w lokalnym kontekście, żeby szablon mógł ją znaleźć
    grupaGl = dane$STOPIEN %in% input$etap & dane$ROKSTART %in% input$rok
@@ -449,7 +449,8 @@ renderUI({
    )
    raport = 
    return(HTML(readLines('tmp.html')))
-})```
+})
+```
    Sekcja ta musi:
    - przypisać wartości zmiennym używanym w szablonie *Markdown* raportu 
      stosownie do wybranych przez użytkownika parametrów; parametry wybrane
