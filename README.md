@@ -49,9 +49,9 @@ rm -fR PEJK
 
 ## Tworzenie i edycja raportów
 
-**Szablony raportów znajdują się w katalogu *raporty* **.  
+**Szablony raportów znajdują się w katalogu _raporty_**.  
 
-Na chwilę obecną przygotowany został szablon raportu _R2-uczelnia*. Na jego
+Na chwilę obecną przygotowany został szablon raportu _R2-uczelnia_. Na jego
 przykładzie opisany zostanie sposób samodzielnego tworzenia raportów.
 
 ### Użyta technologia i jej dokumentacja
@@ -96,9 +96,9 @@ pliki i katalogi:
 - Zbiór danych w formacie czytelnym dla R (CSV, SPSS, Stata, DBF ale już nie 
   MFM).
   - **Z uwagi na poufność danych zbiorów danych nigdy nie należy
-    ich dodawać do repozytorium _Git_ **.
-  - Zbiór danych do raportu _R2-uczelnia* to przekonwertowany za pomocą
-    _konwertera_ zbiór _R2-uczelnia/dane_USOS.mfm* w formie takiej, w jakiej
+    ich dodawać do repozytorium _Git_**.
+  - Zbiór danych do raportu _R2-uczelnia_ to przekonwertowany za pomocą
+    _konwertera_ zbiór _R2-uczelnia/dane_USOS.mfm_ w formie takiej, w jakiej
     otrzymałem go od Mikołaja Jasińskiego.
 
 - Wszelkie pozostałe pliki i katalogi (także podkatalogi katalogu _raporty_)
@@ -252,7 +252,7 @@ radzą sobie gładko w takim wypadku.
 
 _Pipe tables_ mają jednak tą istotną wadę, że w wypadku eksportu do PDF (i 
 tylko wtedy [sic!]) nie łamią zawartości komórek tabeli, gdy ta jest zbyt 
-szeroka, by zmieścić się na stronie. Stąd w wypadku, *gdy mamy do czynienia z
+szeroka, by zmieścić się na stronie. Stąd w wypadku, **gdy mamy do czynienia z
 tabelą zawierającą długie teksty, konieczne jest stosowanie _multiline tables_ 
 **.
 
@@ -307,7 +307,7 @@ devtools::load_all()
 
 Dalej niezbędne jest załadowanie danych. W przykładzie używany jest plik
 _dane.csv_ będący skonwertowanym z użyciem _konwertera_ zbiorem 
-_R2-uczelnia/dane_USOS.mfm*, który otrzymałem od Mikołaja Jasińskiego:
+_R2-uczelnia/dane_USOS.mfm_, który otrzymałem od Mikołaja Jasińskiego:
 ```r
 dane = read.csv2('raporty/R2-uczelnia/dane.csv', stringsAsFactors = F)
 ```
@@ -351,12 +351,12 @@ Raport dotyczy studentów, którzy zostali przyjęci na studia w `r stRok` roku.
 ```
 Spowoduje dostosowanie jego treści dla poszczególnych grup.
 
-Przyjęta w raporcie _R2-uczelnia* konwencja nazywania zmiennych o wartościach
+Przyjęta w raporcie _R2-uczelnia_ konwencja nazywania zmiennych o wartościach
 stałych dla danej grupy odbiorców z prefiksem _st_ jest tylko konwencją, 
 niemniej warto się tu, dla porządku i łatwości czytania szablonów Markdown 
 raportów, jakiejś konwencji trzymać.
 
-Bardzo ważna z punktu widzenia szablonu Markdown raportu _R2-uczelnia* zmienną 
+Bardzo ważna z punktu widzenia szablonu Markdown raportu _R2-uczelnia_ zmienną 
 opisującą każdą grupę odbiorców jest zmienna _grupaGl_, służy ona bowiem za
 _bazę_ dla określania wszystkich podgrup, dla których wykonywane są w raporcie
 analizy (patrz druga wstawka R w pliku _R2-uczelnia.Rmd_). Również tutaj jej 
