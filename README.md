@@ -74,7 +74,7 @@ interaktywne).
 Katalog z szablonem raportu (np. _raporty/R2-uczelnia/_) zawiera następujące
 pliki i katalogi:
 
-- Plik z właściwym szablonem raportu w formacie _.Rmd_ (tu _R2-uczelnia.Rmd_).
+- Plik z szablonem _Markdown_ raportu (tu _R2-uczelnia.Rmd_).  
   Opisuje on zawartość raportu. Odnosząc go do _raportera_ jest on kombinacją
   _technicznego szablonu RTF_ oraz pliku _.ord_ definiującego poszczególne
   podgrupy populacji oraz obliczane dla nich statystyki.
@@ -105,12 +105,14 @@ pliki i katalogi:
   są plikami tymczasowymi powstającymi podczas generowania raportów. Można
   je bez żadnej szkody usuwać i nie należy ich dodawać do repozytorium _Git_.
   
-### Plik Markdown z właściwym szablonem raportu (plik .Rmd)
+### Plik z szablonem Markdown raportu
 
 Jest to zwykły plik w _nowym formacie Markdown_, co oznacza obsługiwanie go
 z użyciem pakietu _rmarkdown_. Bardzo dobre wsparcie dla edycji dokumentów
 w tym formacie zapewnia _Rstudio_ od wersji 0.98.945 (zresztą pakiet 
 _rmarkdown_ napisali właśnie programiści _RStudio_).
+
+Przyjrzyjmy się plikowi szablonu _raporty/R2-uczelnia/R2-uczelnia.Rmd_.
 
 Zaczyna się on krótkim nagłówkiem opisującym metadane szablonu, w szczególności
 tytuł, format docelowy, datę utworzenia:
