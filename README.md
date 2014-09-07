@@ -286,7 +286,6 @@ w *R2-uczelnia.Rmd*:
 ```{r echo = FALSE, fig.height = 3.5}
 (...kod generujący wykres...)
 ```
-```
 
 ### Skrypt R opisujący grupy odbiorców i generujący raporty
 
