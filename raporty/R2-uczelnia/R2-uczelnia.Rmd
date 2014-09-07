@@ -1,14 +1,13 @@
 ---
 title: "ETAP STUDIÓW"
+output:  pdf_document
 date: "05.09.2014"
-output: pdf_document
 ---
 
-```{r echo = FALSE, cache = TRUE}
+```{r echo = FALSE, message = FALSE}
 # przykładowe dane, jeśli nie generujemy wsadowo
 if(all(!grepl('dane', ls()))){ # nie ma zmiennej "dane"
   dane = read.csv2('dane.csv', stringsAsFactors = F)
-  source('funkcje.R')
 
   # definicja odbiorców i stałych
   grupaGl = dane$STOPIEN %in% 1 & dane$ROKSTART %in% 2007
@@ -16,7 +15,10 @@ if(all(!grepl('dane', ls()))){ # nie ma zmiennej "dane"
   stStopienS = '1 stopnia'
   stRok = 2007
 }
+```
 
+```{r echo = FALSE, message = FALSE}
+devtools::load_all('../../') # załaduj pakiet PEJK (funkcje formatujące)
 # definicje grup
 grupa1 = grupaGl
 grupa13 = grupaGl & dane$ERASMUS %in% 100
@@ -36,28 +38,37 @@ Podczas lektury poniższego raportu należy pamiętać, że przedstawione dane s
 ## Informacje o liczebnościach analizowanych podzbiorowości:
 
 Osoby, które                                          | Liczebność kategorii
-------------------------------------------------------|-----------------------------------------
+------------------------------------------------------|--------------------------:
 uzyskały co najmniej raz stypendium za wyniki w nauce | `r N(dane$ENKA[grupa37])`
 nie uzyskały stypendium za wyniki w nauce             | `r N(dane$ENKA[grupa38])`
 
 Osoby, które                            | Liczebność kategorii
-----------------------------------------|-----------------------------------------
+----------------------------------------|--------------------------:
 wyjechały w ramach programu Erasmus     | `r N(dane$ENKA[grupa13])`
 nie wyjechały w ramach programu Erasmus | `r N(dane$ENKA[grupa14])`
 
 Osoby           | Liczebność kategorii
-----------------|-----------------------------------------
+----------------|--------------------------:
 pełnosprawne    | `r N(dane$ENKA[grupa32])`
 niepełnosprawne | `r N(dane$ENKA[grupa33])`
 
 Wartości średnie wskaźników przedstawione w zależności od faktu uzyskania stypendium za wyniki w nauce podczas studiów.
 
-Wartości wskaźników                                                                                  | Osoby, które uzyskały co najmniej raz stypendium za wyniki w nauce | Osoby, które nie uzyskały stypendium za wyniki w nauce
------------------------------------------------------------------------------------------------------|------------------------------|------------------------------
-Procent studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia studiów)                  | `r E(dane$DTERM1[grupa37])`% | `r E(dane$DTERM1[grupa38])`%
-Procent studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia ostatniego etapu studiów) | `r E(dane$DTERM2[grupa37])`% | `r E(dane$DTERM2[grupa38])`%
-Średnia liczba powtórzeń semestrów                                                                   | `r E(dane$LPOW[grupa37])`%   | `r E(dane$LPOW[grupa38])`%
-Średnia liczba warunkowych zaliczeń semestrów                                                        | `r E(dane$LWAR[grupa37])`%   | `r E(dane$LWAR[grupa38])`%
+------------------------------------------------------------------------------------------------------------------------
+Wartości wskaźników                                              Osoby, które uzyskały         Osoby, które nie uzyskały 
+                                                       co&nbsp;najmniej raz stypendium                        stypendium
+                                                                za wyniki w&nbsp;nauce            za wyniki w&nbsp;nauce
+---------------------------------------------------- --------------------------------- ---------------------------------
+Procent studentów, którzy terminowo uzyskali dyplom   `r E(dane$DTERM1[grupa37], 31)`%  `r E(dane$DTERM1[grupa38], 31)`%
+(licząc od rozpoczęcia studiów)        
+
+Procent studentów, którzy terminowo uzyskali dyplom   `r E(dane$DTERM2[grupa37], 31)`%  `r E(dane$DTERM2[grupa38], 31)`%
+(licząc od rozpoczęcia ostatniego etapu studiów) 
+
+Średnia liczba powtórzeń semestrów                      `r E(dane$LPOW[grupa37], 29)`%    `r E(dane$LPOW[grupa38], 29)`%
+
+Średnia liczba warunkowych zaliczeń semestrów           `r E(dane$LWAR[grupa37], 29)`%    `r E(dane$LWAR[grupa38], 29)`%
+------------------------------------------------------------------------------------------------------------------------
 
 ```{r echo = FALSE, fig.height = 3.5}
 par(cex = 0.8)
@@ -80,18 +91,33 @@ Odsetki studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia s
 
 Wartości wskaźników w zależności od faktu wyjazdu w ramach programu Erasmus.
 
-Wartości wskaźników                                                                                  | Osoby, które wyjechały w ramach programu Erasmus | Osoby, które nie wyjechały w ramach programu Erasmus
------------------------------------------------------------------------------------------------------|------------------------------|------------------------------
-Procent studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia studiów)                  | `r E(dane$DTERM1[grupa13])`% | `r E(dane$DTERM1[grupa14])`%
-Procent studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia ostatniego etapu studiów) | `r E(dane$DTERM2[grupa13])`% | `r E(dane$DTERM2[grupa14])`%
-Średnia liczba powtórzeń semestrów                                                                   | `r E(dane$LPOW[grupa13])`%   | `r E(dane$LPOW[grupa14])`%
-Średnia liczba warunkowych zaliczeń semestrów                                                        | `r E(dane$LWAR[grupa13])`%   | `r E(dane$LWAR[grupa14])`%
+------------------------------------------------------------------------------------------------------------------------
+Wartości wskaźników                                             Osoby, które wyjechały        Osoby, które nie wyjechały
+                                                        w&nbsp;ramach programu Erasmus    w&nbsp;ramach programu Erasmus
+---------------------------------------------------- --------------------------------- ---------------------------------
+Procent studentów, którzy terminowo uzyskali dyplom   `r E(dane$DTERM1[grupa13], 31)`%  `r E(dane$DTERM1[grupa14], 31)`%
+(licząc od rozpoczęcia studiów)        
+
+Procent studentów, którzy terminowo uzyskali dyplom   `r E(dane$DTERM2[grupa13], 31)`%  `r E(dane$DTERM2[grupa14], 31)`%
+(licząc od rozpoczęcia ostatniego etapu studiów) 
+
+Średnia liczba powtórzeń semestrów                      `r E(dane$LPOW[grupa13], 29)`%    `r E(dane$LPOW[grupa14], 29)`%
+
+Średnia liczba warunkowych zaliczeń semestrów           `r E(dane$LWAR[grupa13], 29)`%    `r E(dane$LWAR[grupa14], 29)`%
+-----------------------------------------------------------------------------------------------------------------------------
 
 Wartości wskaźników w zależności od niepełnosprawności.
 
-Wartości wskaźników                                                                                  | Osoby pełnosprawne           | Osoby niepełnosprawne
------------------------------------------------------------------------------------------------------|------------------------------|------------------------------
-Procent studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia studiów)                  | `r E(dane$DTERM1[grupa32])`% | `r E(dane$DTERM1[grupa33])`%
-Procent studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia ostatniego etapu studiów) | `r E(dane$DTERM2[grupa32])`% | `r E(dane$DTERM2[grupa33])`%
-Średnia liczba powtórzeń semestrów                                                                   | `r E(dane$LPOW[grupa32])`%   | `r E(dane$LPOW[grupa33])`%
-Średnia liczba warunkowych zaliczeń semestrów                                                        | `r E(dane$LWAR[grupa32])`%   | `r E(dane$LWAR[grupa33])`%
+------------------------------------------------------------------------------------------------------------------------
+Wartości wskaźników                                                 Osoby pełnosprawne             Osoby niepełnosprawne
+---------------------------------------------------- --------------------------------- ---------------------------------
+Procent studentów, którzy terminowo uzyskali dyplom   `r E(dane$DTERM1[grupa33], 31)`%  `r E(dane$DTERM1[grupa33], 31)`%
+(licząc od rozpoczęcia studiów)        
+
+Procent studentów, którzy terminowo uzyskali dyplom   `r E(dane$DTERM2[grupa32], 31)`%  `r E(dane$DTERM2[grupa33], 31)`%
+(licząc od rozpoczęcia ostatniego etapu studiów) 
+
+Średnia liczba powtórzeń semestrów                      `r E(dane$LPOW[grupa32], 29)`%    `r E(dane$LPOW[grupa33], 29)`%
+
+Średnia liczba warunkowych zaliczeń semestrów           `r E(dane$LWAR[grupa32], 29)`%    `r E(dane$LWAR[grupa33], 29)`%
+-----------------------------------------------------------------------------------------------------------------------------

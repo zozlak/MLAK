@@ -1,6 +1,9 @@
+devtools::load_all()
+
+dane = read.csv2('raporty/R2-uczelnia/dane.csv', stringsAsFactors = F)
 katalog = 'raporty'
 szablon = 'raporty/R2-uczelnia/R2-uczelnia.Rmd'
-dane = read.csv2('raporty/R2-uczelnia/dane.csv', stringsAsFactors = F)
+prefiks = 'R2-'
 
 # grupy odbiorców
 grupy = list(
@@ -18,5 +21,5 @@ grupy = list(
   )
 )
 
-generujRaporty(szablon, dane, grupy, katalog, 'R2-')
+generujRaporty(szablon, dane, grupy, katalog, prefiks)
 

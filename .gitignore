@@ -3,6 +3,15 @@
 .RData
 *.Rproj
 *.csv
+*.CSV
+*.dbf
+*.DBF
+*.sav
+*.SAV
+*.dta
+*.DTA
 *.pdf
 *.md
 *_cache
+*.html
+tmp_files

@@ -1,3 +1,10 @@
+Zmiany w PEJK 0.1.1 (2014-09-07)
+
+  * funcje formatujące N() i E() zyskały opcjonalny parametr "rozmiar"
+    pozwalający zapewnić stałą długość generowanego wyjścia;
+    jest to niezbędne do ich wykorzystania tabelach wymagających łamania
+    zawartości na wiersze
+
 Zmiany w PEJK 0.1 (2014-09-05)
   
   * dodanie funkcji generujRaporty()
