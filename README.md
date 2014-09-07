@@ -74,7 +74,7 @@ interaktywne).
 Katalog z szablonem raportu (np. _raporty/R2-uczelnia/_) zawiera następujące
 pliki i katalogi:
 
-- Plik z właściwym szablonem raportu w formacie *.Rmd_ (tu _R2-uczelnia.Rmd_).
+- Plik z właściwym szablonem raportu w formacie _.Rmd_ (tu _R2-uczelnia.Rmd_).
   Opisuje on zawartość raportu. Odnosząc go do _raportera_ jest on kombinacją
   _technicznego szablonu RTF_ oraz pliku _.ord_ definiującego poszczególne
   podgrupy populacji oraz obliczane dla nich statystyki.
@@ -253,8 +253,8 @@ radzą sobie gładko w takim wypadku.
 _Pipe tables_ mają jednak tą istotną wadę, że w wypadku eksportu do PDF (i 
 tylko wtedy [sic!]) nie łamią zawartości komórek tabeli, gdy ta jest zbyt 
 szeroka, by zmieścić się na stronie. Stąd w wypadku, **gdy mamy do czynienia z
-tabelą zawierającą długie teksty, konieczne jest stosowanie _multiline tables_ 
-**.
+tabelą zawierającą długie teksty, konieczne jest stosowanie _multiline 
+tables_.**
 
 Głównym problemem z _multiline tables_ jest konieczność idealnego *trafiania na
 siebie* kolumn w kolejnych wierszach. Aby sobie z tym poradzić *funkcje 
