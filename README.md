@@ -282,10 +282,10 @@ kodzie R (oczywiście osadzając ten kod w pliku szablonu jako wstawkę kodu R).
 Aby osiągnąć porządany rozmiar wykresu w docelowym dokumencie dostosowujemy
 odpowiednio parametry *fig.height* oraz *fig.width* wstawki kodu R, np. 
 w *R2-uczelnia.Rmd*:
+```r
+```{r echo = FALSE, fig.height = 3.5}
+(...kod generujący wykres...)
 ```
- ```{r echo = FALSE, fig.height = 3.5}
- (...kod generujący wykres...)
- ```
 ```
 
 ### Skrypt R opisujący grupy odbiorców i generujący raporty
@@ -302,14 +302,14 @@ Jest to plik z kodem R odpowiedzialnym za:
 
 W pierwszej linii powinien zawsze wywoływać funkcję `devtools::load_all()`,
 która załaduje pakiet *PEJK* (w tym funkcję *generujRaporty()*).
-```
+```r
 devtools::load_all()
 ```
 
 Dalej niezbędne jest załadowanie danych. W przykładzie używany jest plik
 *dane.csv* będący skonwertowanym z użyciem *konwertera* zbiorem 
 *R2-uczelnia/dane_USOS.mfm*, który otrzymałem od Mikołaja Jasińskiego:
-```
+```r
 dane = read.csv2('raporty/R2-uczelnia/dane.csv', stringsAsFactors = F)
 ```
 W ogólności może to być dowolny zbiór danych czytany przez R.
@@ -323,7 +323,7 @@ użycie zmiennych porządkuje strukturę skryptu.
 
 Następnie widzimy definicję grup odbiorców, a więc odpowiednik pliku *.dbf*
 w *raporterze*:
-```
+```r
 grupy = list(
   '1_etap' = list(
     'grupaGl' = dane$STOPIEN %in% 1 & dane$ROKSTART %in% 2007,
