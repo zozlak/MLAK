@@ -1,12 +1,13 @@
 Package: PEJK
 Type: Package
 Title: Generator raportów PEJK
-Version: 0.2
-Date: 2014-09-07
+Version: 0.3.1
+Date: 2014-12-08
 Author: Mateusz Zoltak
 Maintainer: Mateusz Zoltak <zozlak@zozlak.org>
 Depends:
-  rmarkdown, knitr
+    rmarkdown,
+    knitr
 Description: 
-License: 
+License: MIT
 VignetteBuilder: knitr

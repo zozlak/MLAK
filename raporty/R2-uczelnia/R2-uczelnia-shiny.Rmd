@@ -30,7 +30,8 @@ inputPanel(
   
 renderUI({
    dane = dane # głupie, ale potrzebne - osadza zmienną w lokalnym kontekście, żeby szablon mógł ją znaleźć
-   grupaGl = dane$STOPIEN %in% input$etap & dane$ROKSTART %in% input$rok
+   attach(dane)
+   grupaGl = STOPIEN %in% input$etap & ROKSTART %in% input$rok
    stStopienN = input$etap
    stStopienS = ifelse(input$etap == 1, '1 stopnia', '2 stopnia')
    stRok = input$rok

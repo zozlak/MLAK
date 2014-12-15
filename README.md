@@ -15,23 +15,21 @@ Praca z pakietem składa się zasadniczo z dwóch kroków:
 ### Instalacja pakietu
 
 1. Jeśli nie masz jeszcze pakietu _devtools_, zainstaluj go:
-```r
-install.packages('devtools')
-```
-
+   ```r
+   install.packages('devtools')
+   ```
 2. Zainstaluj pakiet _PEJK_ z użyciem _devtools_:
-```r
-devtools::install_github('zozlak/PEJK')
-```
-
+   ```r
+   devtools::install_github('zozlak/PEJK')
+   ```
 3. Jeśli jesteś użytkownikiem 64-bitowego linuksa, wtedy krok 2. może się nie
    powieść (z uwagi na błąd w pakiecie _devtools_). W takim wypadku musisz
    zainstalować pakiet _PEJK_ ręcznie z linii komend:
-```
-git clone https://github.com/zozlak/PEJK.git
-R CMD INSTALL PEJK
-rm -fR PEJK
-```
+   ```
+   git clone https://github.com/zozlak/PEJK.git
+   R CMD INSTALL PEJK
+   rm -fR PEJK
+   ```
 
 ### Założenie projektu RStudio na podstawie repozytorium _Git_
 
@@ -146,19 +144,19 @@ blok kodu R:
 devtools::load_all('../../') # załaduj pakiet PEJK (funkcje formatujące)
 # definicje grup
 grupa1 = grupaGl
-grupa13 = grupaGl & dane$ERASMUS %in% 100
-grupa14 = grupaGl & dane$ERASMUS %in% 0
-grupa32 = grupaGl & dane$NPELUSOS %in% 0
-grupa33 = grupaGl & dane$NPELUSOS %in% 100
-grupa37 = grupaGl & dane$STYPEND %in% 100
-grupa38 = grupaGl & dane$STYPEND %in% 0
+grupa13 = grupaGl & ERASMUS %in% 100
+grupa14 = grupaGl & ERASMUS %in% 0
+grupa32 = grupaGl & NPELUSOS %in% 0
+grupa33 = grupaGl & NPELUSOS %in% 100
+grupa37 = grupaGl & STYPEND %in% 100
+grupa38 = grupaGl & STYPEND %in% 0
 ```
 Odpowiada on za to samo, co definicje _VAR13, VAR14, itp._ wyklikiwane w
 _raportrzerze_. Definicje powyższe umożliwiają przejrzyste w zapisie
 obliczanie statystyk w dalszej części dokumentu z użyciem krótkich wstawek R,
 np.:
 ```
-`r N(dane$ENKA[grupa13])`
+`r N(ENKA[grupa13])`
 ```
 Dodatkowo (w pierwszej linii) ładuje on pakiet PEJK, aby możliwe było 
 korzystanie z _funkcji formatujących_ (patrz dalej).
@@ -168,10 +166,10 @@ Oddzielnego omówienia wymaga pierwszy blok kodu R:
 # przykładowe dane, jeśli nie generujemy wsadowo
 if(all(!grepl('dane', ls()))){ # nie ma zmiennej "dane"
   dane = read.csv2('dane.csv', stringsAsFactors = F)
-  devtools::load_all('../../')
+  attach(dane)
 
   # definicja odbiorców i stałych
-  grupaGl = dane$STOPIEN %in% 1 & dane$ROKSTART %in% 2007
+  grupaGl = STOPIEN %in% 1 & ROKSTART %in% 2007
   stStopienN = 1
   stStopienS = '1 stopnia'
   stRok = 2007
@@ -197,10 +195,15 @@ Aby:
 
 - ustandaryzować formatowania stosowane w raportach;
 
-- wspomóc w radzeniu sobie z durnymi problemami (patrz rozdział o tabelach)
+- wspomóc w radzeniu sobie z uciążliwymi problemami (patrz rozdział o tabelach)
 
 pakiet _PEJK_ zawiera _funkcje formatujące_. Są to proste funkcje 
-odpowiedzialne za obliczanie najczęściej wykrorzystywanych statystyk.
+odpowiedzialne za:
+
+- obliczanie najczęściej wykorzystywanych statystyk;
+
+- formatowanie zwracanych wartości tak, by można je było łatwo umieszczać 
+  w tabelach.
 
 W chwili obecnej dostępne są dwie:
 
@@ -212,11 +215,11 @@ Jeśli będzie taka potrzeba, dopisywane zostaną następne.
 
 Pozwalają one na skrótowy i bardziej przejrzysty zapis wstawek R w pliku szablonu, np.:
 ```
-`r N(dane$ENKA[grupa32])`
+`r N(ENKA[grupa32])`
 ```
 zamiast
 ```
-`r length(na.omit(dane$ENKA[grupa32]))`
+`r length(na.omit(ENKA[grupa32]))`
 ```
 
 #### Tabele
@@ -241,7 +244,7 @@ szablonu**. Weźmy jako przykład tabelkę:
 ```
 Osoby, które                                          |       Uzyskały stypendium|   Nie uzyskały stypendium
 ------------------------------------------------------|-------------------------:|-------------------------:
-uzyskały co najmniej raz stypendium za wyniki w nauce | `r N(dane$ENKA[grupa37])`| `r N(dane$ENKA[grupa38])`
+uzyskały co najmniej raz stypendium za wyniki w nauce |      `r N(ENKA[grupa37])`|      `r N(ENKA[grupa38])`
 ```
 Po wykonaniu osadzonego kodu R przyjmie ona postać (wartości oczywiście zmyślam):
 ```
@@ -260,21 +263,23 @@ tables_.**
 
 Głównym problemem z _multiline tables_ jest konieczność idealnego *trafiania na
 siebie* kolumn w kolejnych wierszach. Aby sobie z tym poradzić *funkcje 
-formatujące* (patrz poprzedni rozdział) przyjmują opcjonalnie drugi argument
-oznaczający długość, jaką powinna mieć zwracana przez funkcję wartość 
-(do dopełnienia do tej długości używana jest spacja). Jego wartość powinna być
-równa całkowitej liczbie znaków zajmowanych przez wstawkę R, łącznie z 
-otwierającym _`r_ oraz kończącym _`_. Jako przykład weźmy ostatnią tabelę z 
-szablonu _R2-uczelnia.Rmd_:
+formatujące* (patrz poprzedni rozdział) automatycznie dopełniają zwracaną 
+wartość do takiej długości, jaką miało wywołanie funkcji formatującej plus 4 
+znaki. Powoduje to, że stosowanie wstawek postaci 
+```
+`r f(parametry)`
+```
+w _multiline tables_ nie wymaga żadnych dodatkowych czynności.
+
+Przykład tabeli w postaci _multiline tables_ (ostatnia tabela z szablonu 
+_R2-uczelnia.Rmd_):
 ```
 ------------------------------------------------------------------------------------------------------------------------
 Wartości wskaźników                                                 Osoby pełnosprawne             Osoby niepełnosprawne
 ---------------------------------------------------- --------------------------------- ---------------------------------
-Procent studentów, którzy terminowo uzyskali dyplom   `r E(dane$DTERM1[grupa33], 31)`%  `r E(dane$DTERM1[grupa33], 31)`%
+Procent studentów, którzy terminowo uzyskali dyplom            `r E(DTERM1[grupa33])`%           `r E(DTERM1[grupa33])`%
 (licząc od rozpoczęcia studiów)        
 ```
-Jak widać wartości zwracane przez wstawki wypełniane są do długości 31 znaków, 
-bo taka jest właśnie długość tych wstawek.
 
 #### Wykresy
 
@@ -288,6 +293,10 @@ w _R2-uczelnia.Rmd_:
 ```{r echo = FALSE, fig.height = 3.5}
 (...kod generujący wykres...)
 ```
+
+Jeśli przygotowując wykresy korzystamy z *funkcji formatujących*, musimy 
+pamiętać, aby jako argument _wyrownaj_ przekazać im FALSE. Inaczej zamiast
+wartości liczbowych będą one zwracać łańcuchy znaków!
 
 ### Skrypt R opisujący grupy odbiorców i generujący raporty
 
@@ -327,13 +336,13 @@ w _raporterze_:
 ```r
 grupy = list(
   '1_etap' = list(
-    'grupaGl' = dane$STOPIEN %in% 1 & dane$ROKSTART %in% 2007,
+    'grupaGl' = STOPIEN %in% 1 & ROKSTART %in% 2007,
     'stStopienN' = 1,
     'stStopienS' = '1 stopnia',
     'stRok' = 2007
   ),
   '2_etap' = list(
-    'grupaGl' = dane$STOPIEN %in% 2 & dane$ROKSTART %in% 2010,
+    'grupaGl' = STOPIEN %in% 2 & ROKSTART %in% 2010,
     'stStopienN' = 2,
     'stStopienS' = '2 stopnia',
     'stRok' = 2010
@@ -439,7 +448,8 @@ inputPanel(
 ```r
 renderUI({
    dane = dane # głupie, ale potrzebne - osadza zmienną w lokalnym kontekście, żeby szablon mógł ją znaleźć
-   grupaGl = dane$STOPIEN %in% input$etap & dane$ROKSTART %in% input$rok
+   attach(dane)
+   grupaGl = STOPIEN %in% input$etap & ROKSTART %in% input$rok
    stStopienN = input$etap
    stStopienS = ifelse(input$etap == 1, '1 stopnia', '2 stopnia')
    stRok = input$rok

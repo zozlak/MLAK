@@ -1,3 +1,26 @@
+Zmiany w PEJK 0.2.1 (2014-12-15)
+
+  * korekta błędu w funkcjach formatujących powodującego niepoprawne 
+    odczytywanie długości wywołania (a przez to niepoprawne wyrównanie
+    zwracanych wartości)
+
+Zmiany w PEJK 0.2 (2014-12-09)
+
+  * funkcje formatujące utraciły parametr "rozmiar", za to zyskały parametr 
+    "wyrownaj"; jeśli jest on równy TRUE (wartość domyślna), wtedy zwracają
+    string dopełniony z lewej spacjami do długości równej długości stringu
+    z wywołaniem funkcji plus 4 znaki, co odpowiada długości wstawki
+    `r f(parametry)` i umożliwia wygodne korzystanie z funkcji formatujących
+    w multiline tables
+  * dodanie do funkcji generujRaporty() attach-owania ramki danych; dzięki
+    temu w szablonie raportu można posługiwać się po prostu nazwami zmiennych
+  * dodanie do funkcji generujRaporty() obsługi parametru "grupyOdbiorcow"
+    w postaci ramki danych;
+    * kolumny, których nazwy zaczynają się kropoką są ewaluowane w środowisku
+      wczytanych danych, a kropka usuwana z nazwy zmiennej
+  * dodanie funkcji wczytajCSV() która jest prostą nakładką nad read.csv2(),
+    dodaje jednak kilka użytecznych wartości domyślnych parametrów
+
 Zmiany w PEJK 0.1.1 (2014-09-07)
 
   * funcje formatujące N() i E() zyskały opcjonalny parametr "rozmiar"
