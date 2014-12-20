@@ -322,11 +322,13 @@ w Raporterze. Istotne różnice to:
   RData.
   
 - Dostosowanie kolumn definiujących grupy obserwacji w danych:
-  - dodanie na początku nazwy kolumny kropki (np. _.VAR1k_ zamiast _VAR1K_);
+  - dodanie na początku nazwy kolumny kropki (np. _.VAR1K_ zamiast _VAR1K_);
   - dostowanie składni filtrów:
     - usunięcie wiodącego 0 lub 1 (oznaczającego ew. negację całego warunku);
     - zamianę _AND_ na _&amp;_;
     - zamianę _=_ na _%in%_.
+    - np. `1 KIERUNEK=1 AND ROKDYP=2010` zamieniamy na 
+      `KIERUNEK %in% 1 & ROKDYP %in% 2010`
 
 ### Skrypt R hurtowo generujący raporty
 
