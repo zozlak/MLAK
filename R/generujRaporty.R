@@ -24,41 +24,47 @@
 #' }
 #' 
 #' @param plikSzablonu ścieżka do pliku Markdown z szablonem raportu
-#' @param dane ramka danych z danymi
+#' @param dane ramka danych lub ścieżka do pliku CSV z danymi
 #' @param grupyOdbiorcow lista, której kolejne elementy określają grupy odbiorców
 #' @param katalogWy katalog, w którym zapisane zostaną wygenerowane raporty (względem pliku szablonu)
 #' @param prefiksPlikow prefiks nazw plików wygenerowanych raportów
 #' @return NULL
 #' @export
 generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = ''){
-  on.exit({
-    detach(dane)
-  })
-  attach(dane)
+  if(is.character(dane)){
+    stopifnot(
+      length(dane) == 1,
+      file.exists(dane)
+    )
+    dane = wczytajDane(dane)
+  }
+  if(is.character(grupyOdbiorcow)){
+    stopifnot(
+      length(grupyOdbiorcow) == 1,
+      file.exists(grupyOdbiorcow)
+    )
+    grupyOdbiorcow = wczytajDane(grupyOdbiorcow)
+  }
+  stopifnot(
+    is.data.frame(dane),
+    is.data.frame(grupyOdbiorcow) | is.list(grupyOdbiorcow)
+  )
 
   # przerabianie grup odbiorców podanych jako ramka danych na listę
   if(is.data.frame(grupyOdbiorcow)){
-    kolEval = grep('^[.]', names(grupyOdbiorcow))
-    for(i in kolEval){
-      grupyOdbiorcow[, i] = sapply(grupyOdbiorcow[, i], function(x){
-        return(parse(text = x))
-      })
+    tmp = list()
+    for(i in 1:nrow(grupyOdbiorcow)){
+      tmp[[i]] = as.list(grupyOdbiorcow[i, ])
     }
-    names(grupyOdbiorcow) = sub('^[.]', '', names(grupyOdbiorcow))
-    nazwyGrup = grupyOdbiorcow[, 1]
-    tmp = grupyOdbiorcow
-    grupyOdbiorcow = list()
-    for(i in 1:nrow(tmp)){
-      grupyOdbiorcow[[i]] = as.list(tmp[i, ])
-      for(j in kolEval){
-        grupyOdbiorcow[[i]][[j]] = eval(grupyOdbiorcow[[i]][[j]])
-      }
-    }
-    names(grupyOdbiorcow) = nazwyGrup  
+    names(tmp) = grupyOdbiorcow[, 1]
+    grupyOdbiorcow = tmp
   }
   
   for(i in 1:length(grupyOdbiorcow)){
-    attach(grupyOdbiorcow[[i]])
+    suppressWarnings(rm(.nieWczytujOdbiorcy))
+    odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, i)
+    attach(odbiorca)
+    .nieWczytujOdbiorcy = TRUE
     tryCatch(
       render(
         input = plikSzablonu, 
@@ -71,7 +77,7 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
         output_dir = katalogWy
       ),
       finally = function(){
-        detach(grupyOdbiorcow[[i]])
+        detach(odbiorca)
       }
     )
   }

@@ -1,25 +1,15 @@
 ---
 title: "ETAP STUDIÓW"
 output: pdf_document
-date: "05.09.2014"
 ---
 
 ```{r echo = FALSE, message = FALSE}
+library(PEJK)
 # przykładowe dane, jeśli nie generujemy wsadowo
-if(all(!grepl('dane', ls()))){ # nie ma zmiennej "dane"
-  dane = read.csv2('dane.csv', stringsAsFactors = F)
-  attach(dane)
-
-  # definicja odbiorców i stałych
-  grupaGl = STOPIEN %in% 1 & ROKSTART %in% 2007
-  stStopienN = 1
-  stStopienS = '1 stopnia'
-  stRok = 2007
-}
+attach(wczytajOdbiorce('grupy_odbiorców.csv', 'dane.csv', 1))
 ```
 
 ```{r echo = FALSE, message = FALSE}
-devtools::load_all('../../') # załaduj pakiet PEJK (funkcje formatujące)
 # definicje grup
 grupa1 = grupaGl
 grupa13 = grupaGl & ERASMUS %in% 100
@@ -36,7 +26,7 @@ Raport dotyczy `r N(ENKA[grupa1])` studentów, którzy zostali przyjęci na stud
 Poniższe tabele przedstawiają wybrane wskaźniki sukcesu na studiach: procent osób uzyskujących dyplom w terminie (licząc od daty rozpoczęcia studiów oraz od rozpoczęcia ostatniego etapu studiów), średnią liczbę powtórzeń etapów studiów oraz średnią liczbę warunkowych zaliczeń etapów studiów w zależności od faktu uzyskania stypendium za wyniki w nauce podczas studiów, wyjazdu w ramach programu Erasmus oraz niepełnosprawności.
 Podczas lektury poniższego raportu należy pamiętać, że przedstawione dane są jedynie podsumowaniem wyników z poszczególnych programów studiów. Są zatem konsekwencją zjawisk zachodzących na poziomie programów studiów. Obserwowane zależności należy zestawić z analogicznymi wskaźnikami dla programów studiów.
 
-## Informacje o liczebnościach analizowanych podzbiorowości:
+## Informacje o liczebnościach analizowanych podzbiorowości: 
 
 Osoby, które                                          | Liczebność kategorii
 ------------------------------------------------------|--------------------------:

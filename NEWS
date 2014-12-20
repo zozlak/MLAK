@@ -1,3 +1,22 @@
+Zmiany w PEJK 0.3 (2014-12-20)
+
+  * dodanie nowych funkcji formatujących:
+    * Q() - kwantyle
+    * M() - mediana
+    * W() - identyczność (ale z wyrównaniem długości)
+  * wzbogacenie funkcji E() o możliwość zliczania konkretnych wartości
+  * dodanie funkcji wczytajOdbiorce() umożliwiającej łatwe wczytanie
+    przykładowych danych w kodzie Markdown szablonu raportu
+  * dodanie funkcji wstawTresc() umożliwiającej warunkowe generowanie
+    treści raportu
+  * dodanie pod spodem funkcji giodo() anonimizującej zbyt krótkie wektory
+    danych
+  * modyfikacja funkcji formatujących, tak by poprawnie radziły sobie
+    z sytuacją, gdy cały wektor składa się tylko z braków danych
+  * uelastycznieni funkcji generujRaporty() - może teraz przyjmować jako
+    argumenty "dane" i "grupyOdbiorcow" także ścieżki do plików
+  * uzupełnienie pliku README.md
+
 Zmiany w PEJK 0.2.1 (2014-12-15)
 
   * korekta błędu w funkcjach formatujących powodującego niepoprawne 

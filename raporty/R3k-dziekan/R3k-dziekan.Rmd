@@ -1,0 +1,219 @@
+---
+title: "Rynek pracy"
+output: pdf_document
+---
+
+```{r echo = FALSE, message = FALSE}
+library(PEJK)
+# przykładowe dane, jeśli nie generujemy wsadowo
+attach(wczytajOdbiorce('odbiorcy.csv', 'dane.csv', 2))
+```
+
+```{r echo = FALSE, message = FALSE}
+# definicje grup
+VAR1K = KIERUNEK %in% VKIERUNEK & ROKDYP %in% VROK
+VAR2K	= VAR1K & ZAL1 %in% 100
+VAR3K	= VAR1K & ZAL2 %in% 100
+VAR4K = VAR1K & ZAL3 %in% 100
+VAR5K = VAR1K & ZAL4 %in% 100
+VAR1  = VAR1K & SPEC %in% VSPEC
+VAR2  = VAR1  & ZAL1 %in% 100
+VAR3  = VAR1  & ZAL2 %in% 100
+VAR4  = VAR1  & ZAL3 %in% 100
+VAR5  = VAR1  & ZAL4 %in% 100
+VAR6  = VAR1  & PW   %in% 100
+VAR7  = VAR1  & OMW  %in% 100
+VAR8  = VAR1  & MAZ  %in% 100
+VAR9  = VAR1  & MAZ  %in% 0
+VAR10 = VAR1  & UW   %in% 100
+VAR11 = VAR1  & UWJ  %in% 100
+VAR12 = VAR1  & UW   %in% 0
+VAR13 = VAR1  & ERASMUS %in% 100
+VAR14 = VAR1  & ERASMUS %in% 0
+VAR15 = VAR1  & NZUS %in% 1 & DYP %in% 100
+VAR16 = VAR15 & PW %in% 100
+VAR17 = VAR15 & OMW %in% 100
+VAR18 = VAR15 & MAZ %in% 100
+VAR19 = VAR15 & MAZ %in% 0
+VAR20 = VAR15 & PWZAM %in% 100
+VAR21 = VAR15 & OMWZAM %in% 100
+VAR22 = VAR15 & MAZZAM %in% 100
+VAR23 = VAR15 & MAZZAM %in% 0
+VAR24 = VAR15 & ERASMUS %in% 100
+VAR25 = VAR15 & ERASMUS %in% 0
+#VAR26 = VAR1  & NZUS %in% 0 & DYP %in% 0 & ABS %in% 100 - BRAK ZMIENNEJ ABS!!!
+VAR26 = VAR1  & NZUS %in% 0 & DYP %in% 0
+VAR27 = VAR15
+VAR28 = VAR1  & DYP %in% 100
+VAR30 = VAR28 & STYPEND %in% 100
+VAR31 = VAR28 & STYPEND %in% 0
+```
+
+# `r VMIAN` `VKIERSPC`
+
+Raport dotyczy `r N(ENKA[VAR1])` absolwentów, którzy uzyskali dyplom w `r VROK` r.
+Wśród absolwentów może istnieć grupa osób, które nie figurują w rejestrach ZUS. Oznacza to, że na konta tych osób nie wpłynęła dotąd ani jedna składka z jakiegokolwiek tytułu. Osoby te nie będą uwzględniane w dalszych analizach. Liczba absolwentów, którzy uzyskali dyplom w `r VROK` r., którzy występują w rejestrach ZUS:
+
+`r N(ENKA[VAR15])`
+
+Informacje o liczebnościach analizowanych podzbiorowości:
+
+Osoby zamieszkałe...                      | Liczebność kategorii
+------------------------------------------|-------------------------------:
+w największych ośrodkach akademickich	    | `r N(MIEJZAM[VAR15], 1)` 
+w pozostałych miastach na prawach powiatu	| `r N(MIEJZAM[VAR15], 2)`
+w pozostałych miejscowościach	            | `r N(MIEJZAM[VAR15], 3)`
+Liczba braków danych	                    | `r N(is.na(MIEJZAM[VAR15]), T)`
+
+---------------------------------------------------------------------------------
+Osoby zamieszkałe
+------------------------------------------------- -------------------------------
+w Warszawie                                                    `r N(ENKA[VAR20])`
+
+na terenie Obszaru Metropolitalnego Warszawy                   `r N(ENKA[VAR21])`
+(powiaty: grodziski, legionowski, piaseczyński,
+prószkowski, warszawski zachodni, żyrardowski,
+grójecki, miński, nowodworski, otwocki,
+sochaczewski, wołomiński, wyszkowski)
+
+na terenie województwa mazowieckiego                           `r N(ENKA[VAR22])`
+
+poza województwem mazowieckim                                  `r N(ENKA[VAR23])`
+
+liczba braków danych                                 `r N(is.na(ENKA[VAR20]), T)`
+---------------------------------------------------------------------------------
+
+Osoby, które                                          | Liczebność kategorii
+------------------------------------------------------|---------------------:
+uzyskały co najmniej raz stypendium za wyniki w nauce | `r N(ENKA[VAR30])`
+nie uzyskały stypendium za wyniki w nauce             | `r N(ENKA[VAR31])`
+
+Osoby, które                            | Liczebność kategorii
+----------------------------------------|---------------------:
+wyjechały w ramach programu Erasmus     | `r N(ENKA[VAR24])`
+nie wyjechały w ramach programu Erasmus | `r N(ENKA[VAR25])`
+
+Osoby, które                    | Liczebność kategorii
+--------------------------------|-------------------------------:
+nie uzyskały dyplomu w terminie |        `r N(DTERM1[VAR15], 0)`
+uzyskały dyplom w terminie      |      `r N(DTERM1[VAR15], 100)`
+liczba braków danych            | `r N(is.na(DTERM1[VAR15]), T)`
+
+Osoby, które                   | Liczebność kategorii
+-------------------------------|------------------------------:
+nie pracowały w czasie studiów |        `r N(PRSTD[VAR15], 0)`
+pracowały w czasie studiów     |      `r N(PRSTD[VAR15], 100)`
+liczba braków danych           | `r N(is.na(PRSTD[VAR15]), T)`
+
+Celem poniższego raportu jest przedstawienie sytuacji absolwentów na rynku pracy od momentu uzyskania dyplomu. Pozwoli on na ocenę, w jakim stopniu programy studiów/specjalizacji w poszczególnych jednostkach UW prowadzących dydaktykę pozwalają na odniesienie sukcesu na rynku pracy. Za podstawowe mierniki sukcesu na rynku pracy uznajemy:
+
+* czas poszukiwania pracy
+* stabilność zatrudnienia
+* osiągnięte wynagrodzenie.
+
+Przez moment otrzymania pracy rozumiemy datę odprowadzenia pierwszej składki do ZUS z tytułu uzyskanego wynagrodzenia przez danego pracodawcę. Od umów o dzieło oraz umów zleceń podpisywanych ze studentami nie odprowadza się składek ZUS (z wyjątkiem umów o dzieło i umów zleceń zawieranych z pracodawcą zatrudniającym daną osobę na umowę o pracę). W związku z tym nie są one uwzględniane  przez wskaźniki wykorzystane w niniejszym raporcie.
+
+# PRACA PO UZYSKANIU DYPLOMU.
+
+## Czas poszukiwania i posiadania pracy
+
+Procent absolwentów, którzy w miesiącu rozpoczęcia studiów | Wartość wskaźnika
+-----------------------------------------------------------|-----------------------------:
+byli zatrudnienie na umowę o pracę                         | `r E(100 * PRACUREK[VAR15])`
+byli samozatrudnieni                                       |  `r E(100 * SAMOREK[VAR15])`
+
+Procent absolwentów, którzy od uzyskania dyplomu do dnia wygenerowania bazy (`r DATABAZY[1]`) | Wartość wskaźnika
+----------------------------------------------------------------------------------------------|-----------------------------:
+pozostawali bez jakiejkolwiek pracy                                                           | `r E(100 * NPRACPOD[VAR15])`
+pozostawali bez pracy na umowę o pracę                                                        | `r E(100 * NETATPOD[VAR15])`
+podjęli samozatrudnienie                                                                      |  `r E(100 * SAMOPOD[VAR15])`
+
+Poniższa tabela pokazuje staż pracy absolwentów przed uzyskaniem dyplomu.
+
+------------------------------------------------------------------------------------------------------------------------------
+ Średni staż pracy (w&nbsp;miesiącach)      Średni staż pracy na umowę o pracę (w&nbsp;   Średni staż samozatrudnienia(w&nbsp;
+              przed uzyskaniem dyplomu             miesiącach) przed uzyskaniem dyplomu   miesiącach) przed uzyskaniem dyplomu
+-------------------------------------- ------------------------------------------------ --------------------------------------
+                 `r E(STZBEFD[VAR15])`                           `r E(STZBEFUD[VAR15])`                 `r E(STZBEFSD[VAR15])`
+------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+...absolwentów przed uzyskaniem                                 20%                           40%                           60%                           80%
+dyplomu pracowało nie dłużej niż
+------------------------------------- ----------------------------- ----------------------------- ----------------------------- -----------------------------
+Staż pracy (w&nbsp;miesiącach) przed    `r Q(STZBEFD[VAR15], 1, 5)`   `r Q(STZBEFD[VAR15], 2, 5)`   `r Q(STZBEFD[VAR15], 3, 5)`   `r Q(STZBEFD[VAR15], 4, 5)`
+uzyskanie dyplomu
+
+Staż pracy **na umowę o pracę**        `r Q(STZBEFUD[VAR15], 1, 5)`  `r Q(STZBEFUD[VAR15], 2, 5)`  `r Q(STZBEFUD[VAR15], 3, 5)`  `r Q(STZBEFUD[VAR15], 4, 5)`
+(w&nbsp;miesiącach) przed uzyskaniem 
+dyplomu |
+
+Staż samozatrudnienia                  `r Q(STZBEFSD[VAR15], 1, 5)`  `r Q(STZBEFSD[VAR15], 2, 5)`  `r Q(STZBEFSD[VAR15], 3, 5)`  `r Q(STZBEFSD[VAR15], 4, 5)`
+(w&nbsp;miesiącach) przed uzyskaniem 
+dyplomu
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+```{r echo = FALSE}
+pd = Q(STZBEFD[VAR15], 1:4, 5)
+ud = Q(STZBEFUD[VAR15], 1:4, 5)
+sd = Q(STZBEFSD[VAR15], 1:4, 5)
+```
+-------------------------------------------------------------------------------------------------
+...absolwentów przed uzyskaniem                   20%            40%            60%            80%
+dyplomu pracowało nie dłużej niż
+-------------------------------------- -------------- -------------- -------------- --------------
+Staż pracy (w&nbsp;miesiącach) przed     `r W(pd[1])`   `r W(pd[1])`   `r W(pd[3])`   `r W(pd[4])`
+uzyskanie dyplomu
+
+Staż pracy **na umowę o pracę**          `r W(pd[1])`   `r W(pd[1])`   `r W(pd[3])`   `r W(pd[4])`
+(w&nbsp;miesiącach) przed uzyskaniem 
+dyplomu |
+
+Staż samozatrudnienia                    `r W(pd[1])`   `r W(pd[1])`   `r W(pd[3])`   `r W(pd[4])`
+(w&nbsp;miesiącach) przed uzyskaniem 
+dyplomu
+-------------------------------------------------------------------------------------------------
+
+&nbsp;                                | Mediana średnich miesięcznych wynagrodzeń absolwentów
+--------------------------------------|------------------------------------------------------:
+w pierwszym roku po uzyskaniu dyplomu |                               `r M(EZARD01[VAR15])` zł
+w drugim roku po uzyskaniu dyplomu    |                               `r M(EZARD02[VAR15])` zł
+w trzecim roku po uzyskaniu dyplomu   |                               `r M(EZARD03[VAR15])` zł
+w czwartym roku po uzyskaniu dyplomu  |                               `r M(EZARD04[VAR15])` zł
+w piątym roku po uzyskaniu dyplomu    |                               `r M(EZARD05[VAR15])` zł
+
+ 
+Średnie wartości wskaźników                             | najgorszych                              | "środkowych"                             | najlepszych
+--------------------------------------------------------|-----------------------------------------:|-----------------------------------------:|---------------------------------------------:
+czas poszukiwania pierwszej pracy                       |  `r E(CZASPRD[G(PKTRANG, 1, 3, VAR15)])` |  `r E(CZASPRD[G(PKTRANG, 2, 3, VAR15)])` |  `r E(CZASPRD[G(PKTRANG, 3, 3, VAR15)])` 
+czas poszukiwania pierwszej pracy na umowę o pracę      | `r E(CZASPRUD[G(PKTRANG, 1, 3, VAR15)])` | `r E(CZASPRUD[G(PKTRANG, 2, 3, VAR15)])` | `r E(CZASPRUD[G(PKTRANG, 3, 3, VAR15)])` 
+liczba miesięcy pozostawania bez pracy                  |    `r E(MNPRD[G(PKTRANG, 1, 3, VAR15)])` |    `r E(MNPRD[G(PKTRANG, 2, 3, VAR15)])` |    `r E(MNPRD[G(PKTRANG, 3, 3, VAR15)])` 
+liczba miesięcy pozostawania bez pracy na umowę o pracę |   `r E(MNPRUD[G(PKTRANG, 1, 3, VAR15)])` |   `r E(MNPRUD[G(PKTRANG, 2, 3, VAR15)])` |   `r E(MNPRUD[G(PKTRANG, 3, 3, VAR15)])` 
+procent osób samozatrudnionych                          |  `r E(SAMOPOD[G(PKTRANG, 1, 3, VAR15)])` |  `r E(SAMOPOD[G(PKTRANG, 2, 3, VAR15)])` |  `r E(SAMOPOD[G(PKTRANG, 3, 3, VAR15)])` 
+ryzyko bezrobocia                                       |    `r E(PBEZD[G(PKTRANG, 1, 3, VAR15)])` |    `r E(PBEZD[G(PKTRANG, 2, 3, VAR15)])` |    `r E(PBEZD[G(PKTRANG, 3, 3, VAR15)])` 
+
+```{r, echo = FALSE}
+g1 = G(PKTRANG, 1, 3, VAR15)
+g2 = G(PKTRANG, 2, 3, VAR15)
+g3 = G(PKTRANG, 3, 3, VAR15)
+```
+Średnie wartości wskaźników                             | najgorszych         | "środkowych"        | najlepszych
+--------------------------------------------------------|--------------------:|--------------------:|--------------------:
+czas poszukiwania pierwszej pracy                       |  `r E(CZASPRD[g1])` |  `r E(CZASPRD[g2])` |  `r E(CZASPRD[g3])` 
+czas poszukiwania pierwszej pracy na umowę o pracę      | `r E(CZASPRUD[g1])` | `r E(CZASPRUD[g2])` | `r E(CZASPRUD[g3])` 
+liczba miesięcy pozostawania bez pracy                  |    `r E(MNPRD[g1])` |    `r E(MNPRD[g2])` |    `r E(MNPRD[g3])` 
+liczba miesięcy pozostawania bez pracy na umowę o pracę |   `r E(MNPRUD[g1])` |   `r E(MNPRUD[g2])` |   `r E(MNPRUD[g3])` 
+procent osób samozatrudnionych                          |  `r E(SAMOPOD[g1])` |  `r E(SAMOPOD[g2])` |  `r E(SAMOPOD[g3])` 
+ryzyko bezrobocia                                       |    `r E(PBEZD[g1])` |    `r E(PBEZD[g2])` |    `r E(PBEZD[g3])` 
+
+&nbsp;     | kol1 | kol2
+-----------|------|------
+wiersz1    |   33 |   47
+wiersz2    |   13 |    2
+```{r echo = FALSE, results = 'asis'}
+if(VNKIER == 1){
+  wstawTresc('wierszA | `r 21` | `r 29`')
+}else{
+  wstawTresc('wierszB | `r 17` | `r 31`')
+}
+```

@@ -9,7 +9,7 @@ generujRaporty(plikSzablonu, dane, grupyOdbiorcow, katalogWy = "",
 \arguments{
 \item{plikSzablonu}{ścieżka do pliku Markdown z szablonem raportu}
 
-\item{dane}{ramka danych z danymi}
+\item{dane}{ramka danych lub ścieżka do pliku CSV z danymi}
 
 \item{grupyOdbiorcow}{lista, której kolejne elementy określają grupy odbiorców}
 

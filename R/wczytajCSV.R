@@ -1,10 +1,26 @@
-#' @title nakładka na read.csv2 ustawiająca kilka przydatnych wartości domyślnych
+#' @title nakładka na read.table zapewniająca wartości domyślne zgodne z
+#'   formatem zapisu plików CSV przez Excel-a
 #' @param plik ścieżka do pliku CSV
-#' @param ... wszelkie argumenty funkcji read.csv2
-#' @description
-#' Wywołuje read.csv2() z parametrami stringsAsFactors = FALSE oraz fileEncoding = 'Windows-1250'
-#' @return NULL
+#' @param sep separator kolumn (domyślnie ;)
+#' @param quote separator tekstu (domyślnie ")
+#' @param dec separator dziesiętny (domyślnie ,)
+#' @param fileEncoding kodowanie pliku CSV (domyślnie Windows-1250)
+#' @param header czy pierwszy wiersz to nagłówki kolumn (domyślnie TRUE)
+#' @param stringsAsFactors czy przekształcać stringi na factor-y (domyślnie FALSE)
+#' @param ... wszelkie argumenty funkcji read.table
+#' @return [data.frame] wczytane dane
 #' @export
-wczytajCSV = function(plik, ...){
-  return(read.csv2(plik, stringsAsFactors = F, fileEncoding = 'Windows-1250', ...))
+wczytajCSV = function(plik, sep = ';', quote = '"', dec = ',', fileEncoding = 'Windows-1250', header = TRUE, fill = T, comment.char = '', stringsAsFactors = FALSE, ...){
+  return(read.table(
+    plik, 
+    header = header,
+    sep = sep,
+    quote = quote,
+    dec = dec,
+    fill = fill,
+    comment.char = comment.char,
+    stringsAsFactors = stringsAsFactors, 
+    fileEncoding = fileEncoding, 
+    ...
+  ))
 }

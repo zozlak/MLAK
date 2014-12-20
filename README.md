@@ -78,10 +78,8 @@ pliki i katalogi:
   podgrupy populacji oraz obliczane dla nich statystyki.
 
 - [opcjonalnie] Skrypt R generujący raporty dla poszczególnych grup odbiorców
-  (tu _R2-uczelnia.R_). Jest to prosty skrypt, który ma na celu jedynie:
-  - wczytanie zbioru danych;
-  - zdefiniowanie listy odbiorców
-  - uruchomienie funkcji _generujRaporty()_
+  (tu _R2-uczelnia.R_). Jest to prosty skrypt, którego jedynym celem jest
+  wywołanie funkcji _generujRaporty()_ z odpowiednimi parametrami.
   
 - [opcjonalnie] Szablon _Markdown_ raportu interaktywnego (tu 
   _R2-uczelnia-shiny.Rmd_). Zawiera on definicje kontrolek umożliwiających
@@ -91,13 +89,14 @@ pliki i katalogi:
 
 - Katalog _raporty_, w którym generowane są wersje PDF raportów.
 
-- Zbiór danych w formacie czytelnym dla R (CSV, SPSS, Stata, DBF ale już nie 
-  MFM).
+- Zbiór danych w formacie CSV lub RData
   - **Z uwagi na poufność danych zbiorów danych nigdy nie należy
     ich dodawać do repozytorium _Git_**.
   - Zbiór danych do raportu _R2-uczelnia_ to przekonwertowany za pomocą
     _konwertera_ zbiór _R2-uczelnia/dane_USOS.mfm_ w formie takiej, w jakiej
     otrzymałem go od Mikołaja Jasińskiego.
+
+- Zbiór danych z definicją odbiorców w formacie CSV lub RData.
 
 - Wszelkie pozostałe pliki i katalogi (także podkatalogi katalogu _raporty_)
   są plikami tymczasowymi powstającymi podczas generowania raportów. Można
@@ -113,12 +112,11 @@ _rmarkdown_ napisali właśnie programiści _RStudio_).
 Przyjrzyjmy się plikowi szablonu _raporty/R2-uczelnia/R2-uczelnia.Rmd_.
 
 Zaczyna się on krótkim nagłówkiem opisującym metadane szablonu, w szczególności
-tytuł, format docelowy, datę utworzenia:
+tytuł i format docelowy:
 ```
 ---
 title: "ETAP STUDIÓW"
 output: html_document
-date: "05.09.2014"
 ---
 ```
 Opcje te można wygodnie edytować w okienku ustawień wywoływanym kliknięciem na
@@ -141,7 +139,6 @@ wyliczanie bardziej złożonych statystyk, itp. najlepiej umieścić w oddzielny
 bloku na początku szablonu. W pliku _R2-uczelnia.Rmd_ służy do tego drugi
 blok kodu R:
 ```r
-devtools::load_all('../../') # załaduj pakiet PEJK (funkcje formatujące)
 # definicje grup
 grupa1 = grupaGl
 grupa13 = grupaGl & ERASMUS %in% 100
@@ -158,32 +155,26 @@ np.:
 ```
 `r N(ENKA[grupa13])`
 ```
-Dodatkowo (w pierwszej linii) ładuje on pakiet PEJK, aby możliwe było 
-korzystanie z _funkcji formatujących_ (patrz dalej).
 
 Oddzielnego omówienia wymaga pierwszy blok kodu R:
 ```r
+library(PEJK)
 # przykładowe dane, jeśli nie generujemy wsadowo
-if(all(!grepl('dane', ls()))){ # nie ma zmiennej "dane"
-  dane = read.csv2('dane.csv', stringsAsFactors = F)
-  attach(dane)
-
-  # definicja odbiorców i stałych
-  grupaGl = STOPIEN %in% 1 & ROKSTART %in% 2007
-  stStopienN = 1
-  stStopienS = '1 stopnia'
-  stRok = 2007
-}
+attach(wczytajOdbiorce('grupy_odbiorców.csv', 'dane.csv', 1))
 ```
-Służy on pobraniu przykładowych danych i zdefiniowaniu przykładowej grupy
-odbiorców na czas tworzenia szablonu raportu. Docelowo, przy generowaniu
-raportów w ich ostatecznym kształcie, odpowiadać będzie za to skrypt 
-_R2-uczelnia.R_, ale w momencie, gdy szablon dopiero powstaje i chcemy mieć
-możliwość szybkiego podejrzenia podglądu, wygodnie jest zdefiniować przykładową
-grupę odbiorców w samym pliku szablonu. Aby nie przeszkadzała ona przy wsadowym
-generowaniu raportów skryptem _R2-uczelnia.R_ kod ten wykonywany jest 
-warunkowo, jedynie w wypadku, gdy jeszcze nie wczytano danych (za co 
-odpowiedzialny jest skrypt _R2-uczelnia.R_).
+
+Pierwsza linia ładuje pakiet PEJK, aby możliwe było korzystanie z różnorakich
+funkcji pomocniczych, np. _czytajOdbiorce()_, _funkcji formatujących_ (patrz 
+dalej), itp.
+
+W drugiej linii pobierane są przykładowe dane, aby podczas generowania podglądu 
+raportu miały się na czym wykonać obliczenia.
+
+W tym wypadku pobierany jest pierwszy odbiorca z pliku definicji odbiorców
+*grupy_odbiorcow.csv* oraz dane z pliku *dane.csv*.
+
+Podczas hurtowego generowania raportów za pomocą funkcji _generujRaporty()_
+wczytywanie przykładowych danych jest automatycznie pomijane.
 
 Reszta pliku to już najzwyklejszy kod _Markdown_.
 
@@ -205,15 +196,35 @@ odpowiedzialne za:
 - formatowanie zwracanych wartości tak, by można je było łatwo umieszczać 
   w tabelach.
 
-W chwili obecnej dostępne są dwie:
+W chwili obecnej dostępne są:
 
-- `N()` - zwraca liczbę obserwacji danej zmiennej, które nie są brakami danych;
+- `N(x)` - zwraca liczbę obserwacji zmiennej _x_, które nie są brakami danych;
 
-- `E()` - zwraca średnią wartości danej zmiennej (z pominięciem braków danych).
+- `N(x, w)` - zwraca liczbę obserwacji zmiennej _x_, których wartość wynosi w;
+  (w może być też wektorem wartości)
+
+- `E(x)` - zwraca średnią wartości zmiennej _x_;
+
+- `M(x)` - zwraca medianę wartości zmiennej _x_;
+
+- `Q(x, q, n)` - zwraca wartość _q-tego_ kwantyla zmiennej _x_ spośród _n_ 
+   kwantyli;
+
+- `W(x)` - zwraca sformatowaną wartość zmiennej _x_ (patrz opis tworzenia 
+  tablic);
+
+- `G(x, q, n, filtr)` - zwraca zmienną definiującą podgrupę, która jest
+   _q-tym_ spośród _n_ kwantyli wyznaczonych ze względu na zmienną _x_
+   w grupie wyznaczonej przez _filtr_, np. 
+   `G[PKTRANG, 2, 3, ERASMUS %in% 100]` wyznaczy grupę studentów o "środkowych"
+   (drugi z trzech kwantyli) wynikach ze względu na zmienną _PKTRANG_ w ramach
+   grupy studentów, którzy uczestniczyli w programie Erasmus
 
 Jeśli będzie taka potrzeba, dopisywane zostaną następne.
 
-Pozwalają one na skrótowy i bardziej przejrzysty zapis wstawek R w pliku szablonu, np.:
+Pozwalają one na:
+
+- skrótowy i bardziej przejrzysty zapis wstawek R w pliku szablonu, np.:
 ```
 `r N(ENKA[grupa32])`
 ```
@@ -221,6 +232,9 @@ zamiast
 ```
 `r length(na.omit(ENKA[grupa32]))`
 ```
+
+- dodanie kontroli minimalnej liczby obserwacji, dla których można obliczać
+  statystyki
 
 #### Tabele
 
@@ -298,89 +312,64 @@ Jeśli przygotowując wykresy korzystamy z *funkcji formatujących*, musimy
 pamiętać, aby jako argument _wyrownaj_ przekazać im FALSE. Inaczej zamiast
 wartości liczbowych będą one zwracać łańcuchy znaków!
 
-### Skrypt R opisujący grupy odbiorców i generujący raporty
+### Plik definicji odbiorców
+
+Plik definicji odbiorców zasadniczo nie różni się od tego, jaki był używany
+w Raporterze. Istotne różnice to:
+
+- Format - plik powinien być w formacie CSV (separator pola: średnik, kodowanie
+  znaków: Windows-1250 - są to domyślne ustawienia Excel-a pod Windows) lub
+  RData.
+  
+- Dostosowanie kolumn definiujących grupy obserwacji w danych:
+  - dodanie na początku nazwy kolumny kropki (np. _.VAR1k_ zamiast _VAR1K_);
+  - dostowanie składni filtrów:
+    - usunięcie wiodącego 0 lub 1 (oznaczającego ew. negację całego warunku);
+    - zamianę _AND_ na _&amp;_;
+    - zamianę _=_ na _%in%_.
+
+### Skrypt R hurtowo generujący raporty
 
 Jest to plik z kodem R odpowiedzialnym za:
 
 - załadowanie pakietu _PEJK_;
-
-- wczytanie danych;
-
-- zdefiniowanie grup odbiorców;
-
 - wykonanie funkcji _generujRaporty()_.
 
-W pierwszej linii powinien zawsze wywoływać funkcję `devtools::load_all()`,
-która załaduje pakiet _PEJK_ (w tym funkcję _generujRaporty()_).
-```r
-devtools::load_all()
-```
+Sprowadza się to do załadowania pakietu PEJK oraz wykonania funkcji
+_generujRaporty()_ z odpowiednimi parametrami, np. (plik _R2-uczelnia.R_):
 
-Dalej niezbędne jest załadowanie danych. W przykładzie używany jest plik
-_dane.csv_ będący skonwertowanym z użyciem _konwertera_ zbiorem 
-_R2-uczelnia/dane_USOS.mfm_, który otrzymałem od Mikołaja Jasińskiego:
-```r
-dane = read.csv2('raporty/R2-uczelnia/dane.csv', stringsAsFactors = F)
-```
-W ogólności może to być dowolny zbiór danych czytany przez R.
 
-W kolejnych trzech liniach definiowane są katalog zapisu wygenerowanych 
-raportów (względem położenia pliku szablonu), położenie pliku szablonu 
-Markdown raportu (względem katalogu projektu) oraz prefiks dodawany do nazwy
-każdego generowanego pliku raportu. Wartości te można by oczywiście przekazać 
-wprost do funkcji _generujRaporty()_ bez przekazywania ich przez zmienne, ale 
-użycie zmiennych porządkuje strukturę skryptu.
-
-Następnie widzimy definicję grup odbiorców, a więc odpowiednik pliku _.dbf_
-w _raporterze_:
 ```r
-grupy = list(
-  '1_etap' = list(
-    'grupaGl' = STOPIEN %in% 1 & ROKSTART %in% 2007,
-    'stStopienN' = 1,
-    'stStopienS' = '1 stopnia',
-    'stRok' = 2007
-  ),
-  '2_etap' = list(
-    'grupaGl' = STOPIEN %in% 2 & ROKSTART %in% 2010,
-    'stStopienN' = 2,
-    'stStopienS' = '2 stopnia',
-    'stRok' = 2010
-  )
+library(PEJK)
+
+generujRaporty(
+  plikSzablonu   = 'raporty/R2-uczelnia/R2-uczelnia.Rmd', 
+  dane           = 'raporty/R2-uczelnia/dane.csv',
+  grupyOdbiorcow = 'raporty/R2-uczelnia/grupy_odbiorców.csv',
+  katalogWy      = 'raporty', 
+  prefiksPlikow  = 'R2-'
 )
 ```
-Na podstawie nazwy każdej z grup wygenerowana zostanie nazwa pliku, w którym
-zapisany zostanie raport. 
 
-Z kolei wszystkie zmienne zdefiniowane dla danego elementu listy dostępne będą
-ze zdefiniowanymi wartościami podczas przetwarzania szablonu _Markdown_ raportu
-dla danej grupy odbiorców. Tak więc np. dla grupy odbiorców *1_etap* zmienna
-_stRok_ będzie mieć wartość _2007_, a dla grupy *2_etap* _2010_. Stąd też 
-użycie w szablonie Markdown wstawki R
-```
-Raport dotyczy studentów, którzy zostali przyjęci na studia w `r stRok` roku.
-```
-Spowoduje dostosowanie jego treści dla poszczególnych grup.
+Parametry funkcji _generujRaporty()_ to:
 
-Przyjęta w raporcie _R2-uczelnia_ konwencja nazywania zmiennych o wartościach
-stałych dla danej grupy odbiorców z prefiksem _st_ jest tylko konwencją, 
-niemniej warto się tu, dla porządku i łatwości czytania szablonów Markdown 
-raportów, jakiejś konwencji trzymać.
+- _plikSzablonu_ - ścieżka do pliku _.Rmd_ z szablonem raportu
 
-Bardzo ważna z punktu widzenia szablonu Markdown raportu _R2-uczelnia_ zmienną 
-opisującą każdą grupę odbiorców jest zmienna _grupaGl_, służy ona bowiem za
-_bazę_ dla określania wszystkich podgrup, dla których wykonywane są w raporcie
-analizy (patrz druga wstawka R w pliku _R2-uczelnia.Rmd_). Również tutaj jej 
-nazwa jest tylko przyjętą konwencją i tak naprawdę zależy od sposobu 
-zdefiniowania podgrup w pliku szablonu Markdown raportu, ale również tutaj
-warto jakąś konwencję przyjąć i się jej trzymać.
+- dane - ścieżka do pliku danych w formacie CSV (separator pola: średnik, 
+  kodowanie znaków: Windows-1250 - są to domyślne ustawienia Excel-a pod 
+  Windows) lub .RData, alternatywnie po prostu ramka danych R;
+  
+- _grupyOdbiorcow_ ścieżka do pliku CSV (separator pola: średnik, kodowanie 
+  znaków: Windows-1250 - są to domyślne ustawienia Excel-a pod Windows) z
+  definicjami odbiorców, alternatywnie ramka danych lub lista z definicjami
+  odbiorców;
 
-Ostatnia linijka to po prostu wywołanie funkcji _generujRaporty()_ ze 
-zdefiniowanymi parametrami.
+- _katalogWy_ - katalog, do którego zapisywane będą pliki pdf raportów
+  (jeśli nie istnieje, zostanie automatycznie utworzony);
 
-Struktura tego skryptu będzie na dobrą sprawę niezależnie od raportu taka sama.
-Zmieniać powinny się jedynie definicje grup odbiorców, ścieżka do pliku 
-szablonu _Markdown_ oraz prefiks nazw wygnerowanych plików raportów.
+- _prefiksPlikow_ - nazwa każdego pliku pdf raportu będzie się składać z 
+  połączenia tego prefiksu oraz pierwszej kolumny zbioru danych opisującego
+  grupy odbiorców.
 
 ### Raporty interaktywne
 
@@ -414,7 +403,7 @@ runtime: shiny
 
 2. Sekcji wczytującej dane i ładującej pakiet _PEJK_:
 ```
-devtools::load_all('../..')
+library(PEJK)
 
 dane = read.csv2('dane.csv', stringsAsFactors = F)
 lataStart = na.omit(unique(dane$ROKSTART))
