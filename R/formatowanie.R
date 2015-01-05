@@ -52,7 +52,6 @@ G = function(x, q, n, filtr = NULL){
 #' Przydatna do wstawianie wartości do multiline tables w wypadku, gdy wyniki
 #' obliczono wcześniej w innej wstawce R.
 #' @param x wartość
-#' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @return NULL
 #' @export
 W = function(x){
@@ -76,6 +75,10 @@ N = function(x, w = NULL, wyrownaj = T){
     f = function(d){
       return(sum(d %in% w))
     }
+    # obejście funkcji giodo() przy braku wartości w wektorze
+    if(f(x) == 0){
+      x = c(x, rep(NA, 50))
+    }
     return(statWektor(x, f, sys.call(), wyrownaj, 0))
   }else{
     return(statWektor(x, length, sys.call(), wyrownaj, 0))
@@ -98,7 +101,7 @@ E = function(x, wyrownaj = T, dokl = 2){
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @return NULL
 #' @export
-M = function(x, wyrownaj = T, dokl = 2){
+Me = function(x, wyrownaj = T, dokl = 2){
   return(statWektor(x, median, sys.call(), wyrownaj, dokl))
 }
 

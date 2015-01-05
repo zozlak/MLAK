@@ -13,6 +13,8 @@ wektor lub ramka danych
 }
 \description{
 Jeśli przekazane dane nie spełniają warunku minimalnej liczebności grupy,
-wtedy wszystkie wartości zostają zamienione na braki danych (zanonimizowane)
+wtedy wszystkie wartości zostają zamienione na braki danych (zanonimizowane).
+
+Przy tym jeśli dane są długości 0, wtedy nie są anonimizowane.
 }
 

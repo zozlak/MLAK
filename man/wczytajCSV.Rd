@@ -20,6 +20,10 @@ wczytajCSV(plik, sep = ";",
 
 \item{header}{czy pierwszy wiersz to nagłówki kolumn (domyślnie TRUE)}
 
+\item{fill}{czy wyrównywać NA linie krótsze od pozostałych}
+
+\item{comment.char}{znak rozpoczynający linie będące komentarzem}
+
 \item{stringsAsFactors}{czy przekształcać stringi na factor-y (domyślnie FALSE)}
 
 \item{...}{wszelkie argumenty funkcji read.table}

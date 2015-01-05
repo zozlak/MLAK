@@ -30,7 +30,7 @@ wczytajDane = function(plik){
     }
     if(length(dane) == 0){
       dane = data.frame()
-    }else if(length(ramkiDanych) == 1){
+    }else if(length(dane) == 1){
       dane = dane[[1]]
     }
   }

@@ -1,5 +1,6 @@
 #' @title buduje i instaluje lokalnie pakiet
 #' @return NULL
+#' @import devtools
 #' @export
 zainstaluj = function(){
   devtools::document(roclets = c('rd', 'collate', 'namespace'))

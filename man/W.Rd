@@ -7,8 +7,6 @@ W(x)
 }
 \arguments{
 \item{x}{wartość}
-
-\item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
 }
 \description{
 Zwraca przekazany argument wyrównując go spacjami z lewej, tak by długość

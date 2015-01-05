@@ -29,6 +29,7 @@
 #' @param katalogWy katalog, w którym zapisane zostaną wygenerowane raporty (względem pliku szablonu)
 #' @param prefiksPlikow prefiks nazw plików wygenerowanych raportów
 #' @return NULL
+#' @import rmarkdown
 #' @export
 generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = ''){
   if(is.character(dane)){
@@ -63,21 +64,20 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
   for(i in 1:length(grupyOdbiorcow)){
     suppressWarnings(rm(.nieWczytujOdbiorcy))
     odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, i)
-    attach(odbiorca)
-    .nieWczytujOdbiorcy = TRUE
-    tryCatch(
-      render(
-        input = plikSzablonu, 
-        output_format = pdf_document(),
-        output_file = paste0(
-          prefiksPlikow,
-          names(grupyOdbiorcow)[i],
-          '.pdf'
-        ),
-        output_dir = katalogWy
-      ),
-      finally = function(){
-        detach(odbiorca)
+    with(
+      odbiorca, 
+      {
+        .nieWczytujOdbiorcy = TRUE
+        render(
+          input = plikSzablonu, 
+          output_format = pdf_document(),
+          output_file = paste0(
+            prefiksPlikow,
+            names(grupyOdbiorcow)[i],
+            '.pdf'
+          ),
+          output_dir = katalogWy
+        )
       }
     )
   }

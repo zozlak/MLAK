@@ -1,10 +1,22 @@
+Zmiany w MLAK 0.3.1 (2015-01-05)
+
+  * Zmiana nazwy pakietu na MLAK
+  * Zmiana nazwy funkcji formatującej obliczającej medianę z M() na Me()
+  * Funkcja N(zmienna, wartość) nie anonimizuje wyniku jeśli wartość nie 
+    występuje w wektorze "zmienna" bez względu na długość wektora "zmienna"
+  * Zmiany techniczne:
+    * Przepisanie użyć attach() na with()
+    * Korekta nazwy zmiennej w funkcji wczytajDane()
+    * Doprowadzenie pakietu do przechodzenia CHECK jedynie z komunikatami o
+      znakach spoza ASCII oraz niestandardowym katalogu "raporty"
+
 Zmiany w PEJK 0.3 (2014-12-20)
 
   * dodanie nowych funkcji formatujących:
     * Q() - kwantyle
     * M() - mediana
     * W() - identyczność (ale z wyrównaniem długości)
-  * wzbogacenie funkcji E() o możliwość zliczania konkretnych wartości
+  * wzbogacenie funkcji N() o możliwość zliczania konkretnych wartości
   * dodanie funkcji wczytajOdbiorce() umożliwiającej łatwe wczytanie
     przykładowych danych w kodzie Markdown szablonu raportu
   * dodanie funkcji wstawTresc() umożliwiającej warunkowe generowanie

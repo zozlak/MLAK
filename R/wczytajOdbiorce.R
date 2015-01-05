@@ -43,13 +43,6 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
     is.list(grupy) | is.data.frame(grupy)
   )
   
-  if(is.data.frame(dane)){
-    attach(dane)
-    on.exit({
-      detach(dane)
-    })
-  }
- 
   if(is.data.frame(grupy)){
     odbiorca = grupy[n, ]
   }else{
@@ -61,8 +54,15 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
   odbiorca = as.list(odbiorca)
   names(odbiorca) = sub('^[.]', '', tmp)
   
-  for(i in kolEval){
-    odbiorca[[i]] = eval(parse(text = odbiorca[[i]]))
+  if(length(kolEval) > 0){
+    with(
+      dane,
+      {
+        for(i in kolEval){
+          odbiorca[[i]] = eval(parse(text = odbiorca[[i]]))
+        }
+      }
+    )
   }
   
   odbiorca = append(odbiorca, dane)  
