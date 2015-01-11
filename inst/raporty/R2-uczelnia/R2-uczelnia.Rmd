@@ -4,20 +4,20 @@ output: pdf_document
 ---
 
 ```{r echo = FALSE, message = FALSE}
-library(PEJK)
+library(MLAK)
 # przykładowe dane, jeśli nie generujemy wsadowo
 attach(wczytajOdbiorce('odbiorcy.csv', 'dane.csv', 1))
 ```
 
 ```{r echo = FALSE, message = FALSE}
 # definicje grup
-grupa1 = grupaGl
-grupa13 = grupaGl & ERASMUS %in% 100
-grupa14 = grupaGl & ERASMUS %in% 0
-grupa32 = grupaGl & NPELUSOS %in% 0
-grupa33 = grupaGl & NPELUSOS %in% 100
-grupa37 = grupaGl & STYPEND %in% 100
-grupa38 = grupaGl & STYPEND %in% 0
+grupa1 = STOPIEN %in% stStopienN & ROKSTART %in% stRok
+grupa13 = grupa1 & ERASMUS %in% 100
+grupa14 = grupa1 & ERASMUS %in% 0
+grupa32 = grupa1 & NPELUSOS %in% 0
+grupa33 = grupa1 & NPELUSOS %in% 100
+grupa37 = grupa1 & STYPEND %in% 100
+grupa38 = grupa1 & STYPEND %in% 0
 ```
 
 # ABSOLWENCI UNIWERSYTETU WARSZAWSKIEGO STUDIÓW `r stStopienS`
@@ -61,17 +61,9 @@ Procent studentów, którzy terminowo uzyskali dyplom            `r E(DTERM2[gru
 Średnia liczba warunkowych zaliczeń semestrów                    `r E(LWAR[grupa37])`%             `r E(LWAR[grupa38])`%
 ------------------------------------------------------------------------------------------------------------------------
 
-```{r echo = FALSE, fig.height = 3.5}
-par(cex = 0.8)
-barplot(
-  c('stypendyści' = E(DTERM1[grupa37], F), 'niestypendyści' = E(DTERM1[grupa38], F)),
-  ylim = c(0, 100), 
-  main = 'Terminowość uzyskania dyplomu \n (od rozpoczęcia studiów) a otrzymywanie stypendium'
-)
-text(
-  c(0.7, 1.9),
-  c(10, 10),
-  paste0(c(E(DTERM1[grupa37], F), E(DTERM1[grupa38], F)), '%')
+```{r echo = FALSE, fig.height = 2.5, fig.width = 4}
+wykresSlupkowy(
+  c('stypendyści' = E(DTERM1[grupa37], F), 'niestypendyści' = E(DTERM1[grupa38], F))
 )
 ```
 

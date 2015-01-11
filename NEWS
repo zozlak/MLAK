@@ -1,3 +1,14 @@
+Zmiany w MLAK 0.4 (2015-01-11)
+
+  * Dodanie obsługi wywołania: N(zmienna, NA)
+  * Dodanie funkcji rysujących wykresy (zapewne wymagających jeszcze korekt):
+    * wykresSlupkow()
+    * wykresKolowy()
+    * wykresHistogram()
+  * Zmiany techniczne:
+    * Przeniesienie przykładowych raportów do katalogi inst/
+    * Korekta błędnego wykorzystania funkcji with() w funkcji wczytajOdbiorce()
+
 Zmiany w MLAK 0.3.1 (2015-01-05)
 
   * Zmiana nazwy pakietu na MLAK

@@ -4,19 +4,19 @@ output: pdf_document
 ---
 
 ```{r echo = FALSE, message = FALSE}
-library(PEJK)
+library(MLAK)
 # przykładowe dane, jeśli nie generujemy wsadowo
 attach(wczytajOdbiorce('odbiorcy.csv', 'dane.csv', 2))
 ```
 
 ```{r echo = FALSE, message = FALSE}
 # definicje grup
-VAR1K = KIERUNEK %in% VKIERUNEK & ROKDYP %in% VROK
+VAR1K = KIERUNEK %in% VNKIER & ROKDYP %in% VROK
 VAR2K	= VAR1K & ZAL1 %in% 100
 VAR3K	= VAR1K & ZAL2 %in% 100
 VAR4K = VAR1K & ZAL3 %in% 100
 VAR5K = VAR1K & ZAL4 %in% 100
-VAR1  = VAR1K & SPEC %in% VSPEC
+VAR1  = VAR1K & SPEC %in% VNSPEC
 VAR2  = VAR1  & ZAL1 %in% 100
 VAR3  = VAR1  & ZAL2 %in% 100
 VAR4  = VAR1  & ZAL3 %in% 100
@@ -49,7 +49,7 @@ VAR30 = VAR28 & STYPEND %in% 100
 VAR31 = VAR28 & STYPEND %in% 0
 ```
 
-# `r VMIAN` `VKIERSPC`
+# `r VMIAN` `r VKIERSPC`
 
 Raport dotyczy `r N(ENKA[VAR1])` absolwentów, którzy uzyskali dyplom w `r VROK` r.
 Wśród absolwentów może istnieć grupa osób, które nie figurują w rejestrach ZUS. Oznacza to, że na konta tych osób nie wpłynęła dotąd ani jedna składka z jakiegokolwiek tytułu. Osoby te nie będą uwzględniane w dalszych analizach. Liczba absolwentów, którzy uzyskali dyplom w `r VROK` r., którzy występują w rejestrach ZUS:
@@ -63,7 +63,7 @@ Osoby zamieszkałe...                      | Liczebność kategorii
 w największych ośrodkach akademickich	    | `r N(MIEJZAM[VAR15], 1)` 
 w pozostałych miastach na prawach powiatu	| `r N(MIEJZAM[VAR15], 2)`
 w pozostałych miejscowościach	            | `r N(MIEJZAM[VAR15], 3)`
-Liczba braków danych	                    | `r N(is.na(MIEJZAM[VAR15]), T)`
+Liczba braków danych	                    | `r N(MIEJZAM[VAR15], NA)`
 
 ---------------------------------------------------------------------------------
 Osoby zamieszkałe
@@ -175,12 +175,12 @@ dyplomu
 -------------------------------------------------------------------------------------------------
 
 &nbsp;                                | Mediana średnich miesięcznych wynagrodzeń absolwentów
---------------------------------------|------------------------------------------------------:
-w pierwszym roku po uzyskaniu dyplomu |                               `r M(EZARD01[VAR15])` zł
-w drugim roku po uzyskaniu dyplomu    |                               `r M(EZARD02[VAR15])` zł
-w trzecim roku po uzyskaniu dyplomu   |                               `r M(EZARD03[VAR15])` zł
-w czwartym roku po uzyskaniu dyplomu  |                               `r M(EZARD04[VAR15])` zł
-w piątym roku po uzyskaniu dyplomu    |                               `r M(EZARD05[VAR15])` zł
+--------------------------------------|-------------------------------------------------------:
+w pierwszym roku po uzyskaniu dyplomu |                               `r Me(EZARD01[VAR15])` zł
+w drugim roku po uzyskaniu dyplomu    |                               `r Me(EZARD02[VAR15])` zł
+w trzecim roku po uzyskaniu dyplomu   |                               `r Me(EZARD03[VAR15])` zł
+w czwartym roku po uzyskaniu dyplomu  |                               `r Me(EZARD04[VAR15])` zł
+w piątym roku po uzyskaniu dyplomu    |                               `r Me(EZARD05[VAR15])` zł
 
  
 Średnie wartości wskaźników                             | najgorszych                              | "środkowych"                             | najlepszych

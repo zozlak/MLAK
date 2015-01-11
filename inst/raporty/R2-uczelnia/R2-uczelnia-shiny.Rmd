@@ -7,7 +7,7 @@ runtime: shiny
 
 
 ```{r echo = FALSE, message = FALSE}
-library(PEJK)
+library(MLAK)
 
 dane = read.csv2('dane.csv', stringsAsFactors = F)
 lataStart = na.omit(unique(dane$ROKSTART))

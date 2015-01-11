@@ -3,6 +3,7 @@
 #' @param kod kod Markdown (z ew. wstawkami R) do wykonania lub ścieżka do pliku .Rmd
 #' @return przetworzony kod
 #' @export
+#' @import knitr
 wstawTresc = function(kod){
   stopifnot(
     is.character(kod),

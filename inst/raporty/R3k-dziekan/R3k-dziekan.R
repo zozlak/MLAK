@@ -1,4 +1,4 @@
-library(PEJK)
+library(MLAK)
 
 generujRaporty(
   plikSzablonu   = 'raporty/R3k-dziekan/R3k-dziekan.Rmd', 

@@ -49,21 +49,22 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
     odbiorca = grupy[[n]]
   }
 
-  tmp = names(odbiorca)
-  kolEval = grep('^[.]', names(odbiorca))
   odbiorca = as.list(odbiorca)
-  names(odbiorca) = sub('^[.]', '', tmp)
-  
+  kolEval = grep('^[.]', names(odbiorca), value = T)
+
   if(length(kolEval) > 0){
-    with(
+    odbiorca = with(
       dane,
       {
         for(i in kolEval){
           odbiorca[[i]] = eval(parse(text = odbiorca[[i]]))
         }
+        return(odbiorca)
       }
     )
   }
+
+  names(odbiorca) = sub('^[.]', '', names(odbiorca))  
   
   odbiorca = append(odbiorca, dane)  
   return(odbiorca)
