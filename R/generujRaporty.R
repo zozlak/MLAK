@@ -32,6 +32,9 @@
 #' @import rmarkdown
 #' @export
 generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = ''){
+  #TODO kiedyś należy to zrobić bardziej elegancko
+  pdf.options(encoding = 'CP1250')
+  
   if(is.character(dane)){
     stopifnot(
       length(dane) == 1,

@@ -1,3 +1,8 @@
+Zmiany w MLAK 0.4.1 (2015-01-25)
+
+  * Dodanie obejścia problemów z polskimi znakami na wykresach podczas eksportu
+    do PDF pod Windowsami i MacOs
+
 Zmiany w MLAK 0.4 (2015-01-11)
 
   * Dodanie obsługi wywołania: N(zmienna, NA)
