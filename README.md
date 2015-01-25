@@ -1,5 +1,5 @@
-# PEJK
-Pakiet do generowania raportów dla PEJK
+# MLAK
+Pakiet do generowania raportów dla MLAK
 
 ## Instalacja
 
@@ -18,17 +18,18 @@ Praca z pakietem składa się zasadniczo z dwóch kroków:
    ```r
    install.packages('devtools')
    ```
-2. Zainstaluj pakiet _PEJK_ z użyciem _devtools_:
+2. Zainstaluj pakiet _MLAK_ z użyciem _devtools_:
    ```r
-   devtools::install_github('zozlak/PEJK')
+   devtools::install_github('zozlak/MLAK')
    ```
+   
 3. Jeśli jesteś użytkownikiem 64-bitowego linuksa, wtedy krok 2. może się nie
-   powieść (z uwagi na błąd w pakiecie _devtools_). W takim wypadku musisz
-   zainstalować pakiet _PEJK_ ręcznie z linii komend:
+   powieść ([patrz tutaj](https://github.com/hadley/devtools/issues/650) ). 
+   W takim wypadku musisz zainstalować pakiet _MLAK_ ręcznie z linii komend:
    ```
-   git clone https://github.com/zozlak/PEJK.git
-   R CMD INSTALL PEJK
-   rm -fR PEJK
+   git clone https://github.com/zozlak/MLAK.git
+   R CMD INSTALL MLAK
+   rm -fR MLAK
    ```
 
 ### Założenie projektu RStudio na podstawie repozytorium _Git_
@@ -37,7 +38,7 @@ Praca z pakietem składa się zasadniczo z dwóch kroków:
 
 2. Wybrać *Version Control*, a następnie _Git_.
 
-3. Wpisać `https://github.com/zozlak/PEJK.git` w pole *Repository URL* oraz 
+3. Wpisać `https://github.com/zozlak/MLAK.git` w pole *Repository URL* oraz 
    wskazać katalog, do którego zostaną ściągnięte źródła pakietu (pole
    *Create project as subdirectory of*), po czym kliknąć przycisk *Create
    Project*
@@ -158,12 +159,12 @@ np.:
 
 Oddzielnego omówienia wymaga pierwszy blok kodu R:
 ```r
-library(PEJK)
+library(MLAK)
 # przykładowe dane, jeśli nie generujemy wsadowo
 attach(wczytajOdbiorce('grupy_odbiorców.csv', 'dane.csv', 1))
 ```
 
-Pierwsza linia ładuje pakiet PEJK, aby możliwe było korzystanie z różnorakich
+Pierwsza linia ładuje pakiet MLAK, aby możliwe było korzystanie z różnorakich
 funkcji pomocniczych, np. _czytajOdbiorce()_, _funkcji formatujących_ (patrz 
 dalej), itp.
 
@@ -188,7 +189,7 @@ Aby:
 
 - wspomóc w radzeniu sobie z uciążliwymi problemami (patrz rozdział o tabelach)
 
-pakiet _PEJK_ zawiera _funkcje formatujące_. Są to proste funkcje 
+pakiet _MLAK_ zawiera _funkcje formatujące_. Są to proste funkcje 
 odpowiedzialne za:
 
 - obliczanie najczęściej wykorzystywanych statystyk;
@@ -334,15 +335,15 @@ w Raporterze. Istotne różnice to:
 
 Jest to plik z kodem R odpowiedzialnym za:
 
-- załadowanie pakietu _PEJK_;
+- załadowanie pakietu _MLAK_;
 - wykonanie funkcji _generujRaporty()_.
 
-Sprowadza się to do załadowania pakietu PEJK oraz wykonania funkcji
+Sprowadza się to do załadowania pakietu MLAK oraz wykonania funkcji
 _generujRaporty()_ z odpowiednimi parametrami, np. (plik _R2-uczelnia.R_):
 
 
 ```r
-library(PEJK)
+library(MLAK)
 
 generujRaporty(
   plikSzablonu   = 'raporty/R2-uczelnia/R2-uczelnia.Rmd', 
@@ -403,9 +404,9 @@ runtime: shiny
    _R2-uczelnia.Rmd_), jednak zawierają linijkę `runtine: shiny`, a jako format
    wyjściowy wybrany musi być html (`output: html_document`).
 
-2. Sekcji wczytującej dane i ładującej pakiet _PEJK_:
+2. Sekcji wczytującej dane i ładującej pakiet _MLAK_:
 ```
-library(PEJK)
+library(MLAK)
 
 dane = read.csv2('dane.csv', stringsAsFactors = F)
 lataStart = na.omit(unique(dane$ROKSTART))
