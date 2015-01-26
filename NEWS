@@ -1,7 +1,12 @@
-Zmiany w MLAK 0.4.1 (2015-01-25)
+Zmiany w MLAK 0.4.1 (2015-01-26)
 
   * Dodanie obejścia problemów z polskimi znakami na wykresach podczas eksportu
     do PDF pod Windowsami i MacOs
+  * Dodanie domyślnych opcji wstawek R ('error' = FALSE, 'warnings' = FALSE, 
+   'message' = FALSE, 'echo' = FALSE, 'results' = 'asis'):
+    * wyłączywszy pierwszą wstawkę (w której importujemy pakiet MLAK i 
+      wczytujemy przykładowego odbiorcę) wystarczy otwarcie składnią
+      ```{r}
 
 Zmiany w MLAK 0.4 (2015-01-11)
 

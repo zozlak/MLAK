@@ -20,8 +20,9 @@
 #' @return [list] definicja odbiorcy
 #' @export
 wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
-  #TODO kiedyś należy to zrobić bardziej elegancko
-  pdf.options(encoding = 'CP1250')
+  # aby nie było potrzebne oddzielne wywolywanie przy generowaniu raportu
+  # wprost z RStudio
+  konfigurujKnitr()
   
   if(length(ls(pattern = '^[.]nieWczytujOdbiorcy$')) > 0){
     return(list())
