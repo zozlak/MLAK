@@ -7,10 +7,12 @@ konfigurujKnitr = function(){
     'echo' = FALSE, 'results' = 'asis'
   )
   
-  cairo = capabilities()['cairo']
-  if(cairo %in% TRUE){
-    opts_chunk$set('dev' = 'cairo_pdf')
-  }else{
-    pdf.options(encoding = 'CP1250')
+  if(opts_knit$get('rmarkdown.pandoc.to') == 'latex'){
+    cairo = capabilities()['cairo']
+    if(cairo %in% TRUE){
+      opts_chunk$set('dev' = 'cairo_pdf')
+    }else{
+      pdf.options(encoding = 'CP1250')
+    }
   }
 }
