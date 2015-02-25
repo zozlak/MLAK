@@ -1,3 +1,8 @@
+Zmiany w MLAK 0.4.2 (2015-02-25)
+
+  * Poprawienie funkcji N(), tak by przy wywołaniu N(zmienna, NA) poprawnie 
+    zliczała braki danych także wtedy, gdy zmienna zawiera tylko braki danych
+
 Zmiany w MLAK 0.4.1 (2015-01-26)
 
   * Dodanie obejścia problemów z polskimi znakami na wykresach podczas eksportu

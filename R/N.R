@@ -31,7 +31,9 @@ N = function(x, w = NULL, wyrownaj = T){
     }
     # obejście umożliwiające zliczanie NA
     if(any(is.na(w))){
-      if(is.numeric(x)){
+      if(all(is.na(x))){
+        tmp = 1
+      }else if(is.numeric(x)){
         tmp = max(x, na.rm = T) + 1
       }else{
         tmp = paste0('_', max(x, na.rm = T))
