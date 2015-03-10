@@ -15,7 +15,6 @@
 #' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @return zależnie od funkcji f
-#' @export
 statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
   stopifnot(
     is.vector(x),
@@ -30,16 +29,7 @@ statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
   }
   
   if(wyrownaj){
-    dl = 4 + nchar(deparse(call))
-    if(max(nchar(wynik)) > dl){
-      warning('Wyrównanie długości nie było możliwe')
-    }
-    format = ifelse(
-      is.character(wynik),
-      paste0('% ', dl, 's'),
-      paste0('% ', dl, '.', dokl, 'f')
-    )
-    return(sprintf(format, wynik)) 
+    return(wyrownajDl(wynik, call, dokl))
   }
   return(wynik)  
 }
