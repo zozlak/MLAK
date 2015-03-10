@@ -3,12 +3,15 @@
 #' Rysuje histogram z przekazanych danych.
 #' @param dane wektor danych
 #' @param n liczba przedziałów
+#' @param tytul tytuł wykresu
+#' @param tytulX tytuł osi X wykresu
+#' @param tytulY tytuł osi Y wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresHistogram = function(dane, n = 30, rozmiarTekstu = 16, opcjeWykresu = NULL){
+wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL){
   stopifnot(
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
@@ -17,13 +20,32 @@ wykresHistogram = function(dane, n = 30, rozmiarTekstu = 16, opcjeWykresu = NULL
   dane = na.exclude(dane)
   
   wykres = ggplot(data = data.frame(d = dane)) +
-    aes(x = get('d')) +
-    geom_histogram(
-      binwidth = (max(dane) - min(dane)) / (n - 1),
-      colour = '#000000',
-      fill = '#FFFFFF'
-    )
-  wykres = wykresDefaultTheme(wykres, rozmiarTekstu)
+    aes(x = get('d'))
+
+  if(is.numeric(dane)){
+    breaks = seq(min(dane), max(dane), length.out = n + 1)
+    breaks[1] = breaks[1] - 10^-6
+
+    wykres = wykres +
+      geom_histogram(
+        breaks = breaks,
+        colour = '#000000',
+        fill = '#FFFFFF'
+      )
+  }else{
+    wykres = wykres +
+      geom_histogram(
+        colour = '#000000',
+        fill = '#FFFFFF'
+      )
+  }
+  
+  wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) + 
+    theme(axis.line = element_line(colour = '#000000', linetype = 'solid'), axis.line.x = element_blank())
+  
+  if(is.numeric(dane)){
+    wykres = wykres + scale_x_continuous(breaks = round(breaks, 2))
+  }
   
   if(!is.null(opcjeWykresu)){
     wykres = wykres + opcjeWykresu

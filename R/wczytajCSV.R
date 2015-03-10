@@ -12,7 +12,18 @@
 #' @param ... wszelkie argumenty funkcji read.table
 #' @return [data.frame] wczytane dane
 #' @export
-wczytajCSV = function(plik, sep = ';', quote = '"', dec = ',', fileEncoding = 'Windows-1250', header = TRUE, fill = T, comment.char = '', stringsAsFactors = FALSE, ...){
+wczytajCSV = function(
+  plik, 
+  sep = ';', 
+  quote = '"', 
+  dec = ',', 
+  fileEncoding = 'Windows-1250', 
+  header = TRUE, 
+  fill = T, 
+  comment.char = '', 
+  stringsAsFactors = FALSE, 
+  ...
+){
   return(read.table(
     plik, 
     header = header,

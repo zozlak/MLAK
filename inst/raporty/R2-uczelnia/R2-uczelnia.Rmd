@@ -1,15 +1,16 @@
 ---
 title: "ETAP STUDIÓW"
-output: pdf_document
+output:
+  pdf_document:
 ---
 
-```{r echo = FALSE, message = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 library(MLAK)
 # przykładowe dane, jeśli nie generujemy wsadowo
 attach(wczytajOdbiorce('odbiorcy.csv', 'dane.csv', 1))
 ```
 
-```{r echo = FALSE, message = FALSE}
+```{r}
 # definicje grup
 grupa1 = STOPIEN %in% stStopienN & ROKSTART %in% stRok
 grupa13 = grupa1 & ERASMUS %in% 100
@@ -61,9 +62,10 @@ Procent studentów, którzy terminowo uzyskali dyplom            `r E(DTERM2[gru
 Średnia liczba warunkowych zaliczeń semestrów                    `r E(LWAR[grupa37])`%             `r E(LWAR[grupa38])`%
 ------------------------------------------------------------------------------------------------------------------------
 
-```{r echo = FALSE, fig.height = 2.5, fig.width = 4}
+```{r, fig.height = 2.5, fig.width = 4, fig.cap = 'aaa'}
 wykresSlupkowy(
-  c('stypendyści' = E(DTERM1[grupa37], F), 'niestypendyści' = E(DTERM1[grupa38], F))
+  c('stypendyści' = E(DTERM1[grupa37]), 'niestypendyści' = E(DTERM1[grupa38])),
+  tytulY = 'aaa'
 )
 ```
 

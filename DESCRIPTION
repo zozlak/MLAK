@@ -1,8 +1,7 @@
 Package: MLAK
-Type: Package
 Title: Generator raportow MLAK
-Version: 0.4.2
-Date: 2014-01-25
+Description: Generator raportow MLAK
+Version: 0.4.3
 Author: Mateusz Zoltak
 Maintainer: Mateusz Zoltak <zozlak@zozlak.org>
 Depends:
@@ -11,7 +10,9 @@ Depends:
     devtools,
     ggplot2,
     reshape2
-Description: Generator raportow MLAK
+Suggests: 
+    testthat
 License: MIT + file LICENSE
+NeedsCompilation: no
 VignetteBuilder: knitr
 Encoding: UTF-8

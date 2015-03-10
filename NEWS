@@ -1,3 +1,29 @@
+Zmiany w MLAK 0.4.3 (2015-03-10)
+
+  * Korekty błędów:
+    * Kolejna korekta obsługi zliczania przez funkcję N() wartości NA - tym 
+      razem błędu w obejściu funkcji giodo() przy braku wystąpień wartości NA
+      * Obłożenie funkcji N() testami weryfikującymi poprawność jej działania
+  * Nowe funkcje:
+    * Funkcja pomocnicza P(x, y) liczącej odsetek wystąpień wartości y 
+      w zmiennej x (tak naprawdę P działa jak 100 * N(x, y) / length(x))
+  * Wykresy:
+    * Dodanie argumentu "tytul" do wszystkich funkcji rysujących wykresy
+    * Dodanie argumentów "tytulX" i "tytulY" (do ustawiania tytułów osi) do 
+      funkcji wykresSlupkowy() i wykresHistogram()
+    * Udoskonalenie sposobu wyliczania szerokości przedziałów w funkcji
+      wykresHistogram() (dla danych liczbowych)
+    * Dodanie obsługi danych nieliczbowych do funkcji wykresHistogram()
+    * Dodanie wyświetlania znaczników i etykiet wartości dla granic przedziałów
+      na wykresach rysowanym przez funkcję wykresHistogram() dla danych
+      liczbowych
+    * Dodanie linii wyznaczającej oś pionową w wykresHistogram() oraz
+      wykresSlupkowy()
+  * Zmiany techniczne:
+    * Usunięcie eksportowania funkcji statWektor()
+    * Wydzielenie z funkcji statWektor() oddzielnej funkcji wyrownajDl()
+      (w związku z implementacją funkcji pomocniczej P())
+  
 Zmiany w MLAK 0.4.2 (2015-02-25)
 
   * Poprawienie funkcji N(), tak by przy wywołaniu N(zmienna, NA) poprawnie 

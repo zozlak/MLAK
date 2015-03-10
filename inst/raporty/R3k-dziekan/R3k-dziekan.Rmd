@@ -2,14 +2,13 @@
 title: "Rynek pracy"
 output: pdf_document
 ---
-
-```{r echo = FALSE, message = FALSE}
-library(MLAK)
+```{r}
+library(MLAK, echo = FALSE, warning = FALSE, message = FALSE)
 # przykładowe dane, jeśli nie generujemy wsadowo
 attach(wczytajOdbiorce('odbiorcy.csv', 'dane.csv', 2))
 ```
 
-```{r echo = FALSE, message = FALSE}
+```{r}
 # definicje grup
 VAR1K = KIERUNEK %in% VNKIER & ROKDYP %in% VROK
 VAR2K	= VAR1K & ZAL1 %in% 100
@@ -153,7 +152,7 @@ Staż samozatrudnienia                  `r Q(STZBEFSD[VAR15], 1, 5)`  `r Q(STZBE
 dyplomu
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-```{r echo = FALSE, results = 'asis'}
+```{r}
 pd = Q(STZBEFD[VAR15], 1:4, 5)
 ud = Q(STZBEFUD[VAR15], 1:4, 5)
 sd = Q(STZBEFSD[VAR15], 1:4, 5)
@@ -192,7 +191,7 @@ liczba miesięcy pozostawania bez pracy na umowę o pracę |   `r E(MNPRUD[G(PKT
 procent osób samozatrudnionych                          |  `r E(SAMOPOD[G(PKTRANG, 1, 3, VAR15)])` |  `r E(SAMOPOD[G(PKTRANG, 2, 3, VAR15)])` |  `r E(SAMOPOD[G(PKTRANG, 3, 3, VAR15)])` 
 ryzyko bezrobocia                                       |    `r E(PBEZD[G(PKTRANG, 1, 3, VAR15)])` |    `r E(PBEZD[G(PKTRANG, 2, 3, VAR15)])` |    `r E(PBEZD[G(PKTRANG, 3, 3, VAR15)])` 
 
-```{r, echo = FALSE, results = 'asis'}
+```{r}
 g1 = G(PKTRANG, 1, 3, VAR15)
 g2 = G(PKTRANG, 2, 3, VAR15)
 g3 = G(PKTRANG, 3, 3, VAR15)
@@ -210,7 +209,7 @@ ryzyko bezrobocia                                       |    `r E(PBEZD[g1])` | 
 -----------|------|------
 wiersz1    |   33 |   47
 wiersz2    |   13 |    2
-```{r echo = FALSE, results = 'asis'}
+```{r}
 if(VNKIER == 1){
   wstawTresc('wierszA | `r 21` | `r 29`')
 }else{

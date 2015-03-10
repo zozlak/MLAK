@@ -13,12 +13,13 @@
 #' c('wartość1' = 'etykieta1', 'wartość2' = 'etykieta2', ...)
 #' @param dane wektor danych
 #' @param etykiety opcjonalny wektor z etykietami wartości
+#' @param tytul tytuł wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresKolowy = function(dane, etykiety = NULL, rozmiarTekstu = 16, opcjeWykresu = NULL){
+wykresKolowy = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
   stopifnot(
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
@@ -60,7 +61,7 @@ wykresKolowy = function(dane, etykiety = NULL, rozmiarTekstu = 16, opcjeWykresu 
     coord_polar(theta = 'y') +
     scale_x_discrete(breaks = NULL) +
     scale_y_discrete(breaks = NULL)
-  wykres = wykresDefaultTheme(wykres, rozmiarTekstu)
+  wykres = wykresDefaultTheme(wykres, tytul = tytul, rozmiarTekstu = rozmiarTekstu)
   
   if(!is.null(opcjeWykresu)){
     wykres = wykres + opcjeWykresu

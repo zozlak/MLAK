@@ -1,27 +1,30 @@
 #' Wykres kołowy
 #' @description
-#' Rysuje wykres kołowy.
-#' 
-#' Jeśli dane zawierają duplikaty wartości lub są factor-em, wtedy narysowane
-#' zostaną częstości występowania poszczególnych wartości.
-#' W przeciwnym wypadku narysowane zostaną przekazane dane.
-#' 
-#' Właściwe etykiety wartości uzyskać można w dwojaki sposób - albo przekazując
-#' do funkcji factor (wektor z przypisanymi etykietami wartości) albo używając
-#' argumentu "etykiety". Argument "etykiety" powinien mieć postać:
-#' 
-#' c('wartość1' = 'etykieta1', 'wartość2' = 'etykieta2', ...)
+#' Rysuje wykres słupkowy.
 #' @param dane wektor danych
 #' @param skumulowany czy wykres ma być skumulowany?
+#' @param tytul tytuł wykresu
+#' @param tytulX tytuł osi X wykresu
+#' @param tytulY tytuł osi Y wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
 #' @import reshape2
-wykresSlupkowy = function(dane, skumulowany = F, rozmiarTekstu = 16, opcjeWykresu = NULL){
+wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL){
   stopifnot(
-    is.vector(dane) | is.matrix(dane),
+    is.vector(dane) | is.matrix(dane)
+  )
+  # ew. konwersja na liczby
+  if(is.character(dane)){
+    tmp = sum(is.na(dane))
+    dane = suppressWarnings(as.numeric(dane))
+    if(sum(is.na(dane)) != tmp){
+      stop('dane nie są liczbami')
+    }
+  }
+  stopifnot(
     is.numeric(dane)
   )
   
@@ -39,12 +42,13 @@ wykresSlupkowy = function(dane, skumulowany = F, rozmiarTekstu = 16, opcjeWykres
       stat = 'identity',
       position = pozycja()
     )
-  wykres = wykresDefaultTheme(wykres, rozmiarTekstu)
+  wykres = wykresDefaultTheme(wykres,  tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
+    theme(axis.line = element_line(colour = '#000000', linetype = 'solid'), axis.line.x = element_blank())
   
   if(length(unique(dane$x)) == 1){
     wykres = wykres + scale_x_discrete(breaks = NULL)
   }
-  
+
   if(!is.null(opcjeWykresu)){
     wykres = wykres + opcjeWykresu
   }

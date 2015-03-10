@@ -22,13 +22,6 @@ N = function(x, w = NULL, wyrownaj = T){
   }
   
   if(!is.null(w)){
-    f = function(d){
-      return(sum(d %in% w))
-    }
-    # obejście funkcji giodo() przy braku wartości w wektorze
-    if(f(x) == 0){
-      x = c(x, rep(NA, 50))
-    }
     # obejście umożliwiające zliczanie NA
     if(any(is.na(w))){
       if(all(is.na(x))){
@@ -40,6 +33,14 @@ N = function(x, w = NULL, wyrownaj = T){
       }
       x[is.na(x)] = tmp
       w[is.na(w)] = tmp
+    }
+
+    # obejście funkcji giodo() przy braku wartości w wektorze
+    f = function(d){
+      return(sum(d %in% w))
+    }
+    if(f(x) == 0){
+      x = c(x, rep(NA, 50))
     }
     
     return(statWektor(x, f, sys.call(), wyrownaj, 0))
