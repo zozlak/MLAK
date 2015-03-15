@@ -1,3 +1,12 @@
+Zmiany w MLAK 0.4.4 (2015-03-14)
+
+  * Dodanie argumentu "znakProcent" do funkcji pomocniczej P() pozwalającego
+    (co jest akcja domyślną) dopisać na końcu zwracanej wartości znak '%'
+  * Poprawienie błędu w funkcji wykresHistogram() polegającego na gubieniu
+    nazw rysowanych wartości podczas konwersji wartości na wektor liczbowy
+  * Korekta w funkcji konfigurujKnitr() chroniąca przed błędem w wypadku 
+    wywołania jej przed ustawieniem knitr-owi formatu wyjściowego dokumentu.
+
 Zmiany w MLAK 0.4.3 (2015-03-10)
 
   * Korekty błędów:

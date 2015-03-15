@@ -19,10 +19,12 @@ wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytu
   # ew. konwersja na liczby
   if(is.character(dane)){
     tmp = sum(is.na(dane))
+    tmpNames = names(dane) # as.numeric gubi atrybuty!
     dane = suppressWarnings(as.numeric(dane))
     if(sum(is.na(dane)) != tmp){
       stop('dane nie są liczbami')
     }
+    names(dane) = tmpNames
   }
   stopifnot(
     is.numeric(dane)
