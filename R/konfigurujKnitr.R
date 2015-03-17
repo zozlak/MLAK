@@ -12,9 +12,12 @@ konfigurujKnitr = function(){
       cairo = capabilities()['cairo']
       if(cairo %in% TRUE){
         opts_chunk$set('dev' = 'cairo_pdf')
-      }else{
-        pdf.options(encoding = 'CP1250')
       }
+      # Bez tego na Mac-u koniec koncow produkuja sie poprawne wykresy,
+      # ale najpierw nastepuje litania bledow (tak jakby mimo wskazania
+      # cairo_pdf() probowal najpierw wyprodukowac wykres za pomoca pdf(),
+      # a dopiero po bledzie przechodzil do cairo_pdf())
+      pdf.options(encoding = 'CP1250')
     }
   }
 }

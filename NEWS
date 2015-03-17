@@ -1,3 +1,8 @@
+Zmiany w MLAK 0.4.5 (2015-03-17)
+
+  * Korekta w funkcji konfigurujKnitr() usuwająca litanię warningów
+    wyskakujących przy każdym wykresie na Mac-ach
+
 Zmiany w MLAK 0.4.4 (2015-03-14)
 
   * Dodanie argumentu "znakProcent" do funkcji pomocniczej P() pozwalającego
