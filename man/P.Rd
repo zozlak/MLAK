@@ -4,7 +4,7 @@
 \alias{P}
 \title{odsetek rekordów o zadanych wartościach}
 \usage{
-P(x, w, wyrownaj = T, dokl = 1)
+P(x, w, wyrownaj = T, dokl = 1, znakProcent = TRUE)
 }
 \arguments{
 \item{x}{wektor wartości}
@@ -15,6 +15,8 @@ P(x, w, wyrownaj = T, dokl = 1)
 tabelach)}
 
 \item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
+
+\item{znakProcent}{czy dostawić do zwróconej wartości znak "%"}
 }
 \description{
 Oblicza odsetek rekordów wektora x o wartościah zawartych w wektorze w.

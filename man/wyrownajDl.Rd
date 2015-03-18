@@ -4,7 +4,7 @@
 \alias{wyrownajDl}
 \title{formatuje wartość do długości wywołania funkcji}
 \usage{
-wyrownajDl(wynik, call, dokl)
+wyrownajDl(wynik, call, dokl, delta = 4)
 }
 \arguments{
 \item{wynik}{wartość do sformatowania}
@@ -12,6 +12,8 @@ wyrownajDl(wynik, call, dokl)
 \item{call}{wywołanie funkcji (np. z sys.call()), do którego wyrównywany jest wynik}
 
 \item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
+
+\item{delta}{liczba znaków, która ma zostać doliczna do długości wywołania}
 }
 \value{
 character
@@ -19,6 +21,7 @@ character
 \description{
 Dopełnia wartość spacjami po lewej stronie, tak by łączna długość
 utworzonego łańcucha znaków była równa liczbie znaków kodu wywołania funkcji
-przekazanej w parametrze "call" plus 4 znaki
+przekazanej w parametrze "call" plus tyle znaków, ile wynosi parametr
+"delta"
 }
 

@@ -12,37 +12,28 @@
 #' 
 #' c('wartość1' = 'etykieta1', 'wartość2' = 'etykieta2', ...)
 #' @param dane wektor danych
-#' @param etykiety opcjonalny wektor z etykietami wartości
 #' @param tytul tytuł wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresKolowy = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
+wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
   stopifnot(
-    is.vector(dane) | is.factor(dane),
-    is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
+    is.vector(dane), is.numeric(dane) | is.character(dane)
   )
   
-  # logical -> factor
-  if(is.logical(dane)){
-    dane = factor(dane, levels = c(T, F), labels = c('TAK', 'NIE'))
-  }
-  
-  # etykietowanie wartości
-  if(is.character(etykiety)){
-    wartosci = names(etykiety)
-    if(is.null(wartosci)){
-      wartosci = seq_along(etykiety)
+  dane = na.exclude(dane)
+  etykiety = dane
+  if(is.character(dane)){
+    dane = sub('^ +', '', dane)
+    etykiety = dane
+    dane = sub('%$', '', dane)
+    tmp = names(dane)
+    dane = setNames(suppressWarnings(as.numeric(dane)), tmp)
+    if(any(is.na(dane))){
+      stop('Dane wykresu zawieraly wartosci niebedace liczbami ani procentami')
     }
-    dane = factor(dane, wartosci, etykiety)
-  }
-  
-  # nieunikalne wartości lub factor -> wykonaj table()
-  if(is.factor(dane) | any(duplicated(dane))){
-    dane = round(100 * table(dane) / length(na.exclude(dane)), 2)
-    dane[1] = 100 - sum(dane[-1], na.rm = T)
   }
   
   # upewnij się, że wektor danych ma nazwy
@@ -51,16 +42,17 @@ wykresKolowy = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = NULL,
   }
   
   dane = data.frame(
-    e = paste(names(dane), '-', as.numeric(dane)),
-    y = factor(dane, dane, names(dane))
+    e = paste(names(dane), '-', etykiety),
+    y = as.numeric(dane)
   )
-  
+
   wykres = ggplot(data = dane) +
     aes(x = factor(1), y = get('y'), fill = get('e')) +
     geom_bar(width = 1, stat = 'identity') +
     coord_polar(theta = 'y') +
     scale_x_discrete(breaks = NULL) +
-    scale_y_discrete(breaks = NULL)
+    scale_y_continuous(breaks = NULL)
+  plot(wykres)
   wykres = wykresDefaultTheme(wykres, tytul = tytul, rozmiarTekstu = rozmiarTekstu)
   
   if(!is.null(opcjeWykresu)){

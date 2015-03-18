@@ -2,6 +2,14 @@ Zmiany w MLAK 0.4.5 (2015-03-17)
 
   * Korekta w funkcji konfigurujKnitr() usuwająca litanię warningów
     wyskakujących przy każdym wykresie na Mac-ach
+  * Korekta sposobu wyliczania przedziałów przez funkcję wykresHistogram()
+    usuwająca pojawianie się ostrzeżenia "position_stack requires constant 
+    width: output may be incorrect"
+  * Podzielenie funkcji wykresKolowy() na trzy funkcje:
+    - wykresKolowy(), która rysuje dokładnie te wartości, które otrzyma
+    - wykresKolowyNorm(), która przed narysowaniem normalizuje wartości do 100%
+    - wykresKolowyZlicz(), która rysuje odsetki wystąpień poszczególnych 
+      wartości w przekazanych danych
 
 Zmiany w MLAK 0.4.4 (2015-03-14)
 

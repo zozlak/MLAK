@@ -24,7 +24,6 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
 
   if(is.numeric(dane)){
     breaks = seq(min(dane), max(dane), length.out = n + 1)
-    breaks[1] = breaks[1] - 10^-6
 
     wykres = wykres +
       geom_histogram(
