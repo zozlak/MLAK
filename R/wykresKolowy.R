@@ -52,7 +52,6 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
     coord_polar(theta = 'y') +
     scale_x_discrete(breaks = NULL) +
     scale_y_continuous(breaks = NULL)
-  plot(wykres)
   wykres = wykresDefaultTheme(wykres, tytul = tytul, rozmiarTekstu = rozmiarTekstu)
   
   if(!is.null(opcjeWykresu)){
