@@ -45,9 +45,10 @@ wykresKolowyZlicz = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = 
     dane = factor(dane, wartosci, etykiety)
   }
   
-  dane = round(100 * table(dane) / length(na.exclude(dane)), 2)
-  dane[1] = 100 - sum(dane[-1], na.rm = T)
+  dane = table(dane)
+  tmp = names(dane)
+  dane = setNames(as.vector(dane), tmp)
 
-  wykres = wykresKolowy(dane, tytul, rozmiarTekstu, opcjeWykresu)
+  wykres = wykresKolowyNorm(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu)
   return(wykres)
 }

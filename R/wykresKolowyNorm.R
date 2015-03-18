@@ -29,11 +29,11 @@ wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, op
   
   dane = round(dane * 100 / sum(dane), dokl)
   if(length(dane) > 1){
-    dane[1] = 100 - dane[-1]
+    dane[1] = 100 - sum(dane[-1])
   }
   tmp = names(dane)
   dane = setNames(paste0(dane, '%'), tmp)
   
-  wykres = wykresKolowy(dane, tytul, rozmiarTekstu, opcjeWykresu)
+  wykres = wykresKolowy(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu)
   return(wykres)
 }

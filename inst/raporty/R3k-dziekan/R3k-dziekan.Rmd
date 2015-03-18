@@ -2,10 +2,10 @@
 title: "Rynek pracy"
 output: pdf_document
 ---
-```{r}
-library(MLAK, echo = FALSE, warning = FALSE, message = FALSE)
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(MLAK)
 # przykładowe dane, jeśli nie generujemy wsadowo
-attach(wczytajOdbiorce('odbiorcy.csv', 'dane.csv', 2))
+attach(wczytajOdbiorce('odbiorcy.csv', 'dane.csv', 1))
 ```
 
 ```{r}
