@@ -4,13 +4,10 @@
 \alias{wykresKolowy}
 \title{Wykres kołowy}
 \usage{
-wykresKolowy(dane, etykiety = NULL, tytul = "", rozmiarTekstu = NULL,
-  opcjeWykresu = NULL)
+wykresKolowy(dane, tytul = "", rozmiarTekstu = NULL, opcjeWykresu = NULL)
 }
 \arguments{
 \item{dane}{wektor danych}
-
-\item{etykiety}{opcjonalny wektor z etykietami wartości}
 
 \item{tytul}{tytuł wykresu}
 
