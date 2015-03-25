@@ -1,16 +1,18 @@
 #' @title odsetek rekordów o zadanych wartościach
 #' @description
-#' Oblicza odsetek rekordów wektora x o wartościah zawartych w wektorze w.
+#' Oblicza odsetek rekordów wektora \code{x} o wartościah zawartych w wektorze
+#' \code{w}
 #' @param x wektor wartości
 #' @param w wektor zliczanych wartości
 #' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w 
 #'   tabelach)
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
-#' @param znakProcent czy dostawić do zwróconej wartości znak "%"
+#' @param znakProcent czy dostawić do zwróconej wartości znak procenta
 #' @return NULL
 #' @export
 P = function(x, w, wyrownaj = T, dokl = 1, znakProcent = TRUE){
   stopifnot(
+    is.vector(dokl), is.numeric(dokl), length(dokl) == 1, all(!is.na(dokl)),
     is.vector(znakProcent), is.logical(znakProcent), length(znakProcent) == 1, all(!is.na(znakProcent))
   )
   

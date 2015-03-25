@@ -2,7 +2,7 @@
 % Please edit documentation in R/wykresSlupkowy.R
 \name{wykresSlupkowy}
 \alias{wykresSlupkowy}
-\title{Wykres kołowy}
+\title{Wykres słupkowy}
 \usage{
 wykresSlupkowy(dane, skumulowany = F, tytul = "", tytulX = NULL,
   tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL)

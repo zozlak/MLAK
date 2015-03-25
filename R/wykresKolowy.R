@@ -28,9 +28,7 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
   if(is.character(dane)){
     dane = sub('^ +', '', dane)
     etykiety = dane
-    dane = sub('%$', '', dane)
-    tmp = names(dane)
-    dane = setNames(suppressWarnings(as.numeric(dane)), tmp)
+    dane = naLiczbe(dane)
     if(any(is.na(dane))){
       stop('Dane wykresu zawieraly wartosci niebedace liczbami ani procentami')
     }

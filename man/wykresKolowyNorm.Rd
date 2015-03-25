@@ -2,7 +2,7 @@
 % Please edit documentation in R/wykresKolowyNorm.R
 \name{wykresKolowyNorm}
 \alias{wykresKolowyNorm}
-\title{Wykres kołowy z normalizacją przekazanych danych do 100%}
+\title{Wykres kołowy z normalizacją przekazanych danych do 100 procent}
 \usage{
 wykresKolowyNorm(dane, dokl = 1, tytul = "", rozmiarTekstu = NULL,
   opcjeWykresu = NULL)

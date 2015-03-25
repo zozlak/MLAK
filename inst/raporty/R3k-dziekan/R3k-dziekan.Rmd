@@ -48,6 +48,26 @@ VAR30 = VAR28 & STYPEND %in% 100
 VAR31 = VAR28 & STYPEND %in% 0
 ```
 
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresKolowyNorm(
+  c(
+    'w największych \n ośrodkach akademickich' = P(MIEJZAM[VAR15], 1),
+    'w pozostałych miastach \n na prawach powiatu' = P(MIEJZAM[VAR15], 2)
+    )
+)
+```
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresSlupkowy(
+  c(
+    'w największych \n ośrodkach akademickich'=P(MIEJZAM[VAR15], 1), 
+    'w pozostałych miastach \n na prawach powiatu'=P(MIEJZAM[VAR15], 2)
+  ),
+  tytul = 'to jest tytuł', tytulY='tytuł osi Y', rozmiarTekstu=10
+)
+```
+
 # `r VMIAN` `r VKIERSPC`
 
 Raport dotyczy `r N(ENKA[VAR1])` absolwentów, którzy uzyskali dyplom w `r VROK` r.

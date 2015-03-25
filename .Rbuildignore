@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^RÓŻNICE.txt$
 ^.*csv$
+^.travis.yml$

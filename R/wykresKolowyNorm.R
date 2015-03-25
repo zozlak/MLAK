@@ -1,4 +1,4 @@
-#' Wykres kołowy z normalizacją przekazanych danych do 100%
+#' Wykres kołowy z normalizacją przekazanych danych do 100 procent
 #' @description
 #' Rysuje wykres kołowy.
 #' 

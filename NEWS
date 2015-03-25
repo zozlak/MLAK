@@ -1,3 +1,12 @@
+Zmiany w MLAK 0.4.6 (2015-03-25)
+
+  * Dodanie funkcji pomocniczej Pw(), która oblicza odsetek wystąpień, jak P(),
+    ale w podstawie procentowania pomija braki danych.
+  * Ujednolicenie sposobu konwersji danych wejściowych na liczby w funkcjach
+    wykresKolowy(), wykresKolowyNorm() oraz wykresSlupkowy()
+    * wykresSlupkowy() poprawnie obsługuje wyniki z funkcji P() i Pw(), także
+      jeśli te zawierając wyniki sformatowane jako tekst (np. "48%")
+
 Zmiany w MLAK 0.4.5 (2015-03-17)
 
   * Korekta w funkcji konfigurujKnitr() usuwająca litanię warningów
