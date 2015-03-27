@@ -1,3 +1,18 @@
+Zmiany w MLAK 0.4.7 (2015-03-27)
+
+  * Zmiany w rysowaniu wykresów:
+    * przeniesienie legendy na prawą stronę wykresu, co pozwala rozwiązać
+      problem z niemieszczeniem się legendy dla dużej liczby kategorii
+      na wykresie (w dół wykres może się rozszerzać dość swobodnie, w szerz
+      miejsce jest ściśle ograniczone)
+    * dodanie funkcji automatycznego łamania etykiet w legendzie (w chwili
+      obecnej na 15 znakach), jeśli żadna z etykiet nie zawiera łamań 
+      wskazanych explicite (tzn. żadna nie zawiera znaku nowej linii - "\n")
+    * etykiety prezentowane są w takiej kolejności, w jakiej przekazano
+      argumenty do funkcji rysującej wykres (dotychczas były jeszcze sortowane
+      alfabetycznie)
+    * dostosowanie domyślnych wielkości czcionki elementów wykresu
+
 Zmiany w MLAK 0.4.6 (2015-03-25)
 
   * Dodanie funkcji pomocniczej Pw(), która oblicza odsetek wystąpień, jak P(),

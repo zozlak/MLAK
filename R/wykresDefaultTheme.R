@@ -9,7 +9,7 @@
 #' @param rozmiarTekstu domyślny rozmiar tekstu
 wykresDefaultTheme = function(wykres, tytul = NULL, tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL){
   if(is.null(rozmiarTekstu)){
-    rozmiarTekstu = 14
+    rozmiarTekstu = 10
   }
   
   wykres = wykres +
@@ -19,9 +19,16 @@ wykresDefaultTheme = function(wykres, tytul = NULL, tytulX = NULL, tytulY = NULL
     labs(fill = '') +
     theme_bw(base_size = rozmiarTekstu) + 
     theme(
-      panel.border = element_rect(fill = NA, colour=NA),
-      legend.position = 'bottom',
-      legend.margin = grid::unit(c(-5.5, 0, 0, 0), 'cm')
+      panel.border    = element_rect(fill = NA, colour=NA),
+      legend.position  = 'right',
+#      legend.position = 'bottom',
+#      legend.margin   = grid::unit(c(-5.5, 0, 0, 0), 'cm'),
+      legend.text     = element_text(size = rozmiarTekstu),
+      axis.text.x     = element_text(size = rozmiarTekstu),
+      axis.text.y     = element_text(size = rozmiarTekstu),
+      axis.title.x    = element_text(size = rozmiarTekstu * 1.2),
+      axis.title.y    = element_text(size = rozmiarTekstu * 1.2),
+      plot.title      = element_text(size = rozmiarTekstu * 1.3)
     )
   
   if(!is.null(tytul)){

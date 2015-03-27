@@ -40,9 +40,11 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
   }
   
   dane = data.frame(
-    e = paste(names(dane), '-', etykiety),
-    y = as.numeric(dane)
+    e = polamTekst(paste(names(dane), '-', etykiety)),
+    y = as.numeric(dane),
+    stringsAsFactors = FALSE
   )
+  dane$e = factor(dane$e, levels = dane$e, labels = dane$e)
 
   wykres = ggplot(data = dane) +
     aes(x = factor(1), y = get('y'), fill = get('e')) +
@@ -50,7 +52,10 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
     coord_polar(theta = 'y') +
     scale_x_discrete(breaks = NULL) +
     scale_y_continuous(breaks = NULL)
-  wykres = wykresDefaultTheme(wykres, tytul = tytul, rozmiarTekstu = rozmiarTekstu)
+  wykres = wykresDefaultTheme(wykres, tytul = tytul, rozmiarTekstu = rozmiarTekstu) +
+    theme(
+      panel.grid.major = element_blank()
+    )
   
   if(!is.null(opcjeWykresu)){
     wykres = wykres + opcjeWykresu

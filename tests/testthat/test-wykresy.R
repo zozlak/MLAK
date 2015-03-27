@@ -42,5 +42,12 @@ test_that('wykresKolowy', {
 })
 
 test_that('wykresHistogram', {
-  
+  expect_is(wykresHistogram(rnorm(100)), 'gg')
+})
+
+test_that('polamTekst', {
+  expect_is(wykresKolowy(c('bardzo długie etykiety danych' = 1, 'oj, jakie długie etykiety danych' = 2)), 'gg')
+  expect_is(wykresKolowy(c('bardzo długie etykiety danych\n' = 1, 'oj, jakie długie etykiety danych\n' = 2)), 'gg')
+  expect_is(wykresSlupkowy(c('bardzo długie etykiety danych' = 1, 'oj, jakie długie etykiety danych' = 2)), 'gg')
+  expect_is(wykresSlupkowy(c('bardzo długie etykiety danych\n' = 1, 'oj, jakie długie etykiety danych\n' = 2)), 'gg')
 })

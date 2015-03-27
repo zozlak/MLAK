@@ -35,9 +35,11 @@ wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytu
   }
   
   dane = melt(dane, varnames = c('y', 'x'))
+  dane$y = polamTekst(dane$y)
+  dane$y = factor(dane$y, levels = dane$y, labels = dane$y)
   pozycja = ifelse(skumulowany, position_stack, position_dodge)
   wykres = ggplot(data = dane) +
-    aes(x = factor(get('x')), y = get('value'), fill = factor(get('y'))) +
+    aes(x = factor(get('x')), y = get('value'), fill = get('y')) +
     geom_bar(
       stat = 'identity',
       position = pozycja()
