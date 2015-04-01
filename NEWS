@@ -1,3 +1,10 @@
+Zmiany w MLAK 0.4.8 (2015-04-01)
+
+  * Dodanie światła pomiędzy etykietami legendy w wykresach (niestety nie ma
+    sposobu na dodanie światła pomiędzy kolorowymi polami [sic!])
+  * Dodanie parametru "sufiksY" do funkcji wykresSlupkowy() umożliwiającego
+    dodanie do etykiet osi Y wybranego sufiksu (np. '%')
+
 Zmiany w MLAK 0.4.7 (2015-03-27)
 
   * Zmiany w rysowaniu wykresów:

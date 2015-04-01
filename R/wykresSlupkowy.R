@@ -12,7 +12,7 @@
 #' @export
 #' @import ggplot2
 #' @import reshape2
-wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL){
+wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytulY = NULL, sufiksY = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
   stopifnot(
     is.vector(dane) | is.matrix(dane)
   )
@@ -45,7 +45,10 @@ wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytu
       position = pozycja()
     )
   wykres = wykresDefaultTheme(wykres,  tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
-    theme(axis.line = element_line(colour = '#000000', linetype = 'solid'), axis.line.x = element_blank())
+    theme(axis.line = element_line(colour = '#000000', linetype = 'solid'), axis.line.x = element_blank()) +
+    scale_y_continuous(labels = function(x){
+      return(paste0(x, sufiksY))
+    })
   
   if(length(unique(dane$x)) == 1){
     wykres = wykres + scale_x_discrete(breaks = NULL)

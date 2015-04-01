@@ -13,11 +13,17 @@ polamTekst = function(wektor, n = 15, wymus = FALSE){
     is.vector(wymus), is.logical(wymus), length(wymus) == 1, all(!is.na(wymus))
   )
   
+  dodajOdstepy = function(x){
+    x = sub('^\n+', '', x)
+    x = sub('\n+$', '', x)
+    return(paste0('\n', x, '\n'))
+  }
+  
   if(any(grepl('\n', wektor))){
     if(wymus){
-      wektor = sub('\n', '', wektor)
+      wektor = sub('\n', ' ', wektor)
     }else{
-      return(as.character(wektor))
+      return(dodajOdstepy(wektor))
     }
   }
   
@@ -38,7 +44,7 @@ polamTekst = function(wektor, n = 15, wymus = FALSE){
       wynik = paste0(wynik, x[i])
       suma = suma + dl
     }
-    return(wynik)
+    return(dodajOdstepy(wynik))
   })
-  return(wynik)
+  return(dodajOdstepy(wynik))
 }
