@@ -6,6 +6,7 @@
 #' @param tytul tytuł wykresu
 #' @param tytulX tytuł osi X wykresu
 #' @param tytulY tytuł osi Y wykresu
+#' @param sufiksY ew. ciąg znaków dołączany do etykiet osi Y (np. znak procenta)
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @return [gg] obiekt wykresu pakietu ggplot2
