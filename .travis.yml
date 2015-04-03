@@ -1,16 +1,5 @@
+# http://docs.travis-ci.com/user/languages/r/
 language: r
-
-before_install:
-
-apt_packages:
-
-brew_packages:
-
-r_binary_packages:
-
-r_packages: 
-
-r_github_packages: 
 
 after_success:
   - Rscript -e 'library(covr);coveralls()'
