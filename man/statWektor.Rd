@@ -24,7 +24,7 @@ zależnie od funkcji f
 \itemize{
   \item sprawdza czy x jest wektorem
   \item wywołuje na x funkcję giodo()
-  \item wywołuje na x na.omit()
+  \item usuwa z x braki danych
   \item jeśli wektor x jest pusty przyjmuje '-' jako wynik
   \item jeśli wektor x nie jest pusty, wywołuje na x funkcję f i
     zaokrągla wynik zgodnie z parametrem dokl

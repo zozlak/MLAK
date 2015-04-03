@@ -3,7 +3,7 @@
 #' \itemize{
 #'   \item sprawdza czy x jest wektorem
 #'   \item wywołuje na x funkcję giodo()
-#'   \item wywołuje na x na.omit()
+#'   \item usuwa z x braki danych
 #'   \item jeśli wektor x jest pusty przyjmuje '-' jako wynik
 #'   \item jeśli wektor x nie jest pusty, wywołuje na x funkcję f i 
 #'     zaokrągla wynik zgodnie z parametrem dokl
@@ -18,10 +18,12 @@
 statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
   stopifnot(
     is.vector(x),
-    is.numeric(x) | is.character(x) | is.logical(x)
+      is.numeric(x) | is.character(x) | is.logical(x),
+    is.vector(wyrownaj), is.logical(wyrownaj), length(wyrownaj) == 1, all(!is.na(wyrownaj)),
+    is.vector(dokl), is.numeric(dokl), length(dokl) == 1, all(!is.na(dokl))
   )
   x = giodo(x)
-  x = na.exclude(x)
+  x = x[!is.na(x)]
   if(length(x) == 0){
     wynik = '-'
   }else{
@@ -30,6 +32,8 @@ statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
   
   if(wyrownaj){
     return(wyrownajDl(wynik, call, dokl))
+  }else if(is.character(wynik)){
+    return(wynik)
   }
-  return(wynik)  
+  return(round(wynik, dokl))
 }

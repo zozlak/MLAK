@@ -1,3 +1,10 @@
+Zmiany w MLAK 0.5.0 (2015-04-03)
+
+  * Funkcje pomocnicze dokonują teraz zaokrągleń wartości zgodnie z parametrem
+    "dokl", także wtedy, kiedy parametr "wyrownaj" ma wartość FALSE
+  * Dodanie funkcji pomocniczych R, R2 oraz Tau liczących współczynnik
+    korelacji liniowej, jego kwadrat oraz korelację rangową Kendalla
+
 Zmiany w MLAK 0.4.8 (2015-04-01)
 
   * Dodanie światła pomiędzy etykietami legendy w wykresach (niestety nie ma

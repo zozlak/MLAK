@@ -5,7 +5,8 @@
 \title{Wykres słupkowy}
 \usage{
 wykresSlupkowy(dane, skumulowany = F, tytul = "", tytulX = NULL,
-  tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL)
+  tytulY = NULL, sufiksY = "", rozmiarTekstu = NULL,
+  opcjeWykresu = NULL)
 }
 \arguments{
 \item{dane}{wektor danych}
@@ -17,6 +18,8 @@ wykresSlupkowy(dane, skumulowany = F, tytul = "", tytulX = NULL,
 \item{tytulX}{tytuł osi X wykresu}
 
 \item{tytulY}{tytuł osi Y wykresu}
+
+\item{sufiksY}{ew. ciąg znaków dołączany do etykiet osi Y (np. znak procenta)}
 
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 
