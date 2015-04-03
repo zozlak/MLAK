@@ -11,8 +11,7 @@ Depends:
     ggplot2,
     reshape2
 Suggests: 
-    testthat,
-    covr
+    testthat
 License: MIT + file LICENSE
 NeedsCompilation: no
 VignetteBuilder: knitr
