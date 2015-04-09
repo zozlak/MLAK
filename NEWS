@@ -6,6 +6,8 @@ Zmiany w MLAK 0.5.1 (2015-04-09)
   * R, R2, Tau poprawnie zwracają wynik nieliczbowy ('-' np. na skutek 
     anonimizacji) przy braku wyrównania wyjścia
   * Dodanie testów generujących próbne raporty R2 i R3
+  * Dodanie obsługi braków danych do funkcji G()
+  * Dopisanie testów dla funkcji Q(), Me(), E(), W() oraz G()
   
 Zmiany w MLAK 0.5.0 (2015-04-03)
 

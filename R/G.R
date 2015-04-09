@@ -18,20 +18,17 @@ G = function(x, q, n, filtr = NULL){
     filtr = rep(T, length(x))
   }
   stopifnot(
-    is.numeric(x),
-    is.numeric(q),
-    is.numeric(n),
-    is.logical(filtr),
-    length(q) == 1,
-    length(n) == 1,
+    is.numeric(x), is.vector(x),
+    is.numeric(q), is.vector(q), length(q) == 1, all(!is.na(q)),
+    is.numeric(n), is.vector(n), length(n) == 1, all(!is.na(n)), n >= 1,
+    is.logical(filtr), is.vector(filtr),
     length(filtr) == length(x),
-    n >= q,
-    n >= 1
+    n >= q
   )
   
-  tmp = quantile(x[filtr], seq(0, 1, length.out = n + 1))
+  tmp = quantile(x[filtr], seq(0, 1, length.out = n + 1), na.rm = TRUE)
   if(q == 1){
     tmp[q] = tmp[q] - 1 # aby nie pomijać najmniejszej obserwacji
   }
-  return(x <= tmp[q + 1] & x > tmp[q] & filtr)
+  return(x <= tmp[q + 1] & x > tmp[q] & filtr & !is.na(x))
 }

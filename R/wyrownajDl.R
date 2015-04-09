@@ -19,5 +19,5 @@ wyrownajDl = function(wynik, call, dokl, delta = 4){
     paste0('% ', dl, 's'),
     paste0('% ', dl, '.', dokl, 'f')
   )
-  return(sprintf(format, wynik)) 
+  return(setNames(sprintf(format, wynik), names(wynik)))
 }
