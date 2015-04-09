@@ -1,0 +1,15 @@
+Wartości wskaźników w zależności od niepełnosprawności.
+
+------------------------------------------------------------------------------------------------------------------------
+Wartości wskaźników                                                 Osoby pełnosprawne             Osoby niepełnosprawne
+---------------------------------------------------- --------------------------------- ---------------------------------
+Procent studentów, którzy terminowo uzyskali dyplom         `r P(DTERM1[grupa32], 1)`           `r P(DTERM1[grupa33],1)`
+(licząc od rozpoczęcia studiów)        
+
+Procent studentów, którzy terminowo uzyskali dyplom        `r P(DTERM2[grupa32],1)`           `r P(DTERM2[grupa33],1)`
+(licząc od rozpoczęcia ostatniego etapu studiów) 
+
+Średnia liczba powtórzeń semestrów                             `r E(LPOWT[grupa32])`             `r E(LPOWT[grupa33])`
+
+Średnia liczba warunkowych zaliczeń semestrów                  `r E(LWAR[grupa32])`             `r E(LWAR[grupa33])`
+------------------------------------------------------------------------------------------------------------------------

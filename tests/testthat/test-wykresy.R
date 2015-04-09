@@ -43,6 +43,8 @@ test_that('wykresKolowy', {
 
 test_that('wykresHistogram', {
   expect_is(wykresHistogram(rnorm(100)), 'gg')
+  expect_is(wykresHistogram(letters[round(runif(100, 0, 24))]), 'gg')
+  expect_is(wykresHistogram(factor(letters[round(runif(100, 0, 24))])), 'gg')
 })
 
 test_that('polamTekst', {

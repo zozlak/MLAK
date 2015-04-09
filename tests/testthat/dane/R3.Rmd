@@ -68,9 +68,12 @@ Liczba braków danych                      | `r P(MIEJZAM[VAR15], NA)`
 
 
 ```{r echo = FALSE, fig.height = 3.5}
-wykresHistogram(ORANPK01[VAR15], 10,
-  tytul = 'to jest tytuł to jest tytuł to jest tytuł to jest tytuł \nto jest tytuł to jest tytuł to jest tytuł to jest tytuł to jest tytuł', tytulX='tytuł osi X', tytulY='tytuł osi Y'
-                )
+wykresHistogram(
+  ORANPK01[VAR15], 10,
+  tytul = 'to jest tytuł to jest tytuł to jest tytuł to jest tytuł \nto jest tytuł to jest tytuł to jest tytuł to jest tytuł to jest tytuł', 
+  tytulX='tytuł osi X', 
+  tytulY='tytuł osi Y'
+)
 ```
 
 testujemy zależności:

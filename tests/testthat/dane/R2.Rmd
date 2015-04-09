@@ -71,6 +71,10 @@ Odsetki studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia s
 1. uzyskały co najmniej raz stypendium za wyniki w nauce
 2. nie uzyskały stypendium za wyniki w nauce
 
+```{r}
+# tylko jeśli w danych występują studenci Erasmus-a
+if(sum(grupa14) > 0){
+  wstawTresc('
 Wartości wskaźników w zależności od faktu wyjazdu w ramach programu Erasmus.
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -87,19 +91,12 @@ Procent studentów, którzy terminowo uzyskali dyplom          `r P(DTERM2[grupa
 
 Średnia liczba warunkowych zaliczeń semestrów                    `r E(LWAR[grupa13])`             `r E(LWAR[grupa14])`
 ------------------------------------------------------------------------------------------------------------------------
-
-Wartości wskaźników w zależności od niepełnosprawności.
-
-------------------------------------------------------------------------------------------------------------------------
-Wartości wskaźników                                                 Osoby pełnosprawne             Osoby niepełnosprawne
----------------------------------------------------- --------------------------------- ---------------------------------
-Procent studentów, którzy terminowo uzyskali dyplom         `r P(DTERM1[grupa32], 1)`           `r P(DTERM1[grupa33],1)`
-(licząc od rozpoczęcia studiów)        
-
-Procent studentów, którzy terminowo uzyskali dyplom        `r P(DTERM2[grupa32],1)`           `r P(DTERM2[grupa33],1)`
-(licząc od rozpoczęcia ostatniego etapu studiów) 
-
-Średnia liczba powtórzeń semestrów                             `r E(LPOWT[grupa32])`             `r E(LPOWT[grupa33])`
-
-Średnia liczba warunkowych zaliczeń semestrów                  `r E(LWAR[grupa32])`             `r E(LWAR[grupa33])`
-------------------------------------------------------------------------------------------------------------------------
+  ')
+}
+```
+```{r}
+# tylko jeśli w danych istnieją osoby niepełnosprawne
+if(sum(grupa33) > 0){
+  wstawTresc('dane/R2-wariant.Rmd')
+}
+```
