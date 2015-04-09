@@ -8,6 +8,8 @@ Zmiany w MLAK 0.5.1 (2015-04-09)
   * Dodanie testów generujących próbne raporty R2 i R3
   * Dodanie obsługi braków danych do funkcji G()
   * Dopisanie testów dla funkcji Q(), Me(), E(), W() oraz G()
+  * Funkcja wstawTresc() osadza teraz wykonywany kod w środowisku, w jakim
+    sama została wykonana
   
 Zmiany w MLAK 0.5.0 (2015-04-03)
 

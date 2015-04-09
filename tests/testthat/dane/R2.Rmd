@@ -72,9 +72,7 @@ Odsetki studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia s
 2. nie uzyskały stypendium za wyniki w nauce
 
 ```{r}
-# tylko jeśli w danych występują studenci Erasmus-a
-if(sum(grupa14) > 0){
-  wstawTresc('
+wstawTresc('
 Wartości wskaźników w zależności od faktu wyjazdu w ramach programu Erasmus.
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -91,12 +89,8 @@ Procent studentów, którzy terminowo uzyskali dyplom          `r P(DTERM2[grupa
 
 Średnia liczba warunkowych zaliczeń semestrów                    `r E(LWAR[grupa13])`             `r E(LWAR[grupa14])`
 ------------------------------------------------------------------------------------------------------------------------
-  ')
-}
+')
 ```
 ```{r}
-# tylko jeśli w danych istnieją osoby niepełnosprawne
-if(sum(grupa33) > 0){
-  wstawTresc('dane/R2-wariant.Rmd')
-}
+wstawTresc('R2-wariant.Rmd')
 ```

@@ -16,7 +16,7 @@ wstawTresc = function(kod){
   
   plik = tempfile(fileext = '.Rmd')
   writeChar(kod, plik)
-  plikMd = knit(plik, tempfile(fileext = '.md'), quiet = TRUE)
+  plikMd = knit(plik, tempfile(fileext = '.md'), quiet = TRUE, envir = parent.frame())
   kodMd = readChar(plikMd, 10^6)
   unlink(c(plik, plikMd))
   cat(kodMd)
