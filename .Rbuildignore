@@ -1,5 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^RÓŻNICE.txt$
-^.*csv$
+^inst/.*csv$
 ^.travis.yml$

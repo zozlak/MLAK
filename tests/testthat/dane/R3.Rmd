@@ -1,0 +1,217 @@
+---
+title: "Rynek pracy - próbna prezentacja możliwości pakietu produkującego raporty automatyczne"
+output:
+  pdf_document:
+    number_sections: yes
+  html_document: default
+---
+
+```{r echo = FALSE, message = FALSE}
+# w taki sposób można wpisywać komentarze (Shift-cmd-c)
+```
+
+```{r echo = FALSE, message = FALSE}
+# przykładowe dane, jeśli nie generujemy wsadowo
+library(MLAK)
+attach(wczytajOdbiorce('R3-odbiorcy.csv', 'R3-dane.csv', 3))
+
+  VAR1K	= KIERUNEK %in% VNKIER & ROKDYP %in% VROK
+  VAR2K	= VAR1K & ZAL1 %in% 100 
+  VAR3K = VAR1K & ZAL2 %in% 100 
+  VAR4K = VAR1K & ZAL3 %in% 100 
+  VAR5K = VAR1K & ZAL4 %in% 100 
+  VAR1  = VAR1K & SPEC %in% VNSPEC
+  VAR2	= VAR1 & ZAL1 %in% 100
+  VAR3  = VAR1 & ZAL2 %in% 100
+  VAR4  = VAR1 & ZAL3 %in% 100
+  VAR5  = VAR1 & ZAL4 %in% 100
+  VAR6	= VAR1 & PW %in% 100
+  VAR7	= VAR1 & OMW %in% 100
+  VAR8 = VAR1 & MAZ %in% 100
+  VAR9 = VAR1 & MAZ %in% 0
+  VAR10 = VAR1 & UW %in% 100
+  VAR11 = VAR1 & UWJ %in% 100
+  VAR12 = VAR1 & UW %in% 0
+  VAR13 = VAR1 & ERASMUS %in% 100
+  VAR14 = VAR1 & ERASMUS %in% 0
+  VAR15 = VAR1 & NZUS %in% 1 & DYP %in% 100
+  VAR16 = VAR15 & PW %in% 100
+  VAR17 = VAR15 & OMW %in% 100
+  VAR18 = VAR15 & MAZ %in% 100
+  VAR19 = VAR15 & MAZ %in% 0
+  VAR20 = VAR15 & PWZAM %in% 100
+  VAR21 = VAR15 & OMWZAM %in% 100
+  VAR22 = VAR15 & MAZZAM %in% 100
+  VAR23 = VAR15 & MAZZAM %in% 0
+  VAR24 = VAR15 & ERASMUS %in% 100
+  VAR25 = VAR15 & ERASMUS %in% 0
+  VAR26 = VAR1 & NZUS %in% 0 & ABS %in% 100 & DYP %in% 0
+  VAR27 = VAR1 & NZUS %in% 0 & DYP %in% 100
+  VAR28 = VAR1 & DYP %in% 100
+  VAR30 = VAR1 & DYP %in% 100 & STYPEND %in% 100
+  VAR31 = VAR1 & DYP %in% 100 & STYPEND %in% 0
+```
+
+# Raport dotyczy absolwentów `r VDOP` `r VKIERSPC`
+
+Raport dotyczy `r N(ENKA[VAR1])` absolwentów, **którzy uzyskali dyplom w `r VROK` r**.
+Wśród absolwentów może istnieć grupa osób, które nie figurują w rejestrach ZUS. Oznacza to, że na konta tych osób nie wpłynęła dotąd ani jedna składka z jakiegokolwiek tytułu. Osoby te nie będą uwzględniane w dalszych analizach. Liczba absolwentów, którzy uzyskali dyplom w `r VROK` r., którzy występują w rejestrach ZUS: `r N(ENKA[VAR15])`.
+
+##Informacje o liczebnościach analizowanych podzbiorowości:
+
+Osoby zamieszkałe...                      | Liczebność kategorii
+------------------------------------------:|:----------------------------------------------------------:
+w największych ośrodkach akademickich	    | `r P(MIEJZAM[VAR15], 1)` 
+w pozostałych miastach na prawach powiatu	| `r P(MIEJZAM[VAR15], 2)`
+w pozostałych miejscowościach	            | `r P(MIEJZAM[VAR15], 3)`
+Liczba braków danych                      | `r P(MIEJZAM[VAR15], NA)`
+
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresHistogram(ORANPK01[VAR15], 10,
+  tytul = 'to jest tytuł to jest tytuł to jest tytuł to jest tytuł \nto jest tytuł to jest tytuł to jest tytuł to jest tytuł to jest tytuł', tytulX='tytuł osi X', tytulY='tytuł osi Y'
+                )
+```
+
+testujemy zależności:
+r
+
+`r R(ORANPK01[VAR15],ORANPK02[VAR15])`
+
+r^2
+
+`r R2(ORANPK01,ORANPK02)`
+tau
+
+`r Tau(ORANPK01,ORANPK02)`
+
+a teraz wykres słupkowy 1
+
+```{r echo = FALSE, fig.height = 3.5}
+
+wykresSlupkowy(
+  c(
+    'w największych \nośrodkach akademickich'=P(MIEJZAM[VAR15], 1), 
+    'w pozostałych miastach \nna prawach powiatu'=P(MIEJZAM[VAR15], 2)
+  ),
+  tytul = 'to jest tytuł (P)', tytulY='tytuł osi Y', sufiksY = '%'
+)
+```
+
+a teraz wykres słupkowy 2
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresSlupkowy(
+  c(
+    'w największych \nośrodkach akademickich'=N(MIEJZAM[VAR15], 1), 
+    'w pozostałych miastach \nna prawach powiatu'=N(MIEJZAM[VAR15], 2)
+  ),
+  tytul = 'to jest tytuł (N)', tytulY='tytuł osi Y'
+)
+```
+
+a teraz wykres słupkowy 4
+
+```{r echo = FALSE, fig.height = 7}
+wykresSlupkowy(
+  c(
+    'w największych ośrodkach akademickich'=P(MIEJZAM[VAR15], 1), 
+    'w pozostałych miastach na prawach powiatu'=P(MIEJZAM[VAR15], 2),
+    'w pozostałych miastach na prawach powiatuu'=P(MIEJZAM[VAR15], 3), 
+    '4'=P(MIEJZAM[VAR15], 1),
+    'w naj5odkach akademickich'=P(MIEJZAM[VAR15], 2), 
+    'w pozos6tach na prawach powiatu'=P(MIEJZAM[VAR15], 3),
+    'w największ7ach akademickich'=P(MIEJZAM[VAR15], 1), 
+    'w pozosta8ch na prawach powiatu'=P(MIEJZAM[VAR15], 2),
+    'w najwi9ademickich'=P(MIEJZAM[VAR15], NA), 
+    'w pozostał10 prawach powiatu'=P(MIEJZAM[VAR15], 1)
+  ),
+  tytul = 'to jest tytuł', tytulY='tytuł osi Y'
+)
+```
+
+i ciacho 1
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresKolowy(c('w największych  \n ośrodkach akademickich'=P(MIEJZAM[VAR15], 1), 'w pozostałych miastach \n na prawach powiatu'=P(MIEJZAM[VAR15], 2), 'w pozostałych \n miejscowościach' =P(MIEJZAM[VAR15], 3), 'braki danych' =P(MIEJZAM[VAR15], NA)),
+            tytul = 'to jest tytuł'
+            )
+```
+
+
+i ciacho 2
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresKolowyNorm(
+  c(
+    'w największych \nośrodkach akademickich' = P(MIEJZAM[VAR15], 1),
+    'w pozostałych miastach \nna prawach powiatu' = P(MIEJZAM[VAR15], 2)
+    ),
+            tytul = ' to jest długi tytuł'
+)
+```
+
+i ciacho 3a
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresKolowyZlicz(
+  MIEJZAM[VAR15], 
+  c('w największych ośrodkach akademickich', 'w pozostałych miastach na prawach powiatu', 'w pozostałych miejscowościach'),
+            tytul = ' to jest długi tytuł'
+)
+```
+
+i ciacho 3b
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresKolowyZlicz(
+  MIEJZAM[VAR15], 
+  c('w największych ośrodkach akademickich', 'w pozostałych miastach na prawach powiatu'),
+            tytul = ' to jest długi tytuł'
+)
+```
+
+i ciacho 3c
+
+```{r echo = FALSE, fig.height = 3.5}
+wykresKolowyZlicz(
+  MIEJZAM[VAR15], 
+  c('w największych ośrodkach akademickich', 'w pozostałych miastach na prawach powiatu', 'w pozostałych miejscowościach', 'pustosz'),
+            tytul = ' to jest długi tytuł'
+)
+```
+
+-------------------------------------------------------------------------------
+Osoby zamieszkałe...                                       Liczebność kategorii
+----------------------------------------------- --------------------------------
+w Warszawie	                                        `r N(PWZAM[VAR15], 100)`
+
+na terenie Obszaru Metropolitalnego Warszawy        `r N(OMWZAM[VAR15], 100)`
+(powiaty: grodziski, legionowski, piaseczyński,
+pruszkowski, warszawski zachodni, żyrardowski,
+grójecki, miński, nowodworski, otwocki,
+sochaczewski, wołomiński, wyszkowski)
+
+na terenie województwa mazowieckiego               `r N(MAZZAM[VAR15], 100)`
+
+poza województwem mazowieckim                      `r N(MAZZAM[VAR15], 0)`
+
+Liczba braków danych                                `r N(PWZAM[VAR15], NA)`
+-------------------------------------------------------------------------------
+
+Celem poniższego raportu jest przedstawienie sytuacji absolwentów na rynku pracy od momentu uzyskania dyplomu. Pozwoli on na ocenę, w jakim stopniu programy studiów/specjalizacji w poszczególnych jednostkach UW prowadzących dydaktykę pozwalają na odniesienie sukcesu na rynku pracy. Za podstawowe mierniki sukcesu na rynku pracy uznajemy:
+
+* czas poszukiwania pracy
+* stabilność zatrudnienia
+* osiągnięte wynagrodzenie.
+
+Przez moment otrzymania pracy rozumiemy datę odprowadzenia pierwszej składki do ZUS z tytułu uzyskanego wynagrodzenia przez danego pracodawcę. Od umów o dzieło oraz umów zleceń podpisywanych ze studentami nie odprowadza się składek ZUS (z wyjątkiem umów o dzieło i umów zleceń zawieranych z pracodawcą zatrudniającym daną osobę na umowę o pracę). W związku z tym nie są one uwzględniane  przez wskaźniki wykorzystane w niniejszym raporcie.
+
+#PRACA PO UZYSKANIU DYPLOMU.
+
+##Czas poszukiwania i posiadania pracy
+
+Procent absolwentów, którzy w miesiącu rozpoczęcia studiów...   |  wartość wskaźnika
+----------------------------------------------------------------|--------------
+byli zatrudnieni na umowę o pracę                               | `r E(100*PRACUREK[VAR15], dokl = 1)`%
+byli samozatrudnieni                                            | `r E(100*SAMOREK[VAR15], dokl = 1)`%

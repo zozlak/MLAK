@@ -53,9 +53,14 @@ statKorelacja = function(x, y, wyrownaj, dokl, metoda, kwadrat, call){
     if(kwadrat){
       wynik = wynik^2;
     }
+    if(!is.numeric(wynik) | is.na(wynik) | is.nan(wynik)){
+      wynik = '-'
+    }
   }
   if(wyrownaj){
     return(wyrownajDl(wynik, call, dokl))
+  }else if(is.character(wynik)){
+    return(wynik)
   }
   return(round(wynik, dokl))
 }

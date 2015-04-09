@@ -1,0 +1,105 @@
+---
+title: "ETAP STUDIÓW - próbna prezentacja możliwości pakietu produkującego raporty automatyczne"
+output:
+  pdf_document:
+    number_sections: yes
+---
+
+```{r echo = FALSE, message = FALSE}
+# w taki sposób można wpisywać komentarze (Shift-cmd-c)
+```
+
+```{r echo = FALSE, message = FALSE}
+# przykładowe dane, jeśli nie generujemy wsadowo
+library(MLAK)
+attach(wczytajOdbiorce('R2-odbiorcy.csv', 'R2-dane.csv'))
+
+grupa1 = grupaGl
+grupa13 = grupaGl & ERASMUS %in% 1
+grupa14 = grupaGl & ERASMUS %in% 0
+grupa32 = grupaGl & NPELUSOS %in% 0
+grupa33 = grupaGl & NPELUSOS %in% 1
+grupa37 = grupaGl & STYPEND %in% 1
+grupa38 = grupaGl & STYPEND %in% 0
+```
+
+# Absolwenci `r stKierunek` `r stUczelnia` studiów `r stStopienS`
+
+Raport dotyczy `r N(NPELUSOS[grupa1])` studentów, którzy zostali przyjęci na studia w `r stRok` r.
+Poniższe tabele przedstawiają wybrane wskaźniki sukcesu na studiach: procent osób uzyskujących dyplom w terminie (licząc od daty rozpoczęcia studiów oraz od rozpoczęcia ostatniego etapu studiów), średnią liczbę powtórzeń etapów studiów oraz średnią liczbę warunkowych zaliczeń etapów studiów w zależności od faktu uzyskania stypendium za wyniki w nauce podczas studiów, wyjazdu w ramach programu Erasmus oraz niepełnosprawności.
+Podczas lektury poniższego raportu należy pamiętać, że przedstawione dane są jedynie podsumowaniem wyników z poszczególnych programów studiów. Są zatem konsekwencją zjawisk zachodzących na poziomie programów studiów. Obserwowane zależności należy zestawić z analogicznymi wskaźnikami dla programów studiów.
+
+## Informacje o liczebnościach analizowanych podzbiorowości: 
+
+
+Osoby, które                                          | Liczebność kategorii
+------------------------------------------------------|--------------------------:
+uzyskały co najmniej raz stypendium za wyniki w nauce | `r N(NPELUSOS[grupa37])`
+nie uzyskały stypendium za wyniki w nauce             | `r N(NPELUSOS[grupa38])`
+
+Osoby, które                            | Liczebność kategorii
+----------------------------------------|--------------------------:
+wyjechały w ramach programu Erasmus     | `r N(NPELUSOS[grupa13])`
+nie wyjechały w ramach programu Erasmus | `r N(NPELUSOS[grupa14])`
+
+Osoby           | Liczebność kategorii
+----------------|--------------------------:
+pełnosprawne    | `r N(NPELUSOS[grupa32])`
+niepełnosprawne | `r N(NPELUSOS[grupa33])`
+
+Wartości średnie wskaźników przedstawione w zależności od faktu uzyskania stypendium za wyniki w nauce podczas studiów.
+
+------------------------------------------------------------------------------------------------------------------------
+Wartości wskaźników                                              Osoby, które uzyskały         Osoby, które nie uzyskały 
+                                                       co&nbsp;najmniej raz stypendium                        stypendium
+                                                                za wyniki w&nbsp;nauce            za wyniki w&nbsp;nauce
+---------------------------------------------------- --------------------------------- ---------------------------------
+Procent studentów, którzy terminowo uzyskali dyplom         `r P(DTERM1[grupa37], 1)`           `r P(DTERM1[grupa38], 1)`
+(licząc od rozpoczęcia studiów)        
+
+Procent studentów, którzy terminowo uzyskali dyplom         `r P(DTERM2[grupa37], 1)`           `r P(DTERM2[grupa38], 1)`
+(licząc od rozpoczęcia ostatniego etapu studiów) 
+
+Średnia liczba powtórzeń semestrów                             `r E(LPOWT[grupa37])`             `r E(LPOWT[grupa38])`
+
+Średnia liczba warunkowych zaliczeń semestrów                  `r E(LWAR[grupa37])`             `r E(LWAR[grupa38])`
+------------------------------------------------------------------------------------------------------------------------
+
+
+Odsetki studentów, którzy terminowo uzyskali dyplom (licząc od rozpoczęcia studiów) wśród osób, które
+
+1. uzyskały co najmniej raz stypendium za wyniki w nauce
+2. nie uzyskały stypendium za wyniki w nauce
+
+Wartości wskaźników w zależności od faktu wyjazdu w ramach programu Erasmus.
+
+------------------------------------------------------------------------------------------------------------------------
+Wartości wskaźników                                             Osoby, które wyjechały        Osoby, które nie wyjechały
+                                                        w&nbsp;ramach programu Erasmus    w&nbsp;ramach programu Erasmus
+---------------------------------------------------- --------------------------------- ---------------------------------
+Procent studentów, którzy terminowo uzyskali dyplom          `r P(DTERM1[grupa13],1)`           `r P(DTERM1[grupa14],1)`
+(licząc od rozpoczęcia studiów)        
+
+Procent studentów, którzy terminowo uzyskali dyplom          `r P(DTERM2[grupa13],1)`           `r P(DTERM2[grupa14],1)`
+(licząc od rozpoczęcia ostatniego etapu studiów) 
+
+Średnia liczba powtórzeń semestrów                             `r E(LPOWT[grupa13])`             `r E(LPOWT[grupa14])`
+
+Średnia liczba warunkowych zaliczeń semestrów                    `r E(LWAR[grupa13])`             `r E(LWAR[grupa14])`
+------------------------------------------------------------------------------------------------------------------------
+
+Wartości wskaźników w zależności od niepełnosprawności.
+
+------------------------------------------------------------------------------------------------------------------------
+Wartości wskaźników                                                 Osoby pełnosprawne             Osoby niepełnosprawne
+---------------------------------------------------- --------------------------------- ---------------------------------
+Procent studentów, którzy terminowo uzyskali dyplom         `r P(DTERM1[grupa32], 1)`           `r P(DTERM1[grupa33],1)`
+(licząc od rozpoczęcia studiów)        
+
+Procent studentów, którzy terminowo uzyskali dyplom        `r P(DTERM2[grupa32],1)`           `r P(DTERM2[grupa33],1)`
+(licząc od rozpoczęcia ostatniego etapu studiów) 
+
+Średnia liczba powtórzeń semestrów                             `r E(LPOWT[grupa32])`             `r E(LPOWT[grupa33])`
+
+Średnia liczba warunkowych zaliczeń semestrów                  `r E(LWAR[grupa32])`             `r E(LWAR[grupa33])`
+------------------------------------------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 .RData
 *.Rproj
 *.csv
-*.CSV
+.*.CSV
 *.dbf
 *.DBF
 *.sav
@@ -16,3 +16,4 @@
 *.html
 tmp_files
 RÓŻNICE.txt
+!tests/*

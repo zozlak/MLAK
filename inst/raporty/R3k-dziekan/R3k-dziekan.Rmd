@@ -49,22 +49,26 @@ VAR31 = VAR28 & STYPEND %in% 0
 ```
 
 
-```{r echo = FALSE, fig.height = 3.5}
-wykresKolowyNorm(
+```{r echo = FALSE, fig.height = 5}
+wykresKolowy(
   c(
-    'w największych \n ośrodkach akademickich' = P(MIEJZAM[VAR15], 1),
-    'w pozostałych miastach \n na prawach powiatu' = P(MIEJZAM[VAR15], 2)
-    )
+    'w największych ośrodkach akademickich'=P(MIEJZAM[VAR15], 1), 
+    'w pozostałych miastach na prawach powiatu'=P(MIEJZAM[VAR15], 2), 
+    'w pozostałych miejscowościach' =P(MIEJZAM[VAR15], 3), 
+    'braki danych' =P(MIEJZAM[VAR15], NA)
+  ),
+  tytul = 'to jest tytuł '
 )
 ```
 
 ```{r echo = FALSE, fig.height = 3.5}
-wykresSlupkowy(
+wykresKolowy(
   c(
-    'w największych \n ośrodkach akademickich'=P(MIEJZAM[VAR15], 1), 
-    'w pozostałych miastach \n na prawach powiatu'=P(MIEJZAM[VAR15], 2)
-  ),
-  tytul = 'to jest tytuł', tytulY='tytuł osi Y', rozmiarTekstu=10
+    'a'=P(MIEJZAM[VAR15], 1), 
+    'c' =P(MIEJZAM[VAR15], 3), 
+    'b'=P(MIEJZAM[VAR15], 2), 
+    'd' =P(MIEJZAM[VAR15], NA)),
+    tytul = 'kolejność: a1, b2, c3, dNA'
 )
 ```
 
@@ -230,9 +234,8 @@ ryzyko bezrobocia                                       |    `r E(PBEZD[g1])` | 
 wiersz1    |   33 |   47
 wiersz2    |   13 |    2
 ```{r}
-if(VNKIER == 1){
+if(VNKIER){
   wstawTresc('wierszA | `r 21` | `r 29`')
-}else{
-  wstawTresc('wierszB | `r 17` | `r 31`')
 }
 ```
+wiersz3 lub 4 | aaa | bbb

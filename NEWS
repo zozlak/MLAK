@@ -1,3 +1,12 @@
+Zmiany w MLAK 0.5.1 (2015-04-09)
+
+  * Wyniki są anonimizowane dla zbiorowości liczących mniej niż 5 osób.
+  * W wypadku, gdy wynik jest brakiem danych, nieskończonościa (np. dzielenie
+    przez 0) lub NaN-em, zwracane jest '-' (jak przy anonimizacji)
+  * R, R2, Tau poprawnie zwracają wynik nieliczbowy ('-' np. na skutek 
+    anonimizacji) przy braku wyrównania wyjścia
+  * Dodanie testów generujących próbne raporty R2 i R3
+  
 Zmiany w MLAK 0.5.0 (2015-04-03)
 
   * Funkcje pomocnicze dokonują teraz zaokrągleń wartości zgodnie z parametrem

@@ -28,6 +28,9 @@ statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
     wynik = '-'
   }else{
     wynik = f(x)
+    if(!is.numeric(wynik) | is.na(wynik) | is.nan(wynik)){
+      wynik = '-'
+    }
   }
   
   if(wyrownaj){

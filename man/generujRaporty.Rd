@@ -12,34 +12,30 @@ generujRaporty(plikSzablonu, dane, grupyOdbiorcow, katalogWy = "",
 
 \item{dane}{ramka danych lub ścieżka do pliku CSV z danymi}
 
-\item{grupyOdbiorcow}{lista, której kolejne elementy określają grupy odbiorców}
+\item{grupyOdbiorcow}{ramka danych (lub lista), której kolejne elementy określają grupy odbiorców}
 
 \item{katalogWy}{katalog, w którym zapisane zostaną wygenerowane raporty (względem pliku szablonu)}
 
 \item{prefiksPlikow}{prefiks nazw plików wygenerowanych raportów}
 }
 \description{
-Przetwarzanie grup odbiorców polega na prostym ładowaniu zawartości kolejnych
-elementów listy 'grupyOdbiorcow' jako zmiennych dostępnych w środowisku,
-a następnie kompilacji pliku szablonu raportu. Tak więc zawartość elementów
-listy 'grupyOdbiorcow' determinowana jest przez zmienne używane w szablonie
-Markdown raportu.
+Pliki raportów tworzone są ze złączenia prefiksu z wartością z pierwszej
+kolumny ramki danych opisującej odbiorców (a gdy odbiorcy opisywani są listą
+przez nazwy elementów listy).
 
-Aby wprowadzić tu pewne uporządkowanie najlepiej trzymać się wytycznych:
-\itemize{
-  \item filtr definiujący najszerszą populację badaną w raporcie nazywamy 'grupaGl'
-  \item wszelkie stałe nazywamy 'stNazwaStałej'
-}
-
-Parametr 'grupyOdbiorcow' może być również ramką danych. W takim wypadku
-kolumny ramki danych odpowiadają zmiennym używanym w szablonie Markdown
-raportu, a wiersze kolejnym grupom odbiorców. Przy tym te zmienne ramki
-danych, których nazwy zaczynają się kropką są:
+Kolumny ramki danych parametru 'grupyOdbiorcow' odpowiadają zmiennym używanym
+w szablonie Markdown raportu, a wiersze kolejnym grupom odbiorców. Przy tym
+te zmienne ramki danych, których nazwy zaczynają się kropką są:
 \itemize{
   \item ewaluowane w środowisku danych (a więc w ten sposób należy
     definiować wszelkie filtry)
   \item przed przekazaniem do szablonu ich nazwa pozbawiana jest wiodącej
     kropki
 }
+
+Parametr 'grupy Odbiorcow' może być również listą. W taki wypadku
+przetwarzanie grup odbiorców polega na prostym ładowaniu zawartości kolejnych
+elementów listy 'grupyOdbiorcow' jako zmiennych dostępnych w środowisku, a
+następnie kompilacji pliku szablonu raportu.
 }
 
