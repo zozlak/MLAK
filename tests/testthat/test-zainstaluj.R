@@ -5,4 +5,5 @@ test_that('zainstaluj dziala', {
 #  setwd(sub('MLAK.Rcheck$', '', sub('/tests/testthat$', '', katalog)))
 #  expect_equal(zainstaluj(), TRUE)
 #  setwd(katalog)
+  
 })
