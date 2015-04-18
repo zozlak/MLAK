@@ -10,7 +10,6 @@
 #' @return wczytane dane
 #' @export
 wczytajDane = function(plik){
-  print(dir())
   stopifnot(
     file.exists(plik),
     grepl('[.](csv|rdata)$', tolower(plik))

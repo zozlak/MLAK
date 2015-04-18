@@ -3,7 +3,7 @@ context('raport')
 test_that('generuje sie R2', {
   generujRaporty(
     plikSzablonu   = 'dane/R2.Rmd', 
-    dane           = 'dane/R2-dane.csv',
+    dane           = 'dane/R2-dane.RData',
     grupyOdbiorcow = 'dane/R2-odbiorcy.csv',
     katalogWy      = '', 
     prefiksPlikow  = 'R2-'
@@ -15,7 +15,7 @@ test_that('generuje sie R2', {
 test_that('generuje sie R3', {
   generujRaporty(
     plikSzablonu   = 'dane/R3.Rmd', 
-    dane           = wczytajDane('dane/R3-dane.csv'),
+    dane           = wczytajDane('dane/R3-dane.RData'),
     grupyOdbiorcow = wczytajDane('dane/R3-odbiorcy.csv'),
     katalogWy      = '', 
     prefiksPlikow  = 'R3-'

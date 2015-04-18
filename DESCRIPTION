@@ -4,7 +4,7 @@ Description: Generator raportow MLAK
 Version: 0.5.1
 Author: Mateusz Zoltak
 Maintainer: Mateusz Zoltak <zozlak@zozlak.org>
-Depends:
+Imports:
     rmarkdown,
     knitr,
     devtools,

@@ -15,5 +15,5 @@
 *_cache
 *.html
 tmp_files
-RÓŻNICE.txt
+R/sprawdzRaport.R
 !tests/*
