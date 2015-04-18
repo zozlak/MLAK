@@ -3,7 +3,7 @@
 .RData
 *.Rproj
 *.csv
-.*.CSV
+*.CSV
 *.dbf
 *.DBF
 *.sav

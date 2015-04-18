@@ -1,4 +1,4 @@
-context('')
+context('G')
 
 test_that('G bez filtru i NA', {
   dane = rnorm(100)

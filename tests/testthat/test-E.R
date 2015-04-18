@@ -1,6 +1,6 @@
-context('')
+context('E')
 
-test_that('', {
+test_that('E dziala', {
   expect_equal(E(1:7, FALSE), 4)
   expect_equal(E(1:8, FALSE), 4.5)
   expect_equal(E(1:8, FALSE, dokl = 0), 4)
