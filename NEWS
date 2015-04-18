@@ -1,3 +1,9 @@
+Zmiany w MLAK 0.5.2 (2015-04-18)
+
+  * Korekta w funkcji wczytajDane() umożliwiająca poprawne decydowanie o tym,
+    czy dane odbiorcy powinny zostać wczytane
+  * Nowe testy
+
 Zmiany w MLAK 0.5.1 (2015-04-09)
 
   * Wyniki są anonimizowane dla zbiorowości liczących mniej niż 5 osób.

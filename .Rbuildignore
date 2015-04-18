@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^inst/.*csv$
 ^.travis.yml$
+^wiki$

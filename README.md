@@ -22,6 +22,7 @@ Praca z pakietem składa się zasadniczo z dwóch kroków:
    ```r
    install.packages('devtools')
    ```
+   
 2. Zainstaluj pakiet _MLAK_ z użyciem _devtools_:
    ```r
    devtools::install_github('zozlak/MLAK')

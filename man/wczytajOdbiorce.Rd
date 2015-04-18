@@ -28,9 +28,11 @@ w kontekście danych (ich nazwa zaczyna się od kropki), dokonuje ich ewaluacji
 Do definicji odbiorcy dołączane są również przekazane dane.
 }
 \details{
-Jeśli w środowisku ustawiona jest zmienna .nieWczytujOdbiorcy, wtedy funkcja
-zwraca pustą listę. Służy to pominięciu wywołania wczytajOdbiorce() w treści
-szablonu w momencie wsadowego generowania raportów, np. funkcją
-generujRaporty() (którą ustawia zmienną .nieWczytujOdbiorcy).
+Funkcja sprawdza, czy, a jeśli tak, to gdzie, w ścieżce wywołań znajduje się
+funkcja generujRaporty(). W wypadku, gdy generujRaporty() znajduje się w
+ścieżce wywołań, ale wczytajOdbiorce() nie zostało wywołane bezpośrednio z
+niej, zwracana jest pusta lista. Służy to pominięciu wywołania
+wczytajOdbiorce() w treści szablonu w momencie wsadowego generowania raportów
+funkcją generujRaporty().
 }
 

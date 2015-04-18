@@ -62,12 +62,10 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
   }
   
   for(i in 1:length(grupyOdbiorcow)){
-    suppressWarnings(rm(.nieWczytujOdbiorcy))
     odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, i)
     with(
       odbiorca, 
       {
-        .nieWczytujOdbiorcy = TRUE
         render(
           input = plikSzablonu, 
           output_format = pdf_document(),

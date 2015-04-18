@@ -9,10 +9,12 @@
 #' 
 #' Do definicji odbiorcy dołączane są również przekazane dane.
 #' @details
-#' Jeśli w środowisku ustawiona jest zmienna .nieWczytujOdbiorcy, wtedy funkcja
-#' zwraca pustą listę. Służy to pominięciu wywołania wczytajOdbiorce() w treści 
-#' szablonu w momencie wsadowego generowania raportów, np. funkcją 
-#' generujRaporty() (którą ustawia zmienną .nieWczytujOdbiorcy).
+#' Funkcja sprawdza, czy, a jeśli tak, to gdzie, w ścieżce wywołań znajduje się
+#' funkcja generujRaporty(). W wypadku, gdy generujRaporty() znajduje się w
+#' ścieżce wywołań, ale wczytajOdbiorce() nie zostało wywołane bezpośrednio z
+#' niej, zwracana jest pusta lista. Służy to pominięciu wywołania
+#' wczytajOdbiorce() w treści szablonu w momencie wsadowego generowania raportów
+#' funkcją generujRaporty().
 #' @param grupy ramka danych, lista lub ścieżka do pliku CSV z definicjami grup
 #'   odbiorców
 #' @param dane ramka danych lub ścieżka do pliku CSV z danymi
@@ -24,7 +26,14 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
   # wprost z RStudio
   konfigurujKnitr()
   
-  if(length(ls(pattern = '^[.]nieWczytujOdbiorcy$')) > 0){
+  # pobieramy stos wywołań; uwaga:
+  # - pozycja 1 to funkcja najwyższego poziomu
+  # - pozycja ostatnia to funkcja, w której właśnie jesteśmy
+  stos = unlist(lapply(sys.calls(), function(x){
+    return(deparse(x)[1])
+  }))
+  pozGenRap = seq_along(stos)[grepl('^generujRaporty', stos)]
+  if(length(pozGenRap) > 0 & max(pozGenRap) != length(stos) - 1){
     return(list())
   }
   
