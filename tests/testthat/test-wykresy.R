@@ -15,6 +15,7 @@ test_that('wykresSlupkowy', {
 })
 
 test_that('wykresKolowy', {
+  expect_is(wykresKolowy(c(1, 2)), 'gg')
   expect_is(wykresKolowy(c('a' = 1, 'b' = 2)), 'gg')
   expect_is(wykresKolowy(c('a' = '1', 'b' = '2')), 'gg')
   expect_is(wykresKolowy(c('a' = ' 1', 'b' = '  2')), 'gg')
@@ -28,6 +29,7 @@ test_that('wykresKolowy', {
   expect_error(wykresKolowyNorm(c('a' = 'a 1%', 'b' = '2')))
 
   expect_is(wykresKolowyZlicz(c('a' = 1, 'b' = 2)), 'gg')
+  expect_is(wykresKolowyZlicz(c('a' = T, 'b' = F)), 'gg')
   expect_is(wykresKolowyZlicz(c('a' = '1', 'b' = '2')), 'gg')
   expect_is(wykresKolowyZlicz(c('a' = ' 1', 'b' = '  2')), 'gg')
   expect_is(wykresKolowyZlicz(c('a' = '  1%', 'b' = '2')), 'gg')
