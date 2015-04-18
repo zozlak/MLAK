@@ -15,5 +15,6 @@
 *_cache
 *.html
 tmp_files
+wiki
 R/sprawdzRaport.R
 !tests/*

@@ -1,9 +1,0 @@
-grupa;.grupaGl;stStopienN;stStopienS;stRok;stKierunek;stUczelnia
-1_etap_2007;STOPIEN %in% 1 & ROKSTART %in% 2007;1;1 stopnia;2007;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW
-1_etap_2008;STOPIEN %in% 1 & ROKSTART %in% 2008;1;1 stopnia;2008;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW
-1_etap_2009;STOPIEN %in% 1 & ROKSTART %in% 2009;1;1 stopnia;2009;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW
-1_etap_2010;STOPIEN %in% 1 & ROKSTART %in% 2010;1;1 stopnia;2010;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW
-2_etap_2007;STOPIEN %in% 2 & ROKSTART %in% 2007;2;2 stopnia;2007;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW
-2_etap_2008;STOPIEN %in% 2 & ROKSTART %in% 2008;2;2 stopnia;2008;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW
-2_etap_2009;STOPIEN %in% 2 & ROKSTART %in% 2009;2;2 stopnia;2009;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW
-2_etap_2010;STOPIEN %in% 2 & ROKSTART %in% 2010;2;2 stopnia;2010;Wydzia³u Dziennikarstwa i Nauk Politycznych;UW

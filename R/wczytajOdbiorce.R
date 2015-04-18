@@ -32,8 +32,8 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
   stos = unlist(lapply(sys.calls(), function(x){
     return(deparse(x)[1])
   }))
-  pozGenRap = seq_along(stos)[grepl('^generujRaporty', stos)]
-  if(length(pozGenRap) > 0 & max(pozGenRap) != length(stos) - 1){
+  pozGenRap = suppressWarnings(max(seq_along(stos)[grepl('^generujRaporty', stos)]))
+  if(length(pozGenRap) > 0 & pozGenRap != length(stos) - 1 & !is.infinite(pozGenRap)){
     return(list())
   }
   
