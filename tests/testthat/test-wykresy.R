@@ -29,7 +29,7 @@ test_that('wykresKolowy', {
   expect_error(wykresKolowyNorm(c('a' = 'a 1%', 'b' = '2')))
 
   expect_is(wykresKolowyZlicz(c('a' = 1, 'b' = 2)), 'gg')
-  expect_is(wykresKolowyZlicz(c('a' = T, 'b' = F)), 'gg')
+  expect_is(wykresKolowyZlicz(c('a' = T, 'b' = F)), 'gg') 
   expect_is(wykresKolowyZlicz(c('a' = '1', 'b' = '2')), 'gg')
   expect_is(wykresKolowyZlicz(c('a' = ' 1', 'b' = '  2')), 'gg')
   expect_is(wykresKolowyZlicz(c('a' = '  1%', 'b' = '2')), 'gg')
