@@ -31,8 +31,8 @@ statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
     if(!is.numeric(wynik)){
       wynik[] = '-'
     }
-    if(any(is.na(wynik)) | any(is.nan(wynik))){
-      wynik[is.na(wynik) | is.nan(wynik)] = '-'
+    if(any(is.na(wynik)) | any(is.nan(wynik)) | any(is.infinite(wynik))){
+      wynik[is.na(wynik) | is.nan(wynik) | is.infinite(wynik)] = '-'
     }
   }
   

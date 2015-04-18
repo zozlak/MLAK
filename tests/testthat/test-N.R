@@ -6,6 +6,8 @@ test_that('N zlicza NA', {
   expect_equal(N(c(1:10, NA), NA, FALSE), 1)
   expect_equal(N(c(1:10, NA), c(1, NA), FALSE), 2)
   expect_equal(N(c(1:10, NA), c(-1, NA), FALSE), 1)
+
+  expect_equal(N(c(letters[1:10], NA), c('a', NA), FALSE), 2)
 })
 
 test_that('N zlicza nie NA', {

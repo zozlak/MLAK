@@ -47,6 +47,16 @@ test_that('wykresHistogram', {
   expect_is(wykresHistogram(factor(letters[round(runif(100, 0, 24))])), 'gg')
 })
 
+test_that('opcjeWykresu', {
+  expect_is(wykresSlupkowy(c('a' = 1, 'b' = 2), opcjeWykresu = theme_grey()), 'gg')
+
+  expect_is(wykresKolowy(c('a' = 1, 'b' = 2), opcjeWykresu = theme_grey()), 'gg')
+  expect_is(wykresKolowyNorm(c('a' = 1, 'b' = 2), opcjeWykresu = theme_grey()), 'gg')
+  expect_is(wykresKolowyZlicz(c('a' = 1, 'b' = 2), opcjeWykresu = theme_grey()), 'gg')
+
+  expect_is(wykresHistogram(rnorm(100), opcjeWykresu = theme_grey()), 'gg')
+})
+  
 test_that('polamTekst', {
   expect_is(wykresKolowy(c('bardzo długie etykiety danych' = 1, 'oj, jakie długie etykiety danych' = 2)), 'gg')
   expect_is(wykresKolowy(c('bardzo długie etykiety danych\n' = 1, 'oj, jakie długie etykiety danych\n' = 2)), 'gg')
