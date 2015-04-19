@@ -7,10 +7,10 @@ Maintainer: Mateusz Zoltak <zozlak@zozlak.org>
 Imports:
     rmarkdown,
     knitr,
-    devtools,
     ggplot2,
     reshape2
 Suggests: 
+    devtools,
     testthat
 License: MIT + file LICENSE
 NeedsCompilation: no
