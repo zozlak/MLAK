@@ -19,7 +19,7 @@ P = function(x, w, wyrownaj = T, dokl = 1, znakProcent = TRUE){
   wynik = N(x, w, F)
   if(is.numeric(wynik)){
     wynik = round(100 * wynik / length(x), dokl)
-  }else
+  }
   if(wyrownaj){
     wynik = wyrownajDl(wynik, sys.call(), dokl, 3)
   }

@@ -19,16 +19,11 @@ wykresKolowy(dane, tytul = "", rozmiarTekstu = NULL, opcjeWykresu = NULL)
 [gg] obiekt wykresu pakietu ggplot2
 }
 \description{
-Rysuje wykres kołowy.
+Rysuje wykres kołowy, tzn. stosunek każdej z przekazanych wartości do ich
+sumy.
 
-Jeśli dane zawierają duplikaty wartości lub są factor-em, wtedy narysowane
-zostaną częstości występowania poszczególnych wartości.
-W przeciwnym wypadku narysowane zostaną przekazane dane.
-
-Właściwe etykiety wartości uzyskać można w dwojaki sposób - albo przekazując
-do funkcji factor (wektor z przypisanymi etykietami wartości) albo używając
-argumentu "etykiety". Argument "etykiety" powinien mieć postać:
-
-c('wartość1' = 'etykieta1', 'wartość2' = 'etykieta2', ...)
+Uwaga - wartości wyświetlane w legendzie nie są standaryzowane, lecz
+wyświetlane dokładnie w takiej postaci, w jakiej zostały przekazane. Aby
+legenda zawierała wystandaryzowane odsetki, użyj funkcji wykresKolowyNorm().
 }
 
