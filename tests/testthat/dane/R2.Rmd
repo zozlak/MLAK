@@ -31,7 +31,6 @@ Podczas lektury poniższego raportu należy pamiętać, że przedstawione dane s
 
 ## Informacje o liczebnościach analizowanych podzbiorowości: 
 
-
 Osoby, które                                          | Liczebność kategorii
 ------------------------------------------------------|--------------------------:
 uzyskały co najmniej raz stypendium za wyniki w nauce | `r N(NPELUSOS[grupa37])`

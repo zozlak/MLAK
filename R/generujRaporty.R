@@ -21,12 +21,21 @@
 #' @param plikSzablonu ścieżka do pliku Markdown z szablonem raportu
 #' @param dane ramka danych lub ścieżka do pliku CSV z danymi
 #' @param grupyOdbiorcow ramka danych (lub lista), której kolejne elementy określają grupy odbiorców
-#' @param katalogWy katalog, w którym zapisane zostaną wygenerowane raporty (względem pliku szablonu)
+#' @param katalogWy katalog, w którym zapisane zostaną wygenerowane raporty
+#'   (względem pliku szablonu); uwaga! jeśli podany, wtedy pełna ścieżka
+#'   katalogu wyjściowego nie może zawierać polskich znaków ani spacji (sic!)
 #' @param prefiksPlikow prefiks nazw plików wygenerowanych raportów
+#' @param ramkiTablic czy przekształcać wyjściowy kod TeX-a w celu uzyskania ramek w tabelach
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = ''){
+generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = '', ramkiTablic = TRUE){
+  stopifnot(
+    is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
+    is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),
+    is.vector(ramkiTablic), is.logical(ramkiTablic), length(ramkiTablic) == 1, all(!is.na(ramkiTablic))
+  )
+  
   konfigurujKnitr()
   
   if(is.character(dane)){
@@ -48,9 +57,17 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
     is.data.frame(grupyOdbiorcow) | is.list(grupyOdbiorcow)
   )
   if(katalogWy == ''){
-    katalogWy = '.'
+    katalogWy = NULL
+    katalogBazowy = sub('[^/\\]+$', '', plikSzablonu)
+  }else{
+    katalogBazowy = katalogWy
   }
 
+  if(ramkiTablic){
+    katalogRoboczy = getwd()
+    on.exit({setwd(katalogRoboczy)})
+  }
+  
   # przerabianie grup odbiorców podanych jako ramka danych na listę
   if(is.data.frame(grupyOdbiorcow)){
     tmp = list()
@@ -68,7 +85,7 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
       {
         render(
           input = plikSzablonu, 
-          output_format = pdf_document(),
+          output_format = pdf_document(keep_tex = ramkiTablic),
           output_file = paste0(
             prefiksPlikow,
             names(grupyOdbiorcow)[i],
@@ -78,5 +95,44 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
         )
       }
     )
+    
+    # przerabianie skladni tablic w pliku TeX-a i ponowna generacja PDF-a
+    if(ramkiTablic){
+      setwd(katalogBazowy)
+      plikTex = paste0(prefiksPlikow, names(grupyOdbiorcow)[i], '.tex')
+      
+      tex = readChar(plikTex, 10^6)
+      tex = gsub('\\\\toprule', '\\\\hline', tex)
+      tex = gsub('\\\\midrule', '', tex)
+      tex = gsub('\\\\bottomrule', '', tex)
+      tex = gsub('\\\\tabularnewline', '\\\\tabularnewline\\\\hline', tex)
+      tex = gsub('@[{][}]', '|', tex)
+      wzor = '\\\\begin[{]longtable[}]\\[[a-z]\\][{][|][lcr][lcr]*[|][}]'
+      while(grepl(wzor, tex)){
+        pozycja = regexpr(wzor, tex)
+        definicja = substr(tex, pozycja, pozycja + attr(pozycja, 'match.length') - 1)
+        definicja = gsub('([lcr])([lcr])', '\\1|\\2|', definicja)
+        definicja = sub('[|][|]', '|', paste0('\\', definicja))
+        tex = sub(wzor, definicja, tex)
+      }
+      tex = gsub(paste0('\\\\includegraphics[{]', getwd(), '/'), '\\includegraphics{', tex)
+      writeLines(tex, plikTex)
+      
+      komendaKompilacji = sprintf("pdflatex '%s'", plikTex)
+      repeat{
+        wyjscie = system(komendaKompilacji, intern = TRUE) 
+        if(!any(grepl('Package rerunfilecheck Warning', wyjscie))){
+          break
+        }
+      }
+      unlink(c(
+        plikTex,
+        sub('.tex', '.out', plikTex),
+        sub('.tex', '.log', plikTex),
+        sub('.tex', '.aux', plikTex),
+        sub('.tex', '_files', plikTex)
+      ), recursive = TRUE)
+      setwd(katalogRoboczy)
+    }
   }
 }

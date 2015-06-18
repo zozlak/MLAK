@@ -6,7 +6,8 @@ test_that('generuje sie R2', {
     dane           = 'dane/R2-dane.RData',
     grupyOdbiorcow = 'dane/R2-odbiorcy.RData',
     katalogWy      = '', 
-    prefiksPlikow  = 'R2-'
+    prefiksPlikow  = 'R2-',
+    ramkiTablic    = FALSE
   )
   expect_equal(length(dir('dane', '[.]pdf$')), 8)
   unlink(paste0('dane/', dir('dane', '[.]pdf$')))
@@ -18,7 +19,8 @@ test_that('generuje sie R3', {
     dane           = wczytajDane('dane/R3-dane.csv'),
     grupyOdbiorcow = wczytajDane('dane/R3-odbiorcy.csv'),
     katalogWy      = '', 
-    prefiksPlikow  = 'R3-'
+    prefiksPlikow  = 'R3-',
+    ramkiTablic    = TRUE
   )
   expect_equal(length(dir('dane', '[.]pdf$')), 5)
   unlink(paste0('dane/', dir('dane', '[.]pdf$')))
