@@ -102,10 +102,12 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
       plikTex = paste0(prefiksPlikow, names(grupyOdbiorcow)[i], '.tex')
       
       tex = readChar(plikTex, 10^6)
+      tex = gsub("\\\\toprule\\\\addlinespace", "\\\\hline", tex)
       tex = gsub('\\\\toprule', '\\\\hline', tex)
       tex = gsub('\\\\midrule', '', tex)
       tex = gsub('\\\\bottomrule', '', tex)
       tex = gsub('\\\\tabularnewline', '\\\\tabularnewline\\\\hline', tex)
+      tex = gsub("\\\\\\\\\\\\addlinespace", "\\\\\\\\\\\\hline", tex)
       tex = gsub('@[{][}]', '|', tex)
       wzor = '\\\\begin[{]longtable[}]\\[[a-z]\\][{][|][lcr][lcr]*[|][}]'
       while(grepl(wzor, tex)){
@@ -121,7 +123,7 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
       komendaKompilacji = sprintf("pdflatex '%s'", plikTex)
       repeat{
         wyjscie = system(komendaKompilacji, intern = TRUE) 
-        if(!any(grepl('Package rerunfilecheck Warning', wyjscie))){
+        if(!any(suppressWarnings(grepl('Package rerunfilecheck Warning', wyjscie)))){
           break
         }
       }
