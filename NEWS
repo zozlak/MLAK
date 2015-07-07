@@ -1,3 +1,12 @@
+Zmiany w MLAK 0.5.4 (2015-07-07)
+
+  * Korekta generowania ramek tablic, odporna na różne sposoby generowania
+    nowych linii (zdiagnozowane na Mac-u, ale być może wynika po prostu z
+    różnic w wersji Pandoc-a).
+    Niestety generowanie ramek nadal nie działa pod Windows-ami ze względu na
+    problemy z kodowaniem znaków w generowanym przez Pandoc-a pliku Tex-a
+    (jest to jakaś wielobajtówka, ale na pewno nie UTF-8)
+
 Zmiany w MLAK 0.5.3 (2015-06-17)
 
   * Dodanie argumentu ramkiTablic = TRUE w funkcji generujRaporty(), który
