@@ -1,3 +1,8 @@
+Zmiany w MLAK 0.5.5 (2015-07-17)
+
+  * Korekta generowania ramek tablic - usunięty błąd występujący w przypadku
+    osadzania wykresów
+
 Zmiany w MLAK 0.5.4 (2015-07-07)
 
   * Korekta generowania ramek tablic, odporna na różne sposoby generowania

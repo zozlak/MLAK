@@ -117,7 +117,7 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
         definicja = sub('[|][|]', '|', paste0('\\', definicja))
         tex = sub(wzor, definicja, tex)
       }
-      tex = gsub(paste0('\\\\includegraphics[{]', getwd(), '/'), '\\includegraphics{', tex)
+      tex = gsub(paste0('\\\\includegraphics[{]', getwd(), '/'), '\\\\includegraphics{', tex)
       writeLines(tex, plikTex)
       
       komendaKompilacji = sprintf("pdflatex '%s'", plikTex)
