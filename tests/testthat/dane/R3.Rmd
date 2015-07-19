@@ -60,7 +60,7 @@ Wśród absolwentów może istnieć grupa osób, które nie figurują w rejestra
 ##Informacje o liczebnościach analizowanych podzbiorowości:
 
 Osoby zamieszkałe...                      | Liczebność kategorii
-------------------------------------------:|:----------------------------------------------------------:
+-----------------------------------------:|:----------------------------------------------------------:
 w największych ośrodkach akademickich	    | `r P(MIEJZAM[VAR15], 1)` 
 w pozostałych miastach na prawach powiatu	| `r P(MIEJZAM[VAR15], 2)`
 w pozostałych miejscowościach	            | `r P(MIEJZAM[VAR15], 3)`
@@ -218,3 +218,9 @@ Procent absolwentów, którzy w miesiącu rozpoczęcia studiów...   |  wartoś�
 ----------------------------------------------------------------|--------------
 byli zatrudnieni na umowę o pracę                               | `r E(100*PRACUREK[VAR15], dokl = 1)`%
 byli samozatrudnieni                                            | `r E(100*SAMOREK[VAR15], dokl = 1)`%
+
+Test dynamicznej tablicy
+```{r echo = FALSE}
+dane = data.frame('kol1' = c('aaa bbb ccc', 'xxx yy zzz'), 'kol 2' = c(1, 1234567))
+TAB(dane)
+```
