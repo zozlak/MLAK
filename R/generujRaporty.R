@@ -26,10 +26,11 @@
 #'   katalogu wyjściowego nie może zawierać polskich znaków ani spacji (sic!)
 #' @param prefiksPlikow prefiks nazw plików wygenerowanych raportów
 #' @param ramkiTablic czy przekształcać wyjściowy kod TeX-a w celu uzyskania ramek w tabelach
+#' @param sprzataj czy usuwać pliki tymczasowe wytworzone w trakcie generowania ostatecznych PDF-ów
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = '', ramkiTablic = TRUE){
+generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = '', ramkiTablic = TRUE, sprzataj = TRUE){
   stopifnot(
     is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
     is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),
@@ -127,13 +128,15 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
           break
         }
       }
-      unlink(c(
-        plikTex,
-        sub('.tex', '.out', plikTex),
-        sub('.tex', '.log', plikTex),
-        sub('.tex', '.aux', plikTex),
-        sub('.tex', '_files', plikTex)
-      ), recursive = TRUE)
+      if(sprzataj){
+        unlink(c(
+          plikTex,
+          sub('.tex', '.out', plikTex),
+          sub('.tex', '.log', plikTex),
+          sub('.tex', '.aux', plikTex),
+          sub('.tex', '_files', plikTex)
+        ), recursive = TRUE)
+      }
       setwd(katalogRoboczy)
     }
   }
