@@ -62,7 +62,6 @@ wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytu
   
   if(rysuj){
     suppressWarnings(print(wykres))
-    return(invisible(wykres))
   }
-  return(wykres)
+  return(invisible(wykres))
 }

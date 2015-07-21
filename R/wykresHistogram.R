@@ -74,7 +74,6 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   
   if(rysuj){
     suppressWarnings(print(wykres))
-    return(invisible(wykres))
   }
-  return(wykres)
+  return(invisible(wykres))
 }

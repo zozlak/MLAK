@@ -36,7 +36,7 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE){
   pozShiny = any(grepl('shiny::runApp', stos))
   pozGenRap = suppressWarnings(max(seq_along(stos)[grepl('^generujRaporty', stos)]))
   if(pozShiny | length(pozGenRap) > 0 & pozGenRap != length(stos) - 1 & !is.infinite(pozGenRap)){
-    return(list())
+    return(ifelse(dolacz, invisible(list()), list()))
   }
   
   if(is.character(grupy)){

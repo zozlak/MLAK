@@ -59,7 +59,6 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
   
   if(rysuj){
     suppressWarnings(print(wykres))
-    return(invisible(wykres))
   }
-  return(wykres)
+  return(invisible(wykres))
 }

@@ -38,7 +38,6 @@ wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, op
   wykres = wykresKolowy(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu, rysuj = FALSE)
   if(rysuj){
     suppressWarnings(print(wykres))
-    return(invisible(wykres))
   }
-  return(wykres)
+  return(invisible(wykres))
 }

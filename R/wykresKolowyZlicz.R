@@ -53,7 +53,6 @@ wykresKolowyZlicz = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = 
   wykres = wykresKolowyNorm(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu, rysuj = FALSE)
   if(rysuj){
     suppressWarnings(print(wykres))
-    return(invisible(wykres))
   }
-  return(wykres)
+  return(invisible(wykres))
 }
