@@ -5,7 +5,8 @@
 \title{Wykres - histogram}
 \usage{
 wykresHistogram(dane, n = 9, tytul = "", tytulX = NULL, tytulY = NULL,
-  rozmiarTekstu = NULL, opcjeWykresu = NULL)
+  rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE,
+  rysuj = TRUE)
 }
 \arguments{
 \item{dane}{wektor danych}
@@ -21,6 +22,10 @@ wykresHistogram(dane, n = 9, tytul = "", tytulX = NULL, tytulY = NULL,
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 
 \item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)}
+
+\item{rownePrzedzialy}{czy przedziały na osi X powinny być równe (TRUE) czy wyznaczane przez kwantyle (FALSE)}
+
+\item{rysuj}{czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu}
 }
 \value{
 [gg] obiekt wykresu pakietu ggplot2

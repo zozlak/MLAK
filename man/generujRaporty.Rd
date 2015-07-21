@@ -5,7 +5,7 @@
 \title{generuje raporty na podstawie szablonu danych oraz opisu grup odbiorców}
 \usage{
 generujRaporty(plikSzablonu, dane, grupyOdbiorcow, katalogWy = "",
-  prefiksPlikow = "", ramkiTablic = TRUE)
+  prefiksPlikow = "", ramkiTablic = FALSE, sprzataj = TRUE)
 }
 \arguments{
 \item{plikSzablonu}{ścieżka do pliku Markdown z szablonem raportu}
@@ -21,6 +21,8 @@ katalogu wyjściowego nie może zawierać polskich znaków ani spacji (sic!)}
 \item{prefiksPlikow}{prefiks nazw plików wygenerowanych raportów}
 
 \item{ramkiTablic}{czy przekształcać wyjściowy kod TeX-a w celu uzyskania ramek w tabelach}
+
+\item{sprzataj}{czy usuwać pliki tymczasowe wytworzone w trakcie generowania ostatecznych PDF-ów}
 }
 \description{
 Pliki raportów tworzone są ze złączenia prefiksu z wartością z pierwszej

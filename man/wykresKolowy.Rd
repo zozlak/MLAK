@@ -4,7 +4,8 @@
 \alias{wykresKolowy}
 \title{Wykres kołowy}
 \usage{
-wykresKolowy(dane, tytul = "", rozmiarTekstu = NULL, opcjeWykresu = NULL)
+wykresKolowy(dane, tytul = "", rozmiarTekstu = NULL, opcjeWykresu = NULL,
+  rysuj = TRUE)
 }
 \arguments{
 \item{dane}{wektor danych}
@@ -14,6 +15,8 @@ wykresKolowy(dane, tytul = "", rozmiarTekstu = NULL, opcjeWykresu = NULL)
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 
 \item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)}
+
+\item{rysuj}{czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu}
 }
 \value{
 [gg] obiekt wykresu pakietu ggplot2

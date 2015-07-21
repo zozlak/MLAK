@@ -6,7 +6,7 @@
 \usage{
 wykresSlupkowy(dane, skumulowany = F, tytul = "", tytulX = NULL,
   tytulY = NULL, sufiksY = "", rozmiarTekstu = NULL,
-  opcjeWykresu = NULL)
+  opcjeWykresu = NULL, rysuj = TRUE)
 }
 \arguments{
 \item{dane}{wektor danych}
@@ -24,6 +24,8 @@ wykresSlupkowy(dane, skumulowany = F, tytul = "", tytulX = NULL,
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 
 \item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)}
+
+\item{rysuj}{czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu}
 }
 \value{
 [gg] obiekt wykresu pakietu ggplot2

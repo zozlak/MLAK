@@ -5,7 +5,7 @@
 \title{Wykres kołowy z normalizacją przekazanych danych do 100 procent}
 \usage{
 wykresKolowyNorm(dane, dokl = 1, tytul = "", rozmiarTekstu = NULL,
-  opcjeWykresu = NULL)
+  opcjeWykresu = NULL, rysuj = TRUE)
 }
 \arguments{
 \item{dane}{wektor danych}
@@ -17,6 +17,8 @@ wykresKolowyNorm(dane, dokl = 1, tytul = "", rozmiarTekstu = NULL,
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 
 \item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)}
+
+\item{rysuj}{czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu}
 }
 \value{
 [gg] obiekt wykresu pakietu ggplot2

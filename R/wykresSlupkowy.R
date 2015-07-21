@@ -9,11 +9,12 @@
 #' @param sufiksY ew. ciąg znaków dołączany do etykiet osi Y (np. znak procenta)
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
+#' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
 #' @import reshape2
-wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytulY = NULL, sufiksY = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
+wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytulY = NULL, sufiksY = '', rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.vector(dane) | is.matrix(dane)
   )
@@ -59,5 +60,9 @@ wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytu
     wykres = wykres + opcjeWykresu
   }
   
+  if(rysuj){
+    suppressWarnings(print(wykres))
+    return(invisible(wykres))
+  }
   return(wykres)
 }

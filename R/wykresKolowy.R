@@ -10,10 +10,11 @@
 #' @param tytul tytuł wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
+#' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
+wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.vector(dane), is.numeric(dane) | is.character(dane)
   )
@@ -56,5 +57,9 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
     wykres = wykres + opcjeWykresu
   }
   
+  if(rysuj){
+    suppressWarnings(print(wykres))
+    return(invisible(wykres))
+  }
   return(wykres)
 }

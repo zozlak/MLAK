@@ -8,10 +8,11 @@
 #' @param tytul tytuł wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
+#' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
+wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.vector(dane), is.numeric(dane) | is.character(dane)
   )
@@ -34,6 +35,10 @@ wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, op
   tmp = names(dane)
   dane = setNames(paste0(dane, '%'), tmp)
   
-  wykres = wykresKolowy(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu)
+  wykres = wykresKolowy(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu, rysuj = FALSE)
+  if(rysuj){
+    suppressWarnings(print(wykres))
+    return(invisible(wykres))
+  }
   return(wykres)
 }

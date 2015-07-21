@@ -19,9 +19,10 @@
 #'   odbiorców
 #' @param dane ramka danych lub ścieżka do pliku CSV z danymi
 #' @param n numer odbiorcy do wczytania
+#' @param dolacz czy dołączyć (funkcją attach) wczytane dane do środowiska, w którym funkcja została uruchomiona
 #' @return [list] definicja odbiorcy
 #' @export
-wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
+wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE){
   # aby nie było potrzebne oddzielne wywolywanie przy generowaniu raportu
   # wprost z RStudio
   konfigurujKnitr()
@@ -80,6 +81,13 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1){
 
   names(odbiorca) = sub('^[.]', '', names(odbiorca))  
   
-  odbiorca = append(odbiorca, dane)  
+  odbiorca = append(odbiorca, dane)
+  if(dolacz){
+    while(any(grepl('^odbiorca$', search()))){
+      detach(pos = grep('^odbiorca$', search()))
+    }
+    suppressWarnings(attach(odbiorca))
+    return(invisible(odbiorca))
+  }
   return(odbiorca)
 }

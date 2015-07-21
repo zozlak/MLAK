@@ -9,10 +9,11 @@
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @param rownePrzedzialy czy przedziały na osi X powinny być równe (TRUE) czy wyznaczane przez kwantyle (FALSE)
+#' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = TRUE){
+wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE, rysuj = TRUE){
   stopifnot(
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
@@ -62,5 +63,9 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
     wykres = wykres + opcjeWykresu
   }
   
+  if(rysuj){
+    suppressWarnings(print(wykres))
+    return(invisible(wykres))
+  }
   return(wykres)
 }

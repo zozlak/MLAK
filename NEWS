@@ -4,6 +4,17 @@ Zmiany w MLAK 0.6.1 (2015-07-21)
     częstości, a wysokość gęstości prawdopodobieństwa
   * Zmiana domyślnej wartości parametru ramkiTablic funkcji generujRaporty()
     na FALSE na skutek odnotowywanych problemów dla wartości TRUE
+  * Dodanie do wszystkich funkcji rysujących wykresy parametru rysuj = TRUE.
+    Kiedy ma wartość TRUE, funkcja sama rysuje wykres (i zwraca obiekt wykresu
+    opakowany w invisible()). Jeśli FALSE, wtedy funkcja jedynie zwraca obiekt
+    wykresu.
+    Pozwala to łatwo rysować histogramy z pominięciem ostrzeżenia o nierównych
+    szerokościach słupków
+  * Dodanie parametru dolacz = TRUE do funkcji wczytajOdbiorce().
+    Powoduje on wykonanie attach() na przygotowanych danych, przy okazji dbając
+    o odłączenie (detach) danych wczytanych poprzednio, co skraca zapis (nie 
+    trzeba już pisać "attach(wczytajOdbiorce(...))", wystarczy 
+    "wczytajOdbiorce(...)") i pozwala uniknąć komunikatów ostrzeżeń.
     
 Zmiany w MLAK 0.6.0 (2015-07-19)
 

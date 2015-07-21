@@ -22,10 +22,11 @@
 #' @param tytul tytuł wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
+#' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresKolowyZlicz = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL){
+wykresKolowyZlicz = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
@@ -49,6 +50,10 @@ wykresKolowyZlicz = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = 
   tmp = names(dane)
   dane = setNames(as.vector(dane), tmp)
 
-  wykres = wykresKolowyNorm(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu)
+  wykres = wykresKolowyNorm(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu, rysuj = FALSE)
+  if(rysuj){
+    suppressWarnings(print(wykres))
+    return(invisible(wykres))
+  }
   return(wykres)
 }

@@ -4,7 +4,7 @@
 \alias{wczytajOdbiorce}
 \title{wczytuje wskazanego odbiorcę}
 \usage{
-wczytajOdbiorce(grupy, dane = data.frame(), n = 1)
+wczytajOdbiorce(grupy, dane = data.frame(), n = 1, dolacz = TRUE)
 }
 \arguments{
 \item{grupy}{ramka danych, lista lub ścieżka do pliku CSV z definicjami grup
@@ -13,6 +13,8 @@ odbiorców}
 \item{dane}{ramka danych lub ścieżka do pliku CSV z danymi}
 
 \item{n}{numer odbiorcy do wczytania}
+
+\item{dolacz}{czy dołączyć (funkcją attach) wczytane dane do środowiska, w którym funkcja została uruchomiona}
 }
 \value{
 [list] definicja odbiorcy
