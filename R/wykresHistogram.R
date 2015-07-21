@@ -34,12 +34,11 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       breaks = seq(min(dane), max(dane), length.out = n + 1)
     }else{
       n = min(n, length(unique(dane)))
-      breaks = quantile(dane, seq(0, 1, length.out = n))
+      breaks = quantile(dane, seq(0, 1, length.out = n + 1))
       while(length(breaks) != length(unique(breaks))){
         n = n - 1
-        breaks = quantile(dane, seq(0, 1, length.out = n))
+        breaks = quantile(dane, seq(0, 1, length.out = n + 1))
       }
-      breaks = as.numeric(rowMeans(cbind(c(breaks, breaks[length(breaks)]), c(breaks[1], breaks))))
     }
 
     wykres = wykres +
@@ -66,7 +65,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   }
   
   if(is.numeric(dane)){
-    wykres = wykres + scale_x_continuous(breaks = round(breaks, 1))
+    wykres = wykres + scale_x_continuous(breaks = breaks, labels = round(breaks))
   }
   
   if(!is.null(opcjeWykresu)){
