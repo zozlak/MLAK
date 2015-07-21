@@ -13,7 +13,7 @@ output:
 ```{r echo = FALSE, message = FALSE}
 # przykładowe dane, jeśli nie generujemy wsadowo
 library(MLAK)
-attach(wczytajOdbiorce('R3-odbiorcy.csv', 'R3-dane.csv', 3))
+wczytajOdbiorce('R3-odbiorcy.csv', 'R3-dane.csv', 3)
 
   VAR1K	= KIERUNEK %in% VNKIER & ROKDYP %in% VROK
   VAR2K	= VAR1K & ZAL1 %in% 100 
