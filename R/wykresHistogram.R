@@ -8,10 +8,11 @@
 #' @param tytulY tytuł osi Y wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
+#' @param rownePrzedzialy czy przedziały na osi X powinny być równe (TRUE) czy wyznaczane przez kwantyle (FALSE)
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL){
+wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = TRUE){
   stopifnot(
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
@@ -19,13 +20,20 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   
   dane = na.exclude(dane)
   
-  wykres = ggplot(data = data.frame(d = dane)) +
-#    aes(x = get('d'))
-    aes(x = get('d'), y = ..density..)
+  wykres = ggplot(data = data.frame(d = dane))
+  if(rownePrzedzialy){
+    wykres = wykres + aes(x = get('d'))
+  }else{
+    wykres = wykres + aes(x = get('d'), y = ..density..)
+  }
+    
   
   if(is.numeric(dane)){
-    #breaks = seq(min(dane), max(dane), length.out = n + 1)
-    breaks = quantile(dane, seq(0, 1, length.out = n + 1))
+    if(rownePrzedzialy){
+      breaks = seq(min(dane), max(dane), length.out = n + 1)
+    }else{
+      breaks = quantile(dane, seq(0, 1, length.out = n + 1))
+    }
 
     wykres = wykres +
       suppressWarnings( # różna szerokość słupków generuje "position_stack requires constant width: output may be incorrect"
