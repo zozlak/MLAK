@@ -55,8 +55,12 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) + 
     theme(axis.line = element_line(colour = '#000000', linetype = 'solid'), axis.line.x = element_blank())
   
+  if(rownePrzedzialy == FALSE){
+    wykres = wykres + theme(axis.line.y = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+  }
+  
   if(is.numeric(dane)){
-    wykres = wykres + scale_x_continuous(breaks = round(as.numeric(breaks), 2))
+    wykres = wykres + scale_x_continuous(breaks = round(as.numeric(breaks), 1))
   }
   
   if(!is.null(opcjeWykresu)){
