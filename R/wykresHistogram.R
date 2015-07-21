@@ -33,7 +33,12 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
     if(rownePrzedzialy){
       breaks = seq(min(dane), max(dane), length.out = n + 1)
     }else{
-      breaks = unique(quantile(dane, seq(0, 1, length.out = n + 1)))
+      n = min(n, length(unique(dane)))
+      breaks = quantile(dane, seq(0, 1, length.out = n + 1))
+      while(length(breaks) != length(unique(breaks))){
+        n = n - 1
+        breaks = quantile(dane, seq(0, 1, length.out = n + 1))
+      }
     }
 
     wykres = wykres +
