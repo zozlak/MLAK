@@ -30,7 +30,7 @@
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = '', ramkiTablic = TRUE, sprzataj = TRUE){
+generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE){
   stopifnot(
     is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
     is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),

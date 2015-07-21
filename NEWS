@@ -1,3 +1,10 @@
+Zmiany w MLAK 0.6.1 (2015-07-21)
+
+  * Zmodyfikowanie funkcji wykresHistogram() tak by pole słupków odpowiadało
+    częstości, a wysokość gęstości prawdopodobieństwa
+  * Zmiana domyślnej wartości parametru ramkiTablic funkcji generujRaporty()
+    na FALSE na skutek odnotowywanych problemów dla wartości TRUE
+    
 Zmiany w MLAK 0.6.0 (2015-07-19)
 
   * Dodanie funkcji TAB() umożliwiającej rysowanie tablic o nieznanej z góry

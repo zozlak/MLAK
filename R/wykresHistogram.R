@@ -20,16 +20,20 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   dane = na.exclude(dane)
   
   wykres = ggplot(data = data.frame(d = dane)) +
-    aes(x = get('d'))
-
+#    aes(x = get('d'))
+    aes(x = get('d'), y = ..density..)
+  
   if(is.numeric(dane)){
-    breaks = seq(min(dane), max(dane), length.out = n + 1)
+    #breaks = seq(min(dane), max(dane), length.out = n + 1)
+    breaks = quantile(dane, seq(0, 1, length.out = n + 1))
 
     wykres = wykres +
-      geom_histogram(
-        breaks = breaks,
-        colour = '#000000',
-        fill = '#FFFFFF'
+      suppressWarnings( # różna szerokość słupków generuje "position_stack requires constant width: output may be incorrect"
+        geom_histogram(
+          breaks = breaks,
+          colour = '#000000',
+          fill = '#FFFFFF'
+        )
       )
   }else{
     wykres = wykres +
@@ -43,7 +47,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
     theme(axis.line = element_line(colour = '#000000', linetype = 'solid'), axis.line.x = element_blank())
   
   if(is.numeric(dane)){
-    wykres = wykres + scale_x_continuous(breaks = round(breaks, 2))
+    wykres = wykres + scale_x_continuous(breaks = round(as.numeric(breaks), 2))
   }
   
   if(!is.null(opcjeWykresu)){
