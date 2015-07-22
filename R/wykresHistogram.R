@@ -40,7 +40,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       grupy = cut(dane, breaksTmp, labels = names(szer), right = FALSE)
       wagi = szer[grupy]
       wys = aggregate(wagi, list(names(wagi)), function(x){x[1] * length(x)})
-      wys$x = round(10 * wys$x)
+      wys$x = round(1000 * wys$x)
       srednie = rowMeans(cbind(breaks[-1], breaks[-length(breaks)]))
       wys$grupa = srednie[wys[, 1]] - 1 #!!!
       dane = as.numeric(unlist(by(wys, wys$grupa, function(x){
