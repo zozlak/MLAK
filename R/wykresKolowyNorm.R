@@ -24,7 +24,7 @@ wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, op
     tmp = names(dane)
     dane = setNames(suppressWarnings(as.numeric(dane)), tmp)
     if(any(is.na(dane))){
-      stop('Dane wykresu zawieraly wartosci niebedace liczbami ani procentami')
+      return(wykresPusty(tytul = tytul, rysuj = rysuj))
     }
   }
   

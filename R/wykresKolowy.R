@@ -26,7 +26,7 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
     etykiety = dane
     dane = naLiczbe(dane)
     if(any(is.na(dane))){
-      stop('Dane wykresu zawieraly wartosci niebedace liczbami ani procentami')
+      return(wykresPusty(tytul = tytul, rysuj = rysuj))
     }
   }
   

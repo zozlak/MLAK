@@ -23,12 +23,12 @@ wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytu
     tmp = sum(is.na(dane))
     dane = naLiczbe(dane)
     if(sum(is.na(dane)) != tmp){
-      stop('dane nie są liczbami')
+      return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
     }
   }
-  stopifnot(
-    is.numeric(dane)
-  )
+  if(!is.numeric(dane)){
+    return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
+  }
   
   if(is.vector(dane)){
     tmp = names(dane)
@@ -55,7 +55,7 @@ wykresSlupkowy = function(dane, skumulowany = F, tytul = '', tytulX = NULL, tytu
   if(length(unique(dane$x)) == 1){
     wykres = wykres + scale_x_discrete(breaks = NULL)
   }
-
+  
   if(!is.null(opcjeWykresu)){
     wykres = wykres + opcjeWykresu
   }

@@ -38,6 +38,10 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       breaksTmp = breaks + 10^-6
       breaksTmp[1] = breaks[1]
       grupy = cut(dane, breaksTmp, labels = names(szer), right = FALSE)
+      nMin = min(table(grupy))
+      if(nMin < 5){
+        return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
+      }
       wagi = szer[grupy]
       wys = aggregate(wagi, list(names(wagi)), function(x){x[1] * length(x)})
       wys$x = round(1000 * wys$x)
@@ -57,6 +61,10 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
         ) 
       )
   }else{
+    nMin = min(table(dane))
+    if(nMin < 5){
+      return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
+    }
     wykres = ggplot(data = data.frame(d = dane)) + aes(x = get('d')) +
       geom_histogram(
         colour = '#000000',

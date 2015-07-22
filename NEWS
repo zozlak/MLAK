@@ -1,3 +1,11 @@
+Zmiany w MLAK 0.6.2 (2015-07-22)
+
+  * Zmiana zachowania funkcji rysujących wykresy w wypadku napotkania 
+    niepoprawnych danych - teraz rysują one pusty wykres.
+    Powinno tak być, gdyż na skutek anonimizacji dane przekazane do wykresów
+    mogą nie być poprawne i nie powinno to powodować niegenerowania się raportu
+  * Korekta wyliczania wysokości słupków w funkcji wykresHistogram()
+
 Zmiany w MLAK 0.6.1 (2015-07-21)
 
   * Zmodyfikowanie funkcji wykresHistogram() tak by pole słupków odpowiadało

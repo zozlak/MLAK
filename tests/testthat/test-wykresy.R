@@ -1,11 +1,12 @@
 context('wykresy')
+# TODO dopisać testy dla pustych danych
 
 test_that('wykresSlupkowy', {
   expect_is(wykresSlupkowy(c('a' = 1, 'b' = 2)), 'gg')
   expect_is(wykresSlupkowy(c('a' = '1', 'b' = '2')), 'gg')
   expect_is(wykresSlupkowy(c('a' = ' 1', 'b' = '  2')), 'gg')
   expect_is(wykresSlupkowy(c('a' = '  1%', 'b' = '2')), 'gg')
-  expect_error(wykresSlupkowy(c('a' = 'a 1%', 'b' = '2')))
+  expect_is(wykresSlupkowy(c('a' = 'a 1%', 'b' = '2')), 'gg') # TODO przerobić na sprawdzanie wygenerowania pustego wykresu
   
   wektor = rep(1:10, 10)
   expect_is(wykresSlupkowy(c('a' = N(wektor, 1), 'b' = N(wektor, 2))), 'gg')
@@ -20,13 +21,13 @@ test_that('wykresKolowy', {
   expect_is(wykresKolowy(c('a' = '1', 'b' = '2')), 'gg')
   expect_is(wykresKolowy(c('a' = ' 1', 'b' = '  2')), 'gg')
   expect_is(wykresKolowy(c('a' = '  1%', 'b' = '2')), 'gg')
-  expect_error(wykresKolowy(c('a' = 'a 1%', 'b' = '2')))
+  expect_is(wykresKolowy(c('a' = 'a 1%', 'b' = '2')), 'gg') # TODO przerobić na sprawdzanie wygenerowania pustego wykresu
 
   expect_is(wykresKolowyNorm(c('a' = 1, 'b' = 2)), 'gg')
   expect_is(wykresKolowyNorm(c('a' = '1', 'b' = '2')), 'gg')
   expect_is(wykresKolowyNorm(c('a' = ' 1', 'b' = '  2')), 'gg')
   expect_is(wykresKolowyNorm(c('a' = '  1%', 'b' = '2')), 'gg')
-  expect_error(wykresKolowyNorm(c('a' = 'a 1%', 'b' = '2')))
+  expect_is(wykresKolowyNorm(c('a' = 'a 1%', 'b' = '2')), 'gg') # TODO przerobić na sprawdzanie wygenerowania pustego wykresu
 
   expect_is(wykresKolowyZlicz(c('a' = 1, 'b' = 2)), 'gg')
   expect_is(wykresKolowyZlicz(c('a' = T, 'b' = F)), 'gg') 
