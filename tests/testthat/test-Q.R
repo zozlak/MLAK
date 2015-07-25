@@ -8,8 +8,8 @@ test_that('Q dziala', {
   expect_equal(Q(1:7, 2, 4, dokl = 1), c('50%' = '                       4.0'))
   expect_equal(Q(1:8, 2, 4), c('50%' = '            4.50'))
   
-  expect_equal(Q(1:3, 1, 4), '               -')
-  expect_equal(Q(1:3, 1:2, 5), '                 -')
+  expect_equal(Q(1:2, 1, 4), '               -')
+  expect_equal(Q(1:2, 1:2, 5), '                 -')
 
   expect_error(Q('a', 1, 2))
   expect_error(Q(1:7, 'a', 2))

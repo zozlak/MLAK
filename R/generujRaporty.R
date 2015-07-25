@@ -98,6 +98,7 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
     )
     
     # przerabianie skladni tablic w pliku TeX-a i ponowna generacja PDF-a
+    #TODO dodać dbanie o brak polskich znaków, spacji, itp. w nazwach plików - pdf
     if(ramkiTablic){
       setwd(katalogBazowy)
       plikTex = paste0(prefiksPlikow, names(grupyOdbiorcow)[i], '.tex')

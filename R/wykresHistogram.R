@@ -18,9 +18,14 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
   )
+  nGiodo = 3
   
   dane = na.exclude(dane)
-    
+  
+  if(length(dane) == 0){
+    return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
+  }
+  
   if(is.numeric(dane)){
     if(rownePrzedzialy){
       breaks = seq(min(dane), max(dane), length.out = n + 1)
@@ -39,7 +44,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       breaksTmp[1] = breaks[1]
       grupy = cut(dane, breaksTmp, labels = names(szer), right = FALSE)
       nMin = min(table(grupy))
-      if(nMin < 5){
+      if(nMin < nGiodo){
         return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
       }
       wagi = szer[grupy]
@@ -62,7 +67,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       )
   }else{
     nMin = min(table(dane))
-    if(nMin < 5){
+    if(nMin < nGiodo){
       return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
     }
     wykres = ggplot(data = data.frame(d = dane)) + aes(x = get('d')) +

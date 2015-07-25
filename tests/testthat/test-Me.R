@@ -8,10 +8,10 @@ test_that('Me dziala', {
   expect_equal(Me(1:7, dokl = 1), '                  4.0')
   expect_equal(Me(1:8), '       4.50')
   
-  expect_equal(Me(1:3), '          -')
-  expect_equal(Me(1:3, TRUE, 2), '                   -')
-  expect_equal(Me(1:3, FALSE), '-')
-  expect_equal(Me(1:3, FALSE, 2), '-')
+  expect_equal(Me(1:2), '          -')
+  expect_equal(Me(1:2, TRUE, 2), '                   -')
+  expect_equal(Me(1:2, FALSE), '-')
+  expect_equal(Me(1:2, FALSE, 2), '-')
   
   expect_equal(Me('a'), '          -')
 })

@@ -11,7 +11,7 @@ giodo = function(x){
     is.vector(x) | is.data.frame(x)
   )
   
-  min = 5
+  min = 3
   
   if(is.vector(x)){
     if(length(x) < min){

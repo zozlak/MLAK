@@ -1,3 +1,7 @@
+Zmiany w MLAK 0.6.3 (2015-07-25)
+
+  * Obniżenie progów w funkcji giodo() do 3 osób i dostosowanie testów
+
 Zmiany w MLAK 0.6.2 (2015-07-22)
 
   * Zmiana zachowania funkcji rysujących wykresy w wypadku napotkania 
