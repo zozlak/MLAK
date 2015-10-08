@@ -17,4 +17,5 @@
 tmp_files
 wiki
 R/sprawdzRaport.R
+R/zainstaluj.R
 !tests/*

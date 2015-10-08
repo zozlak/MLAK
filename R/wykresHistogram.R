@@ -78,7 +78,11 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   }
   
   wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) + 
-    theme(axis.line = element_line(colour = '#000000', linetype = 'solid'), axis.line.x = element_blank())
+    theme(
+      axis.line = element_line(colour = '#000000', linetype = 'solid'), 
+      axis.line.x = element_blank(),
+      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)
+    )
   
   if(rownePrzedzialy == FALSE){
     wykres = wykres + theme(axis.line.y = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
