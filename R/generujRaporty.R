@@ -57,11 +57,10 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
     is.data.frame(dane),
     is.data.frame(grupyOdbiorcow) | is.list(grupyOdbiorcow)
   )
+  katalogBazowy = katalogWy
   if(katalogWy == ''){
     katalogWy = NULL
     katalogBazowy = sub('[^/\\]+$', '', plikSzablonu)
-  }else{
-    katalogBazowy = katalogWy
   }
 
   if(ramkiTablic){

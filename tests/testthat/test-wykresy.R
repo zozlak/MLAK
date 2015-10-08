@@ -52,6 +52,7 @@ test_that('wykresHistogram', {
   expect_is(wykresHistogram(letters), 'gg')
   expect_is(wykresHistogram(letters[rep(1:10, 10)]), 'gg')
   expect_is(wykresHistogram(factor(letters[round(runif(100, 0, 24))])), 'gg')
+  expect_is(wykresHistogram(rep(NA_integer_, 10)), 'gg') # TODO przerobić na sprawdzanie wygenerowania pustego wykresu
 })
 
 test_that('opcjeWykresu', {
