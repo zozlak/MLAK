@@ -7,6 +7,7 @@ test_that('wykresSlupkowy', {
   expect_is(wykresSlupkowy(c('a' = ' 1', 'b' = '  2')), 'gg')
   expect_is(wykresSlupkowy(c('a' = '  1%', 'b' = '2')), 'gg')
   expect_is(wykresSlupkowy(c('a' = 'a 1%', 'b' = '2')), 'gg') # TODO przerobić na sprawdzanie wygenerowania pustego wykresu
+  expect_is(wykresSlupkowy(rep(TRUE, 10)), 'gg') # TODO przerobić na sprawdzanie wygenerowania pustego wykresu
   
   wektor = rep(1:10, 10)
   expect_is(wykresSlupkowy(c('a' = N(wektor, 1), 'b' = N(wektor, 2))), 'gg')
@@ -46,7 +47,10 @@ test_that('wykresKolowy', {
 
 test_that('wykresHistogram', {
   expect_is(wykresHistogram(rnorm(100)), 'gg')
-  expect_is(wykresHistogram(letters[round(runif(100, 0, 24))]), 'gg')
+  expect_is(wykresHistogram(rnorm(100), rownePrzedzialy = TRUE), 'gg')
+  expect_is(wykresHistogram(c(rep(1, 100), 2:9)), 'gg')
+  expect_is(wykresHistogram(letters), 'gg')
+  expect_is(wykresHistogram(letters[rep(1:10, 10)]), 'gg')
   expect_is(wykresHistogram(factor(letters[round(runif(100, 0, 24))])), 'gg')
 })
 

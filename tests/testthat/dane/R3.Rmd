@@ -223,4 +223,6 @@ Test dynamicznej tablicy
 ```{r echo = FALSE}
 dane = data.frame('kol1' = c('aaa bbb ccc', 'xxx yy zzz'), 'kol 2' = c(1, 1234567))
 TAB(dane)
+
+TAB(as.data.frame(matrix(numeric())))
 ```
