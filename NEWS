@@ -2,6 +2,9 @@ Zmiany w MLAK 0.6.5 (2015-10-13)
 
   * Uodpornienie funkcji wyrownajDl() na bardzo długi kod wywołania pierwotnej
     funksji (gdzie deparse() zwraca wieloelementowy wektor znaków)
+  * Uodpornienie funkcji wyrownajDl() na wywołania wewnątrz dplyr-owych 
+    summarize()/summarise() i mutate(). Obecnie wyrownajDl() wykrywa wywołanie
+    wewnątrz nich i w takim wypadku porzuca wyrównywanie wartości.
 
 Zmiany w MLAK 0.6.4 (2015-10-08)
 
