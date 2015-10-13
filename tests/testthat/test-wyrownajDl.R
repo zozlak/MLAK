@@ -17,4 +17,13 @@ test_that('wyrownajDl dziala', {
   # test na bardzo długi kod wywołania, gdzie deparse() zwraca wynik połamany na wiele linii
   call = call('E', c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
   expect_equal(wyrownajDl(5, call, 0), '                                                                                              5')
+  
+  # test na zachowanie wewnątrz dplyr-owego summarize
+  library(dplyr)
+  wynik = data.frame(x = c(1, rep(2, 49)), y = rep(1, 50)) %>%
+    group_by(x) %>%
+    summarize(n = N(y))
+  expect_is(wynik$n, 'character')
+  expect_equal(wynik$n[1], '-')
+  expect_equal(wynik$n[2], ' 49')
 })

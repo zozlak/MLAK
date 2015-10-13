@@ -12,7 +12,8 @@ Imports:
     stringi,
     devtools
 Suggests: 
-    testthat
+    testthat,
+    dplyr
 License: MIT + file LICENSE
 NeedsCompilation: no
 VignetteBuilder: knitr
