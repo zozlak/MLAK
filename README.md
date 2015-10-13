@@ -1,7 +1,7 @@
 # MLAK
 
 [![Travis-CI Build Status](https://travis-ci.org/zozlak/MLAK.png?branch=master)](https://travis-ci.org/zozlak/MLAK)
-[![Coverage Status](https://coveralls.io/repos/zozlak/MLAK/badge.svg)](https://coveralls.io/r/zozlak/MLAK)
+[![Coverage Status](https://coveralls.io/repos/zozlak/MLAK/badge.svg?branch=master&service=github)](https://coveralls.io/github/zozlak/MLAK?branch=master)
 
 Pakiet do generowania raportów 
 
