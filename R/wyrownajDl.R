@@ -10,7 +10,7 @@
 #' @param delta liczba znaków, która ma zostać doliczna do długości wywołania
 #' @return character
 wyrownajDl = function(wynik, call, dokl, delta = 4){
-  dl = delta + nchar(deparse(call))
+  dl = delta + sum(nchar(deparse(call)))
   if(max(nchar(wynik)) > dl){
     warning('Wyrównanie długości nie było możliwe')
   }
