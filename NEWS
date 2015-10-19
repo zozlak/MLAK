@@ -3,6 +3,8 @@ Zmiany w MLAK 0.6.6 (2015-10-19)
   * Dodanie opcjonalnego parametru "kodowanie" do funkcji wczytajOdbiorce()
     (oraz wewnętrznej funkcji wczytajDane()), co umożliwia radzenie sobie
     z plikami wygenerowanymi na Mac-ach
+  * Funkcja wykresHistogram() pomija wybrane etykiety osi X, jeśli podejrzewa,
+    że mogłyby one zachodzić na inne
  
 Zmiany w MLAK 0.6.5 (2015-10-13)
 

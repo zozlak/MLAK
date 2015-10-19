@@ -56,14 +56,14 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
         return(rep(x$grupa[1], x$x[1]))
       })))
     }
-
+    
     wykres = ggplot(data = data.frame(d = dane)) + aes(x = get('d')) +
       suppressWarnings( # różna szerokość słupków generuje "position_stack requires constant width: output may be incorrect"
         geom_histogram(
           breaks = breaks,
           colour = '#000000',
           fill = '#FFFFFF'
-        ) 
+        )
       )
   }else{
     nMin = min(table(dane))
@@ -88,8 +88,24 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
     wykres = wykres + theme(axis.line.y = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
   }
   
+  # skala osi X dla danych ciągłych
   if(is.numeric(dane)){
-    wykres = wykres + scale_x_continuous(breaks = breaks, labels = round(breaks))
+    # unikanie nachodzących na siebie etykiet
+    odstepMin = (breaks[length(breaks)] - breaks[1]) * ifelse(is.null(rozmiarTekstu), 10, rozmiarTekstu) / 1000
+    etykiety = round(breaks)
+    pop = 1
+    for(i in 1 + seq_along(breaks[-1])){
+      if(breaks[i] - breaks[pop] < odstepMin){
+        etykiety[i] = ''
+      }else{
+        pop = pop + 1
+        while(etykiety[pop] == ''){
+          pop = pop + 1
+        }
+      }
+    }
+    
+    wykres = wykres + scale_x_continuous(breaks = breaks, labels = etykiety)
   }
   
   if(!is.null(opcjeWykresu)){
