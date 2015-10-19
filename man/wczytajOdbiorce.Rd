@@ -4,7 +4,8 @@
 \alias{wczytajOdbiorce}
 \title{wczytuje wskazanego odbiorcę}
 \usage{
-wczytajOdbiorce(grupy, dane = data.frame(), n = 1, dolacz = TRUE)
+wczytajOdbiorce(grupy, dane = data.frame(), n = 1, dolacz = TRUE,
+  kodowanie = "Windows-1250")
 }
 \arguments{
 \item{grupy}{ramka danych, lista lub ścieżka do pliku CSV z definicjami grup
@@ -14,7 +15,11 @@ odbiorców}
 
 \item{n}{numer odbiorcy do wczytania}
 
-\item{dolacz}{czy dołączyć (funkcją attach) wczytane dane do środowiska, w którym funkcja została uruchomiona}
+\item{dolacz}{czy dołączyć (funkcją attach) wczytane dane do środowiska, w
+którym funkcja została uruchomiona}
+
+\item{kodowanie}{kodowanie polskich znaków stosowane w plikach opisu grup i
+danych (istotne tylko w wypadku plików CSV)}
 }
 \value{
 [list] definicja odbiorcy
@@ -30,10 +35,10 @@ w kontekście danych (ich nazwa zaczyna się od kropki), dokonuje ich ewaluacji
 Do definicji odbiorcy dołączane są również przekazane dane.
 }
 \details{
-Funkcja sprawdza, czy, a jeśli tak, to gdzie, w ścieżce wywołań znajduje się
-funkcja generujRaporty(). W wypadku, gdy generujRaporty() znajduje się w
-ścieżce wywołań, ale wczytajOdbiorce() nie zostało wywołane bezpośrednio z
-niej, zwracana jest pusta lista. Służy to pominięciu wywołania
+Funkcja sprawdza, czy, a jeśli tak, to gdzie, w ścieżce wywołań
+znajduje się funkcja generujRaporty(). W wypadku, gdy generujRaporty()
+znajduje się w ścieżce wywołań, ale wczytajOdbiorce() nie zostało wywołane
+bezpośrednio z niej, zwracana jest pusta lista. Służy to pominięciu wywołania
 wczytajOdbiorce() w treści szablonu w momencie wsadowego generowania raportów
 funkcją generujRaporty().
 }

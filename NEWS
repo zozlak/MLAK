@@ -1,3 +1,9 @@
+Zmiany w MLAK 0.6.6 (2015-10-19)
+
+  * Dodanie opcjonalnego parametru "kodowanie" do funkcji wczytajOdbiorce()
+    (oraz wewnętrznej funkcji wczytajDane()), co umożliwia radzenie sobie
+    z plikami wygenerowanymi na Mac-ach
+ 
 Zmiany w MLAK 0.6.5 (2015-10-13)
 
   * Dodanie funkcji wykresRozrzutu()

@@ -8,21 +8,23 @@
 #' (i usuwa w. w. kropkę z nazw zmiennych).
 #' 
 #' Do definicji odbiorcy dołączane są również przekazane dane.
-#' @details
-#' Funkcja sprawdza, czy, a jeśli tak, to gdzie, w ścieżce wywołań znajduje się
-#' funkcja generujRaporty(). W wypadku, gdy generujRaporty() znajduje się w
-#' ścieżce wywołań, ale wczytajOdbiorce() nie zostało wywołane bezpośrednio z
-#' niej, zwracana jest pusta lista. Służy to pominięciu wywołania
+#' @details Funkcja sprawdza, czy, a jeśli tak, to gdzie, w ścieżce wywołań
+#' znajduje się funkcja generujRaporty(). W wypadku, gdy generujRaporty()
+#' znajduje się w ścieżce wywołań, ale wczytajOdbiorce() nie zostało wywołane
+#' bezpośrednio z niej, zwracana jest pusta lista. Służy to pominięciu wywołania
 #' wczytajOdbiorce() w treści szablonu w momencie wsadowego generowania raportów
 #' funkcją generujRaporty().
-#' @param grupy ramka danych, lista lub ścieżka do pliku CSV z definicjami grup
+#' @param grupy ramka danych, lista lub ścieżka do pliku CSV z definicjami grup 
 #'   odbiorców
 #' @param dane ramka danych lub ścieżka do pliku CSV z danymi
 #' @param n numer odbiorcy do wczytania
-#' @param dolacz czy dołączyć (funkcją attach) wczytane dane do środowiska, w którym funkcja została uruchomiona
+#' @param dolacz czy dołączyć (funkcją attach) wczytane dane do środowiska, w
+#'   którym funkcja została uruchomiona
+#' @param kodowanie kodowanie polskich znaków stosowane w plikach opisu grup i
+#'   danych (istotne tylko w wypadku plików CSV)
 #' @return [list] definicja odbiorcy
 #' @export
-wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE){
+wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250'){
   # aby nie było potrzebne oddzielne wywolywanie przy generowaniu raportu
   # wprost z RStudio
   konfigurujKnitr()
@@ -44,14 +46,14 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE){
       length(grupy) == 1,
       file.exists(grupy)
     )
-    grupy = wczytajDane(grupy)
+    grupy = wczytajDane(grupy, kodowanie)
   }
   if(is.character(dane)){
     stopifnot(
       length(dane) == 1,
       file.exists(dane)
     )
-    dane = wczytajDane(dane)
+    dane = wczytajDane(dane, kodowanie)
   }
   stopifnot(
     is.data.frame(dane),

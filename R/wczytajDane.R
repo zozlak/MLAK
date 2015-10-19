@@ -7,9 +7,11 @@
 #' Jeśli jest ich wiele, zwracana jest ich lista, jeśli tylko jedna, zwracana
 #' jest wprost jako ramka danych.
 #' @param plik ścieżka do pliku danych
+#' @param kodowanie kodowanie kodowanie polskich znaków stosowane w plikach opisu grup i
+#'   danych (istotne tylko w wypadku plików CSV)
 #' @return wczytane dane
 #' @export
-wczytajDane = function(plik){
+wczytajDane = function(plik, kodowanie = 'Windows-1250'){
   stopifnot(
     file.exists(plik),
     grepl('[.](csv|rdata)$', tolower(plik))
@@ -17,7 +19,7 @@ wczytajDane = function(plik){
   
   plikL = tolower(plik)
   if(grepl('csv$', plikL)){
-    dane = wczytajCSV(plik)
+    dane = wczytajCSV(plik, fileEncoding = kodowanie)
   }else if(grepl('rdata$', plikL)){
     srodowisko = new.env()
     load(plik, srodowisko, FALSE)
