@@ -10,10 +10,11 @@
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @param rownePrzedzialy czy przedziały na osi X powinny być równe (TRUE) czy wyznaczane przez kwantyle (FALSE)
 #' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
+#' @param N szerokość kartki
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE, rysuj = TRUE){
+wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE, rysuj = TRUE, N = 1000){
   stopifnot(
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)
@@ -91,7 +92,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   # skala osi X dla danych ciągłych
   if(is.numeric(dane)){
     # unikanie nachodzących na siebie etykiet
-    odstepMin = (breaks[length(breaks)] - breaks[1]) * ifelse(is.null(rozmiarTekstu), 10, rozmiarTekstu) / 1000
+    odstepMin = (breaks[length(breaks)] - breaks[1]) * ifelse(is.null(rozmiarTekstu), 10, rozmiarTekstu) / N
     etykiety = round(breaks)
     pop = 1
     for(i in 1 + seq_along(breaks[-1])){

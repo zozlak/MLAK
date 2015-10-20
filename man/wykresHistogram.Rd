@@ -6,7 +6,7 @@
 \usage{
 wykresHistogram(dane, n = 9, tytul = "", tytulX = NULL, tytulY = NULL,
   rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE,
-  rysuj = TRUE)
+  rysuj = TRUE, N = 1000)
 }
 \arguments{
 \item{dane}{wektor danych}
@@ -26,6 +26,8 @@ wykresHistogram(dane, n = 9, tytul = "", tytulX = NULL, tytulY = NULL,
 \item{rownePrzedzialy}{czy przedziały na osi X powinny być równe (TRUE) czy wyznaczane przez kwantyle (FALSE)}
 
 \item{rysuj}{czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu}
+
+\item{N}{szerokość kartki}
 }
 \value{
 [gg] obiekt wykresu pakietu ggplot2
