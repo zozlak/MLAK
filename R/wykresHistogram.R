@@ -99,7 +99,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   # skala osi X dla danych ciągłych
   if(is.numeric(dane)){
     # unikanie nachodzących na siebie etykiet
-    odstepMin = (breaks[length(breaks)] - breaks[1]) * ifelse(is.null(rozmiarTekstu), 10, rozmiarTekstu) / N
+    odstepMin = (breaks[length(breaks)] - breaks[1]) * ifelse(is.null(rozmiarTekstu), 10, rozmiarTekstu) / pomijajEtykiety
     etykiety = round(breaks)
     pop = 1
     for(i in 1 + seq_along(breaks[-1])){
