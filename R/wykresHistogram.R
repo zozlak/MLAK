@@ -7,14 +7,21 @@
 #' @param tytulX tytuł osi X wykresu
 #' @param tytulY tytuł osi Y wykresu
 #' @param rozmiarTekstu bazowy rozmiar tekstu
-#' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
-#' @param rownePrzedzialy czy przedziały na osi X powinny być równe (TRUE) czy wyznaczane przez kwantyle (FALSE)
-#' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
-#' @param N szerokość kartki
+#' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu
+#'   wykresu ggplot2)
+#' @param rownePrzedzialy czy przedziały na osi X powinny być równe (TRUE) czy
+#'   wyznaczane przez kwantyle (FALSE)
+#' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany
+#'   obiekt wykresu
+#' @param pomijajEtykiety wartość, na podstawie której funkcja decyduje, które
+#'   etykiety będą na siebie nachodzić i należy je pomijać; nie ma żadnej
+#'   intuicyjnej interpretacji, wiadomo jedynie, że im ona mniejsza, tym
+#'   szybciej etykiety będą pomijane; odpowiedią wartość należy dobrać
+#'   eksperymentalnie
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE, rysuj = TRUE, N = 1000){
+wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE, rysuj = TRUE, pomijajEtykiety = 500){
   stopifnot(
     is.vector(dane) | is.factor(dane),
     is.numeric(dane) | is.character(dane) | is.logical(dane) | is.factor(dane)

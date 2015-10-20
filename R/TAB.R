@@ -22,12 +22,14 @@ TAB = function(dane){
     dlNagl = sapply(names(dane), stringi::stri_length), 
     dlWart = sapply(dane, function(x){
       x = as.character(x)
-      return(max(stringi::stri_length(x)))
+      return(suppressWarnings(max(stringi::stri_length(x), na.rm = TRUE)))
     }),
     czyChar = sapply(dane, function(x){
       return(is.character(x) | is.factor(x))
     })
   )
+  kolumny$dlNagl[is.na(kolumny$dlNagl)] = 0
+  kolumny$dlWart[is.infinite(kolumny$dlWart)] = 0
   kolumny$dlMax = apply(kolumny[, c('dlNagl', 'dlWart')], 1, function(x){
     return(max(x['dlNagl'] + 2, x['dlWart']))
   })
@@ -57,7 +59,7 @@ TAB = function(dane){
   # Wiersze
   for(i in seq_along(dane[, 1])){
     for(j in seq_along(names(dane))){
-      w = dane[i, j]
+      w = ifelse(is.na(dane[i, j]), '', dane[i, j])
       cat(w, rep(' ', kolumny$dlMax[j] - stringi::stri_length(w)), ' ', sep = '')
     }
     cat('\n')

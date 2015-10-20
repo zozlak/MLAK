@@ -6,7 +6,7 @@
 \usage{
 wykresHistogram(dane, n = 9, tytul = "", tytulX = NULL, tytulY = NULL,
   rozmiarTekstu = NULL, opcjeWykresu = NULL, rownePrzedzialy = FALSE,
-  rysuj = TRUE, N = 1000)
+  rysuj = TRUE, pomijajEtykiety = 500)
 }
 \arguments{
 \item{dane}{wektor danych}
@@ -21,13 +21,20 @@ wykresHistogram(dane, n = 9, tytul = "", tytulX = NULL, tytulY = NULL,
 
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 
-\item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)}
+\item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu
+wykresu ggplot2)}
 
-\item{rownePrzedzialy}{czy przedziały na osi X powinny być równe (TRUE) czy wyznaczane przez kwantyle (FALSE)}
+\item{rownePrzedzialy}{czy przedziały na osi X powinny być równe (TRUE) czy
+wyznaczane przez kwantyle (FALSE)}
 
-\item{rysuj}{czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu}
+\item{rysuj}{czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany
+obiekt wykresu}
 
-\item{N}{szerokość kartki}
+\item{pomijajEtykiety}{wartość, na podstawie której funkcja decyduje, które
+etykiety będą na siebie nachodzić i należy je pomijać; nie ma żadnej
+intuicyjnej interpretacji, wiadomo jedynie, że im ona mniejsza, tym
+szybciej etykiety będą pomijane; odpowiedią wartość należy dobrać
+eksperymentalnie}
 }
 \value{
 [gg] obiekt wykresu pakietu ggplot2

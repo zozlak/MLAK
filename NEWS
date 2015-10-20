@@ -1,3 +1,9 @@
+Zmiany w MLAK 0.6.7 (2015-10-20)
+
+  * Dodanie opcjonalnego parametru "pomijajEtykiety" do funkcji 
+    wykresHistogram(), który pozwala sterować pomijaniem etykiet osi X
+  * Uodpornienie funkcji TAB() na braki danych w przekazanych wartościach
+
 Zmiany w MLAK 0.6.6 (2015-10-19)
 
   * Dodanie opcjonalnego parametru "kodowanie" do funkcji wczytajOdbiorce()
