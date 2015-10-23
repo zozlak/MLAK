@@ -13,7 +13,7 @@ bMod = function(x, wyrownaj = T, dokl = 2){
   stopifnot(
     is.vector(dokl), is.numeric(dokl), length(dokl) == 1, all(!is.na(dokl))
   )
-  
+  x[is.na(x)] = naNaWartosc(x)
   wynik = statWektor(x, table, NULL, FALSE, 0)
   wynik = round(1 - (max(wynik) / sum(wynik)), dokl)
   if(wyrownaj){

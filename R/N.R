@@ -24,13 +24,7 @@ N = function(x, w = NULL, wyrownaj = T){
   if(!is.null(w)){
     # obejście umożliwiające zliczanie NA
     if(any(is.na(w))){
-      if(all(is.na(x))){
-        tmp = 1
-      }else if(is.numeric(x)){
-        tmp = max(x, na.rm = T) + 1
-      }else{
-        tmp = paste0('_', max(x, na.rm = T))
-      }
+      tmp = naNaWartosc(x)
       x[is.na(x)] = tmp
       w[is.na(w)] = tmp
     }

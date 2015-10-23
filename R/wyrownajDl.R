@@ -1,4 +1,4 @@
-#' @title formatuje wartość do długości wywołania funkcji
+#' @title Formatuje wartość do długości wywołania funkcji
 #' @description
 #' Dopełnia wartość spacjami po lewej stronie, tak by łączna długość 
 #' utworzonego łańcucha znaków była równa liczbie znaków kodu wywołania funkcji

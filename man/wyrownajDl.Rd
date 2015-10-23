@@ -2,7 +2,7 @@
 % Please edit documentation in R/wyrownajDl.R
 \name{wyrownajDl}
 \alias{wyrownajDl}
-\title{formatuje wartość do długości wywołania funkcji}
+\title{Formatuje wartość do długości wywołania funkcji}
 \usage{
 wyrownajDl(wynik, call, dokl, delta = 4)
 }
