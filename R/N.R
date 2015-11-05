@@ -5,11 +5,11 @@
 #' Jeśli podano wektor w, zliczane są tylko wartości zawarte w wektorze w.
 #' @param x wektor wartości
 #' @param w [opcjonalny] wektor zliczanych wartości
-#' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w 
-#'   tabelach)
+#' @param wyrownaj czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+#'   dokonany automatycznie)
 #' @return NULL
 #' @export
-N = function(x, w = NULL, wyrownaj = T){
+N = function(x, w = NULL, wyrownaj = NA){
   stopifnot(
     is.vector(x),
     is.numeric(x) | is.character(x) | is.logical(x),
@@ -20,7 +20,8 @@ N = function(x, w = NULL, wyrownaj = T){
       is.numeric(w) | is.character(w) | is.logical(w)
     )
   }
-  
+  wyrownaj = ustawWyrownaj(wyrownaj)
+
   if(!is.null(w)){
     # obejście umożliwiające zliczanie NA
     if(any(is.na(w))){

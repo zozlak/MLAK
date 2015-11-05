@@ -1,9 +1,11 @@
 #' @title średnia
 #' @param x wektor wartości
-#' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)
+#' @param wyrownaj czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+#'   dokonany automatycznie)
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @return NULL
 #' @export
-E = function(x, wyrownaj = T, dokl = 2){
+E = function(x, wyrownaj = NA, dokl = 2){
+  wyrownaj = ustawWyrownaj(wyrownaj)
   return(statWektor(x, mean, sys.call(), wyrownaj, dokl))
 }

@@ -1,0 +1,23 @@
+---
+title: "test"
+author: "Mateusz Żółtak"
+date: "23 października 2015"
+output: html_document
+---
+
+```{r}
+library(MLAK)
+library(dplyr)
+```
+aaa
+```{r}
+N(1:10, 1)
+```
+bbb
+```{r}
+P(1:10, N(1:10, 1))
+```
+ccc
+```{r}
+data.frame(a = 1:10) %>% summarize(n = N(a, 1))
+```

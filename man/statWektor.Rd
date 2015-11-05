@@ -4,7 +4,7 @@
 \alias{statWektor}
 \title{oblicza wskazaną statystykę dla wskazanego wektora danych}
 \usage{
-statWektor(x, f, call, wyrownaj = T, dokl = 2)
+statWektor(x, f, call, wyrownaj, dokl = 2)
 }
 \arguments{
 \item{x}{wektor wartości lub ramka danych wartości}

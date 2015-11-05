@@ -21,16 +21,7 @@
 #' @param delta liczba znaków, która ma zostać doliczna do długości wywołania
 #' @return character
 wyrownajDl = function(wynik, call, dokl, delta = 4){
-  # obejście dla funkcji pakietu dplyr
-  stos = unlist(lapply(sys.calls(), function(x){
-    return(deparse(x)[1])
-  }))
-  if(any(grepl('^(summari[sz]e_|mutate_)', stos))){
-    dl = max(nchar(wynik))
-  }else{
-    # normalne liczenie długości
-    dl = delta + sum(nchar(deparse(call))) 
-  }
+  dl = delta + sum(nchar(deparse(call))) 
   if(max(nchar(wynik)) > dl){
     warning('Wyrównanie długości nie było możliwe')
   }

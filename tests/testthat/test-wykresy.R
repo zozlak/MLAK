@@ -56,6 +56,7 @@ test_that('wykresHistogram', {
 })
 
 test_that('opcjeWykresu', {
+  library(ggplot2)
   expect_is(wykresSlupkowy(c('a' = 1, 'b' = 2), opcjeWykresu = theme_grey()), 'gg')
 
   expect_is(wykresKolowy(c('a' = 1, 'b' = 2), opcjeWykresu = theme_grey()), 'gg')

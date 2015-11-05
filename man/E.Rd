@@ -4,12 +4,13 @@
 \alias{E}
 \title{średnia}
 \usage{
-E(x, wyrownaj = T, dokl = 2)
+E(x, wyrownaj = NA, dokl = 2)
 }
 \arguments{
 \item{x}{wektor wartości}
 
-\item{wyrownaj}{czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)}
+\item{wyrownaj}{czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+dokonany automatycznie)}
 
 \item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
 }

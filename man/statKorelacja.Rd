@@ -11,7 +11,8 @@ statKorelacja(x, y, wyrownaj, dokl, metoda, kwadrat, call)
 
 \item{y}{wektor wartości drugiej zmiennej}
 
-\item{wyrownaj}{czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)}
+\item{wyrownaj}{czy wyrównywać długość wyniku (TRUE w wypadku osadzania w
+tabelach)}
 
 \item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
 
@@ -19,7 +20,8 @@ statKorelacja(x, y, wyrownaj, dokl, metoda, kwadrat, call)
 
 \item{kwadrat}{czy podnieść wynik do kwadratu?}
 
-\item{call}{wywołanie funkcji (np. z sys.call()), do którego wyrównywany jest wynik}
+\item{call}{wywołanie funkcji (np. z sys.call()), do którego wyrównywany jest
+wynik}
 }
 \description{
 Wewnętrzna funkcja, która dba o jednakowy algorytm obliczania wszystkich

@@ -4,20 +4,40 @@
 \alias{TAB}
 \title{rysuje tablicę na podstawie ramki danych}
 \usage{
-TAB(dane)
+TAB(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10,
+  pomin = "^[lL][pP]$")
 }
 \arguments{
 \item{dane}{ramka danych do narysowania w postaci tablicy}
+
+\item{dodajLp}{czy dodać kolumnę z liczbą porządkową}
+
+\item{kolN}{nazwa kolumny z liczbą obserwacji (lub NA, jeśli dane nie mają być anonimizowane)}
+
+\item{nMin}{wartość w kolumnie liczby obserwacji, poniżej której ma nastąpić anonimizacja kolumn liczbowych}
+
+\item{pomin}{wyrażenie regularne dopasowujące nazwy kolumn, które mają nie być anonimizowane}
 }
 \value{
 character vector
 }
 \description{
-W wypadku, gdy liczba wierszy w tablicy jest nieprzewidywalna, nie da się opisać tablicy w szablonie raportu za pomocą kodu markdown.
-Funkcja \code{TAB} pozwala obejść to ograniczenie rysując tablicę na podstawie dowolnej ramki danych.
+W wypadku, gdy liczba wierszy w tablicy jest nieprzewidywalna, nie da się
+opisać tablicy w szablonie raportu za pomocą kodu markdown. Funkcja
+\code{TAB} pozwala obejść to ograniczenie rysując tablicę na podstawie
+dowolnej ramki danych.
 
-Tablica rysowana jest w składni multiline tables, a więc z zapewnieniem łamania wierszy w komórkach.
+Tablica rysowana jest w składni multiline tables, a więc z zapewnieniem
+łamania wierszy w komórkach.
 
-Kolumny zawierające wartości liczbowe są wyrównane do prawej, zaś kolumny tekstowe do lewej (być może w przyszłości pojawi się możliwość ręcznego określania wyrównania).
+Kolumny zawierające wartości liczbowe są wyrównane do prawej, zaś kolumny
+tekstowe do lewej (być może w przyszłości pojawi się możliwość ręcznego
+określania wyrównania).
+
+Jeśli w parametrze \code{kolN} wskazana zostanie nazwa kolumny przechowującej
+liczbę obserwacji, funkcja dokona anonimizacji (zamiany na '-') kolumn
+liczbowych, dla których liczba obserwacji jest mniejsza niż wartość parametru
+\code{nMin}, przy czym pominięte zostaną kolumny pasujące do wyrażenia
+regularnego przekazanego w argumencie \code{pomin}.
 }
 

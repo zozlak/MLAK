@@ -6,11 +6,12 @@
 #' @param x wektor wartości
 #' @param q numer kwantyla (może być wektorem)
 #' @param n liczba kwantyli
-#' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)
+#' @param wyrownaj czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+#'   dokonany automatycznie)
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @return NULL
 #' @export
-Q = function(x, q, n, wyrownaj = T, dokl = 2){
+Q = function(x, q, n, wyrownaj = NA, dokl = 2){
   stopifnot(
     is.numeric(x),
     is.numeric(q),
@@ -19,6 +20,7 @@ Q = function(x, q, n, wyrownaj = T, dokl = 2){
     all(n >= q),
     n >= 1
   )
+  wyrownaj = ustawWyrownaj(wyrownaj)
   
   f = function(x){
     tmp = quantile(x, seq(0, 1, length.out = n + 1))

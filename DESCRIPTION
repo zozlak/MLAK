@@ -9,11 +9,10 @@ Imports:
     knitr,
     ggplot2,
     reshape2,
-    stringi,
-    devtools
+    stringi
 Suggests: 
     testthat,
-    dplyr
+    dplyr (>= 0.4.3.9000)
 License: MIT + file LICENSE
 NeedsCompilation: no
 VignetteBuilder: knitr

@@ -4,15 +4,15 @@
 \alias{N}
 \title{liczba rekordów niebędących brakami danych}
 \usage{
-N(x, w = NULL, wyrownaj = T)
+N(x, w = NULL, wyrownaj = NA)
 }
 \arguments{
 \item{x}{wektor wartości}
 
 \item{w}{[opcjonalny] wektor zliczanych wartości}
 
-\item{wyrownaj}{czy wyrównywać długość wyniku (TRUE w wypadku osadzania w
-tabelach)}
+\item{wyrownaj}{czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+dokonany automatycznie)}
 }
 \description{
 Zlicza liczbę rekordów niebędących brakami danych.

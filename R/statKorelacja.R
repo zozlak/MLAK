@@ -14,11 +14,13 @@
 #' }
 #' @param x wektor wartości pierwszej zmiennej
 #' @param y wektor wartości drugiej zmiennej
-#' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)
+#' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w
+#'   tabelach)
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @param metoda sposób liczenia korelacji - argument method funkcji cor()
 #' @param kwadrat czy podnieść wynik do kwadratu?
-#' @param call wywołanie funkcji (np. z sys.call()), do którego wyrównywany jest wynik
+#' @param call wywołanie funkcji (np. z sys.call()), do którego wyrównywany jest
+#'   wynik
 #' @return NULL
 #' @export
 statKorelacja = function(x, y, wyrownaj, dokl, metoda, kwadrat, call){
@@ -46,15 +48,16 @@ statKorelacja = function(x, y, wyrownaj, dokl, metoda, kwadrat, call){
   }
   dane = giodo(data.frame(x = x, y = y))
   dane = dane[!is.na(dane$x) & !is.na(dane$y), ]
+  anon = ifelse(wyrownaj, '-', NA)
   if(nrow(dane) == 0){
-    wynik = '-'
+    wynik = anon
   }else{
     wynik = cor(dane$x, dane$y, method = metoda)
     if(kwadrat){
       wynik = wynik^2;
     }
     if(!is.numeric(wynik) | is.na(wynik) | is.nan(wynik)){
-      wynik = '-'
+      wynik = anon
     }
   }
   if(wyrownaj){

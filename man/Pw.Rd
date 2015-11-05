@@ -4,15 +4,15 @@
 \alias{Pw}
 \title{odsetek rekordów o zadanych wartościach z pominięciem braków danych}
 \usage{
-Pw(x, w, wyrownaj = T, dokl = 1, znakProcent = TRUE)
+Pw(x, w, wyrownaj = NA, dokl = 1, znakProcent = NA)
 }
 \arguments{
 \item{x}{wektor wartości}
 
 \item{w}{wektor zliczanych wartości}
 
-\item{wyrownaj}{czy wyrównywać długość wyniku (TRUE w wypadku osadzania w
-tabelach)}
+\item{wyrownaj}{czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+dokonany automatycznie)}
 
 \item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
 

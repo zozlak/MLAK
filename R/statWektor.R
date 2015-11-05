@@ -15,7 +15,7 @@
 #' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @return zależnie od funkcji f
-statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
+statWektor = function(x, f, call, wyrownaj, dokl = 2){
   stopifnot(
     is.vector(x),
       is.numeric(x) | is.character(x) | is.logical(x),
@@ -24,15 +24,16 @@ statWektor = function(x, f, call, wyrownaj = T, dokl = 2){
   )
   x = giodo(x)
   x = x[!is.na(x)]
+  anon = ifelse(wyrownaj, '-', NA)
   if(length(x) == 0){
-    wynik = '-'
+    wynik = anon
   }else{
     wynik = f(x)
     if(!is.numeric(wynik)){
-      wynik[] = '-'
+      wynik[] = anon
     }
     if(any(is.na(wynik)) | any(is.nan(wynik)) | any(is.infinite(wynik))){
-      wynik[is.na(wynik) | is.nan(wynik) | is.infinite(wynik)] = '-'
+      wynik[is.na(wynik) | is.nan(wynik) | is.infinite(wynik)] = anon
     }
   }
   

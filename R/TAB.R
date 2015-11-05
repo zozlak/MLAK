@@ -1,20 +1,49 @@
 #' @title rysuje tablicę na podstawie ramki danych
 #' @description
-#' W wypadku, gdy liczba wierszy w tablicy jest nieprzewidywalna, nie da się opisać tablicy w szablonie raportu za pomocą kodu markdown.
-#' Funkcja \code{TAB} pozwala obejść to ograniczenie rysując tablicę na podstawie dowolnej ramki danych.
+#' W wypadku, gdy liczba wierszy w tablicy jest nieprzewidywalna, nie da się
+#' opisać tablicy w szablonie raportu za pomocą kodu markdown. Funkcja
+#' \code{TAB} pozwala obejść to ograniczenie rysując tablicę na podstawie
+#' dowolnej ramki danych.
 #' 
-#' Tablica rysowana jest w składni multiline tables, a więc z zapewnieniem łamania wierszy w komórkach.
+#' Tablica rysowana jest w składni multiline tables, a więc z zapewnieniem
+#' łamania wierszy w komórkach.
 #' 
-#' Kolumny zawierające wartości liczbowe są wyrównane do prawej, zaś kolumny tekstowe do lewej (być może w przyszłości pojawi się możliwość ręcznego określania wyrównania).
+#' Kolumny zawierające wartości liczbowe są wyrównane do prawej, zaś kolumny
+#' tekstowe do lewej (być może w przyszłości pojawi się możliwość ręcznego
+#' określania wyrównania).
+#' 
+#' Jeśli w parametrze \code{kolN} wskazana zostanie nazwa kolumny przechowującej
+#' liczbę obserwacji, funkcja dokona anonimizacji (zamiany na '-') kolumn
+#' liczbowych, dla których liczba obserwacji jest mniejsza niż wartość parametru
+#' \code{nMin}, przy czym pominięte zostaną kolumny pasujące do wyrażenia
+#' regularnego przekazanego w argumencie \code{pomin}.
 #' @param dane ramka danych do narysowania w postaci tablicy
+#' @param dodajLp czy dodać kolumnę z liczbą porządkową
+#' @param kolN nazwa kolumny z liczbą obserwacji (lub NA, jeśli dane nie mają być anonimizowane)
+#' @param nMin wartość w kolumnie liczby obserwacji, poniżej której ma nastąpić anonimizacja kolumn liczbowych
+#' @param pomin wyrażenie regularne dopasowujące nazwy kolumn, które mają nie być anonimizowane
 #' @return character vector
 #' @export
-TAB = function(dane){
+TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][pP]$'){
   stopifnot(
-    is.data.frame(dane)
+    is.data.frame(dane),
+    is.vector(dodajLp), is.logical(dodajLp), length(dodajLp) == 1, all(!is.na(dodajLp)),
+    is.vector(kolN), is.character(kolN), length(kolN) == 1,
+    is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)),
+    is.vector(pomin), is.character(pomin), length(pomin) == 1, all(!is.na(pomin))
   )
   if(ncol(dane) == 0 | nrow(dane) == 0){
     return()
+  }
+  
+  if(!is.na(kolN)){
+    stopifnot(sum(colnames(dane) %in% kolN) == 1)
+    filtr = suppressWarnings(as.numeric(dane$kolN)) < nMin
+    #TODO wytypować kolumny liczbowe (uwaga na procenty!)
+  }
+  
+  if(dodajLp){
+    dane = cbind(data.frame('lp' = 1:nrow(dane)), dane)
   }
   
   kolumny = data.frame(stringsAsFactors = FALSE, row.names = NULL,

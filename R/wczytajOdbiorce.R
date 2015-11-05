@@ -22,9 +22,10 @@
 #'   którym funkcja została uruchomiona
 #' @param kodowanie kodowanie polskich znaków stosowane w plikach opisu grup i
 #'   danych (istotne tylko w wypadku plików CSV)
+#' @param separator separator plików CSV (istotny tylko w wypadku plików CSV)
 #' @return [list] definicja odbiorcy
 #' @export
-wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250'){
+wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250', separator = ';'){
   # aby nie było potrzebne oddzielne wywolywanie przy generowaniu raportu
   # wprost z RStudio
   konfigurujKnitr()
@@ -46,14 +47,14 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE, kod
       length(grupy) == 1,
       file.exists(grupy)
     )
-    grupy = wczytajDane(grupy, kodowanie)
+    grupy = wczytajDane(grupy, kodowanie, separator)
   }
   if(is.character(dane)){
     stopifnot(
       length(dane) == 1,
       file.exists(dane)
     )
-    dane = wczytajDane(dane, kodowanie)
+    dane = wczytajDane(dane, kodowanie, separator)
   }
   stopifnot(
     is.data.frame(dane),

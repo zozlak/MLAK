@@ -1,6 +1,17 @@
-Zmiany w MLAK 0.7.0 (2015-10-23)
+Zmiany w MLAK 0.7.0 (2015-11-05)
 
   * Dodanie funkcji bMod() zwracającej błąd modalnej
+  * Zmiany w sposobie działania parametru "wyrownaj":
+    - zmiana domyślnej wartości na NA
+    - jeśli wartością jest NA, to wartość ustawiana jest na podstawie analizy
+      stosu wywołań - na TRUE, jeśli funkcja wywoływana jest w tym samym 
+      środowisku, w którym zaimportowano pakiet MLAK lub na FALSE p.p.
+  * Zmiana sposoby działania anonimizacji - w wypadku, gdy parametr
+    "wyrownaj" ma wartość FALSE (czy to dlatego, że został podany explicite,
+    czy dlatego, że tak zadecydował automat), wtedy jako wartość zanonimizowana
+    (lub niepoprawna) zwracane jest NA.
+    Dzięki temu znacznie łatwiejsze stało się używanie funkcji pomocniczych 
+    wewnątrz normalnych funkcji R (np. w summarize()/mutate() z pakietu dplyr)
   
 Zmiany w MLAK 0.6.7 (2015-10-20)
 

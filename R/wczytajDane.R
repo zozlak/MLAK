@@ -9,9 +9,10 @@
 #' @param plik ścieżka do pliku danych
 #' @param kodowanie kodowanie kodowanie polskich znaków stosowane w plikach opisu grup i
 #'   danych (istotne tylko w wypadku plików CSV)
+#' @param separator separator plików CSV (istotny tylko w wypadku plików CSV)
 #' @return wczytane dane
 #' @export
-wczytajDane = function(plik, kodowanie = 'Windows-1250'){
+wczytajDane = function(plik, kodowanie = 'Windows-1250', separator = ';'){
   stopifnot(
     file.exists(plik),
     grepl('[.](csv|rdata)$', tolower(plik))
@@ -19,7 +20,7 @@ wczytajDane = function(plik, kodowanie = 'Windows-1250'){
   
   plikL = tolower(plik)
   if(grepl('csv$', plikL)){
-    dane = wczytajCSV(plik, fileEncoding = kodowanie)
+    dane = wczytajCSV(plik, fileEncoding = kodowanie, sep = separator)
   }else if(grepl('rdata$', plikL)){
     srodowisko = new.env()
     load(plik, srodowisko, FALSE)

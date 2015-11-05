@@ -1,10 +1,12 @@
 #' @title współczynnik korelacji rangowej Kendalla
 #' @param x wektor wartości pierwszej zmiennej
 #' @param y wektor wartości drugiej zmiennej
-#' @param wyrownaj czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)
+#' @param wyrownaj czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+#'   dokonany automatycznie)
 #' @param dokl liczba cyfr po przecinku, do których zaokrąglony zostanie wynik
 #' @return NULL
 #' @export
-Tau = function(x, y, wyrownaj = T, dokl = 2){
+Tau = function(x, y, wyrownaj = NA, dokl = 2){
+  wyrownaj = ustawWyrownaj(wyrownaj)
   return(statKorelacja(x, y, wyrownaj, dokl, 'kendall', FALSE, sys.call()))
 }

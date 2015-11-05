@@ -4,14 +4,15 @@
 \alias{R2}
 \title{kwadrat współczynnika korelacji liniowej}
 \usage{
-R2(x, y, wyrownaj = T, dokl = 2)
+R2(x, y, wyrownaj = NA, dokl = 2)
 }
 \arguments{
 \item{x}{wektor wartości pierwszej zmiennej}
 
 \item{y}{wektor wartości drugiej zmiennej}
 
-\item{wyrownaj}{czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)}
+\item{wyrownaj}{czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+dokonany automatycznie)}
 
 \item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
 }

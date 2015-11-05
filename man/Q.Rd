@@ -4,7 +4,7 @@
 \alias{Q}
 \title{wskazany kwantyl}
 \usage{
-Q(x, q, n, wyrownaj = T, dokl = 2)
+Q(x, q, n, wyrownaj = NA, dokl = 2)
 }
 \arguments{
 \item{x}{wektor wartości}
@@ -13,7 +13,8 @@ Q(x, q, n, wyrownaj = T, dokl = 2)
 
 \item{n}{liczba kwantyli}
 
-\item{wyrownaj}{czy wyrównywać długość wyniku (TRUE w wypadku osadzania w tabelach)}
+\item{wyrownaj}{czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
+dokonany automatycznie)}
 
 \item{dokl}{liczba cyfr po przecinku, do których zaokrąglony zostanie wynik}
 }

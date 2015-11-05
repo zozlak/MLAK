@@ -4,13 +4,15 @@
 \alias{wczytajDane}
 \title{wczytuje dane z pliku rozpoznając typ pliku}
 \usage{
-wczytajDane(plik, kodowanie = "Windows-1250")
+wczytajDane(plik, kodowanie = "Windows-1250", separator = ";")
 }
 \arguments{
 \item{plik}{ścieżka do pliku danych}
 
 \item{kodowanie}{kodowanie kodowanie polskich znaków stosowane w plikach opisu grup i
 danych (istotne tylko w wypadku plików CSV)}
+
+\item{separator}{separator plików CSV (istotny tylko w wypadku plików CSV)}
 }
 \value{
 wczytane dane
