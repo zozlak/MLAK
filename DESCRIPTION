@@ -12,7 +12,7 @@ Imports:
     stringi
 Suggests: 
     testthat,
-    dplyr (>= 0.4.3.9000)
+    dplyr (>= 0.4.3)
 License: MIT + file LICENSE
 NeedsCompilation: no
 VignetteBuilder: knitr
