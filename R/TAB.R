@@ -15,8 +15,8 @@
 #' Jeśli w parametrze \code{kolN} wskazana zostanie nazwa kolumny przechowującej
 #' liczbę obserwacji, funkcja dokona anonimizacji (zamiany na '-') kolumn
 #' liczbowych, dla których liczba obserwacji jest mniejsza niż wartość parametru
-#' \code{nMin}, przy czym pominięte zostaną kolumny pasujące do wyrażenia
-#' regularnego przekazanego w argumencie \code{pomin}.
+#' \code{nMin}, przy czym przy anonimizacji pominięte zostaną kolumny pasujące
+#' do wyrażenia regularnego przekazanego w argumencie \code{pomin}.
 #' @param dane ramka danych do narysowania w postaci tablicy
 #' @param dodajLp czy dodać kolumnę z liczbą porządkową
 #' @param kolN nazwa kolumny z liczbą obserwacji (lub NA, jeśli dane nie mają być anonimizowane)
@@ -24,7 +24,7 @@
 #' @param pomin wyrażenie regularne dopasowujące nazwy kolumn, które mają nie być anonimizowane
 #' @return character vector
 #' @export
-TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][pP]$'){
+TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][.]?[pP][.]?$'){
   stopifnot(
     is.data.frame(dane),
     is.vector(dodajLp), is.logical(dodajLp), length(dodajLp) == 1, all(!is.na(dodajLp)),
@@ -35,17 +35,37 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
   if(ncol(dane) == 0 | nrow(dane) == 0){
     return()
   }
-  
-  if(!is.na(kolN)){
-    stopifnot(sum(colnames(dane) %in% kolN) == 1)
-    filtr = suppressWarnings(as.numeric(dane$kolN)) < nMin
-    #TODO wytypować kolumny liczbowe (uwaga na procenty!)
+
+  # Pozbycie się ew. data_frame i factorów, zaradzenie NA w nazwach kolumn
+  dane = as.data.frame(dane, stringsAsFactors = FALSE)
+  colnames(dane) = paste0(colnames(dane))
+  for(k in colnames(dane)){
+    if(is.factor(dane[, k])){
+      dane[, k] = levels(dane[, k])[dane[, k]]
+    }
   }
   
+  # Anonimizacja
+  if(!is.na(kolN)){
+    stopifnot(sum(colnames(dane) %in% kolN) == 1)
+    filtr = suppressWarnings(as.numeric(dane[, kolN])) < nMin | is.na(dane[, kolN])
+    for(kol in setdiff(colnames(dane)[!grepl(pomin, colnames(dane))], kolN)){
+      tmp = dane[, kol]
+      # czy kolumna liczbowa
+      tmp2 = suppressWarnings(as.numeric(sub('%$', '', tmp)))
+      if(sum(is.na(tmp)) == sum(is.na(tmp2))
+      ){
+        dane[filtr, kol] = '-'
+      }
+    }
+  }
+  
+  # Kolumna LP
   if(dodajLp){
     dane = cbind(data.frame('lp' = 1:nrow(dane)), dane)
   }
   
+  # Właściwa funkcja
   kolumny = data.frame(stringsAsFactors = FALSE, row.names = NULL,
     naglowek = names(dane), 
     dlNagl = sapply(names(dane), stringi::stri_length), 
@@ -54,7 +74,8 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
       return(suppressWarnings(max(stringi::stri_length(x), na.rm = TRUE)))
     }),
     czyChar = sapply(dane, function(x){
-      return(is.character(x) | is.factor(x))
+      xx = suppressWarnings(as.numeric(sub('-$', 0, sub('%$', '', x))))
+      return(sum(is.na(x)) != sum(is.na(xx)))
     })
   )
   kolumny$dlNagl[is.na(kolumny$dlNagl)] = 0

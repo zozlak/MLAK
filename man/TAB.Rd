@@ -5,7 +5,7 @@
 \title{rysuje tablicę na podstawie ramki danych}
 \usage{
 TAB(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10,
-  pomin = "^[lL][pP]$")
+  pomin = "^[lL][.]?[pP][.]?$")
 }
 \arguments{
 \item{dane}{ramka danych do narysowania w postaci tablicy}
@@ -37,7 +37,7 @@ określania wyrównania).
 Jeśli w parametrze \code{kolN} wskazana zostanie nazwa kolumny przechowującej
 liczbę obserwacji, funkcja dokona anonimizacji (zamiany na '-') kolumn
 liczbowych, dla których liczba obserwacji jest mniejsza niż wartość parametru
-\code{nMin}, przy czym pominięte zostaną kolumny pasujące do wyrażenia
-regularnego przekazanego w argumencie \code{pomin}.
+\code{nMin}, przy czym przy anonimizacji pominięte zostaną kolumny pasujące
+do wyrażenia regularnego przekazanego w argumencie \code{pomin}.
 }
 

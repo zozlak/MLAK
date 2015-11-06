@@ -62,8 +62,6 @@ statKorelacja = function(x, y, wyrownaj, dokl, metoda, kwadrat, call){
   }
   if(wyrownaj){
     return(wyrownajDl(wynik, call, dokl))
-  }else if(is.character(wynik)){
-    return(wynik)
   }
   return(round(wynik, dokl))
 }

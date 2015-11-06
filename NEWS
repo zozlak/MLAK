@@ -1,6 +1,15 @@
-Zmiany w MLAK 0.7.0 (2015-11-05)
+Zmiany w MLAK 0.7.0 (2015-11-06)
 
   * Dodanie funkcji bMod() zwracającej błąd modalnej
+  * Zmiany w funkcji TAB():
+    - Znaczne usprawnienie rozpoznawania kolumn liczbowych (które są 
+      wyrównywane do prawej)
+    - Dodanie możliwości automatycznego dołączania jako pierwszej kolumny
+      kolumny z liczbą porządkową
+    - Dodanie możliwości anonimizacji danych poprzez wskazanie nazwy kolumny
+      z liczbą obserwacji (parametr "kolN"), minimalnej liczby obserwacji
+      (parametr "nMin", domyślnie 10) oraz wyrażenia regularnego opisującego
+      nazwy kolumn, których nie należy anonimizować (parametr "pomin")
   * Dodanie do funkcji wczytajOdbiorce() opcjonalnego parametru "sep"
     umożliwiającego ustawienie separatora plików CSV
   * Zmiany w sposobie działania parametru "wyrownaj":

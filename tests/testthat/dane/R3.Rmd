@@ -221,8 +221,13 @@ byli samozatrudnieni                                            | `r E(100*SAMOR
 
 Test dynamicznej tablicy
 ```{r echo = FALSE}
-dane = data.frame('kol1' = c('aaa bbb ccc', 'xxx yy zzz'), 'kol 2' = c(1, 1234567))
+dane = data.frame(n = 7:12, x = 7:12, y = paste0(7:12, '%'), z = letters[7:12])
+
 TAB(dane)
+TAB(dane, dodajLp = FALSE)
+TAB(dane, dodajLp = FALSE, kolN = 'n')
+TAB(dane, dodajLp = FALSE, kolN = 'n', nMin = 8)
+TAB(dane, dodajLp = FALSE, kolN = 'n', pomin = 'x')
 
 TAB(as.data.frame(matrix(numeric())))
 ```
