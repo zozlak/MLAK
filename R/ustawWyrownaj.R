@@ -10,19 +10,19 @@
 #' przetwarzana przez inne funkcje R, wtedy prawie na pewno nie powinna być
 #' wyrównywana.
 #' @param wyrownaj obecna wartość wyrownaj
-#' @param offset o ile środowisk wyżej w hierarchii środowisk dokonać porównania
 #' @return logical
-ustawWyrownaj = function(wyrownaj, offset = 2){
+ustawWyrownaj = function(wyrownaj){
   stopifnot(
-    is.vector(wyrownaj), is.logical(wyrownaj), length(wyrownaj) == 1,
-    is.vector(offset), is.numeric(offset), length(offset) == 1, all(!is.na(offset))
+    is.vector(wyrownaj), is.logical(wyrownaj), length(wyrownaj) == 1
   )
   if(is.na(wyrownaj)){
     wyrownaj = FALSE
-    try({
-      get('.MLAK', envir = sys.frame(sys.nframe() - offset), inherits = FALSE)
+    stos = paste0(sys.calls())
+    pozInline = length(stos) - suppressWarnings(max(which(grepl('^process_group.inline[(]', stos))))
+    pozBlock  = length(stos) - suppressWarnings(max(which(grepl('^process_group.block[(]', stos))))
+    if(pozInline == 8 | pozBlock == 12){
       wyrownaj = TRUE
-    }, silent = TRUE)
+    }
   }
   return(wyrownaj)
 }

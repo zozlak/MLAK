@@ -5,7 +5,7 @@ Zmiany w MLAK 0.7.0 (2015-11-06)
     - Znaczne usprawnienie rozpoznawania kolumn liczbowych (które są 
       wyrównywane do prawej)
     - Dodanie możliwości automatycznego dołączania jako pierwszej kolumny
-      kolumny z liczbą porządkową
+      kolumny z liczbą porządkową (parametr "dodajLp")
     - Dodanie możliwości anonimizacji danych poprzez wskazanie nazwy kolumny
       z liczbą obserwacji (parametr "kolN"), minimalnej liczby obserwacji
       (parametr "nMin", domyślnie 10) oraz wyrażenia regularnego opisującego
@@ -15,8 +15,9 @@ Zmiany w MLAK 0.7.0 (2015-11-06)
   * Zmiany w sposobie działania parametru "wyrownaj":
     - zmiana domyślnej wartości na NA
     - jeśli wartością jest NA, to wartość ustawiana jest na podstawie analizy
-      stosu wywołań - na TRUE, jeśli funkcja wywoływana jest w tym samym 
-      środowisku, w którym zaimportowano pakiet MLAK lub na FALSE p.p.
+      stosu wywołań - na TRUE, jeśli process_group.inline() lub
+      process_group.block() są oddalone w stosie wywołań o, odpowiednio 8 lub 
+      12 wywołań od funkcji ustawWyrownaj()
   * Zmiana sposoby działania anonimizacji - w wypadku, gdy parametr
     "wyrownaj" ma wartość FALSE (czy to dlatego, że został podany explicite,
     czy dlatego, że tak zadecydował automat), wtedy jako wartość zanonimizowana

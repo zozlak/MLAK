@@ -58,6 +58,7 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
         dane[filtr, kol] = '-'
       }
     }
+    dane[is.na(dane[, kolN]), kolN] = '-'
   }
   
   # Kolumna LP

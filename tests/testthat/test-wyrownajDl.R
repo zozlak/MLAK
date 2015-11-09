@@ -1,7 +1,6 @@
 context('wyrownajDl')
 
 test_that('wyrownajDl dziala', {
-  MLAK:::.onLoad()
   call = as.call(list('f'))
   
   expect_equal(wyrownajDl(5, call, 2), '     5.00')
@@ -21,19 +20,5 @@ test_that('wyrownajDl dziala', {
 })
 
 test_that('zgadywanie parametru wyrownaj dziala', {
-  MLAK:::.onLoad()
-  
-  w = N(1:5)
-  expect_equal(w, '         5')
-  
-  w = na.omit(N(1:5))
-  expect_equal(w, 5)
-  
-  library(dplyr)
-  wynik = data.frame(x = c(1, rep(2, 49)), y = rep(1, 50)) %>%
-    group_by(x) %>%
-    summarize(n = N(y))
-  expect_is(wynik$n, 'numeric')
-  expect_equal(wynik$n[1], NA_integer_)
-  expect_equal(wynik$n[2], 49)
+  #TODO dopisać testy używające knitr-a
 })

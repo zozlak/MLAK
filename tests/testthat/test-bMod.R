@@ -1,19 +1,11 @@
 context('bMod')
 
 test_that('bMod', {
-  MLAK:::.onLoad()
+  expect_equal(bMod(1:10, FALSE), 0.9)
+  expect_equal(bMod(1:10, FALSE, dokl = 0), 1)
+  expect_equal(bMod(1:2, FALSE), NA_integer_)
   
-  w = bMod(1:10, FALSE)
-  expect_equal(w, 0.9)
-  w = bMod(1:10, FALSE, dokl = 0)
-  expect_equal(w, 1)
-  w = bMod(1:2, FALSE)
-  expect_equal(w, NA_integer_)
-  
-  w = bMod(1:10)
-  expect_equal(w, '         0.90')
-  w = bMod(1:10, dokl = 0)
-  expect_equal(w, '                      1')
-  w = bMod(1:2)
-  expect_equal(w, '          NA')
+  expect_equal(bMod(1:10, TRUE), '               0.90')
+  expect_equal(bMod(1:10, TRUE, dokl = 0), '                            1')
+  expect_equal(bMod(1:2, TRUE), '                NA')
 })

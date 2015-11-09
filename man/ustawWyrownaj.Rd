@@ -4,12 +4,10 @@
 \alias{ustawWyrownaj}
 \title{zgaduje, czy należy dokonać wyrównania długości zwracanej wartości}
 \usage{
-ustawWyrownaj(wyrownaj, offset = 2)
+ustawWyrownaj(wyrownaj)
 }
 \arguments{
 \item{wyrownaj}{obecna wartość wyrownaj}
-
-\item{offset}{o ile środowisk wyżej w hierarchii środowisk dokonać porównania}
 }
 \value{
 logical
