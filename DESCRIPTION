@@ -5,7 +5,7 @@ Version: 0.7.0
 Author: Mateusz Zoltak
 Maintainer: Mateusz Zoltak <zozlak@zozlak.org>
 Imports:
-    rmarkdown (>= 0.8.1),
+    rmarkdown (>= 0.7),
     knitr (>= 1.10),
     ggplot2,
     reshape2,
