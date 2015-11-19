@@ -65,7 +65,7 @@ wykresRozrzutu = function(x, y, rozmiar = NULL, etykiety = NULL, tytul = '', tyt
       axis.title.y = element_text(size = rozmiarTekstu, vjust = 1)
     ) 
   if(max(dane$x) <= 1 & min(dane$x) >= 0 & max(dane$y) <= 1 & min(dane$y) >= 0){
-    wykres = wykres + ggplot2::coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) + xlim(0, 1) + ylim(0, 1)
+    wykres = wykres + ggplot2::coord_cartesian(xlim = c(-0.1, 1.1), ylim = c(-0.1, 1.1)) + xlim(0, 1) + ylim(0, 1)
   }
   
   if(!is.null(opcjeWykresu)){
