@@ -18,8 +18,11 @@ wykresRozrzutu = function(x, y, rozmiar = NULL, etykiety = NULL, tytul = '', tyt
   stopifnot(
     is.vector(x), is.vector(y), length(x) == length(y),
     (is.vector(rozmiar) & length(rozmiar) == length(x)) | is.null(rozmiar),
-    (is.vector(etykiety) & length(etykiety) == length(x)) | is.null(etykiety)
+    ((is.vector(etykiety) | is.factor(etykiety)) & length(etykiety) == length(x)) | is.null(etykiety)
   )
+  if(is.factor(etykiety)){
+    etykiety = levels(etykiety)[etykiety]
+  }
   x = naLiczbe(x)
   y = naLiczbe(y)
   if(is.null(etykiety)){
@@ -48,12 +51,23 @@ wykresRozrzutu = function(x, y, rozmiar = NULL, etykiety = NULL, tytul = '', tyt
     return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
   }
   
+  rozmiarTekstu = ifelse(is.null(rozmiarTekstu), 10, 0)
+  
   wykres = ggplot(data = dane) +
-    aes(x = get('x'), y = get('y'), label = get('etykiety')) +
-    geom_point(aes(size = get('rozmiar'))) +
-    geom_text(vjust = -0.5)
-  wykres = wykresDefaultTheme(wykres,  tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu)
-
+    aes(x = get('x'), y = get('y'), label = get('etykiety'), size = get('rozmiar')) +
+    geom_point() +
+    geom_text(vjust = -0.5, size = 3) +
+    scale_size_continuous(name = 'Liczebność grup\na wielkość punktów')
+  wykres = wykresDefaultTheme(wykres,  tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
+    theme(
+      title = element_text(vjust = 2),
+      axis.title.x = element_text(size = rozmiarTekstu, vjust = 0),
+      axis.title.y = element_text(size = rozmiarTekstu, vjust = 1)
+    ) 
+  if(max(dane$x) <= 1 & min(dane$x) >= 0 & max(dane$y) <= 1 & min(dane$y) >= 0){
+    wykres = wykres + ggplot2::coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) + xlim(0, 1) + ylim(0, 1)
+  }
+  
   if(!is.null(opcjeWykresu)){
     wykres = wykres + opcjeWykresu
   }

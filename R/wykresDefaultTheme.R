@@ -13,12 +13,12 @@ wykresDefaultTheme = function(wykres, tytul = NULL, tytulX = NULL, tytulY = NULL
   }
   
   wykres = wykres +
-    ylab('') +
-    xlab('') +
-    scale_fill_grey() +
-    labs(fill = '') +
-    theme_bw(base_size = rozmiarTekstu) + 
-    theme(
+    ggplot2::ylab('') +
+    ggplot2::xlab('') +
+    ggplot2::scale_fill_grey() +
+    ggplot2::labs(fill = '') +
+    ggplot2::theme_bw(base_size = rozmiarTekstu) + 
+    ggplot2::theme(
       panel.border      = element_rect(fill = NA, colour=NA),
       legend.position   = 'right',
       legend.text       = element_text(size = rozmiarTekstu),
