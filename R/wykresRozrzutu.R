@@ -8,17 +8,19 @@
 #' @param tytul tytuł wykresu
 #' @param tytulX tytuł osi X wykresu
 #' @param tytulY tytuł osi Y wykresu
-#' @param rozmiarTekstu bazowy rozmiar tekstu
+#' @param maxRozmPkt rozmiar punktu na wykresie odpowiadający największej
+#'   wartości parametru \code{rozmiar}#' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresRozrzutu = function(x, y, rozmiar = NULL, etykiety = NULL, tytul = '', tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
+wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tytulX = NULL, tytulY = NULL, maxRozmPkt = 5, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.vector(x), is.vector(y), length(x) == length(y),
     (is.vector(rozmiar) & length(rozmiar) == length(x)) | is.null(rozmiar),
-    ((is.vector(etykiety) | is.factor(etykiety)) & length(etykiety) == length(x)) | is.null(etykiety)
+    ((is.vector(etykiety) | is.factor(etykiety)) & length(etykiety) == length(x)) | is.null(etykiety),
+    is.vector(maxRozmPkt), is.numeric(maxRozmPkt), length(maxRozmPkt) == 1, all(!is.na(maxRozmPkt))
   )
   if(is.factor(etykiety)){
     etykiety = levels(etykiety)[etykiety]
@@ -43,7 +45,8 @@ wykresRozrzutu = function(x, y, rozmiar = NULL, etykiety = NULL, tytul = '', tyt
     x = x,
     y = y,
     rozmiar = rozmiar,
-    etykiety = etykiety
+    etykiety = etykiety,
+    offset = maxRozmPkt * 0.004 * rozmiar / max(rozmiar, na.rm = TRUE)
   )
   dane = dane[filtr, ]
   
@@ -52,22 +55,27 @@ wykresRozrzutu = function(x, y, rozmiar = NULL, etykiety = NULL, tytul = '', tyt
   }
   
   rozmiarTekstu = ifelse(is.null(rozmiarTekstu), 10, 0)
-  
+
   wykres = ggplot(data = dane) +
-    aes(x = get('x'), y = get('y'), label = get('etykiety'), size = get('rozmiar')) +
-    geom_point() +
-    geom_text(vjust = -0.5, size = 3) +
-    scale_size_continuous(name = 'Liczebność grup\na wielkość punktów')
+    aes(x = get('x'), y = get('y'), label = get('etykiety')) +
+    geom_point()
+  if(min(dane$rozmiar, na.rm = TRUE) != max(dane$rozmiar, na.rm = TRUE)){
+    wykres = wykres +
+      geom_point(aes(size = get('rozmiar'))) +
+      scale_size_continuous(name = 'Liczebność grup\na wielkość punktów', range = c(0, maxRozmPkt)) +
+      geom_text(aes(y = get('y') + get('offset')), vjust = -0.5, size = 3)
+  }else{
+    wykres = wykres +
+      geom_point() +
+      geom_text(vjust = -0.5, size = 3)
+  }
   wykres = wykresDefaultTheme(wykres,  tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
     theme(
       title = element_text(vjust = 2),
       axis.title.x = element_text(size = rozmiarTekstu, vjust = 0),
       axis.title.y = element_text(size = rozmiarTekstu, vjust = 1)
-    ) 
-  if(max(dane$x) <= 1 & min(dane$x) >= 0 & max(dane$y) <= 1 & min(dane$y) >= 0){
-    wykres = wykres + ggplot2::coord_cartesian(xlim = c(-0.1, 1.1), ylim = c(-0.1, 1.1)) + xlim(0, 1) + ylim(0, 1)
-  }
-  
+    )
+
   if(!is.null(opcjeWykresu)){
     wykres = wykres + opcjeWykresu
   }

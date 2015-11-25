@@ -4,8 +4,8 @@
 \alias{wykresRozrzutu}
 \title{Wykres rozrzutu}
 \usage{
-wykresRozrzutu(x, y, rozmiar = NULL, etykiety = NULL, tytul = "",
-  tytulX = NULL, tytulY = NULL, rozmiarTekstu = NULL,
+wykresRozrzutu(x, y, etykiety = NULL, rozmiar = NULL, tytul = "",
+  tytulX = NULL, tytulY = NULL, maxRozmPkt = 5, rozmiarTekstu = NULL,
   opcjeWykresu = NULL, rysuj = TRUE)
 }
 \arguments{
@@ -13,15 +13,18 @@ wykresRozrzutu(x, y, rozmiar = NULL, etykiety = NULL, tytul = "",
 
 \item{y}{wektor pozycji na osi Y}
 
-\item{rozmiar}{rozmiar poszczególnych punktów}
-
 \item{etykiety}{etykiety punktów na wykresie}
+
+\item{rozmiar}{rozmiar poszczególnych punktów}
 
 \item{tytul}{tytuł wykresu}
 
 \item{tytulX}{tytuł osi X wykresu}
 
 \item{tytulY}{tytuł osi Y wykresu}
+
+\item{maxRozmPkt}{rozmiar punktu na wykresie odpowiadający największej
+wartości parametru \code{rozmiar}#'}
 
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 
