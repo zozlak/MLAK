@@ -1,3 +1,15 @@
+Zmiany w MLAK 0.7.1 (2015-11-25)
+
+  * Zamiana kolejności argumentów "rozmiar" i "etykiety" funkcji
+    wykresRozrzutuIloraz()
+  * wykresRozrzutuIloraz() rysuje legendę rozmiaru punktu tylko jeśli rozmiar
+    punktu nie jest jednakowy dla wszystkich obserwacji
+  * wykresRozrzutuIloraz() rysuje etykiety punktów przesunięte stosownie do
+    rozmiaru punktu (tak by nie zachodziły na punkt)
+  * Dodanie funkcji wykresRozrzutuIloraz(), która obudowuje funkcję 
+    wykresRozrzutu() wartościami domyślnymi dla skali właściwymi dla
+    pokazywania zmiennych o charakterze ilorazowym
+
 Zmiany w MLAK 0.7.0 (2015-11-19)
 
   * Dostrajanie funkcji wykresRozrzutu()
