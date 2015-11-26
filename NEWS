@@ -9,6 +9,9 @@ Zmiany w MLAK 0.7.1 (2015-11-25)
   * Dodanie funkcji wykresRozrzutuIloraz(), która obudowuje funkcję 
     wykresRozrzutu() wartościami domyślnymi dla skali właściwymi dla
     pokazywania zmiennych o charakterze ilorazowym
+  * Dodanie parametru szMin funkcji TAB() zapewniajacego możliwość uzyskania
+    poprawnego podzialu na kolumny nawet w wypadku tabel o bardzo 
+    niezrównoważonym rozkładzie szerokości treści w kolumnach.
 
 Zmiany w MLAK 0.7.0 (2015-11-19)
 

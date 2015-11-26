@@ -22,20 +22,26 @@
 #' @param kolN nazwa kolumny z liczbą obserwacji (lub NA, jeśli dane nie mają być anonimizowane)
 #' @param nMin wartość w kolumnie liczby obserwacji, poniżej której ma nastąpić anonimizacja kolumn liczbowych
 #' @param pomin wyrażenie regularne dopasowujące nazwy kolumn, które mają nie być anonimizowane
+#' @param szMin minimalna szerokość pojedynczej kolumny (gdy NA, ustawiana na \code{0.75 / liczba kolumn})
 #' @return character vector
 #' @export
-TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][.]?[pP][.]?$'){
+TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][.]?[pP][.]?$', szMin = NA_real_){
   stopifnot(
     is.data.frame(dane),
     is.vector(dodajLp), is.logical(dodajLp), length(dodajLp) == 1, all(!is.na(dodajLp)),
     is.vector(kolN), is.character(kolN), length(kolN) == 1,
     is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)),
-    is.vector(pomin), is.character(pomin), length(pomin) == 1, all(!is.na(pomin))
+    is.vector(pomin), is.character(pomin), length(pomin) == 1, all(!is.na(pomin)),
+    is.vector(szMin), is.numeric(szMin), length(szMin) == 1
   )
   if(ncol(dane) == 0 | nrow(dane) == 0){
     return()
   }
 
+  if(is.na(szMin)){
+    szMin = 0.75 / ncol(dane)
+  }
+  
   # Pozbycie się ew. data_frame i factorów, zaradzenie NA w nazwach kolumn
   dane = as.data.frame(dane, stringsAsFactors = FALSE)
   colnames(dane) = paste0(colnames(dane))
@@ -83,6 +89,10 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
   kolumny$dlWart[is.infinite(kolumny$dlWart)] = 0
   kolumny$dlMax = apply(kolumny[, c('dlNagl', 'dlWart')], 1, function(x){
     return(max(x['dlNagl'] + 2, x['dlWart']))
+  })
+  # ograniczenie
+  kolumny$dlMax = sapply(kolumny$dlMax, function(x){
+    return(round(max(c(x, sum(kolumny$dlMax) * szMin))))
   })
 
   for(i in seq_along(names(dane))){

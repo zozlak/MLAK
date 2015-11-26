@@ -5,7 +5,7 @@
 \title{rysuje tablicę na podstawie ramki danych}
 \usage{
 TAB(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10,
-  pomin = "^[lL][.]?[pP][.]?$")
+  pomin = "^[lL][.]?[pP][.]?$", szMin = NA_real_)
 }
 \arguments{
 \item{dane}{ramka danych do narysowania w postaci tablicy}
@@ -17,6 +17,8 @@ TAB(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10,
 \item{nMin}{wartość w kolumnie liczby obserwacji, poniżej której ma nastąpić anonimizacja kolumn liczbowych}
 
 \item{pomin}{wyrażenie regularne dopasowujące nazwy kolumn, które mają nie być anonimizowane}
+
+\item{szMin}{minimalna szerokość pojedynczej kolumny (gdy NA, ustawiana na \code{0.75 / liczba kolumn})}
 }
 \value{
 character vector
