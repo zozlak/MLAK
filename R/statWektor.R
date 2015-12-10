@@ -22,6 +22,7 @@ statWektor = function(x, f, call, wyrownaj, dokl = 2){
     is.vector(wyrownaj), is.logical(wyrownaj), length(wyrownaj) == 1, all(!is.na(wyrownaj)),
     is.vector(dokl), is.numeric(dokl), length(dokl) == 1, all(!is.na(dokl))
   )
+  x = x[!is.na(x)]
   x = giodo(x)
   x = x[!is.na(x)]
   anon = ifelse(wyrownaj, '-', NA)
