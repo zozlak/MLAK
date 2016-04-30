@@ -1,4 +1,10 @@
-Zmiany w MLAK 0.7.1 (2015-12-10)
+Zmiany w MLAK 0.7.3 (2016-04-30)
+
+  * Funkcja wczytajDane() obsluguje teraz rowniez format XLSX (wczytywany jest
+    zawsze pierwszy arkusz zakladajac, ze w pierwszym wierszu znajduja sie nazwy
+    kolumn)
+
+Zmiany w MLAK 0.7.2 (2015-12-10)
 
   * Funkcja statWektor(), stanowiąca podstawę większości funkcji wyliczających
     statystyki, przed przekazaniem danych do anonimizacji funkcją giodo() usuwa

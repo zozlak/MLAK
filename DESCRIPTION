@@ -1,7 +1,7 @@
 Package: MLAK
 Title: Generator raportow MLAK
 Description: Generator raportow dla badan losow absolwentow uczelni.
-Version: 0.7.2
+Version: 0.7.3
 Author: Mateusz Zoltak
 Maintainer: Mateusz Zoltak <zozlak@zozlak.org>
 Imports:
@@ -9,7 +9,8 @@ Imports:
     knitr (>= 1.10),
     ggplot2,
     reshape2,
-    stringi
+    stringi,
+    openxlsx
 Suggests: 
     testthat,
     dplyr (>= 0.4.3)

@@ -27,7 +27,8 @@ danych (istotne tylko w wypadku plików CSV)}
 [list] definicja odbiorcy
 }
 \description{
-Wczytuje z ramki danych, listy lub pliku CSV z definicjami odbiorców definicję
+Wczytuje z ramki danych, listy lub pliku CSV/XLSX z definicjami odbiorców
+definicję
 wskazanego odbiorcy (domyślnie pierwszego).
 
 Jeśli definicja odbiorcy zawiera zmienne, które powinny zostać zewaluowane

@@ -1,7 +1,7 @@
 #' @title wczytuje dane z pliku rozpoznając typ pliku
 #' @description
 #' Wczytuje dane ze wskazanego pliku automatycznie dostosowując sposób ich 
-#' wczytania do typu pliku (obecnie obsługiwane CSV i RData).
+#' wczytania do typu pliku (obecnie obsługiwane CSV, XLSX i RData).
 #' 
 #' W wypadku plików RData zwracane są wszystkie ramki danych zawarte w pliku.
 #' Jeśli jest ich wiele, zwracana jest ich lista, jeśli tylko jedna, zwracana
@@ -15,12 +15,14 @@
 wczytajDane = function(plik, kodowanie = 'Windows-1250', separator = ';'){
   stopifnot(
     file.exists(plik),
-    grepl('[.](csv|rdata)$', tolower(plik))
+    grepl('[.](csv|xlsx|rdata)$', tolower(plik))
   )
   
   plikL = tolower(plik)
   if(grepl('csv$', plikL)){
     dane = wczytajCSV(plik, fileEncoding = kodowanie, sep = separator)
+  }else if(grepl('xlsx$', plikL)){
+    dane = openxlsx::readWorkbook(plik)
   }else if(grepl('rdata$', plikL)){
     srodowisko = new.env()
     load(plik, srodowisko, FALSE)

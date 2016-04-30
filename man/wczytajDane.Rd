@@ -19,7 +19,7 @@ wczytane dane
 }
 \description{
 Wczytuje dane ze wskazanego pliku automatycznie dostosowując sposób ich
-wczytania do typu pliku (obecnie obsługiwane CSV i RData).
+wczytania do typu pliku (obecnie obsługiwane CSV, XLSX i RData).
 
 W wypadku plików RData zwracane są wszystkie ramki danych zawarte w pliku.
 Jeśli jest ich wiele, zwracana jest ich lista, jeśli tylko jedna, zwracana
