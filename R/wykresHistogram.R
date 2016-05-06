@@ -79,9 +79,10 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
     }
     wykres = ggplot(data = data.frame(d = dane)) + aes(x = get('d')) +
-      geom_histogram(
+      geom_bar(
         colour = '#000000',
-        fill = '#FFFFFF'
+        fill = '#FFFFFF',
+        stat = 'count'
       )
   }
   

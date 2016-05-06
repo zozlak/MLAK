@@ -46,7 +46,7 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
     y = y,
     rozmiar = rozmiar,
     etykiety = etykiety,
-    offset = maxRozmPkt * 0.004 * rozmiar / max(rozmiar, na.rm = TRUE)
+    offset = suppressWarnings(maxRozmPkt * 0.004 * rozmiar / max(rozmiar, na.rm = TRUE))
   )
   dane = dane[filtr, ]
   

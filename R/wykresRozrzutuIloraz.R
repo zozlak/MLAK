@@ -27,13 +27,15 @@ wykresRozrzutuIloraz = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '
   wykres = wykresRozrzutu(x = x, y = y, etykiety = etykiety, rozmiar = rozmiar, tytul = tytul, tytulX = tytulX, tytulY = tytulY, maxRozmPkt = maxRozmPkt, rozmiarTekstu = rozmiarTekstu, rysuj = FALSE)
   dane = wykres$data
   
-  wykres = wykres +
+  wykres = suppressWarnings(
+    wykres +
     coord_cartesian(
       xlim = c(-margX, max(max(dane$x) + margX, minX)), 
       ylim = c(-margY, max(max(dane$y) + margY, minY))
     ) + 
     xlim(0, max(c(dane$x, minX))) + 
     ylim(0, max(c(dane$y, minY)))
+  )
   
   
   if(rysuj){

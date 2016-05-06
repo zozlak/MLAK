@@ -1,3 +1,13 @@
+Zmiany w MLAK 0.7.4 (2016-05-06)
+
+  * funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() nie generują już
+    ostrzeżeń w wypadku przekazania im pustych danych
+  * dodanie parametru kontynuujPoBledzie do funkcji generujRaporty()
+    umożliwia on kontynuowanie generowania raportów w wypadku, gdy przy 
+    generowaniu niektórych z nich wystąpiły błędy
+  * korekta w funkcji generujHistogram() - w wypadku przekazania danych 
+    będących tekstem lub factorem stosowana jest teraz geom_bar()
+
 Zmiany w MLAK 0.7.3 (2016-04-30)
 
   * Funkcja wczytajDane() obsluguje teraz rowniez format XLSX (wczytywany jest
