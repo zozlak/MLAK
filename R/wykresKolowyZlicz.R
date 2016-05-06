@@ -48,7 +48,7 @@ wykresKolowyZlicz = function(dane, etykiety = NULL, tytul = '', rozmiarTekstu = 
   
   dane = table(dane)
   tmp = names(dane)
-  dane = setNames(as.vector(dane), tmp)
+  dane = stats::setNames(as.vector(dane), tmp)
 
   wykres = wykresKolowyNorm(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu, rysuj = FALSE)
   if(rysuj){

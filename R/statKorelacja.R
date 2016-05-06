@@ -52,7 +52,7 @@ statKorelacja = function(x, y, wyrownaj, dokl, metoda, kwadrat, call){
   if(nrow(dane) == 0){
     wynik = anon
   }else{
-    wynik = cor(dane$x, dane$y, method = metoda)
+    wynik = stats::cor(dane$x, dane$y, method = metoda)
     if(kwadrat){
       wynik = wynik^2;
     }

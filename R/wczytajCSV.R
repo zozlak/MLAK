@@ -24,7 +24,7 @@ wczytajCSV = function(
   stringsAsFactors = FALSE, 
   ...
 ){
-  return(read.table(
+  return(utils::read.table(
     plik, 
     header = header,
     sep = sep,

@@ -28,7 +28,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   )
   nGiodo = 3
   
-  dane = na.exclude(dane)
+  dane = stats::na.exclude(dane)
   
   if(length(dane) == 0){
     return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
@@ -39,7 +39,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       breaks = seq(min(dane), max(dane), length.out = n + 1)
     }else{
       n = min(n, length(unique(dane)))
-      breaks = quantile(dane, seq(0, 1, length.out = n + 1))
+      breaks = stats::quantile(dane, seq(0, 1, length.out = n + 1))
       while(length(breaks) != length(unique(breaks))){
         n = n - 1
         breaks = quantile(dane, seq(0, 1, length.out = n + 1))
@@ -56,7 +56,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
         return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
       }
       wagi = szer[grupy]
-      wys = aggregate(wagi, list(names(wagi)), function(x){x[1] * length(x)})
+      wys = stats::aggregate(wagi, list(names(wagi)), function(x){x[1] * length(x)})
       wys$x = round(1000 * wys$x)
       srednie = rowMeans(cbind(breaks[-1], breaks[-length(breaks)]))
       wys$grupa = srednie[wys[, 1]] - 1 #!!!

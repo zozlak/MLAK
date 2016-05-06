@@ -23,7 +23,7 @@ Q = function(x, q, n, wyrownaj = NA, dokl = 2){
   wyrownaj = ustawWyrownaj(wyrownaj)
   
   f = function(x){
-    tmp = quantile(x, seq(0, 1, length.out = n + 1))
+    tmp = stats::quantile(x, seq(0, 1, length.out = n + 1))
     return(tmp[q + 1])
   }
   return(statWektor(x, f, sys.call(), wyrownaj, dokl))

@@ -17,7 +17,7 @@ konfigurujKnitr = function(){
       # ale najpierw nastepuje litania bledow (tak jakby mimo wskazania
       # cairo_pdf() probowal najpierw wyprodukowac wykres za pomoca pdf(),
       # a dopiero po bledzie przechodzil do cairo_pdf())
-      pdf.options(encoding = 'CP1250')
+      grDevices::pdf.options(encoding = 'CP1250')
     }
   }
 }

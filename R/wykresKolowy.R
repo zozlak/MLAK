@@ -19,7 +19,7 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
     is.vector(dane), is.numeric(dane) | is.character(dane)
   )
   
-  dane = na.exclude(dane)
+  dane = stats::na.exclude(dane)
   etykiety = dane
   if(is.character(dane)){
     dane = sub('^ +', '', dane)

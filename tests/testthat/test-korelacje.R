@@ -3,7 +3,7 @@ context('korelacje')
 test_that('R', {
   expect_equal(R(1:10, 1:10, FALSE), 1)
   expect_equal(R(-(1:10), 1:10, FALSE), -1)
-  expect_less_than(R(runif(10000), runif(10000), FALSE, 3), 0.05)
+  expect_lt(R(runif(10000), runif(10000), FALSE, 3), 0.05)
 
   expect_equal(R(1:2, 1:2, FALSE), NA_integer_)
   expect_equal(R(c(1, rep(NA, 4)), c(1, rep(NA, 4)), FALSE), NA_integer_)
@@ -21,7 +21,7 @@ test_that('R', {
 test_that('R2', {
   expect_equal(R2(1:10, 1:10, FALSE), 1)
   expect_equal(R2(-(1:10), 1:10, FALSE), 1)
-  expect_less_than(R(runif(10000), runif(10000), FALSE, 3), 0.03)
+  expect_lt(R(runif(10000), runif(10000), FALSE, 3), 0.03)
 
   expect_equal(R2(1:2, 1:2, FALSE), NA_integer_)
   
@@ -36,7 +36,7 @@ test_that('R2', {
 test_that('Tau', {
   expect_equal(Tau(1:10, 1:10, FALSE), 1)
   expect_equal(Tau(-(1:10), 1:10, FALSE), -1)
-  expect_less_than(R(runif(10000), runif(10000), FALSE, 3), 0.05)
+  expect_lt(R(runif(10000), runif(10000), FALSE, 3), 0.05)
   expect_equal(Tau(letters[1:5], 1:5, FALSE), 1)
   expect_equal(Tau(factor(1:5), 1:5, FALSE), 1)
   expect_equal(Tau(1:5, factor(1:5), FALSE), 1)

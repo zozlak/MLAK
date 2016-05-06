@@ -7,5 +7,5 @@
 #' @export
 Me = function(x, wyrownaj = NA, dokl = 2){
   wyrownaj = ustawWyrownaj(wyrownaj)
-  return(statWektor(x, median, sys.call(), wyrownaj, dokl))
+  return(statWektor(x, stats::median, sys.call(), wyrownaj, dokl))
 }

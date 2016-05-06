@@ -14,6 +14,6 @@ naLiczbe = function(dane){
   if(is.character(dane)){
     dane = sub('%$', '', dane)
   }
-  dane = setNames(suppressWarnings(as.numeric(dane)), names(dane))
+  dane = stats::setNames(suppressWarnings(as.numeric(dane)), names(dane))
   return(dane)
 }
