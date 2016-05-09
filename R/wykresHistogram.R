@@ -51,6 +51,9 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       szer = szer / sum(szer)
       breaksTmp = breaks + 10^-6
       breaksTmp[1] = breaks[1]
+      if(length(breaksTmp) == 1){
+        breaksTmp[2] = breaksTmp[1] + 10^-6
+      }
       grupy = cut(dane, breaksTmp, labels = names(szer), right = FALSE)
       nMin = min(table(grupy))
       if(nMin < nGiodo){
