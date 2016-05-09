@@ -19,6 +19,7 @@ wykresKolowy = function(dane, tytul = '', rozmiarTekstu = NULL, opcjeWykresu = N
     is.vector(dane), is.numeric(dane) | is.character(dane)
   )
   
+  dane[is.nan(dane) | is.infinite(dane)] = NA
   dane = stats::na.exclude(dane)
   etykiety = dane
   if(is.character(dane)){

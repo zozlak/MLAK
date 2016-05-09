@@ -28,6 +28,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   )
   nGiodo = 3
   
+  dane[is.nan(dane) | is.infinite(dane)] = NA
   dane = stats::na.exclude(dane)
   
   if(length(dane) == 0){
@@ -42,7 +43,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       breaks = stats::quantile(dane, seq(0, 1, length.out = n + 1))
       while(length(breaks) != length(unique(breaks))){
         n = n - 1
-        breaks = quantile(dane, seq(0, 1, length.out = n + 1))
+        breaks = stats::quantile(dane, seq(0, 1, length.out = n + 1))
       }
       # straszliwe ręczne generowanie wysokości słupków
       szer = cbind(breaks[-1], breaks[-length(breaks)])

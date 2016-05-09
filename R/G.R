@@ -26,7 +26,7 @@ G = function(x, q, n, filtr = NULL){
     n >= q
   )
   
-  tmp = quantile(x[filtr], seq(0, 1, length.out = n + 1), na.rm = TRUE)
+  tmp = stats::quantile(x[filtr], seq(0, 1, length.out = n + 1), na.rm = TRUE)
   if(q == 1){
     tmp[q] = tmp[q] - 1 # aby nie pomijać najmniejszej obserwacji
   }

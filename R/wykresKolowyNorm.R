@@ -17,6 +17,7 @@ wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, op
     is.vector(dane), is.numeric(dane) | is.character(dane)
   )
   
+  dane[is.nan(dane) | is.infinite(dane)] = NA
   dane = stats::na.exclude(dane)
   if(is.character(dane)){
     dane = sub('%$', '', dane)
@@ -33,7 +34,7 @@ wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, op
     dane[1] = 100 - sum(dane[-1])
   }
   tmp = names(dane)
-  dane = setNames(paste0(dane, '%'), tmp)
+  dane = stats::setNames(paste0(dane, '%'), tmp)
   
   wykres = wykresKolowy(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu, rysuj = FALSE)
   if(rysuj){

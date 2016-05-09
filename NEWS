@@ -1,3 +1,9 @@
+Zmiany w MLAK 0.7.5 (2016-05-09)
+
+  * funkcje wykresKolowy(), wykresKolowyNorm() oraz wykresHistogram() pomijają
+    teraz nie tylko braki danych, ale także wartości nieskończone oraz NaN
+  * dodanie na.rm = TRUE do wywołania quantile() w funkcji Q()
+
 Zmiany w MLAK 0.7.4 (2016-05-06)
 
   * funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() nie generują już
