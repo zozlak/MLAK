@@ -52,7 +52,9 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       breaksTmp = breaks + 10^-6
       breaksTmp[1] = breaks[1]
       if(length(breaksTmp) == 1){
-        breaksTmp[2] = breaksTmp[1] + 10^-6
+        return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
+#        breaksTmp[2] = breaksTmp[1] + 10^-6
+#        coś jeszcze zrobić z szerokościami
       }
       grupy = cut(dane, breaksTmp, labels = names(szer), right = FALSE)
       nMin = min(table(grupy))
