@@ -5,8 +5,8 @@
 \title{Wykres rozrzutu}
 \usage{
 wykresRozrzutu(x, y, etykiety = NULL, rozmiar = NULL, tytul = "",
-  tytulX = NULL, tytulY = NULL, maxRozmPkt = 5, rozmiarTekstu = NULL,
-  opcjeWykresu = NULL, rysuj = TRUE)
+  tytulX = NULL, tytulY = NULL, maxRozmPkt = 5, rozmiarMin = 10,
+  rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE)
 }
 \arguments{
 \item{x}{wektor pozycji na osi X}
@@ -26,7 +26,11 @@ wykresRozrzutu(x, y, etykiety = NULL, rozmiar = NULL, tytul = "",
 \item{maxRozmPkt}{rozmiar punktu na wykresie odpowiadający największej
 wartości parametru \code{rozmiar}#'}
 
-\item{rozmiarTekstu}{bazowy rozmiar tekstu}
+\item{rozmiarMin}{minimalna wartość rozmiaru danego punktu, aby został
+zaprezentowany na wykresie (brana pod uwagę tylko gdy podano parametr
+\code{rozmiar})}
+
+\item{rozmiarTekstu}{bazowy rozmiar tekstu na wykresie}
 
 \item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)}
 

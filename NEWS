@@ -1,3 +1,8 @@
+Zmiany w MLAK 0.7.6 (2016-05-13)
+
+  * funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() zyskały argument
+    rozmiarMin umożliwiający ustawienie progu anonimizacji danych
+
 Zmiany w MLAK 0.7.5 (2016-05-09)
 
   * funkcje wykresKolowy(), wykresKolowyNorm() oraz wykresHistogram() pomijają

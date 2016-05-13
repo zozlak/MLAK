@@ -9,18 +9,23 @@
 #' @param tytulX tytuł osi X wykresu
 #' @param tytulY tytuł osi Y wykresu
 #' @param maxRozmPkt rozmiar punktu na wykresie odpowiadający największej
-#'   wartości parametru \code{rozmiar}#' @param rozmiarTekstu bazowy rozmiar tekstu
+#'   wartości parametru \code{rozmiar}#' 
+#' @param rozmiarMin minimalna wartość rozmiaru danego punktu, aby został
+#'   zaprezentowany na wykresie (brana pod uwagę tylko gdy podano parametr
+#'   \code{rozmiar})
+#' @param rozmiarTekstu bazowy rozmiar tekstu na wykresie
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tytulX = NULL, tytulY = NULL, maxRozmPkt = 5, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
+wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tytulX = NULL, tytulY = NULL, maxRozmPkt = 5, rozmiarMin = 10, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.vector(x), is.vector(y), length(x) == length(y),
     (is.vector(rozmiar) & length(rozmiar) == length(x)) | is.null(rozmiar),
     ((is.vector(etykiety) | is.factor(etykiety)) & length(etykiety) == length(x)) | is.null(etykiety),
-    is.vector(maxRozmPkt), is.numeric(maxRozmPkt), length(maxRozmPkt) == 1, all(!is.na(maxRozmPkt))
+    is.vector(maxRozmPkt), is.numeric(maxRozmPkt), length(maxRozmPkt) == 1, all(!is.na(maxRozmPkt)),
+    is.vector(rozmiarMin), is.numeric(rozmiarMin), length(rozmiarMin) == 1, all(!is.na(rozmiarMin))
   )
   if(is.factor(etykiety)){
     etykiety = levels(etykiety)[etykiety]
@@ -37,6 +42,7 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
     rozmiar = rep(1, length(x))
   }else{
     rozmiar = naLiczbe(rozmiar)
+    rozmiar[rozmiar < rozmiarMin] = NA
   }
   rozmiar[rozmiar < 0] = 0
   

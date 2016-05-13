@@ -6,7 +6,7 @@
 \usage{
 wykresRozrzutuIloraz(x, y, etykiety = NULL, rozmiar = NULL, tytul = "",
   tytulX = NULL, tytulY = NULL, minX = 1, minY = 1, margX = 0.2,
-  margY = 0.1, maxRozmPkt = 5, rozmiarTekstu = NULL,
+  margY = 0.1, maxRozmPkt = 5, rozmiarMin = 10, rozmiarTekstu = NULL,
   opcjeWykresu = NULL, rysuj = TRUE)
 }
 \arguments{
@@ -37,7 +37,11 @@ margines od skrajnych wartości danych)}
 \item{maxRozmPkt}{rozmiar punktu na wykresie odpowiadający największej
 wartości parametru \code{rozmiar}}
 
-\item{rozmiarTekstu}{bazowy rozmiar tekstu}
+\item{rozmiarMin}{minimalna wartość rozmiaru danego punktu, aby został
+zaprezentowany na wykresie (brana pod uwagę tylko gdy podano parametr
+\code{rozmiar})}
+
+\item{rozmiarTekstu}{bazowy rozmiar tekstu na wykresie}
 
 \item{opcjeWykresu}{dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)}
 

@@ -17,14 +17,17 @@
 #'   margines od skrajnych wartości danych)
 #' @param maxRozmPkt rozmiar punktu na wykresie odpowiadający największej
 #'   wartości parametru \code{rozmiar}
-#' @param rozmiarTekstu bazowy rozmiar tekstu
+#' @param rozmiarMin minimalna wartość rozmiaru danego punktu, aby został
+#'   zaprezentowany na wykresie (brana pod uwagę tylko gdy podano parametr
+#'   \code{rozmiar})
+#' @param rozmiarTekstu bazowy rozmiar tekstu na wykresie
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresRozrzutuIloraz = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tytulX = NULL, tytulY = NULL, minX = 1, minY = 1, margX = 0.2, margY = 0.1, maxRozmPkt = 5, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
-  wykres = wykresRozrzutu(x = x, y = y, etykiety = etykiety, rozmiar = rozmiar, tytul = tytul, tytulX = tytulX, tytulY = tytulY, maxRozmPkt = maxRozmPkt, rozmiarTekstu = rozmiarTekstu, rysuj = FALSE)
+wykresRozrzutuIloraz = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tytulX = NULL, tytulY = NULL, minX = 1, minY = 1, margX = 0.2, margY = 0.1, maxRozmPkt = 5, rozmiarMin = 10, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
+  wykres = wykresRozrzutu(x = x, y = y, etykiety = etykiety, rozmiar = rozmiar, tytul = tytul, tytulX = tytulX, tytulY = tytulY, maxRozmPkt = maxRozmPkt, rozmiarMin = rozmiarMin, rozmiarTekstu = rozmiarTekstu, rysuj = FALSE)
   dane = wykres$data
   
   wykres = suppressWarnings(
