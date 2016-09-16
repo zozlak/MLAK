@@ -1,4 +1,5 @@
-#' @title nakładka na read.table zapewniająca wartości domyślne zgodne z
+#' @title wczytuje dane z CSV
+#' @description nakładka na read.table zapewniająca wartości domyślne zgodne z 
 #'   formatem zapisu plików CSV przez Excel-a
 #' @param plik ścieżka do pliku CSV
 #' @param sep separator kolumn (domyślnie ;)

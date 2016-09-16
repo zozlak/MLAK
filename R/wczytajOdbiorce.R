@@ -17,7 +17,8 @@
 #' funkcją generujRaporty().
 #' @param grupy ramka danych, lista lub ścieżka do pliku CSV z definicjami grup 
 #'   odbiorców
-#' @param dane ramka danych lub ścieżka do pliku CSV z danymi
+#' @param dane ramka danych lub ścieżka do pliku z danymi
+#' @param daneMiesieczne ramka danych lub ścieżka do pliku z danymi miesięcznymi
 #' @param n numer odbiorcy do wczytania
 #' @param dolacz czy dołączyć (funkcją attach) wczytane dane do środowiska, w
 #'   którym funkcja została uruchomiona
@@ -26,7 +27,7 @@
 #' @param separator separator plików CSV (istotny tylko w wypadku plików CSV)
 #' @return [list] definicja odbiorcy
 #' @export
-wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250', separator = ';'){
+wczytajOdbiorce = function(grupy, dane = data.frame(), daneMiesieczne = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250', separator = ';'){
   # aby nie było potrzebne oddzielne wywolywanie przy generowaniu raportu
   # wprost z RStudio
   konfigurujKnitr()
@@ -57,9 +58,17 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE, kod
     )
     dane = wczytajDane(dane, kodowanie, separator)
   }
+  if(is.character(daneMiesieczne)){
+    stopifnot(
+      length(daneMiesieczne) == 1,
+      file.exists(daneMiesieczne)
+    )
+    daneMiesieczne = wczytajDane(daneMiesieczne, kodowanie, separator)
+  }
   stopifnot(
+    is.list(grupy) | is.data.frame(grupy),
     is.data.frame(dane),
-    is.list(grupy) | is.data.frame(grupy)
+    is.data.frame(daneMiesieczne)
   )
   
   if(is.data.frame(grupy)){
@@ -85,7 +94,7 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), n = 1, dolacz = TRUE, kod
 
   names(odbiorca) = sub('^[.]', '', names(odbiorca))  
   
-  odbiorca = append(odbiorca, dane)
+  odbiorca = append(append(odbiorca, dane), daneMiesieczne)
   if(dolacz){
     while(any(grepl('^odbiorca$', search()))){
       detach(pos = grep('^odbiorca$', search()))

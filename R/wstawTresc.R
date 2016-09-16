@@ -1,5 +1,6 @@
-#' @title wykonuje wstawki R w danym kodzie Markdown i wypisuje wynik za pomocą 
-#'   cat
+#' @title ewaluuje i wstawia kod RMarkdown
+#' @description 
+#' Wykonuje wstawki R w danym kodzie Markdown i wypisuje wynik za pomocą cat
 #' @param kod kod Markdown (z ew. wstawkami R) do wykonania lub ścieżka do pliku .Rmd
 #' @return przetworzony kod
 #' @export

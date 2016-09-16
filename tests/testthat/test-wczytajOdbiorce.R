@@ -27,7 +27,7 @@ test_that('wczytajOdbiorce dziala z rdata', {
   expect_equal(dane[c(1, 3:7)], list(grupa = '1_etap_2007', stStopienN = 1, stStopienS = '1 stopnia', stRok = 2007, stKierunek = 'Wydziału Dziennikarstwa i Nauk Politycznych', stUczelnia = 'UW'))
 
   dane = wczytajDane('dane/R2-dane.RData')
-  dane = wczytajOdbiorce('dane/R2-odbiorcy.RData', dane, 2)
+  dane = wczytajOdbiorce('dane/R2-odbiorcy.RData', dane, data.frame(), 2)
   expect_is(dane, 'list')
   expect_equal(sapply(dane, length), setNames(c(1, 12505, rep(1, 5), rep(12505, 67)), names(dane)))
   expect_equal(dane[c(1, 3:7)], list(grupa = '1_etap_2008', stStopienN = 1, stStopienS = '1 stopnia', stRok = 2008, stKierunek = 'Wydziału Dziennikarstwa i Nauk Politycznych', stUczelnia = 'UW'))

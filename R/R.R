@@ -1,4 +1,6 @@
 #' @title współczynnik korelacji liniowej
+#' @description 
+#' Oblicza współczynnik korelacji liniowej
 #' @param x wektor wartości pierwszej zmiennej
 #' @param y wektor wartości drugiej zmiennej
 #' @param wyrownaj czy wyrównywać długość wyniku (jeśli NA, wybór zostanie

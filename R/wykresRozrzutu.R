@@ -75,7 +75,7 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
       geom_point() +
       geom_text(vjust = -0.5, size = 3)
   }
-  wykres = wykresDefaultTheme(wykres,  tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
+  wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
     theme(
       title = element_text(vjust = 2),
       axis.title.x = element_text(size = rozmiarTekstu, vjust = 0),

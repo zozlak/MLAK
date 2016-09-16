@@ -1,5 +1,7 @@
-#' @title znajduje sensowną wartość (liczbę lub ciąg znaków), którą można
-#'   zastąpić brak danych
+#' @title zastępuje braki danych
+#' @description 
+#' Znajduje sensowną wartość (liczbę lub ciąg znaków), którą można zastąpić brak
+#' danych
 #' @param x wektor wartości
 #' @return stosowny do typu x
 naNaWartosc = function(x){

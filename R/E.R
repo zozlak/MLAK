@@ -1,4 +1,6 @@
 #' @title średnia
+#' @description 
+#' Oblicza średnią
 #' @param x wektor wartości
 #' @param wyrownaj czy wyrównywać długość wyniku (jeśli NA, wybór zostanie
 #'   dokonany automatycznie)

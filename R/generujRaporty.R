@@ -16,9 +16,10 @@
 #' elementów listy 'grupyOdbiorcow' jako zmiennych dostępnych w środowisku, a 
 #' następnie kompilacji pliku szablonu raportu.
 #' @param plikSzablonu ścieżka do pliku Markdown z szablonem raportu
-#' @param dane ramka danych lub ścieżka do pliku CSV z danymi
 #' @param grupyOdbiorcow ramka danych (lub lista), której kolejne elementy
 #'   określają grupy odbiorców
+#' @param dane ramka danych lub ścieżka do pliku z danymi
+#' @param daneMiesieczne ramka danych lub ścieżka do pliku z danymi miesięcznymi
 #' @param katalogWy katalog, w którym zapisane zostaną wygenerowane raporty 
 #'   (względem pliku szablonu); uwaga! jeśli podany, wtedy pełna ścieżka 
 #'   katalogu wyjściowego nie może zawierać polskich znaków ani spacji (sic!)
@@ -32,7 +33,7 @@
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE, kontynuujPoBledzie = TRUE){
+generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, daneMiesieczne = data.frame(), katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE, kontynuujPoBledzie = TRUE){
   stopifnot(
     is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
     is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),
@@ -42,13 +43,6 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
   
   konfigurujKnitr()
   
-  if(is.character(dane)){
-    stopifnot(
-      length(dane) == 1,
-      file.exists(dane)
-    )
-    dane = wczytajDane(dane)
-  }
   if(is.character(grupyOdbiorcow)){
     stopifnot(
       length(grupyOdbiorcow) == 1,
@@ -56,9 +50,24 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
     )
     grupyOdbiorcow = wczytajDane(grupyOdbiorcow)
   }
+  if(is.character(dane)){
+    stopifnot(
+      length(dane) == 1,
+      file.exists(dane)
+    )
+    dane = wczytajDane(dane)
+  }
+  if(is.character(daneMiesieczne)){
+    stopifnot(
+      length(daneMiesieczne) == 1,
+      file.exists(daneMiesieczne)
+    )
+    daneMiesieczne = wczytajDane(daneMiesieczne)
+  }
   stopifnot(
+    is.data.frame(grupyOdbiorcow) | is.list(grupyOdbiorcow),
     is.data.frame(dane),
-    is.data.frame(grupyOdbiorcow) | is.list(grupyOdbiorcow)
+    is.data.frame(daneMiesieczne)
   )
   katalogBazowy = katalogWy
   if(katalogWy == ''){
@@ -82,7 +91,7 @@ generujRaporty = function(plikSzablonu, dane, grupyOdbiorcow, katalogWy = '', pr
   }
   
   for(i in 1:length(grupyOdbiorcow)){
-    odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, i)
+    odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, daneMiesieczne, i)
     tryCatch(
       {
         with(

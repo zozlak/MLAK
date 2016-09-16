@@ -1,3 +1,11 @@
+Zmiany w MLAK 0.8.0 (2016-09-16)
+
+  * funkcje wczytajOdbiorce() i generujRaporty() zyskaly parametr 
+    "daneMiesieczne" umozliwiajacy wczytywanie danych miesięcznych
+    - zmiana kolejności argumentów w funkcji generujRaporty()
+  * dodano funkcje obliczDaneMiesieczne() oraz wykresLiniowy() umożliwiające
+    generowanie wykresów miesięcznych
+
 Zmiany w MLAK 0.7.6 (2016-05-13)
 
   * funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() zyskały argument
