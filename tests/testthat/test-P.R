@@ -10,6 +10,7 @@ test_that('P', {
   expect_equal(P(c(1:7, NA, NA), 1:3, FALSE, 2), 33.33)
   expect_equal(P(c(1:7, NA, NA), 1:3, FALSE, 1, FALSE), 33.3)
   expect_equal(P((1:10)[rep(F, 10)], 1:3, FALSE), NA_real_)
+  print(P((1:10)[rep(F, 10)], 1:3, TRUE))
   expect_equal(P((1:10)[rep(F, 10)], 1:3, TRUE), '                                  -%')
 })
 

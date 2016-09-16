@@ -7,5 +7,6 @@ test_that('bMod', {
   
   expect_equal(bMod(1:10, TRUE), '               0.90')
   expect_equal(bMod(1:10, TRUE, dokl = 0), '                            1')
+  print(bMod(1:2, TRUE))
   expect_equal(bMod(1:2, TRUE), '                NA')
 })
