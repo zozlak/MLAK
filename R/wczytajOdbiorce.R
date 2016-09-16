@@ -18,7 +18,7 @@
 #' @param grupy ramka danych, lista lub ścieżka do pliku CSV z definicjami grup 
 #'   odbiorców
 #' @param dane ramka danych lub ścieżka do pliku z danymi
-#' @param daneMiesieczne ramka danych lub ścieżka do pliku z danymi miesięcznymi
+#' @param dane2 ramka danych lub ścieżka do pliku z dodatkowym zbiorem danych
 #' @param n numer odbiorcy do wczytania
 #' @param dolacz czy dołączyć (funkcją attach) wczytane dane do środowiska, w
 #'   którym funkcja została uruchomiona
@@ -27,7 +27,7 @@
 #' @param separator separator plików CSV (istotny tylko w wypadku plików CSV)
 #' @return [list] definicja odbiorcy
 #' @export
-wczytajOdbiorce = function(grupy, dane = data.frame(), daneMiesieczne = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250', separator = ';'){
+wczytajOdbiorce = function(grupy, dane = data.frame(), dane2 = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250', separator = ';'){
   # aby nie było potrzebne oddzielne wywolywanie przy generowaniu raportu
   # wprost z RStudio
   konfigurujKnitr()
@@ -58,17 +58,17 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), daneMiesieczne = data.fra
     )
     dane = wczytajDane(dane, kodowanie, separator)
   }
-  if(is.character(daneMiesieczne)){
+  if(is.character(dane2)){
     stopifnot(
-      length(daneMiesieczne) == 1,
-      file.exists(daneMiesieczne)
+      length(dane2) == 1,
+      file.exists(dane2)
     )
-    daneMiesieczne = wczytajDane(daneMiesieczne, kodowanie, separator)
+    dane2 = wczytajDane(dane2, kodowanie, separator)
   }
   stopifnot(
     is.list(grupy) | is.data.frame(grupy),
     is.data.frame(dane),
-    is.data.frame(daneMiesieczne)
+    is.data.frame(dane2)
   )
   
   if(is.data.frame(grupy)){
@@ -94,7 +94,7 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), daneMiesieczne = data.fra
 
   names(odbiorca) = sub('^[.]', '', names(odbiorca))  
   
-  odbiorca = append(append(odbiorca, dane), daneMiesieczne)
+  odbiorca = append(append(odbiorca, dane), dane2)
   if(dolacz){
     while(any(grepl('^odbiorca$', search()))){
       detach(pos = grep('^odbiorca$', search()))

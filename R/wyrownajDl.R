@@ -22,9 +22,14 @@
 #' @return character
 wyrownajDl = function(wynik, call, dokl, delta = 4){
   dl = delta + sum(nchar(deparse(call))) 
-  if(max(nchar(wynik)) > dl){
+  
+  tmp = wynik
+  tmp[is.na(tmp)] = 'NA'
+  tmp = as.character(tmp)
+  if(max(nchar(tmp)) > dl){
     warning('Wyrównanie długości nie było możliwe')
   }
+  
   format = ifelse(
     is.character(wynik),
     paste0('% ', dl, 's'),

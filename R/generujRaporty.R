@@ -19,7 +19,7 @@
 #' @param grupyOdbiorcow ramka danych (lub lista), której kolejne elementy
 #'   określają grupy odbiorców
 #' @param dane ramka danych lub ścieżka do pliku z danymi
-#' @param daneMiesieczne ramka danych lub ścieżka do pliku z danymi miesięcznymi
+#' @param dane2 ramka danych lub ścieżka do pliku z z dodatkowym zbiorem danych
 #' @param katalogWy katalog, w którym zapisane zostaną wygenerowane raporty 
 #'   (względem pliku szablonu); uwaga! jeśli podany, wtedy pełna ścieżka 
 #'   katalogu wyjściowego nie może zawierać polskich znaków ani spacji (sic!)
@@ -33,7 +33,7 @@
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, daneMiesieczne = data.frame(), katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE, kontynuujPoBledzie = TRUE){
+generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame(), katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE, kontynuujPoBledzie = TRUE){
   stopifnot(
     is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
     is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),
@@ -57,17 +57,17 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, daneMiesieczne = d
     )
     dane = wczytajDane(dane)
   }
-  if(is.character(daneMiesieczne)){
+  if(is.character(dane2)){
     stopifnot(
-      length(daneMiesieczne) == 1,
-      file.exists(daneMiesieczne)
+      length(dane2) == 1,
+      file.exists(dane2)
     )
-    daneMiesieczne = wczytajDane(daneMiesieczne)
+    dane2 = wczytajDane(dane2)
   }
   stopifnot(
     is.data.frame(grupyOdbiorcow) | is.list(grupyOdbiorcow),
     is.data.frame(dane),
-    is.data.frame(daneMiesieczne)
+    is.data.frame(dane2)
   )
   katalogBazowy = katalogWy
   if(katalogWy == ''){
@@ -91,7 +91,7 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, daneMiesieczne = d
   }
   
   for(i in 1:length(grupyOdbiorcow)){
-    odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, daneMiesieczne, i)
+    odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, dane2, i)
     tryCatch(
       {
         with(
