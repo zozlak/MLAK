@@ -1,3 +1,7 @@
+Zmiany w MLAK 0.8.1 (2016-09-17)
+
+  * poprawione pokrycie testami
+
 Zmiany w MLAK 0.8.0 (2016-09-16)
 
   * funkcje wczytajOdbiorce() i generujRaporty() zyskaly parametr 

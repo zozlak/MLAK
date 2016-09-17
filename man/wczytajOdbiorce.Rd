@@ -4,8 +4,8 @@
 \alias{wczytajOdbiorce}
 \title{wczytuje wskazanego odbiorcę}
 \usage{
-wczytajOdbiorce(grupy, dane = data.frame(), daneMiesieczne = data.frame(),
-  n = 1, dolacz = TRUE, kodowanie = "Windows-1250", separator = ";")
+wczytajOdbiorce(grupy, dane = data.frame(), dane2 = data.frame(), n = 1,
+  dolacz = TRUE, kodowanie = "Windows-1250", separator = ";")
 }
 \arguments{
 \item{grupy}{ramka danych, lista lub ścieżka do pliku CSV z definicjami grup 
@@ -13,7 +13,7 @@ odbiorców}
 
 \item{dane}{ramka danych lub ścieżka do pliku z danymi}
 
-\item{daneMiesieczne}{ramka danych lub ścieżka do pliku z danymi miesięcznymi}
+\item{dane2}{ramka danych lub ścieżka do pliku z dodatkowym zbiorem danych}
 
 \item{n}{numer odbiorcy do wczytania}
 

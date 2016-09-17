@@ -52,7 +52,33 @@ test_that('wykresHistogram', {
   expect_is(wykresHistogram(letters), 'gg')
   expect_is(wykresHistogram(letters[rep(1:10, 10)]), 'gg')
   expect_is(wykresHistogram(factor(letters[round(runif(100, 0, 24))])), 'gg')
-  expect_is(wykresHistogram(rep(NA_integer_, 10)), 'gg') # TODO przerobić na sprawdzanie wygenerowania pustego wykresu
+  expect_is(wykresHistogram(rep(NA_integer_, 10)), 'gg') # wykresPusty() w linii 34
+  expect_is(wykresHistogram(rep(1, 10)), 'gg') # wykresPusty() w linii 55
+})
+
+test_that('wykresRozrzutu', {
+  expect_is(wykresRozrzutu(rnorm(100), rnorm(100)), 'gg')
+  expect_is(wykresRozrzutu(rnorm(24), rnorm(24), letters[1:24]), 'gg')
+  expect_is(wykresRozrzutu(rnorm(24), rnorm(24), letters[1:24], 1:24), 'gg')
+  expect_is(wykresRozrzutu(rnorm(24), rnorm(24), rozmiar = 1:24), 'gg')
+})
+
+test_that('wykresRozrzutuIloraz', {
+  expect_is(wykresRozrzutuIloraz(rnorm(100), rnorm(100)), 'gg')
+  expect_is(wykresRozrzutuIloraz(rnorm(24), rnorm(24), letters[1:24]), 'gg')
+  expect_is(wykresRozrzutuIloraz(rnorm(24), rnorm(24), letters[1:24], 1:24), 'gg')
+  expect_is(wykresRozrzutuIloraz(rnorm(24), rnorm(24), rozmiar = 1:24), 'gg')
+})
+
+test_that('wykresLiniowy', {
+  dane = data.frame(
+    seria = rep(c('a', 'b'), each = 5),
+    n = rep(c(30, 50, 70, 50, 20), 2),
+    x = rep(1:5, 2),
+    y = runif(10, 0, 3)
+  )
+  expect_is(wykresLiniowy(dane), 'gg')
+  expect_is(wykresLiniowy(dane, nMin = 10), 'gg')
 })
 
 test_that('opcjeWykresu', {

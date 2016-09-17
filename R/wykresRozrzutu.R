@@ -3,8 +3,8 @@
 #' Rysuje wykres rozrzutu (X-Y).
 #' @param x wektor pozycji na osi X
 #' @param y wektor pozycji na osi Y
-#' @param rozmiar rozmiar poszczególnych punktów
 #' @param etykiety etykiety punktów na wykresie
+#' @param rozmiar rozmiar poszczególnych punktów
 #' @param tytul tytuł wykresu
 #' @param tytulX tytuł osi X wykresu
 #' @param tytulY tytuł osi Y wykresu

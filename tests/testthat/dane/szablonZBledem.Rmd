@@ -1,0 +1,5 @@
+# Szablon z błędem R
+
+```{r}
+taFunkcjaNieistnieje()
+```

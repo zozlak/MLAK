@@ -40,6 +40,10 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
   dane = dane %>%
     filter_(~ x >= limity$xmin & x <= limity$xmax)
   
+  if (nrow(dane) == 0) {
+    return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
+  }
+  
   # wycięcie braków danych dla geometry_line()
   daneBezNa = dane %>%
     filter_(~ !is.na(y))
@@ -56,16 +60,16 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
       legend.position = 'bottom',
       legend.title = element_blank()
     )
-  if(is.character(dane$x)){
+  if (is.character(dane$x)) {
     wykres = wykres +
       theme(axis.text.x = element_text(angle = 315))
   }
   
-  if(!is.null(opcjeWykresu)){
+  if (!is.null(opcjeWykresu)) {
     wykres = wykres + opcjeWykresu
   }
   
-  if(rysuj){
+  if (rysuj) {
     suppressWarnings(print(wykres))
   }
   return(invisible(wykres))

@@ -7,6 +7,11 @@ test_that('wczytajDane czyta csv', {
   unlink('dane/test.csv')
 })
 
+test_that('wczytajDane czyta xslx', {
+  dane = wczytajDane('dane/R3-odbiorcy.xlsx')
+  expect_equal(dim(dane), c(5, 17))
+})
+
 test_that('wczytajDane czyta RData', {
   a = 1:10
   wzor1 = data.frame(a = c(1:9, NA), b = c(letters[1:9], 'ą'), stringsAsFactors = F)
