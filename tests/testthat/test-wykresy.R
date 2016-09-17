@@ -52,15 +52,22 @@ test_that('wykresHistogram', {
   expect_is(wykresHistogram(letters), 'gg')
   expect_is(wykresHistogram(letters[rep(1:10, 10)]), 'gg')
   expect_is(wykresHistogram(factor(letters[round(runif(100, 0, 24))])), 'gg')
+  
   expect_is(wykresHistogram(rep(NA_integer_, 10)), 'gg') # wykresPusty() w linii 34
   expect_is(wykresHistogram(rep(1, 10)), 'gg') # wykresPusty() w linii 55
+  
+  expect_is(wykresHistogram(c(1:100, rep(50, 100)), rozmiarTekstu = 1), 'gg') # else w linii 115
+  expect_is(wykresHistogram(c(1:100, rep(50, 100)), rozmiarTekstu = 1000), 'gg') # if w linii 113
 })
 
 test_that('wykresRozrzutu', {
   expect_is(wykresRozrzutu(rnorm(100), rnorm(100)), 'gg')
   expect_is(wykresRozrzutu(rnorm(24), rnorm(24), letters[1:24]), 'gg')
+  expect_is(wykresRozrzutu(rnorm(24), rnorm(24), factor(letters[1:24])), 'gg')
   expect_is(wykresRozrzutu(rnorm(24), rnorm(24), letters[1:24], 1:24), 'gg')
   expect_is(wykresRozrzutu(rnorm(24), rnorm(24), rozmiar = 1:24), 'gg')
+  expect_is(wykresRozrzutu(numeric(), numeric()), 'gg')
+  expect_is(wykresRozrzutu(rnorm(100), rnorm(100), opcjeWykresu = ggplot2::theme_bw()), 'gg')
 })
 
 test_that('wykresRozrzutuIloraz', {
@@ -79,6 +86,11 @@ test_that('wykresLiniowy', {
   )
   expect_is(wykresLiniowy(dane), 'gg')
   expect_is(wykresLiniowy(dane, nMin = 10), 'gg')
+  expect_is(wykresLiniowy(dane, nMin = 1000), 'gg')
+  expect_is(wykresLiniowy(dane, opcjeWykresu = ggplot2::theme_bw()), 'gg')
+  
+  dane$x = rep(letters[1:5], 2)
+  expect_is(wykresLiniowy(dane), 'gg')
 })
 
 test_that('opcjeWykresu', {

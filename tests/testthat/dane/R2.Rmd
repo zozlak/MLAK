@@ -93,23 +93,3 @@ Procent studentów, którzy terminowo uzyskali dyplom          `r P(DTERM2[grupa
 ```{r}
 wstawTresc('R2-wariant.Rmd')
 ```
-
-etykiety = c('przed', 'w trakcie', 'w ogóle')
-abs = data_frame(
-  ID_ZDAU = ID_ZDAU,
-  DATA_ZAK = DATA_ZAK,
-  DOSW_ES = etykiety[DOSW_ES]
-)
-etykiety = c('nie studiuje', 'inny kierunek')
-mies = data_frame(
-  ID_ZDAU = ID_ZDAU_M,
-  OKRES = OKRES_M,
-  BILOD = BILOD_M,
-  STUDPROG = etykiety[as.numeric(STUD_M & !STUDPROG_M) + 1]
-)
-
-dane = obliczDaneMiesieczne(abs, mies, 'BILOD', c('DOSW_ES', 'STUDPROG'))
-wykresLiniowy(dane)
-
-dane = obliczDaneMiesieczne(abs, mies, 'BILOD', c('DOSW_ES'), 'DATA_ZAK')
-wykresLiniowy(dane)
