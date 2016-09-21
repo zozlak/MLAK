@@ -67,7 +67,7 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
   if (length(dataRel) > 0) {
     if (is.character(unlist(dane[, dataRel]))) {
       dane = dane %>%
-        mutate_(.dots = setNames(paste0('MLAK::data2okres(', dataRel, ')'), dataRel))
+        mutate_(.dots = setNames(paste0('MLAK:::data2okres(', dataRel, ')'), dataRel))
     }
     if (is.character(unlist(dane$OKRES))) {
       dane = dane %>%

@@ -26,6 +26,9 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
     is.numeric(dane$y), is.numeric(dane$n)
   )
   dane = ungroup(dane)
+  if (is.null(rozmiarTekstu)) {
+    rozmiarTekstu = 10
+  }
   
   dane$seria = factor(dane$seria)
   dane$y[dane$n < nMin] = NA
@@ -50,7 +53,7 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
 
   wykres = ggplot(data = dane) +
     aes(x = get('x'), y = get('y'), group = get('seria'), shape = get('seria'), linetype = get('seria')) +
-    geom_point(size = 3) +
+    geom_point(size = 1.5) +
     geom_line(data = daneBezNa)
   wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
     theme(
@@ -58,11 +61,12 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
       axis.title.x = element_text(size = rozmiarTekstu, vjust = 0),
       axis.title.y = element_text(size = rozmiarTekstu, vjust = 1),
       legend.position = 'bottom',
-      legend.title = element_blank()
+      legend.title = element_blank(),
+      legend.text = element_text(size = rozmiarTekstu * 0.7)
     )
   if (is.character(dane$x)) {
     wykres = wykres +
-      theme(axis.text.x = element_text(angle = 315))
+      theme(axis.text.x = element_text(angle = 270, size = rozmiarTekstu * 0.7, vjust = 0.3))
   }
   
   if (!is.null(opcjeWykresu)) {
