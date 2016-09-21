@@ -1,6 +1,8 @@
 Zmiany w MLAK 0.8.2 (2016-09-21)
 
   * poprawione domyślne parametry formatowania wykresu liniowego
+  * dodanie paramtertu xNMax do funkcji wykresLiniow() umożliwiającego sterowanie
+    liczbą wyświetlanych etykiet osi X
   * dplyr przeniesiony do Depends, aby nie trzeba go było ładować w szablonie raportu
   * rozwiązany problem z brakiem dostępu do funkcji data2okres() w bebechach
     obliczDaneMiesieczne()
