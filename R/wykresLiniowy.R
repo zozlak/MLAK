@@ -53,7 +53,7 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
 
   wykres = ggplot(data = dane) +
     aes(x = get('x'), y = get('y'), group = get('seria'), shape = get('seria'), linetype = get('seria')) +
-    geom_point(size = 1.5) +
+    geom_point(size = 2) +
     geom_line(data = daneBezNa)
   wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
     theme(
