@@ -22,7 +22,7 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
   stopifnot(
     is.data.frame(dane), length(setdiff(c('seria', 'x', 'y', 'n'), names(dane))) == 0,
     is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)),
-    is.vector(xNMaks), is.numeric(xNMaks), length(xNMaks) == 1, all(!is.na(xNMaks)), all(xNMaks > 0)
+    is.vector(xNMax), is.numeric(xNMax), length(xNMax) == 1, all(!is.na(xNMax)), all(xNMax > 0)
   )
   stopifnot(
     is.numeric(dane$y), is.numeric(dane$n)
