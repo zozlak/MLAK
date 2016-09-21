@@ -10,7 +10,7 @@
 #' @param tytulX tytuł osi X wykresu
 #' @param tytulY tytuł osi Y wykresu
 #' @param nMin minimalna liczebność wymagana do wyświetlenia punktu na wykresie
-#' @param xNMaks maksymalna liczba wyświetlanych etykiet osi X
+#' @param xNMax maksymalna liczba wyświetlanych etykiet osi X
 #' @param rozmiarTekstu bazowy rozmiar tekstu
 #' @param opcjeWykresu dodatkowe opcje wykresu (zostaną dodane do obiektu wykresu ggplot2)
 #' @param rysuj czy funkcja ma narysować wykres czy tylko zwrócić wygenerowany obiekt wykresu
@@ -18,7 +18,7 @@
 #' @export
 #' @import ggplot2
 #' @import dplyr
-wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 3, xNMaks = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
+wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 3, xNMax = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.data.frame(dane), length(setdiff(c('seria', 'x', 'y', 'n'), names(dane))) == 0,
     is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)),
