@@ -89,6 +89,9 @@ test_that('wykresLiniowy', {
   expect_is(wykresLiniowy(dane, nMin = 1000), 'gg')
   expect_is(wykresLiniowy(dane, opcjeWykresu = ggplot2::theme_bw()), 'gg')
   
+  dane$x = factor(dane$x)
+  expect_is(wykresLiniowy(dane), 'gg')
+  
   dane$x = rep(letters[1:5], 2)
   expect_is(wykresLiniowy(dane), 'gg')
 })

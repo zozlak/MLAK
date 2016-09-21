@@ -4,7 +4,7 @@ daneAbs1 = data.frame(
   ID_ZDAU = 1:12,
   DOSW_ES = rep(1:3, 4),
   DATA_ZAK = rep(c('2015-09', '2015-11'), 6),
-  stringsAsFactors = F
+  stringsAsFactors = FALSE
 )
 daneAbs2 = daneAbs1
 daneAbs2$DATA_ZAK = rep(c(24189, 24191), 6)
@@ -15,7 +15,7 @@ daneMies1 = data.frame(
   STUD = rep(c(1,1,1,1,1,1,0,0,0,0,0,0), 10),
   BILOD = runif(12*10, 0.5, 1.5),
   ZILO = runif(12*10, 0.5, 1.5),
-  stringsAsFactors = F
+  stringsAsFactors = FALSE
 )
 daneMies2 = daneMies1
 daneMies2$OKRES = rep(24185:24196, each = 10)
