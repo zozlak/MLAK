@@ -85,7 +85,9 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
   
   if (length(grupy) > 0) {
     zmienneGrupy = setNames(paste0('paste(', paste0(grupy, collapse = ', '), ')'), 'seria')
+    filtr = paste0('!is.na(', grupy, ')', collapse = ' | ')
     dane = dane %>%
+      filter_(filtr) %>%
       mutate_(.dots = zmienneGrupy)
   }
   

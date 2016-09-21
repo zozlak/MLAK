@@ -6,6 +6,7 @@ Zmiany w MLAK 0.8.2 (2016-09-21)
   * dplyr przeniesiony do Depends, aby nie trzeba go było ładować w szablonie raportu
   * rozwiązany problem z brakiem dostępu do funkcji data2okres() w bebechach
     obliczDaneMiesieczne()
+  * obliczDaneMiesieczne() pomija agregaty, dla których nazwa serii jest brakiem danych
 
 Zmiany w MLAK 0.8.1 (2016-09-17)
 
