@@ -10,7 +10,7 @@
 #' @param znakProcent czy dostawić do zwróconej wartości znak procenta
 #' @return NULL
 #' @export
-P = function(x, w, wyrownaj = NA, dokl = 1, znakProcent = NA){
+P = function(x, w = TRUE, wyrownaj = NA, dokl = 1, znakProcent = NA){
   stopifnot(
     is.vector(dokl), is.numeric(dokl), length(dokl) == 1, all(!is.na(dokl)),
     is.vector(znakProcent), is.logical(znakProcent), length(znakProcent) == 1

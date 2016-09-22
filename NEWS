@@ -1,12 +1,18 @@
 Zmiany w MLAK 0.8.2 (2016-09-21)
 
+  * funkcja P() (a co za tym idzie także Pw()) zyskała domyślną wartość 
+    parametru "w" równą TRUE
+    dzięki temu zapis "P(zmienna > 5)" automatycznie zliczy odsetek wartości
+    zmiennej większych od 5
   * poprawione domyślne parametry formatowania wykresu liniowego
-  * dodanie paramtertu xNMax do funkcji wykresLiniow() umożliwiającego sterowanie
-    liczbą wyświetlanych etykiet osi X
-  * dplyr przeniesiony do Depends, aby nie trzeba go było ładować w szablonie raportu
+  * dodanie paramtertu xNMax do funkcji wykresLiniow() umożliwiającego 
+    sterowanie liczbą wyświetlanych etykiet osi X
+  * dplyr przeniesiony do Depends, aby nie trzeba go było ładować w szablonie 
+    raportu
   * rozwiązany problem z brakiem dostępu do funkcji data2okres() w bebechach
     obliczDaneMiesieczne()
-  * obliczDaneMiesieczne() pomija agregaty, dla których nazwa serii jest brakiem danych
+  * obliczDaneMiesieczne() pomija agregaty, dla których nazwa serii jest 
+    brakiem danych
 
 Zmiany w MLAK 0.8.1 (2016-09-17)
 
