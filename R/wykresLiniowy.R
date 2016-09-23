@@ -21,7 +21,7 @@
 wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 3, xNMax = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
     is.data.frame(dane), length(setdiff(c('seria', 'x', 'y', 'n'), names(dane))) == 0,
-    is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)),
+    is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)), all(nMin >= 3),
     is.vector(xNMax), is.numeric(xNMax), length(xNMax) == 1, all(!is.na(xNMax)), all(xNMax > 0)
   )
   stopifnot(
