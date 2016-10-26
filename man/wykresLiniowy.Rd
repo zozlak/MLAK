@@ -4,8 +4,8 @@
 \alias{wykresLiniowy}
 \title{Wykres liniowy}
 \usage{
-wykresLiniowy(dane, tytul = "", tytulX = NULL, tytulY = NULL, nMin = 50,
-  rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE)
+wykresLiniowy(dane, tytul = "", tytulX = NULL, tytulY = NULL, nMin = 3,
+  xNMax = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE)
 }
 \arguments{
 \item{dane}{ramka danych opisująca serie danych - patrz opis szczegółowy}
@@ -17,6 +17,8 @@ wykresLiniowy(dane, tytul = "", tytulX = NULL, tytulY = NULL, nMin = 50,
 \item{tytulY}{tytuł osi Y wykresu}
 
 \item{nMin}{minimalna liczebność wymagana do wyświetlenia punktu na wykresie}
+
+\item{xNMax}{maksymalna liczba wyświetlanych etykiet osi X}
 
 \item{rozmiarTekstu}{bazowy rozmiar tekstu}
 

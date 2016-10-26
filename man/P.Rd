@@ -4,7 +4,7 @@
 \alias{P}
 \title{odsetek rekordów o zadanych wartościach}
 \usage{
-P(x, w, wyrownaj = NA, dokl = 1, znakProcent = NA)
+P(x, w = TRUE, wyrownaj = NA, dokl = 1, znakProcent = NA)
 }
 \arguments{
 \item{x}{wektor wartości}

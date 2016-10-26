@@ -12,6 +12,7 @@ output:
 ```{r echo = FALSE, message = FALSE}
 # przykładowe dane, jeśli nie generujemy wsadowo
 library(MLAK)
+.konfiguruj(3)
 wczytajOdbiorce('R2-odbiorcy.RData', 'R2-dane.RData')
 
 grupa1 = grupaGl

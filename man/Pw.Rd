@@ -4,7 +4,7 @@
 \alias{Pw}
 \title{odsetek rekordów o zadanych wartościach z pominięciem braków danych}
 \usage{
-Pw(x, w, wyrownaj = NA, dokl = 1, znakProcent = NA)
+Pw(x, w = TRUE, wyrownaj = NA, dokl = 1, znakProcent = NA)
 }
 \arguments{
 \item{x}{wektor wartości}

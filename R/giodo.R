@@ -11,15 +11,15 @@ giodo = function(x){
     is.vector(x) | is.data.frame(x)
   )
   
-  min = 3
+  min = get('.MLAK', pos = 1)[['giodo']]
   
-  if(is.vector(x)){
-    if(length(x) < min){
+  if (is.vector(x)) {
+    if (length(x) < min) {
       x[] = NA
     }
   }
-  if(is.data.frame(x)){
-    if(nrow(x) < min){
+  if (is.data.frame(x)) {
+    if (nrow(x) < min) {
       x[] = NA
     }
   }
