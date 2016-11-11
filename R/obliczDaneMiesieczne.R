@@ -77,11 +77,22 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
       mutate_(.dots = list(OKRES = paste0('OKRES - ', dataRel)))
   }
 
-  zmienneWynik = setNames(as.list(paste0(statystyka, '(', zmienne, ', na.rm = TRUE)')), zmienne)
-  zmienneWynik$n = 'n()'
   dane = dane %>%
-    group_by_(.dots = c('OKRES', grupy)) %>%
-    summarize_(.dots = zmienneWynik)
+    group_by_(.dots = c('OKRES', grupy))
+  flaga = TRUE
+  try({
+    zmienneWynik = setNames(as.list(paste0(statystyka, '(', zmienne, ', na.rm = TRUE)')), zmienne)
+    zmienneWynik$n = 'n()'
+    dane = dane %>%
+      summarize_(.dots = zmienneWynik)
+    flaga = FALSE
+  }, silent = TRUE)
+  if (flaga) {
+    zmienneWynik = setNames(as.list(paste0(statystyka, '(', zmienne, ')')), zmienne)
+    zmienneWynik$n = 'n()'
+    dane = dane %>%
+      summarize_(.dots = zmienneWynik)
+  }
   
   if (length(grupy) > 0) {
     zmienneGrupy = setNames(paste0('paste(', paste0(grupy, collapse = ', '), ')'), 'seria')
