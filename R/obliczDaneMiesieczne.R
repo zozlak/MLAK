@@ -100,6 +100,9 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
     dane = dane %>%
       filter_(filtr) %>%
       mutate_(.dots = zmienneGrupy)
+  } else {
+    dane = dane %>% 
+      mutate_(seria = 1)
   }
   
   dane = dane %>%
@@ -109,16 +112,16 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
     melt(id.vars = c('seria', 'n', 'x')) %>%
     rename_(y = 'value')
   
-  if(length(odRel) > 0){
+  if (length(odRel) > 0) {
     dane = dane %>%
       filter_(~x >= odRel)
   }
-  if(length(doRel) > 0){
+  if (length(doRel) > 0) {
     dane = dane %>%
       filter_(~x <= doRel)
   }
   
-  if(length(zmienne) > 1){
+  if (length(zmienne) > 1) {
     dane = dane %>%
       mutate_(seria = ~ paste(variable, seria))
   }
@@ -126,6 +129,11 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
   dane = dane %>%
     select_('-variable') %>%
     mutate_(seria = ~ as.factor(seria))
+  
+  if (length(grupy) == 0) {
+    dane = dane %>%
+      select_('-seria')
+  }
   
   return(dane)
 }

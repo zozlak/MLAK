@@ -33,7 +33,7 @@ wykresLiniowy(dane, tytul = "", tytulX = NULL, tytulY = NULL, nMin = 3,
 Rysuje wykres liniowy z przekazanych danych.
 }
 \details{
-Przekazane dane mają postać długą, z kolumnami: seria, x, y, n.
+Przekazane dane mają postać długą, z kolumnami: x, y, n oraz opcjonalnie seria.
 
 Punkty o niedostatecznej liczebności zostaną zanonimizowane.
 }

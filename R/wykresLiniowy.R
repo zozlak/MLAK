@@ -2,7 +2,7 @@
 #' @description
 #' Rysuje wykres liniowy z przekazanych danych.
 #' @details 
-#' Przekazane dane mają postać długą, z kolumnami: seria, x, y, n.
+#' Przekazane dane mają postać długą, z kolumnami: x, y, n oraz opcjonalnie seria.
 #' 
 #' Punkty o niedostatecznej liczebności zostaną zanonimizowane.
 #' @param dane ramka danych opisująca serie danych - patrz opis szczegółowy
@@ -20,7 +20,7 @@
 #' @import dplyr
 wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 3, xNMax = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   stopifnot(
-    is.data.frame(dane), length(setdiff(c('seria', 'x', 'y', 'n'), names(dane))) == 0,
+    is.data.frame(dane), length(setdiff(c('x', 'y', 'n'), names(dane))) == 0,
     is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)), all(nMin >= 3),
     is.vector(xNMax), is.numeric(xNMax), length(xNMax) == 1, all(!is.na(xNMax)), all(xNMax > 0)
   )
@@ -30,6 +30,12 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
   dane = as.data.frame(dane)
   if (is.null(rozmiarTekstu)) {
     rozmiarTekstu = 10
+  }
+  
+  legendPosition = 'bottom'
+  if (!'seria' %in% names(dane)) {
+    dane$seria = ''
+    legendPosition = 'none' 
   }
   
   dane$seria = factor(dane$seria)
@@ -73,7 +79,7 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
       title = element_text(vjust = 2),
       axis.title.x = element_text(size = rozmiarTekstu, vjust = 0),
       axis.title.y = element_text(size = rozmiarTekstu, vjust = 1),
-      legend.position = 'bottom',
+      legend.position = legendPosition,
       legend.title = element_blank(),
       legend.text = element_text(size = rozmiarTekstu * 0.7)
     )
