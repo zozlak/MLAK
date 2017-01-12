@@ -27,18 +27,18 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
     is.vector(maxRozmPkt), is.numeric(maxRozmPkt), length(maxRozmPkt) == 1, all(!is.na(maxRozmPkt)),
     is.vector(rozmiarMin), is.numeric(rozmiarMin), length(rozmiarMin) == 1, all(!is.na(rozmiarMin))
   )
-  if(is.factor(etykiety)){
+  if (is.factor(etykiety)) {
     etykiety = levels(etykiety)[etykiety]
   }
   x = naLiczbe(x)
   y = naLiczbe(y)
-  if(is.null(etykiety)){
+  if (is.null(etykiety)) {
     etykiety = rep('', length(x))
   }else{
     etykiety = as.character(etykiety)
     etykiety[is.na(etykiety)] = ''
   }
-  if(is.null(rozmiar)){
+  if (is.null(rozmiar)) {
     rozmiar = rep(1, length(x))
   }else{
     rozmiar = naLiczbe(rozmiar)
@@ -56,7 +56,7 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
   )
   dane = dane[filtr, ]
   
-  if(nrow(dane) == 0){
+  if (nrow(dane) == 0) {
     return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
   }
   
@@ -65,7 +65,7 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
   wykres = ggplot(data = dane) +
     aes(x = get('x'), y = get('y'), label = get('etykiety')) +
     geom_point()
-  if(min(dane$rozmiar, na.rm = TRUE) != max(dane$rozmiar, na.rm = TRUE)){
+  if (min(dane$rozmiar, na.rm = TRUE) != max(dane$rozmiar, na.rm = TRUE)) {
     wykres = wykres +
       geom_point(aes(size = get('rozmiar'))) +
       scale_size_continuous(name = 'Liczebność grup\na wielkość punktów', range = c(0, maxRozmPkt)) +
@@ -82,11 +82,11 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
       axis.title.y = element_text(size = rozmiarTekstu, vjust = 1)
     )
 
-  if(!is.null(opcjeWykresu)){
+  if (!is.null(opcjeWykresu)) {
     wykres = wykres + opcjeWykresu
   }
-  
-  if(rysuj){
+
+  if (rysuj) {
     suppressWarnings(print(wykres))
   }
   return(invisible(wykres))

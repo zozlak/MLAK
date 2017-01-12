@@ -30,6 +30,7 @@ wykresRozrzutuIloraz = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '
   wykres = wykresRozrzutu(x = x, y = y, etykiety = etykiety, rozmiar = rozmiar, tytul = tytul, tytulX = tytulX, tytulY = tytulY, maxRozmPkt = maxRozmPkt, rozmiarMin = rozmiarMin, rozmiarTekstu = rozmiarTekstu, rysuj = FALSE)
   dane = wykres$data
   
+  maxOffset = is.vector(etykiety) * (0.01 + maxRozmPkt * 0.004 * is.vector(rozmiar))
   wykres = suppressWarnings(
     wykres +
     coord_cartesian(
@@ -37,7 +38,7 @@ wykresRozrzutuIloraz = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '
       ylim = c(-margY, max(max(dane$y) + margY, minY))
     ) + 
     xlim(0, max(c(dane$x, minX))) + 
-    ylim(0, max(c(dane$y, minY)))
+    ylim(0, max(c(dane$y + maxOffset, minY)))
   )
   
   
