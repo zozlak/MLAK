@@ -1,11 +1,15 @@
+Zmiany w MLAK 0.8.5 (2017-01-13)
+
+  * funkcja wykresRozrzutuIloraz() zostawia na górze nieco więcej miejsca,
+    tak by wszystkie etykiety zmieściły się na wysokość
+  * domyślny styl wykresów ustawia wyśrodkowanie tytułów wykresów
+
 Zmiany w MLAK 0.8.4 (2017-01-11)
 
   * funkcja obliczDaneMiesieczne() akceptuje teraz pusty parametr "grupy()"
   * funkcja wykresLiniowy() nie wymaga więcej kolumny "seria" w przekazywanej
     ramce danych (w wypadku jej braku wyświetlany jest wykres z jedną serią
     danych i bez legendy dla serii danych)
-  * funkcja wykresRozrzutuIloraz() zostawia na górze nieco więcej miejsca,
-    tak by wszystkie etykiety zmieściły się na wysokość
 
 Zmiany w MLAK 0.8.3 (2016-10-26)
 
