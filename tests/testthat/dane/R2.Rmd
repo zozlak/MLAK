@@ -15,6 +15,7 @@ library(MLAK)
 .konfiguruj(3)
 wczytajOdbiorce('R2-odbiorcy.RData', 'R2-dane.RData')
 
+grupaGl = ROKABS == stRok & STOPIEN == stStopienN
 grupa1 = grupaGl
 grupa13 = grupaGl & ERASMUS %in% 1
 grupa14 = grupaGl & ERASMUS %in% 0

@@ -4,16 +4,15 @@
 \alias{wczytajOdbiorce}
 \title{wczytuje wskazanego odbiorcę}
 \usage{
-wczytajOdbiorce(grupy, dane = data.frame(), dane2 = data.frame(), n = 1,
-  dolacz = TRUE, kodowanie = "Windows-1250", separator = ";")
+wczytajOdbiorce(grupy, dane = list(), n = 1, dolacz = TRUE,
+  kodowanie = "Windows-1250", separator = ";")
 }
 \arguments{
 \item{grupy}{ramka danych, lista lub ścieżka do pliku CSV z definicjami grup 
 odbiorców}
 
-\item{dane}{ramka danych lub ścieżka do pliku z danymi}
-
-\item{dane2}{ramka danych lub ścieżka do pliku z dodatkowym zbiorem danych}
+\item{dane}{lista ramka danych, ścieżka do plików z danymi, lista ramek danych
+lub wektor ścieżek do plików z danymi}
 
 \item{n}{numer odbiorcy do wczytania}
 
@@ -30,12 +29,7 @@ danych (istotne tylko w wypadku plików CSV)}
 }
 \description{
 Wczytuje z ramki danych, listy lub pliku CSV/XLSX z definicjami odbiorców
-definicję
-wskazanego odbiorcy (domyślnie pierwszego).
-
-Jeśli definicja odbiorcy zawiera zmienne, które powinny zostać zewaluowane
-w kontekście danych (ich nazwa zaczyna się od kropki), dokonuje ich ewaluacji
-(i usuwa w. w. kropkę z nazw zmiennych).
+definicję wskazanego odbiorcy (domyślnie pierwszego).
 
 Do definicji odbiorcy dołączane są również przekazane dane.
 }

@@ -21,16 +21,16 @@ test_that('wczytajOdbiorce dziala z csv', {
 })
 
 test_that('wczytajOdbiorce dziala z rdata', {
-  dane = wczytajOdbiorce('dane/R2-odbiorcy.RData', 'dane/R2-dane.RData', 'dane/daneMies.RData', dolacz = FALSE)
+  dane = wczytajOdbiorce('dane/R2-odbiorcy.RData', c('dane/R2-dane.RData', 'dane/daneMies.RData'), dolacz = FALSE)
   expect_is(dane, 'list')
-  expect_equal(sapply(dane, length), setNames(c(1, 12505, rep(1, 5), rep(12505, 67), rep(120, 5)), names(dane)))
-  expect_equal(dane[c(1, 3:7)], list(grupa = '1_etap_2007', stStopienN = 1, stStopienS = '1 stopnia', stRok = 2007, stKierunek = 'Wydziału Dziennikarstwa i Nauk Politycznych', stUczelnia = 'UW'))
+  expect_equal(sapply(dane, length), setNames(c(rep(1, 6), rep(12505, 67), rep(120, 5)), names(dane)))
+  expect_equal(dane[c(1, 2:6)], list(grupa = '1_etap_2007', stStopienN = 1, stStopienS = '1 stopnia', stRok = 2007, stKierunek = 'Wydziału Dziennikarstwa i Nauk Politycznych', stUczelnia = 'UW'))
 
   dane = wczytajDane('dane/R2-dane.RData')
-  dane = wczytajOdbiorce('dane/R2-odbiorcy.RData', dane, data.frame(), 2)
+  dane = wczytajOdbiorce('dane/R2-odbiorcy.RData', list(dane, data.frame()), 2)
   expect_is(dane, 'list')
-  expect_equal(sapply(dane, length), setNames(c(1, 12505, rep(1, 5), rep(12505, 67)), names(dane)))
-  expect_equal(dane[c(1, 3:7)], list(grupa = '1_etap_2008', stStopienN = 1, stStopienS = '1 stopnia', stRok = 2008, stKierunek = 'Wydziału Dziennikarstwa i Nauk Politycznych', stUczelnia = 'UW'))
+  expect_equal(sapply(dane, length), setNames(c(rep(1, 6), rep(12505, 67)), names(dane)))
+  expect_equal(dane[c(1, 2:6)], list(grupa = '1_etap_2008', stStopienN = 1, stStopienS = '1 stopnia', stRok = 2008, stKierunek = 'Wydziału Dziennikarstwa i Nauk Politycznych', stUczelnia = 'UW'))
 })
 
 test_that('wczytajOdbiorce zglasza bledy', {

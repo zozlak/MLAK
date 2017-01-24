@@ -5,9 +5,9 @@
 \title{generuje raporty na podstawie szablonu danych oraz opisu grup
   odbiorców}
 \usage{
-generujRaporty(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame(),
-  katalogWy = "", prefiksPlikow = "", ramkiTablic = FALSE,
-  sprzataj = TRUE, kontynuujPoBledzie = TRUE)
+generujRaporty(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy = "",
+  prefiksPlikow = "", ramkiTablic = FALSE, sprzataj = TRUE,
+  kontynuujPoBledzie = TRUE)
 }
 \arguments{
 \item{plikSzablonu}{ścieżka do pliku Markdown z szablonem raportu}
@@ -15,9 +15,8 @@ generujRaporty(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame(),
 \item{grupyOdbiorcow}{ramka danych (lub lista), której kolejne elementy
 określają grupy odbiorców}
 
-\item{dane}{ramka danych lub ścieżka do pliku z danymi}
-
-\item{dane2}{ramka danych lub ścieżka do pliku z z dodatkowym zbiorem danych}
+\item{dane}{lista ramka danych, ścieżka do plików z danymi, lista ramek danych
+lub wektor ścieżek do plików z danymi}
 
 \item{katalogWy}{katalog, w którym zapisane zostaną wygenerowane raporty 
 (względem pliku szablonu); uwaga! jeśli podany, wtedy pełna ścieżka 

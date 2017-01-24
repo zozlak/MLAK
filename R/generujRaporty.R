@@ -18,8 +18,8 @@
 #' @param plikSzablonu ścieżka do pliku Markdown z szablonem raportu
 #' @param grupyOdbiorcow ramka danych (lub lista), której kolejne elementy
 #'   określają grupy odbiorców
-#' @param dane ramka danych lub ścieżka do pliku z danymi
-#' @param dane2 ramka danych lub ścieżka do pliku z z dodatkowym zbiorem danych
+#' @param dane lista ramka danych, ścieżka do plików z danymi, lista ramek danych
+#'   lub wektor ścieżek do plików z danymi
 #' @param katalogWy katalog, w którym zapisane zostaną wygenerowane raporty 
 #'   (względem pliku szablonu); uwaga! jeśli podany, wtedy pełna ścieżka 
 #'   katalogu wyjściowego nie może zawierać polskich znaków ani spacji (sic!)
@@ -33,7 +33,7 @@
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame(), katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE, kontynuujPoBledzie = TRUE){
+generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE, kontynuujPoBledzie = TRUE){
   stopifnot(
     is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
     is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),
@@ -43,55 +43,50 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame
   
   konfigurujKnitr()
   
-  if(is.character(grupyOdbiorcow)){
+  if (is.character(grupyOdbiorcow)) {
     stopifnot(
       length(grupyOdbiorcow) == 1,
       file.exists(grupyOdbiorcow)
     )
     grupyOdbiorcow = wczytajDane(grupyOdbiorcow)
   }
-  if(is.character(dane)){
-    stopifnot(
-      length(dane) == 1,
-      file.exists(dane)
-    )
-    dane = wczytajDane(dane)
-  }
-  if(is.character(dane2)){
-    stopifnot(
-      length(dane2) == 1,
-      file.exists(dane2)
-    )
-    dane2 = wczytajDane(dane2)
+  if (is.character(dane)) {
+    sciezki = dane
+    dane = list()
+    for (i in sciezki) {
+      stopifnot(
+        file.exists(i)
+      )
+      dane[[length(dane) + 1]] = wczytajDane(i)
+    }
   }
   stopifnot(
     is.data.frame(grupyOdbiorcow) | is.list(grupyOdbiorcow),
-    is.data.frame(dane),
-    is.data.frame(dane2)
+    is.list(dane)
   )
   katalogBazowy = katalogWy
-  if(katalogWy == ''){
+  if (katalogWy == '') {
     katalogWy = NULL
     katalogBazowy = sub('[^/\\]+$', '', plikSzablonu)
   }
 
-  if(ramkiTablic){
+  if (ramkiTablic) {
     katalogRoboczy = getwd()
     on.exit({setwd(katalogRoboczy)})
   }
   
   # przerabianie grup odbiorców podanych jako ramka danych na listę
-  if(is.data.frame(grupyOdbiorcow)){
+  if (is.data.frame(grupyOdbiorcow)) {
     tmp = list()
-    for(i in 1:nrow(grupyOdbiorcow)){
+    for (i in 1:nrow(grupyOdbiorcow)) {
       tmp[[i]] = as.list(grupyOdbiorcow[i, ])
     }
     names(tmp) = grupyOdbiorcow[, 1]
     grupyOdbiorcow = tmp
   }
   
-  for(i in 1:length(grupyOdbiorcow)){
-    odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, dane2, i)
+  for (i in 1:length(grupyOdbiorcow)) {
+    odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, i)
     tryCatch(
       {
         with(
@@ -112,7 +107,7 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame
       
         # przerabianie skladni tablic w pliku TeX-a i ponowna generacja PDF-a
         #TODO dodać dbanie o brak polskich znaków, spacji, itp. w nazwach plików - pdf
-        if(ramkiTablic){
+        if (ramkiTablic) {
           setwd(katalogBazowy)
           plikTex = paste0(prefiksPlikow, names(grupyOdbiorcow)[i], '.tex')
           
@@ -125,7 +120,7 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame
           tex = gsub("\\\\\\\\\\\\addlinespace", "\\\\\\\\\\\\hline", tex)
           tex = gsub('@[{][}]', '|', tex)
           wzor = '\\\\begin[{]longtable[}]\\[[a-z]\\][{][|][lcr][lcr]*[|][}]'
-          while(grepl(wzor, tex)){
+          while (grepl(wzor, tex)) {
             pozycja = regexpr(wzor, tex)
             definicja = substr(tex, pozycja, pozycja + attr(pozycja, 'match.length') - 1)
             definicja = gsub('([lcr])([lcr])', '\\1|\\2|', definicja)
@@ -136,13 +131,13 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame
           writeLines(tex, plikTex)
           
           komendaKompilacji = sprintf("pdflatex '%s'", plikTex)
-          repeat{
+          repeat {
             wyjscie = system(komendaKompilacji, intern = TRUE) 
-            if(!any(suppressWarnings(grepl('Package rerunfilecheck Warning', wyjscie)))){
+            if (!any(suppressWarnings(grepl('Package rerunfilecheck Warning', wyjscie)))) {
               break
             }
           }
-          if(sprzataj){
+          if (sprzataj) {
             unlink(c(
               plikTex,
               sub('.tex', '.out', plikTex),
@@ -155,7 +150,7 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane, dane2 = data.frame
         }
       },
       error = function(e){
-        if(!kontynuujPoBledzie){
+        if (!kontynuujPoBledzie) {
           stop(e)
         }
       }

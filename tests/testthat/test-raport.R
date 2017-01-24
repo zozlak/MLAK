@@ -5,8 +5,7 @@ test_that('generuje sie R2', {
   generujRaporty(
     plikSzablonu   = 'dane/R2.Rmd', 
     grupyOdbiorcow = 'dane/R2-odbiorcy.RData',
-    dane           = 'dane/R2-dane.RData',
-    dane2          = 'dane/daneMies.RData',
+    dane           = c('dane/R2-dane.RData', 'dane/daneMies.RData'),
     katalogWy      = '', 
     prefiksPlikow  = 'R2-',
     ramkiTablic    = FALSE,
@@ -21,8 +20,7 @@ test_that('generuje sie R3', {
   generujRaporty(
     plikSzablonu   = 'dane/R3.Rmd', 
     grupyOdbiorcow = wczytajDane('dane/R3-odbiorcy.csv'),
-    dane           = wczytajDane('dane/R3-dane.csv'),
-    dane2          = wczytajDane('dane/daneMies.RData'),
+    dane           = list(wczytajDane('dane/R3-dane.csv'), wczytajDane('dane/daneMies.RData')),
     katalogWy      = '', 
     prefiksPlikow  = 'R3-',
     ramkiTablic    = TRUE,

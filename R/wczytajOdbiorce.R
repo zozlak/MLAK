@@ -1,12 +1,7 @@
 #' @title wczytuje wskazanego odbiorcę
 #' @description
 #' Wczytuje z ramki danych, listy lub pliku CSV/XLSX z definicjami odbiorców
-#' definicję
-#' wskazanego odbiorcy (domyślnie pierwszego).
-#' 
-#' Jeśli definicja odbiorcy zawiera zmienne, które powinny zostać zewaluowane
-#' w kontekście danych (ich nazwa zaczyna się od kropki), dokonuje ich ewaluacji
-#' (i usuwa w. w. kropkę z nazw zmiennych).
+#' definicję wskazanego odbiorcy (domyślnie pierwszego).
 #' 
 #' Do definicji odbiorcy dołączane są również przekazane dane.
 #' @details Funkcja sprawdza, czy, a jeśli tak, to gdzie, w ścieżce wywołań
@@ -17,8 +12,8 @@
 #' funkcją generujRaporty().
 #' @param grupy ramka danych, lista lub ścieżka do pliku CSV z definicjami grup 
 #'   odbiorców
-#' @param dane ramka danych lub ścieżka do pliku z danymi
-#' @param dane2 ramka danych lub ścieżka do pliku z dodatkowym zbiorem danych
+#' @param dane lista ramka danych, ścieżka do plików z danymi, lista ramek danych
+#'   lub wektor ścieżek do plików z danymi
 #' @param n numer odbiorcy do wczytania
 #' @param dolacz czy dołączyć (funkcją attach) wczytane dane do środowiska, w
 #'   którym funkcja została uruchomiona
@@ -27,7 +22,7 @@
 #' @param separator separator plików CSV (istotny tylko w wypadku plików CSV)
 #' @return [list] definicja odbiorcy
 #' @export
-wczytajOdbiorce = function(grupy, dane = data.frame(), dane2 = data.frame(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250', separator = ';'){
+wczytajOdbiorce = function(grupy, dane = list(), n = 1, dolacz = TRUE, kodowanie = 'Windows-1250', separator = ';'){
   # aby nie było potrzebne oddzielne wywolywanie przy generowaniu raportu
   # wprost z RStudio
   konfigurujKnitr()
@@ -40,63 +35,44 @@ wczytajOdbiorce = function(grupy, dane = data.frame(), dane2 = data.frame(), n =
   }))
   pozShiny = any(grepl('shiny::runApp', stos))
   pozGenRap = suppressWarnings(max(seq_along(stos)[grepl('^generujRaporty', stos)]))
-  if(pozShiny | length(pozGenRap) > 0 & pozGenRap != length(stos) - 1 & !is.infinite(pozGenRap)){
+  if (pozShiny | length(pozGenRap) > 0 & pozGenRap != length(stos) - 1 & !is.infinite(pozGenRap)) {
     return(ifelse(dolacz, invisible(list()), list()))
   }
   
-  if(is.character(grupy)){
+  if (is.character(grupy)) {
     stopifnot(
       length(grupy) == 1,
       file.exists(grupy)
     )
     grupy = wczytajDane(grupy, kodowanie, separator)
   }
-  if(is.character(dane)){
-    stopifnot(
-      length(dane) == 1,
-      file.exists(dane)
-    )
-    dane = wczytajDane(dane, kodowanie, separator)
-  }
-  if(is.character(dane2)){
-    stopifnot(
-      length(dane2) == 1,
-      file.exists(dane2)
-    )
-    dane2 = wczytajDane(dane2, kodowanie, separator)
+  if (is.character(dane)) {
+    sciezki = dane
+    dane = list()
+    for (i in sciezki) {
+      stopifnot(
+        file.exists(i)
+      )
+      dane[[length(dane) + 1]] = wczytajDane(i, kodowanie, separator)
+    }
   }
   stopifnot(
-    is.list(grupy) | is.data.frame(grupy),
-    is.data.frame(dane),
-    is.data.frame(dane2)
+    is.list(grupy) | is.data.frame(grupy)
   )
   
-  if(is.data.frame(grupy)){
+  if (is.data.frame(grupy)) {
     odbiorca = grupy[n, ]
-  }else{
+  } else {
     odbiorca = grupy[[n]]
   }
-
+  
   odbiorca = as.list(odbiorca)
-  kolEval = grep('^[.]', names(odbiorca), value = T)
-
-  if(length(kolEval) > 0){
-    odbiorca = with(
-      dane,
-      {
-        for(i in kolEval){
-          odbiorca[[i]] = eval(parse(text = odbiorca[[i]]))
-        }
-        return(odbiorca)
-      }
-    )
+  for (i in dane) {
+    odbiorca = append(odbiorca, as.list(i))
   }
 
-  names(odbiorca) = sub('^[.]', '', names(odbiorca))  
-  
-  odbiorca = append(append(odbiorca, dane), dane2)
-  if(dolacz){
-    while(any(grepl('^odbiorca$', search()))){
+  if (dolacz) {
+    while (any(grepl('^odbiorca$', search()))) {
       detach(pos = grep('^odbiorca$', search()))
     }
     suppressWarnings(attach(odbiorca))

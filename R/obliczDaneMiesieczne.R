@@ -67,7 +67,7 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
   if (length(dataRel) > 0) {
     if (is.character(unlist(dane[, dataRel]))) {
       dane = dane %>%
-        mutate_(.dots = setNames(paste0('MLAK:::data2okres(', dataRel, ')'), dataRel))
+        mutate_(.dots = stats::setNames(paste0('MLAK:::data2okres(', dataRel, ')'), dataRel))
     }
     if (is.character(unlist(dane$OKRES))) {
       dane = dane %>%
@@ -81,21 +81,21 @@ obliczDaneMiesieczne = function(daneAbs, daneMies, zmienne, grupy = character(),
     group_by_(.dots = c('OKRES', grupy))
   flaga = TRUE
   try({
-    zmienneWynik = setNames(as.list(paste0(statystyka, '(', zmienne, ', na.rm = TRUE)')), zmienne)
+    zmienneWynik = stats::setNames(as.list(paste0(statystyka, '(', zmienne, ', na.rm = TRUE)')), zmienne)
     zmienneWynik$n = 'n()'
     dane = dane %>%
       summarize_(.dots = zmienneWynik)
     flaga = FALSE
   }, silent = TRUE)
   if (flaga) {
-    zmienneWynik = setNames(as.list(paste0(statystyka, '(', zmienne, ')')), zmienne)
+    zmienneWynik = stats::setNames(as.list(paste0(statystyka, '(', zmienne, ')')), zmienne)
     zmienneWynik$n = 'n()'
     dane = dane %>%
       summarize_(.dots = zmienneWynik)
   }
   
   if (length(grupy) > 0) {
-    zmienneGrupy = setNames(paste0('paste(', paste0(grupy, collapse = ', '), ')'), 'seria')
+    zmienneGrupy = stats::setNames(paste0('paste(', paste0(grupy, collapse = ', '), ')'), 'seria')
     filtr = paste0('!is.na(', grupy, ')', collapse = ' | ')
     dane = dane %>%
       filter_(filtr) %>%

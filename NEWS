@@ -1,252 +1,258 @@
-Zmiany w MLAK 0.8.5 (2017-01-13)
+# Zmiany w MLAK 0.9.0 (2017-01-24)
 
-  * funkcja wykresRozrzutuIloraz() zostawia na górze nieco więcej miejsca,
-    tak by wszystkie etykiety zmieściły się na wysokość
-  * domyślny styl wykresów ustawia wyśrodkowanie tytułów wykresów
+* funkcja wczytajOdbiorce() może obecnie wczytać dowolną liczbę zbiorów 
+  danych - są one przekazywane w postaci wektora ścieżek do plików lub
+  listy ramek danych
+* usunięcie z funkcji wczytajOdbiorce() możliwości ewaluacji zmiennych ze
+  zbioru odbiorców w środowisku wczytanych danych - było to niewykorzystywane
+  dziedzictwo po raporterze Marka Stycznia, a właściwy dla MLAK-a sposób
+  to umieszczenie stosownych kodów w szablonie raportu
 
-Zmiany w MLAK 0.8.4 (2017-01-11)
+# Zmiany w MLAK 0.8.5 (2017-01-13)
 
-  * funkcja obliczDaneMiesieczne() akceptuje teraz pusty parametr "grupy()"
-  * funkcja wykresLiniowy() nie wymaga więcej kolumny "seria" w przekazywanej
-    ramce danych (w wypadku jej braku wyświetlany jest wykres z jedną serią
-    danych i bez legendy dla serii danych)
+* funkcja wykresRozrzutuIloraz() zostawia na górze nieco więcej miejsca,
+  tak by wszystkie etykiety zmieściły się na wysokość
+* domyślny styl wykresów ustawia wyśrodkowanie tytułów wykresów
 
-Zmiany w MLAK 0.8.3 (2016-10-26)
+# Zmiany w MLAK 0.8.4 (2017-01-11)
 
-  * dodana funkcja .konfiguruj() umożliwiająca ustawienie progu anonimizacji
-    funkcji giodo()
+* funkcja obliczDaneMiesieczne() akceptuje teraz pusty parametr "grupy()"
+* funkcja wykresLiniowy() nie wymaga więcej kolumny "seria" w przekazywanej
+  ramce danych (w wypadku jej braku wyświetlany jest wykres z jedną serią
+  danych i bez legendy dla serii danych)
 
-Zmiany w MLAK 0.8.2 (2016-09-21)
+# Zmiany w MLAK 0.8.3 (2016-10-26)
 
-  * funkcja P() (a co za tym idzie także Pw()) zyskała domyślną wartość 
-    parametru "w" równą TRUE
-    dzięki temu zapis "P(zmienna > 5)" automatycznie zliczy odsetek wartości
-    zmiennej większych od 5
-  * poprawione domyślne parametry formatowania wykresu liniowego
-  * dodanie paramtertu xNMax do funkcji wykresLiniow() umożliwiającego 
-    sterowanie liczbą wyświetlanych etykiet osi X
-  * dplyr przeniesiony do Depends, aby nie trzeba go było ładować w szablonie 
-    raportu
-  * rozwiązany problem z brakiem dostępu do funkcji data2okres() w bebechach
-    obliczDaneMiesieczne()
-  * obliczDaneMiesieczne() pomija agregaty, dla których nazwa serii jest 
-    brakiem danych
+* dodana funkcja .konfiguruj() umożliwiająca ustawienie progu anonimizacji
+  funkcji giodo()
 
-Zmiany w MLAK 0.8.1 (2016-09-17)
+# Zmiany w MLAK 0.8.2 (2016-09-21)
 
-  * poprawione pokrycie testami
+* funkcja P() (a co za tym idzie także Pw()) zyskała domyślną wartość 
+  parametru "w" równą TRUE
+  dzięki temu zapis "P(zmienna > 5)" automatycznie zliczy odsetek wartości
+  zmiennej większych od 5
+* poprawione domyślne parametry formatowania wykresu liniowego
+* dodanie paramtertu xNMax do funkcji wykresLiniow() umożliwiającego 
+  sterowanie liczbą wyświetlanych etykiet osi X
+* dplyr przeniesiony do Depends, aby nie trzeba go było ładować w szablonie 
+  raportu
+* rozwiązany problem z brakiem dostępu do funkcji data2okres() w bebechach
+  obliczDaneMiesieczne()
+* obliczDaneMiesieczne() pomija agregaty, dla których nazwa serii jest 
+  brakiem danych
 
-Zmiany w MLAK 0.8.0 (2016-09-16)
+# Zmiany w MLAK 0.8.1 (2016-09-17)
 
-  * funkcje wczytajOdbiorce() i generujRaporty() zyskaly parametr 
-    "daneMiesieczne" umozliwiajacy wczytywanie danych miesięcznych
-    - zmiana kolejności argumentów w funkcji generujRaporty()
-  * dodano funkcje obliczDaneMiesieczne() oraz wykresLiniowy() umożliwiające
-    generowanie wykresów miesięcznych
+* poprawione pokrycie testami
 
-Zmiany w MLAK 0.7.6 (2016-05-13)
+# Zmiany w MLAK 0.8.0 (2016-09-16)
 
-  * funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() zyskały argument
-    rozmiarMin umożliwiający ustawienie progu anonimizacji danych
+* funkcje wczytajOdbiorce() i generujRaporty() zyskaly parametr 
+  "daneMiesieczne" umozliwiajacy wczytywanie danych miesięcznych
+  - zmiana kolejności argumentów w funkcji generujRaporty()
+* dodano funkcje obliczDaneMiesieczne() oraz wykresLiniowy() umożliwiające
+  generowanie wykresów miesięcznych
 
-Zmiany w MLAK 0.7.5 (2016-05-09)
+# Zmiany w MLAK 0.7.6 (2016-05-13)
 
-  * funkcje wykresKolowy(), wykresKolowyNorm() oraz wykresHistogram() pomijają
-    teraz nie tylko braki danych, ale także wartości nieskończone oraz NaN
-  * uodpornienie funkcji wykresHistogram() na występowanie w danych tylko 
-    jednej wartości
-  * dodanie na.rm = TRUE do wywołania quantile() w funkcji Q()
+* funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() zyskały argument
+  rozmiarMin umożliwiający ustawienie progu anonimizacji danych
 
-Zmiany w MLAK 0.7.4 (2016-05-06)
+# Zmiany w MLAK 0.7.5 (2016-05-09)
 
-  * funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() nie generują już
-    ostrzeżeń w wypadku przekazania im pustych danych
-  * dodanie parametru kontynuujPoBledzie do funkcji generujRaporty()
-    umożliwia on kontynuowanie generowania raportów w wypadku, gdy przy 
-    generowaniu niektórych z nich wystąpiły błędy
-  * korekta w funkcji generujHistogram() - w wypadku przekazania danych 
-    będących tekstem lub factorem stosowana jest teraz geom_bar()
+* funkcje wykresKolowy(), wykresKolowyNorm() oraz wykresHistogram() pomijają
+  teraz nie tylko braki danych, ale także wartości nieskończone oraz NaN
+* uodpornienie funkcji wykresHistogram() na występowanie w danych tylko 
+  jednej wartości
+* dodanie na.rm = TRUE do wywołania quantile() w funkcji Q()
 
-Zmiany w MLAK 0.7.3 (2016-04-30)
+# Zmiany w MLAK 0.7.4 (2016-05-06)
 
-  * Funkcja wczytajDane() obsluguje teraz rowniez format XLSX (wczytywany jest
-    zawsze pierwszy arkusz zakladajac, ze w pierwszym wierszu znajduja sie nazwy
-    kolumn)
+* funkcje wykresRozrzutu() oraz wykresRozrzutuIloraz() nie generują już
+  ostrzeżeń w wypadku przekazania im pustych danych
+* dodanie parametru kontynuujPoBledzie do funkcji generujRaporty()
+  umożliwia on kontynuowanie generowania raportów w wypadku, gdy przy 
+  generowaniu niektórych z nich wystąpiły błędy
+* korekta w funkcji generujHistogram() - w wypadku przekazania danych 
+  będących tekstem lub factorem stosowana jest teraz geom_bar()
 
-Zmiany w MLAK 0.7.2 (2015-12-10)
+# Zmiany w MLAK 0.7.3 (2016-04-30)
 
-  * Funkcja statWektor(), stanowiąca podstawę większości funkcji wyliczających
-    statystyki, przed przekazaniem danych do anonimizacji funkcją giodo() usuwa
-    braki danych.
+* Funkcja wczytajDane() obsluguje teraz rowniez format XLSX (wczytywany jest
+  zawsze pierwszy arkusz zakladajac, ze w pierwszym wierszu znajduja sie nazwy
+  kolumn)
 
-Zmiany w MLAK 0.7.1 (2015-11-25)
+# Zmiany w MLAK 0.7.2 (2015-12-10)
 
-  * Zamiana kolejności argumentów "rozmiar" i "etykiety" funkcji
-    wykresRozrzutuIloraz()
-  * wykresRozrzutuIloraz() rysuje legendę rozmiaru punktu tylko jeśli rozmiar
-    punktu nie jest jednakowy dla wszystkich obserwacji
-  * wykresRozrzutuIloraz() rysuje etykiety punktów przesunięte stosownie do
-    rozmiaru punktu (tak by nie zachodziły na punkt)
-  * Dodanie funkcji wykresRozrzutuIloraz(), która obudowuje funkcję 
-    wykresRozrzutu() wartościami domyślnymi dla skali właściwymi dla
-    pokazywania zmiennych o charakterze ilorazowym
-  * Dodanie parametru szMin funkcji TAB() zapewniajacego możliwość uzyskania
-    poprawnego podzialu na kolumny nawet w wypadku tabel o bardzo 
-    niezrównoważonym rozkładzie szerokości treści w kolumnach.
+* Funkcja statWektor(), stanowiąca podstawę większości funkcji wyliczających
+  statystyki, przed przekazaniem danych do anonimizacji funkcją giodo() usuwa
+  braki danych.
 
-Zmiany w MLAK 0.7.0 (2015-11-19)
+# Zmiany w MLAK 0.7.1 (2015-11-25)
 
-  * Dostrajanie funkcji wykresRozrzutu()
+* Zamiana kolejności argumentów "rozmiar" i "etykiety" funkcji
+  wykresRozrzutuIloraz()
+* wykresRozrzutuIloraz() rysuje legendę rozmiaru punktu tylko jeśli rozmiar
+  punktu nie jest jednakowy dla wszystkich obserwacji
+* wykresRozrzutuIloraz() rysuje etykiety punktów przesunięte stosownie do
+  rozmiaru punktu (tak by nie zachodziły na punkt)
+* Dodanie funkcji wykresRozrzutuIloraz(), która obudowuje funkcję 
+  wykresRozrzutu() wartościami domyślnymi dla skali właściwymi dla
+  pokazywania zmiennych o charakterze ilorazowym
+* Dodanie parametru szMin funkcji TAB() zapewniajacego możliwość uzyskania
+  poprawnego podzialu na kolumny nawet w wypadku tabel o bardzo 
+  niezrównoważonym rozkładzie szerokości treści w kolumnach.
 
-Zmiany w MLAK 0.7.0 (2015-11-06)
+# Zmiany w MLAK 0.7.0 (2015-11-06)
 
-  * Dodanie funkcji bMod() zwracającej błąd modalnej
-  * Zmiany w funkcji TAB():
-    - Znaczne usprawnienie rozpoznawania kolumn liczbowych (które są 
+* Dodanie funkcji bMod() zwracającej błąd modalnej
+* Zmiany w funkcji TAB():
+    * Znaczne usprawnienie rozpoznawania kolumn liczbowych (które są 
       wyrównywane do prawej)
-    - Dodanie możliwości automatycznego dołączania jako pierwszej kolumny
+    * Dodanie możliwości automatycznego dołączania jako pierwszej kolumny
       kolumny z liczbą porządkową (parametr "dodajLp")
-    - Dodanie możliwości anonimizacji danych poprzez wskazanie nazwy kolumny
+    * Dodanie możliwości anonimizacji danych poprzez wskazanie nazwy kolumny
       z liczbą obserwacji (parametr "kolN"), minimalnej liczby obserwacji
       (parametr "nMin", domyślnie 10) oraz wyrażenia regularnego opisującego
       nazwy kolumn, których nie należy anonimizować (parametr "pomin")
-  * Dodanie do funkcji wczytajOdbiorce() opcjonalnego parametru "sep"
-    umożliwiającego ustawienie separatora plików CSV
-  * Zmiany w sposobie działania parametru "wyrownaj":
-    - zmiana domyślnej wartości na NA
-    - jeśli wartością jest NA, to wartość ustawiana jest na podstawie analizy
+* Dodanie do funkcji wczytajOdbiorce() opcjonalnego parametru "sep"
+  umożliwiającego ustawienie separatora plików CSV
+* Zmiany w sposobie działania parametru "wyrownaj":
+    * zmiana domyślnej wartości na NA
+    * jeśli wartością jest NA, to wartość ustawiana jest na podstawie analizy
       stosu wywołań - na TRUE, jeśli process_group.inline() lub
       process_group.block() są oddalone w stosie wywołań o, odpowiednio 8 lub 
       12 wywołań od funkcji ustawWyrownaj()
-  * Zmiana sposoby działania anonimizacji - w wypadku, gdy parametr
-    "wyrownaj" ma wartość FALSE (czy to dlatego, że został podany explicite,
-    czy dlatego, że tak zadecydował automat), wtedy jako wartość zanonimizowana
-    (lub niepoprawna) zwracane jest NA.
-    Dzięki temu znacznie łatwiejsze stało się używanie funkcji pomocniczych 
-    wewnątrz normalnych funkcji R (np. w summarize()/mutate() z pakietu dplyr)
-  * Dzięki dwóm powyższym udało się odejść od wielkiego hackowania w funkcji
-    wyrownajDl() próbującego wykryć wywołanie wewnątrz
+* Zmiana sposoby działania anonimizacji - w wypadku, gdy parametr
+  "wyrownaj" ma wartość FALSE (czy to dlatego, że został podany explicite,
+  czy dlatego, że tak zadecydował automat), wtedy jako wartość zanonimizowana
+  (lub niepoprawna) zwracane jest NA.
+  Dzięki temu znacznie łatwiejsze stało się używanie funkcji pomocniczych 
+  wewnątrz normalnych funkcji R (np. w summarize()/mutate() z pakietu dplyr)
+* Dzięki dwóm powyższym udało się odejść od wielkiego hackowania w funkcji
+  wyrownajDl() próbującego wykryć wywołanie wewnątrz
   
-Zmiany w MLAK 0.6.7 (2015-10-20)
+# Zmiany w MLAK 0.6.7 (2015-10-20)
 
-  * Dodanie opcjonalnego parametru "pomijajEtykiety" do funkcji 
-    wykresHistogram(), który pozwala sterować pomijaniem etykiet osi X
-  * Uodpornienie funkcji TAB() na braki danych w przekazanych wartościach
+* Dodanie opcjonalnego parametru "pomijajEtykiety" do funkcji 
+  wykresHistogram(), który pozwala sterować pomijaniem etykiet osi X
+* Uodpornienie funkcji TAB() na braki danych w przekazanych wartościach
 
-Zmiany w MLAK 0.6.6 (2015-10-19)
+# Zmiany w MLAK 0.6.6 (2015-10-19)
 
-  * Dodanie opcjonalnego parametru "kodowanie" do funkcji wczytajOdbiorce()
-    (oraz wewnętrznej funkcji wczytajDane()), co umożliwia radzenie sobie
-    z plikami wygenerowanymi na Mac-ach
-  * Funkcja wykresHistogram() pomija wybrane etykiety osi X, jeśli podejrzewa,
-    że mogłyby one zachodzić na inne
+* Dodanie opcjonalnego parametru "kodowanie" do funkcji wczytajOdbiorce()
+  (oraz wewnętrznej funkcji wczytajDane()), co umożliwia radzenie sobie
+  z plikami wygenerowanymi na Mac-ach
+* Funkcja wykresHistogram() pomija wybrane etykiety osi X, jeśli podejrzewa,
+  że mogłyby one zachodzić na inne
  
-Zmiany w MLAK 0.6.5 (2015-10-13)
+# Zmiany w MLAK 0.6.5 (2015-10-13)
 
-  * Dodanie eksperymentalnej wersji funkcji wykresRozrzutu()
-  * Uodpornienie funkcji wyrownajDl() na bardzo długi kod wywołania pierwotnej
-    funkcji (gdzie deparse() zwraca wieloelementowy wektor znaków)
-  * Uodpornienie funkcji wyrownajDl() na wywołania wewnątrz dplyr-owych 
-    summarize()/summarise() i mutate(). Obecnie wyrownajDl() wykrywa wywołanie
-    wewnątrz nich i w takim wypadku porzuca wyrównywanie wartości.
+* Dodanie eksperymentalnej wersji funkcji wykresRozrzutu()
+* Uodpornienie funkcji wyrownajDl() na bardzo długi kod wywołania pierwotnej
+  funkcji (gdzie deparse() zwraca wieloelementowy wektor znaków)
+* Uodpornienie funkcji wyrownajDl() na wywołania wewnątrz dplyr-owych 
+  summarize()/summarise() i mutate(). Obecnie wyrownajDl() wykrywa wywołanie
+  wewnątrz nich i w takim wypadku porzuca wyrównywanie wartości.
 
-Zmiany w MLAK 0.6.4 (2015-10-08)
+# Zmiany w MLAK 0.6.4 (2015-10-08)
 
-  * Obrócenie etykiet osi X w histogramach o 90 stopni
+* Obrócenie etykiet osi X w histogramach o 90 stopni
 
-Zmiany w MLAK 0.6.3 (2015-07-25)
+# Zmiany w MLAK 0.6.3 (2015-07-25)
 
-  * Obniżenie progów w funkcji giodo() do 3 osób i dostosowanie testów
+* Obniżenie progów w funkcji giodo() do 3 osób i dostosowanie testów
 
-Zmiany w MLAK 0.6.2 (2015-07-22)
+# Zmiany w MLAK 0.6.2 (2015-07-22)
 
-  * Zmiana zachowania funkcji rysujących wykresy w wypadku napotkania 
-    niepoprawnych danych - teraz rysują one pusty wykres.
-    Powinno tak być, gdyż na skutek anonimizacji dane przekazane do wykresów
-    mogą nie być poprawne i nie powinno to powodować niegenerowania się raportu
-  * Korekta wyliczania wysokości słupków w funkcji wykresHistogram()
+* Zmiana zachowania funkcji rysujących wykresy w wypadku napotkania 
+  niepoprawnych danych - teraz rysują one pusty wykres.
+  Powinno tak być, gdyż na skutek anonimizacji dane przekazane do wykresów
+  mogą nie być poprawne i nie powinno to powodować niegenerowania się raportu
+* Korekta wyliczania wysokości słupków w funkcji wykresHistogram()
 
-Zmiany w MLAK 0.6.1 (2015-07-21)
+# Zmiany w MLAK 0.6.1 (2015-07-21)
 
-  * Zmodyfikowanie funkcji wykresHistogram() tak by pole słupków odpowiadało
-    częstości, a wysokość gęstości prawdopodobieństwa
-  * Zmiana domyślnej wartości parametru ramkiTablic funkcji generujRaporty()
-    na FALSE na skutek odnotowywanych problemów dla wartości TRUE
-  * Dodanie do wszystkich funkcji rysujących wykresy parametru rysuj = TRUE.
-    Kiedy ma wartość TRUE, funkcja sama rysuje wykres (i zwraca obiekt wykresu
-    opakowany w invisible()). Jeśli FALSE, wtedy funkcja jedynie zwraca obiekt
-    wykresu.
-    Pozwala to łatwo rysować histogramy z pominięciem ostrzeżenia o nierównych
-    szerokościach słupków
-  * Dodanie parametru dolacz = TRUE do funkcji wczytajOdbiorce().
-    Powoduje on wykonanie attach() na przygotowanych danych, przy okazji dbając
-    o odłączenie (detach) danych wczytanych poprzednio, co skraca zapis (nie 
-    trzeba już pisać "attach(wczytajOdbiorce(...))", wystarczy 
-    "wczytajOdbiorce(...)") i pozwala uniknąć komunikatów ostrzeżeń.
+* Zmodyfikowanie funkcji wykresHistogram() tak by pole słupków odpowiadało
+  częstości, a wysokość gęstości prawdopodobieństwa
+* Zmiana domyślnej wartości parametru ramkiTablic funkcji generujRaporty()
+  na FALSE na skutek odnotowywanych problemów dla wartości TRUE
+* Dodanie do wszystkich funkcji rysujących wykresy parametru rysuj = TRUE.
+  Kiedy ma wartość TRUE, funkcja sama rysuje wykres (i zwraca obiekt wykresu
+  opakowany w invisible()). Jeśli FALSE, wtedy funkcja jedynie zwraca obiekt
+  wykresu.
+  Pozwala to łatwo rysować histogramy z pominięciem ostrzeżenia o nierównych
+  szerokościach słupków
+* Dodanie parametru dolacz = TRUE do funkcji wczytajOdbiorce().
+  Powoduje on wykonanie attach() na przygotowanych danych, przy okazji dbając
+  o odłączenie (detach) danych wczytanych poprzednio, co skraca zapis (nie 
+  trzeba już pisać "attach(wczytajOdbiorce(...))", wystarczy 
+  "wczytajOdbiorce(...)") i pozwala uniknąć komunikatów ostrzeżeń.
     
-Zmiany w MLAK 0.6.0 (2015-07-19)
+# Zmiany w MLAK 0.6.0 (2015-07-19)
 
-  * Dodanie funkcji TAB() umożliwiającej rysowanie tablic o nieznanej z góry
-    liczbie wierszy.
+* Dodanie funkcji TAB() umożliwiającej rysowanie tablic o nieznanej z góry
+  liczbie wierszy.
 
-Zmiany w MLAK 0.5.5 (2015-07-17)
+# Zmiany w MLAK 0.5.5 (2015-07-17)
 
-  * Korekta generowania ramek tablic - usunięty błąd występujący w przypadku
-    osadzania wykresów
+* Korekta generowania ramek tablic - usunięty błąd występujący w przypadku
+  osadzania wykresów
 
-Zmiany w MLAK 0.5.4 (2015-07-07)
+# Zmiany w MLAK 0.5.4 (2015-07-07)
 
-  * Korekta generowania ramek tablic, odporna na różne sposoby generowania
-    nowych linii (zdiagnozowane na Mac-u, ale być może wynika po prostu z
-    różnic w wersji Pandoc-a).
-    Niestety generowanie ramek nadal nie działa pod Windows-ami ze względu na
-    problemy z kodowaniem znaków w generowanym przez Pandoc-a pliku Tex-a
-    (jest to jakaś wielobajtówka, ale na pewno nie UTF-8)
+* Korekta generowania ramek tablic, odporna na różne sposoby generowania
+  nowych linii (zdiagnozowane na Mac-u, ale być może wynika po prostu z
+  różnic w wersji Pandoc-a).
+  Niestety generowanie ramek nadal nie działa pod Windows-ami ze względu na
+  problemy z kodowaniem znaków w generowanym przez Pandoc-a pliku Tex-a
+  (jest to jakaś wielobajtówka, ale na pewno nie UTF-8)
 
-Zmiany w MLAK 0.5.3 (2015-06-17)
+# Zmiany w MLAK 0.5.3 (2015-06-17)
 
-  * Dodanie argumentu ramkiTablic = TRUE w funkcji generujRaporty(), który
-    reguluje, czy w wynikowych plikach PDF tabele mają posiadać pełne ramki.
-    Ramki uzyskiwane są poprzez postprocesing wygenerowanego z szablonu
-    markdown pliku TeX-a, a następnie ponowne wygenerowanie na jego podstawie 
-    pliku PDF raportu.
+* Dodanie argumentu ramkiTablic = TRUE w funkcji generujRaporty(), który
+  reguluje, czy w wynikowych plikach PDF tabele mają posiadać pełne ramki.
+  Ramki uzyskiwane są poprzez postprocesing wygenerowanego z szablonu
+  markdown pliku TeX-a, a następnie ponowne wygenerowanie na jego podstawie 
+  pliku PDF raportu.
 
-Zmiany w MLAK 0.5.2 (2015-04-18)
+# Zmiany w MLAK 0.5.2 (2015-04-18)
 
-  * Korekta w funkcji wczytajDane() umożliwiająca poprawne decydowanie o tym,
-    czy dane odbiorcy powinny zostać wczytane
-  * Nowe testy
+* Korekta w funkcji wczytajDane() umożliwiająca poprawne decydowanie o tym,
+  czy dane odbiorcy powinny zostać wczytane
+* Nowe testy
 
-Zmiany w MLAK 0.5.1 (2015-04-09)
+# Zmiany w MLAK 0.5.1 (2015-04-09)
 
-  * Wyniki są anonimizowane dla zbiorowości liczących mniej niż 5 osób.
-  * W wypadku, gdy wynik jest brakiem danych, nieskończonościa (np. dzielenie
-    przez 0) lub NaN-em, zwracane jest '-' (jak przy anonimizacji)
-  * R, R2, Tau poprawnie zwracają wynik nieliczbowy ('-' np. na skutek 
-    anonimizacji) przy braku wyrównania wyjścia
-  * Dodanie testów generujących próbne raporty R2 i R3
-  * Dodanie obsługi braków danych do funkcji G()
-  * Dopisanie testów dla funkcji Q(), Me(), E(), W() oraz G()
-  * Funkcja wstawTresc() osadza teraz wykonywany kod w środowisku, w jakim
-    sama została wykonana
+* Wyniki są anonimizowane dla zbiorowości liczących mniej niż 5 osób.
+* W wypadku, gdy wynik jest brakiem danych, nieskończonościa (np. dzielenie
+  przez 0) lub NaN-em, zwracane jest '-' (jak przy anonimizacji)
+* R, R2, Tau poprawnie zwracają wynik nieliczbowy ('-' np. na skutek 
+  anonimizacji) przy braku wyrównania wyjścia
+* Dodanie testów generujących próbne raporty R2 i R3
+* Dodanie obsługi braków danych do funkcji G()
+* Dopisanie testów dla funkcji Q(), Me(), E(), W() oraz G()
+* Funkcja wstawTresc() osadza teraz wykonywany kod w środowisku, w jakim
+  sama została wykonana
   
-Zmiany w MLAK 0.5.0 (2015-04-03)
+# Zmiany w MLAK 0.5.0 (2015-04-03)
 
-  * Funkcje pomocnicze dokonują teraz zaokrągleń wartości zgodnie z parametrem
-    "dokl", także wtedy, kiedy parametr "wyrownaj" ma wartość FALSE
-  * Dodanie funkcji pomocniczych R, R2 oraz Tau liczących współczynnik
-    korelacji liniowej, jego kwadrat oraz korelację rangową Kendalla
+* Funkcje pomocnicze dokonują teraz zaokrągleń wartości zgodnie z parametrem
+  "dokl", także wtedy, kiedy parametr "wyrownaj" ma wartość FALSE
+* Dodanie funkcji pomocniczych R, R2 oraz Tau liczących współczynnik
+  korelacji liniowej, jego kwadrat oraz korelację rangową Kendalla
 
-Zmiany w MLAK 0.4.8 (2015-04-01)
+# Zmiany w MLAK 0.4.8 (2015-04-01)
 
-  * Dodanie światła pomiędzy etykietami legendy w wykresach (niestety nie ma
-    sposobu na dodanie światła pomiędzy kolorowymi polami [sic!])
-  * Dodanie parametru "sufiksY" do funkcji wykresSlupkowy() umożliwiającego
-    dodanie do etykiet osi Y wybranego sufiksu (np. '%')
+* Dodanie światła pomiędzy etykietami legendy w wykresach (niestety nie ma
+  sposobu na dodanie światła pomiędzy kolorowymi polami [sic!])
+* Dodanie parametru "sufiksY" do funkcji wykresSlupkowy() umożliwiającego
+  dodanie do etykiet osi Y wybranego sufiksu (np. '%')
 
-Zmiany w MLAK 0.4.7 (2015-03-27)
+# Zmiany w MLAK 0.4.7 (2015-03-27)
 
-  * Zmiany w rysowaniu wykresów:
+* Zmiany w rysowaniu wykresów:
     * przeniesienie legendy na prawą stronę wykresu, co pozwala rozwiązać
       problem z niemieszczeniem się legendy dla dużej liczby kategorii
       na wykresie (w dół wykres może się rozszerzać dość swobodnie, w szerz
@@ -259,47 +265,47 @@ Zmiany w MLAK 0.4.7 (2015-03-27)
       alfabetycznie)
     * dostosowanie domyślnych wielkości czcionki elementów wykresu
 
-Zmiany w MLAK 0.4.6 (2015-03-25)
+# Zmiany w MLAK 0.4.6 (2015-03-25)
 
-  * Dodanie funkcji pomocniczej Pw(), która oblicza odsetek wystąpień, jak P(),
-    ale w podstawie procentowania pomija braki danych.
-  * Ujednolicenie sposobu konwersji danych wejściowych na liczby w funkcjach
-    wykresKolowy(), wykresKolowyNorm() oraz wykresSlupkowy()
+* Dodanie funkcji pomocniczej Pw(), która oblicza odsetek wystąpień, jak P(),
+  ale w podstawie procentowania pomija braki danych.
+* Ujednolicenie sposobu konwersji danych wejściowych na liczby w funkcjach
+  wykresKolowy(), wykresKolowyNorm() oraz wykresSlupkowy()
     * wykresSlupkowy() poprawnie obsługuje wyniki z funkcji P() i Pw(), także
       jeśli te zawierając wyniki sformatowane jako tekst (np. "48%")
 
-Zmiany w MLAK 0.4.5 (2015-03-17)
+# Zmiany w MLAK 0.4.5 (2015-03-17)
 
-  * Korekta w funkcji konfigurujKnitr() usuwająca litanię warningów
-    wyskakujących przy każdym wykresie na Mac-ach
-  * Korekta sposobu wyliczania przedziałów przez funkcję wykresHistogram()
-    usuwająca pojawianie się ostrzeżenia "position_stack requires constant 
-    width: output may be incorrect"
-  * Podzielenie funkcji wykresKolowy() na trzy funkcje:
-    - wykresKolowy(), która rysuje dokładnie te wartości, które otrzyma
-    - wykresKolowyNorm(), która przed narysowaniem normalizuje wartości do 100%
-    - wykresKolowyZlicz(), która rysuje odsetki wystąpień poszczególnych 
+* Korekta w funkcji konfigurujKnitr() usuwająca litanię warningów
+  wyskakujących przy każdym wykresie na Mac-ach
+* Korekta sposobu wyliczania przedziałów przez funkcję wykresHistogram()
+  usuwająca pojawianie się ostrzeżenia "position_stack requires constant 
+  width: output may be incorrect"
+* Podzielenie funkcji wykresKolowy() na trzy funkcje:
+    * wykresKolowy(), która rysuje dokładnie te wartości, które otrzyma
+    * wykresKolowyNorm(), która przed narysowaniem normalizuje wartości do 100%
+    * wykresKolowyZlicz(), która rysuje odsetki wystąpień poszczególnych 
       wartości w przekazanych danych
 
-Zmiany w MLAK 0.4.4 (2015-03-14)
+# Zmiany w MLAK 0.4.4 (2015-03-14)
 
-  * Dodanie argumentu "znakProcent" do funkcji pomocniczej P() pozwalającego
-    (co jest akcja domyślną) dopisać na końcu zwracanej wartości znak '%'
-  * Poprawienie błędu w funkcji wykresHistogram() polegającego na gubieniu
-    nazw rysowanych wartości podczas konwersji wartości na wektor liczbowy
-  * Korekta w funkcji konfigurujKnitr() chroniąca przed błędem w wypadku 
-    wywołania jej przed ustawieniem knitr-owi formatu wyjściowego dokumentu.
+* Dodanie argumentu "znakProcent" do funkcji pomocniczej P() pozwalającego
+  (co jest akcja domyślną) dopisać na końcu zwracanej wartości znak '%'
+* Poprawienie błędu w funkcji wykresHistogram() polegającego na gubieniu
+  nazw rysowanych wartości podczas konwersji wartości na wektor liczbowy
+* Korekta w funkcji konfigurujKnitr() chroniąca przed błędem w wypadku 
+  wywołania jej przed ustawieniem knitr-owi formatu wyjściowego dokumentu.
 
-Zmiany w MLAK 0.4.3 (2015-03-10)
+# Zmiany w MLAK 0.4.3 (2015-03-10)
 
-  * Korekty błędów:
+* Korekty błędów:
     * Kolejna korekta obsługi zliczania przez funkcję N() wartości NA - tym 
       razem błędu w obejściu funkcji giodo() przy braku wystąpień wartości NA
-      * Obłożenie funkcji N() testami weryfikującymi poprawność jej działania
-  * Nowe funkcje:
+    * Obłożenie funkcji N() testami weryfikującymi poprawność jej działania
+* Nowe funkcje:
     * Funkcja pomocnicza P(x, y) liczącej odsetek wystąpień wartości y 
       w zmiennej x (tak naprawdę P działa jak 100 * N(x, y) / length(x))
-  * Wykresy:
+* Wykresy:
     * Dodanie argumentu "tytul" do wszystkich funkcji rysujących wykresy
     * Dodanie argumentów "tytulX" i "tytulY" (do ustawiania tytułów osi) do 
       funkcji wykresSlupkowy() i wykresHistogram()
@@ -311,99 +317,99 @@ Zmiany w MLAK 0.4.3 (2015-03-10)
       liczbowych
     * Dodanie linii wyznaczającej oś pionową w wykresHistogram() oraz
       wykresSlupkowy()
-  * Zmiany techniczne:
+* Zmiany techniczne:
     * Usunięcie eksportowania funkcji statWektor()
     * Wydzielenie z funkcji statWektor() oddzielnej funkcji wyrownajDl()
       (w związku z implementacją funkcji pomocniczej P())
   
-Zmiany w MLAK 0.4.2 (2015-02-25)
+# Zmiany w MLAK 0.4.2 (2015-02-25)
 
-  * Poprawienie funkcji N(), tak by przy wywołaniu N(zmienna, NA) poprawnie 
-    zliczała braki danych także wtedy, gdy zmienna zawiera tylko braki danych
+* Poprawienie funkcji N(), tak by przy wywołaniu N(zmienna, NA) poprawnie 
+  zliczała braki danych także wtedy, gdy zmienna zawiera tylko braki danych
 
-Zmiany w MLAK 0.4.1 (2015-01-26)
+# Zmiany w MLAK 0.4.1 (2015-01-26)
 
-  * Dodanie obejścia problemów z polskimi znakami na wykresach podczas eksportu
-    do PDF pod Windowsami i MacOs
-  * Dodanie domyślnych opcji wstawek R ('error' = FALSE, 'warnings' = FALSE, 
-   'message' = FALSE, 'echo' = FALSE, 'results' = 'asis'):
+* Dodanie obejścia problemów z polskimi znakami na wykresach podczas eksportu
+  do PDF pod Windowsami i MacOs
+* Dodanie domyślnych opcji wstawek R ('error' = FALSE, 'warnings' = FALSE, 
+ 'message' = FALSE, 'echo' = FALSE, 'results' = 'asis'):
     * wyłączywszy pierwszą wstawkę (w której importujemy pakiet MLAK i 
       wczytujemy przykładowego odbiorcę) wystarczy otwarcie składnią
       ```{r}
 
-Zmiany w MLAK 0.4 (2015-01-11)
+# Zmiany w MLAK 0.4 (2015-01-11)
 
-  * Dodanie obsługi wywołania: N(zmienna, NA)
-  * Dodanie funkcji rysujących wykresy (zapewne wymagających jeszcze korekt):
+* Dodanie obsługi wywołania: N(zmienna, NA)
+* Dodanie funkcji rysujących wykresy (zapewne wymagających jeszcze korekt):
     * wykresSlupkow()
     * wykresKolowy()
     * wykresHistogram()
-  * Zmiany techniczne:
+* Zmiany techniczne:
     * Przeniesienie przykładowych raportów do katalogi inst/
     * Korekta błędnego wykorzystania funkcji with() w funkcji wczytajOdbiorce()
 
-Zmiany w MLAK 0.3.1 (2015-01-05)
+# Zmiany w MLAK 0.3.1 (2015-01-05)
 
-  * Zmiana nazwy pakietu na MLAK
-  * Zmiana nazwy funkcji formatującej obliczającej medianę z M() na Me()
-  * Funkcja N(zmienna, wartość) nie anonimizuje wyniku jeśli wartość nie 
-    występuje w wektorze "zmienna" bez względu na długość wektora "zmienna"
-  * Zmiany techniczne:
+* Zmiana nazwy pakietu na MLAK
+* Zmiana nazwy funkcji formatującej obliczającej medianę z M() na Me()
+* Funkcja N(zmienna, wartość) nie anonimizuje wyniku jeśli wartość nie 
+  występuje w wektorze "zmienna" bez względu na długość wektora "zmienna"
+* Zmiany techniczne:
     * Przepisanie użyć attach() na with()
     * Korekta nazwy zmiennej w funkcji wczytajDane()
     * Doprowadzenie pakietu do przechodzenia CHECK jedynie z komunikatami o
       znakach spoza ASCII oraz niestandardowym katalogu "raporty"
 
-Zmiany w PEJK 0.3 (2014-12-20)
+# Zmiany w PEJK 0.3 (2014-12-20)
 
-  * dodanie nowych funkcji formatujących:
+* dodanie nowych funkcji formatujących:
     * Q() - kwantyle
     * M() - mediana
     * W() - identyczność (ale z wyrównaniem długości)
-  * wzbogacenie funkcji N() o możliwość zliczania konkretnych wartości
-  * dodanie funkcji wczytajOdbiorce() umożliwiającej łatwe wczytanie
-    przykładowych danych w kodzie Markdown szablonu raportu
-  * dodanie funkcji wstawTresc() umożliwiającej warunkowe generowanie
-    treści raportu
-  * dodanie pod spodem funkcji giodo() anonimizującej zbyt krótkie wektory
-    danych
-  * modyfikacja funkcji formatujących, tak by poprawnie radziły sobie
-    z sytuacją, gdy cały wektor składa się tylko z braków danych
-  * uelastycznieni funkcji generujRaporty() - może teraz przyjmować jako
-    argumenty "dane" i "grupyOdbiorcow" także ścieżki do plików
-  * uzupełnienie pliku README.md
+* wzbogacenie funkcji N() o możliwość zliczania konkretnych wartości
+* dodanie funkcji wczytajOdbiorce() umożliwiającej łatwe wczytanie
+  przykładowych danych w kodzie Markdown szablonu raportu
+* dodanie funkcji wstawTresc() umożliwiającej warunkowe generowanie
+  treści raportu
+* dodanie pod spodem funkcji giodo() anonimizującej zbyt krótkie wektory
+  danych
+* modyfikacja funkcji formatujących, tak by poprawnie radziły sobie
+  z sytuacją, gdy cały wektor składa się tylko z braków danych
+* uelastycznieni funkcji generujRaporty() - może teraz przyjmować jako
+  argumenty "dane" i "grupyOdbiorcow" także ścieżki do plików
+* uzupełnienie pliku README.md
 
-Zmiany w PEJK 0.2.1 (2014-12-15)
+# Zmiany w PEJK 0.2.1 (2014-12-15)
 
-  * korekta błędu w funkcjach formatujących powodującego niepoprawne 
-    odczytywanie długości wywołania (a przez to niepoprawne wyrównanie
-    zwracanych wartości)
+* korekta błędu w funkcjach formatujących powodującego niepoprawne 
+  odczytywanie długości wywołania (a przez to niepoprawne wyrównanie
+  zwracanych wartości)
 
-Zmiany w PEJK 0.2 (2014-12-09)
+# Zmiany w PEJK 0.2 (2014-12-09)
 
-  * funkcje formatujące utraciły parametr "rozmiar", za to zyskały parametr 
-    "wyrownaj"; jeśli jest on równy TRUE (wartość domyślna), wtedy zwracają
-    string dopełniony z lewej spacjami do długości równej długości stringu
-    z wywołaniem funkcji plus 4 znaki, co odpowiada długości wstawki
-    `r f(parametry)` i umożliwia wygodne korzystanie z funkcji formatujących
-    w multiline tables
-  * dodanie do funkcji generujRaporty() attach-owania ramki danych; dzięki
-    temu w szablonie raportu można posługiwać się po prostu nazwami zmiennych
-  * dodanie do funkcji generujRaporty() obsługi parametru "grupyOdbiorcow"
-    w postaci ramki danych;
+* funkcje formatujące utraciły parametr "rozmiar", za to zyskały parametr 
+  "wyrownaj"; jeśli jest on równy TRUE (wartość domyślna), wtedy zwracają
+  string dopełniony z lewej spacjami do długości równej długości stringu
+  z wywołaniem funkcji plus 4 znaki, co odpowiada długości wstawki
+  `r f(parametry)` i umożliwia wygodne korzystanie z funkcji formatujących
+  w multiline tables
+* dodanie do funkcji generujRaporty() attach-owania ramki danych; dzięki
+  temu w szablonie raportu można posługiwać się po prostu nazwami zmiennych
+* dodanie do funkcji generujRaporty() obsługi parametru "grupyOdbiorcow"
+  w postaci ramki danych;
     * kolumny, których nazwy zaczynają się kropoką są ewaluowane w środowisku
       wczytanych danych, a kropka usuwana z nazwy zmiennej
-  * dodanie funkcji wczytajCSV() która jest prostą nakładką nad read.csv2(),
-    dodaje jednak kilka użytecznych wartości domyślnych parametrów
+* dodanie funkcji wczytajCSV() która jest prostą nakładką nad read.csv2(),
+  dodaje jednak kilka użytecznych wartości domyślnych parametrów
 
-Zmiany w PEJK 0.1.1 (2014-09-07)
+# Zmiany w PEJK 0.1.1 (2014-09-07)
 
-  * funcje formatujące N() i E() zyskały opcjonalny parametr "rozmiar"
-    pozwalający zapewnić stałą długość generowanego wyjścia;
-    jest to niezbędne do ich wykorzystania tabelach wymagających łamania
-    zawartości na wiersze
+* funcje formatujące N() i E() zyskały opcjonalny parametr "rozmiar"
+  pozwalający zapewnić stałą długość generowanego wyjścia;
+  jest to niezbędne do ich wykorzystania tabelach wymagających łamania
+  zawartości na wiersze
 
-Zmiany w PEJK 0.1 (2014-09-05)
+# Zmiany w PEJK 0.1 (2014-09-05)
   
-  * dodanie funkcji generujRaporty()
-  * dodanie funkcji formatujących N() i E()
+* dodanie funkcji generujRaporty()
+* dodanie funkcji formatujących N() i E()
