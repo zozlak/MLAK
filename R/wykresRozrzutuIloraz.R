@@ -15,6 +15,8 @@
 #'   margines od skrajnych wartości danych)
 #' @param margY margines na etykiety punktów (obszar wykresu będzie większy o
 #'   margines od skrajnych wartości danych)
+#' @param krokX krok etykiet na skali X
+#' @param krokY krok etykiet na skali Y
 #' @param maxRozmPkt rozmiar punktu na wykresie odpowiadający największej
 #'   wartości parametru \code{rozmiar}
 #' @param rozmiarMin minimalna wartość rozmiaru danego punktu, aby został
@@ -26,23 +28,25 @@
 #' @return [gg] obiekt wykresu pakietu ggplot2
 #' @export
 #' @import ggplot2
-wykresRozrzutuIloraz = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tytulX = NULL, tytulY = NULL, minX = 1, minY = 1, margX = 0.2, margY = 0.1, maxRozmPkt = 5, rozmiarMin = 10, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
+wykresRozrzutuIloraz = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tytulX = NULL, tytulY = NULL, minX = 1, minY = 1, margX = 0.1, margY = 0.1, krokX = 0.25, krokY = 0.25, maxRozmPkt = 5, rozmiarMin = 10, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   wykres = wykresRozrzutu(x = x, y = y, etykiety = etykiety, rozmiar = rozmiar, tytul = tytul, tytulX = tytulX, tytulY = tytulY, maxRozmPkt = maxRozmPkt, rozmiarMin = rozmiarMin, rozmiarTekstu = rozmiarTekstu, rysuj = FALSE)
   dane = wykres$data
-  
   maxOffset = is.vector(etykiety) * (0.01 + maxRozmPkt * 0.004 * is.vector(rozmiar))
   wykres = suppressWarnings(
     wykres +
     coord_cartesian(
-      xlim = c(-margX, max(max(dane$x) + margX, minX)), 
-      ylim = c(-margY, max(max(dane$y) + margY, minY))
-    ) + 
-    xlim(0, max(c(dane$x, minX))) + 
-    ylim(0, max(c(dane$y + maxOffset, minY)))
+      xlim = c(-margX, max(c(dane$x + margX, minX))), 
+      ylim = c(-margY, max(c(dane$y + margY, dane$y + maxOffset, minY)))
+    ) +
+    scale_x_continuous(breaks = seq(0, max(c(dane$x, minX)), krokX)) +
+    scale_y_continuous(breaks = seq(0, max(c(dane$y, minY)), krokY))
   )
   
+  if (!is.null(opcjeWykresu)) {
+    wykres = wykres + opcjeWykresu
+  }
   
-  if(rysuj){
+  if (rysuj) {
     suppressWarnings(print(wykres))
   }
   return(invisible(wykres))

@@ -1,3 +1,12 @@
+# Zmiany w MLAK 0.9.1 (2017-01-29)
+
+* nowa funkcja wykresMiesieczny() będąca nadbudową nad wykresLiniowy()
+  zapewniającą całkowitoliczbowe etykiet osi X
+* wykresLiniowy() jest teraz odporny na przekazanie ramki danych 
+  niezawierającej żadnych wierszy
+* wykresRozrzutuIloraz() przyjmuje dwa nowe parametry: krokX oraz krokY
+  wyznaczające krok etykiet na skali X i Y (domyślnie mają wartość 0.25)
+
 # Zmiany w MLAK 0.9.0 (2017-01-24)
 
 * funkcja wczytajOdbiorce() może obecnie wczytać dowolną liczbę zbiorów 

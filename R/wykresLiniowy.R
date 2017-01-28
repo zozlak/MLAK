@@ -33,7 +33,7 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
   }
   
   legendPosition = 'bottom'
-  if (!'seria' %in% names(dane)) {
+  if (!'seria' %in% names(dane) & nrow(dane) > 0) {
     dane$seria = ''
     legendPosition = 'none' 
   }

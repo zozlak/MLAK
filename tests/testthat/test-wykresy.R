@@ -85,14 +85,21 @@ test_that('wykresLiniowy', {
     y = runif(10, 0, 3)
   )
   expect_is(wykresLiniowy(dane), 'gg')
+  expect_is(wykresMiesieczny(dane), 'gg')
   expect_is(wykresLiniowy(dane, nMin = 10), 'gg')
   expect_is(wykresLiniowy(dane, nMin = 1000), 'gg')
   expect_is(wykresLiniowy(dane, opcjeWykresu = ggplot2::theme_bw()), 'gg')
   
   dane$x = factor(dane$x)
   expect_is(wykresLiniowy(dane), 'gg')
+  expect_is(wykresMiesieczny(dane), 'gg')
   
   dane$x = rep(letters[1:5], 2)
+  expect_is(wykresLiniowy(dane), 'gg')
+  expect_is(wykresMiesieczny(dane), 'gg')
+  
+  # puste dane
+  dane = data.frame(n = numeric(), x = numeric(), y = numeric())
   expect_is(wykresLiniowy(dane), 'gg')
 })
 
