@@ -23,7 +23,7 @@
 wykresMiesieczny = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 3, xNMax = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE){
   wykres = wykresLiniowy(dane = dane, tytul = tytul, tytulX = tytulX, tytulY = tytulY, nMin = nMin, xNMax = xNMax, rozmiarTekstu = rozmiarTekstu, rysuj = FALSE)
   
-  if (is.numeric(dane$x)) {
+  if (is.numeric(dane$x) & nrow(dane) > 0) {
     xmin = min(dane$x, na.rm = TRUE)
     xmax = max(dane$x, na.rm = TRUE)
     krok = ceiling((xmax - xmin) / xNMax)
