@@ -19,4 +19,3 @@ dokonany automatycznie)}
 \description{
 Oblicza kwadrat współczynnika korelacji liniowej
 }
-

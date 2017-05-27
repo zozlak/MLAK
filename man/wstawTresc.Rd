@@ -15,4 +15,3 @@ przetworzony kod
 \description{
 Wykonuje wstawki R w danym kodzie Markdown i wypisuje wynik za pomocą cat
 }
-

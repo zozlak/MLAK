@@ -33,4 +33,3 @@ wykresSlupkowy(dane, skumulowany = F, tytul = "", tytulX = NULL,
 \description{
 Rysuje wykres słupkowy.
 }
-

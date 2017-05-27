@@ -20,4 +20,3 @@ polamTekst(wektor, n = 15, wymus = FALSE)
 Łamie przekazany wektor znaków, tak by długość pojedynczej linii nie
 przekraczała zadanej liczby znaków.
 }
-

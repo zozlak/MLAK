@@ -42,4 +42,3 @@ liczbowych, dla których liczba obserwacji jest mniejsza niż wartość parametr
 \code{nMin}, przy czym przy anonimizacji pominięte zostaną kolumny pasujące
 do wyrażenia regularnego przekazanego w argumencie \code{pomin}.
 }
-

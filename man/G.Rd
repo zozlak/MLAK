@@ -27,4 +27,3 @@ Zwraca wektor wybierający obserwacje, które jednocześnie:
     w parametrze x
 }
 }
-

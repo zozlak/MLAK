@@ -59,4 +59,3 @@ zaprezentowany na wykresie (brana pod uwagę tylko gdy podano parametr
 Rysuje wykres rozrzutu (X-Y) zakładając, że na obydwu osiach znajdują się
 ilorazy, a więc początek układu współrzędnych powinien wypadać w punkcie (0, 0).
 }
-

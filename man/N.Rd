@@ -19,4 +19,3 @@ Zlicza liczbę rekordów niebędących brakami danych.
 
 Jeśli podano wektor w, zliczane są tylko wartości zawarte w wektorze w.
 }
-

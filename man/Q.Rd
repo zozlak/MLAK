@@ -23,4 +23,3 @@ Istnieje możliwość obliczenia wartości wielu kwantyli jednocześnie -
 wystarczy jako q przekazać wektor. W takim wypadku zwrócony zostanie wektor
 odpowiednich kwantyli.
 }
-

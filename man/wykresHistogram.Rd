@@ -42,4 +42,3 @@ eksperymentalnie}
 \description{
 Rysuje histogram z przekazanych danych.
 }
-

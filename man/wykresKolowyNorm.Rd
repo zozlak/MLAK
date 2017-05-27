@@ -28,4 +28,3 @@ Rysuje wykres kołowy.
 
 Jeśli dane nie sumują się do 100, dokonuje stosownej normalizacji.
 }
-

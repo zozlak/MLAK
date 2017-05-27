@@ -1,3 +1,8 @@
+# Zmiany w MLAK 0.9.2 (2017-05-27)
+
+* dodanie funkcji dl2sz() ułatwiającej przekształcanie danych z postaci
+  "pośrednio długiej" do postaci "szerokiej"
+
 # Zmiany w MLAK 0.9.1 (2017-01-29)
 
 * nowa funkcja wykresMiesieczny() będąca nadbudową nad wykresLiniowy()

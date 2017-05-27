@@ -29,4 +29,3 @@ Uwaga - wartości wyświetlane w legendzie nie są standaryzowane, lecz
 wyświetlane dokładnie w takiej postaci, w jakiej zostały przekazane. Aby
 legenda zawierała wystandaryzowane odsetki, użyj funkcji wykresKolowyNorm().
 }
-

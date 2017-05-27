@@ -50,4 +50,3 @@ danych \code{daneAbs} i \code{daneMies} muszą być łączliwe (zawierać zmienn
 o takiej samej nazwie, typowo \code{ID_ZDAU}), a ramka danych \code{daneMies}
 musi zawierać zmienną \code{OKRES}).
 }
-

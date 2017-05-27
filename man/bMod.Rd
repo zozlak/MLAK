@@ -19,4 +19,3 @@ Oblicza błąd modalnej (1 - odsetek wystąpień modalnej).
 Braki danych są w obliczeniach pomijane.
 \code{w}
 }
-

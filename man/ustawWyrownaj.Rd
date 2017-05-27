@@ -23,4 +23,3 @@ zwracania jej wprost do wstawki markdown, jeśli natomiast będzie ona dalej
 przetwarzana przez inne funkcje R, wtedy prawie na pewno nie powinna być
 wyrównywana.
 }
-

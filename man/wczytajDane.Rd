@@ -25,4 +25,3 @@ W wypadku plików RData zwracane są wszystkie ramki danych zawarte w pliku.
 Jeśli jest ich wiele, zwracana jest ich lista, jeśli tylko jedna, zwracana
 jest wprost jako ramka danych.
 }
-

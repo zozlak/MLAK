@@ -35,4 +35,3 @@ stringi, a część liczby, próbuje ono z uporem godnym lepszej sprawy rzutowa�
 stringi na liczby, czego wynikiem są bardzo dziwne wartości liczbowe (z '-'
 wychodzą np. bardzo, bardzo małe, ale bynajmniej nie zerowe wartości).
 }
-

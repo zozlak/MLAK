@@ -17,4 +17,3 @@ dokonany automatycznie)}
 \description{
 Oblicza medianę
 }
-

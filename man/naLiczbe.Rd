@@ -16,4 +16,3 @@ naLiczbe(dane)
 \code{as.numeric()}, który dodatkowo zachowuje nazwy elementów i pozbywa się
 ew. kończącego znaku procenta
 }
-

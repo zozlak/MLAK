@@ -37,4 +37,3 @@ korelacji:
   \item ew. wyrównuje długość wyniku do długości wywołania call
 }
 }
-

@@ -41,4 +41,3 @@ bezpośrednio z niej, zwracana jest pusta lista. Służy to pominięciu wywołan
 wczytajOdbiorce() w treści szablonu w momencie wsadowego generowania raportów
 funkcją generujRaporty().
 }
-

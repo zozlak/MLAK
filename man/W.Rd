@@ -16,4 +16,3 @@ zwróconej wartości odpowiadała długości wstawki R.
 Przydatna do wstawianie wartości do multiline tables w wypadku, gdy wyniki
 obliczono wcześniej w innej wstawce R.
 }
-

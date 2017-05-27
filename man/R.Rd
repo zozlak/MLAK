@@ -19,4 +19,3 @@ dokonany automatycznie)}
 \description{
 Oblicza współczynnik korelacji liniowej
 }
-

@@ -42,4 +42,3 @@ zaprezentowany na wykresie (brana pod uwagę tylko gdy podano parametr
 \description{
 Rysuje wykres rozrzutu (X-Y).
 }
-

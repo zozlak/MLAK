@@ -42,4 +42,3 @@ W wypadku, gdy wektor danych nie będzie factorem i nie zostanie podany
 argument "etykiety", wtedy za etykiety zostaną przyjęte poszczególne 
 wartości.
 }
-

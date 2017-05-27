@@ -22,4 +22,3 @@ wykresPusty(tytul = NULL, tytulX = NULL, tytulY = NULL, rysuj = TRUE)
 Funkcja używana do obsługi błędów, np. przy próbie narysowania wykresu z
 pustych lub niepoprawnych danych.
 }
-

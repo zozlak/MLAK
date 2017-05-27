@@ -50,4 +50,3 @@ przetwarzanie grup odbiorców polega na prostym ładowaniu zawartości kolejnych
 elementów listy 'grupyOdbiorcow' jako zmiennych dostępnych w środowisku, a 
 następnie kompilacji pliku szablonu raportu.
 }
-

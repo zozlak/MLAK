@@ -22,4 +22,3 @@ dokonany automatycznie)}
 Oblicza odsetek rekordów wektora \code{x} o wartościah zawartych w wektorze
 \code{w}, przy czym braki danych są pomijane w podstawie procentowania.
 }
-

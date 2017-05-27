@@ -22,4 +22,3 @@ wykresDefaultTheme(wykres, tytul = NULL, tytulX = NULL, tytulY = NULL,
 Funkcja zwracająca domyślne ostylowania wykresów, współdzielone pomiędzy
 wszystkie funkcje rysujące wykresy
 }
-

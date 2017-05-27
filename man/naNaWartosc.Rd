@@ -16,4 +16,3 @@ stosowny do typu x
 Znajduje sensowną wartość (liczbę lub ciąg znaków), którą można zastąpić brak
 danych
 }
-

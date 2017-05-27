@@ -31,4 +31,3 @@ zależnie od funkcji f
   \item ew. wyrównuje długość wyniku do długości wywołania call
 }
 }
-

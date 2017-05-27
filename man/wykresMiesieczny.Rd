@@ -40,4 +40,3 @@ Przekazane dane mają postać długą, z kolumnami: x, y, n oraz opcjonalnie ser
 
 Punkty o niedostatecznej liczebności zostaną zanonimizowane.
 }
-

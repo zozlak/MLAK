@@ -36,4 +36,3 @@ wczytajCSV(plik, sep = ";", quote = "\\"", dec = ",",
 nakładka na read.table zapewniająca wartości domyślne zgodne z 
   formatem zapisu plików CSV przez Excel-a
 }
-
