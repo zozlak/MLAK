@@ -5,29 +5,39 @@
 \title{rysuje tablicę na podstawie ramki danych}
 \usage{
 TAB(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10,
-  pomin = "^[lL][.]?[pP][.]?$", szMin = NA_real_)
+  pomin = "^[lL][.]?[pP][.]?$", szMin = NA_real_, backend = "MLAK", ...)
 }
 \arguments{
 \item{dane}{ramka danych do narysowania w postaci tablicy}
 
 \item{dodajLp}{czy dodać kolumnę z liczbą porządkową}
 
-\item{kolN}{nazwa kolumny z liczbą obserwacji (lub NA, jeśli dane nie mają być anonimizowane)}
+\item{kolN}{nazwa kolumny z liczbą obserwacji (lub NA, jeśli dane nie mają
+być anonimizowane)}
 
-\item{nMin}{wartość w kolumnie liczby obserwacji, poniżej której ma nastąpić anonimizacja kolumn liczbowych}
+\item{nMin}{wartość w kolumnie liczby obserwacji, poniżej której ma nastąpić
+anonimizacja kolumn liczbowych}
 
-\item{pomin}{wyrażenie regularne dopasowujące nazwy kolumn, które mają nie być anonimizowane}
+\item{pomin}{wyrażenie regularne dopasowujące nazwy kolumn, które mają nie
+być anonimizowane}
 
-\item{szMin}{minimalna szerokość pojedynczej kolumny (gdy NA, ustawiana na \code{0.75 / liczba kolumn})}
+\item{szMin}{minimalna szerokość pojedynczej kolumny (gdy NA, ustawiana na
+\code{0.75 / liczba kolumn})}
+
+\item{backend}{backend używany do wygenerowania tabeli: \code{MLAK}
+(oryginalny), \code{DT} (funkcja \code{DT::datatable()}) , \code{knitr}
+(funkcja \code{knitr::kable})}
+
+\item{...}{pozostałe parametry, które zostaną przekazane do funkcji backendu}
 }
 \value{
 character vector
 }
 \description{
-W wypadku, gdy liczba wierszy w tablicy jest nieprzewidywalna, nie da się
-opisać tablicy w szablonie raportu za pomocą kodu markdown. Funkcja
-\code{TAB} pozwala obejść to ograniczenie rysując tablicę na podstawie
-dowolnej ramki danych.
+W wypadku, gdy liczba wierszy w tablicy jest nieprzewidywalna,
+nie da się opisać tablicy w szablonie raportu za pomocą kodu markdown.
+Funkcja \code{TAB} pozwala obejść to ograniczenie rysując tablicę na
+podstawie dowolnej ramki danych.
 
 Tablica rysowana jest w składni multiline tables, a więc z zapewnieniem
 łamania wierszy w komórkach.

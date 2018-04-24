@@ -19,7 +19,7 @@ wejściowych)}
 postaci "szerokiej"}
 }
 \description{
-\code{\link{reshape2::dcast}} oraz \code{\link{tidyr::spread}} 
+\code{\link[reshape2]{dcast}} oraz \code{\link[tidyr]{spread}} 
   są o tyle niewygodne, że wymagają danych w postaci "kanonicznie długiej". 
   Tymczasem wygodnie jest móc przekształcić do postaci "prawdziwie szerokiej"
   dane w formie "pośredniej", np. `okres` (wartości 1, 2, 3), `zm1`, `zm2` 
@@ -27,9 +27,9 @@ postaci "szerokiej"}
   
   Funkcja dostarcza skrótowej składni do wykonania takiej właśnie operacji.
   
-  Wewnętrznie wykonuje \code{\link{tidyr::spread}} na każdej z wyznaczonych 
+  Wewnętrznie wykonuje \code{\link[tidyr]{spread}} na każdej z wyznaczonych 
   zmiennych, a następnie łączy wyniki za pomocą
-  \code{\link{dplyr::full_join}}.
+  \code{\link[dplyr]{full_join}}.
 }
 \details{
 Jeśli parametr \code{id} (lub \code{zmienne}) nie zostanie podany,

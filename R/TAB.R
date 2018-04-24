@@ -26,13 +26,13 @@
 #'   być anonimizowane
 #' @param szMin minimalna szerokość pojedynczej kolumny (gdy NA, ustawiana na
 #'   \code{0.75 / liczba kolumn})
-#' @param backend backend używany do wygenerowania tabeli: \code{TAB}
+#' @param backend backend używany do wygenerowania tabeli: \code{MLAK}
 #'   (oryginalny), \code{DT} (funkcja \code{DT::datatable()}) , \code{knitr}
 #'   (funkcja \code{knitr::kable})
 #' @param ... pozostałe parametry, które zostaną przekazane do funkcji backendu
 #' @return character vector
 #' @export
-TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][.]?[pP][.]?$', szMin = NA_real_, backend = 'TAB', ...){
+TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][.]?[pP][.]?$', szMin = NA_real_, backend = 'MLAK', ...){
   stopifnot(
     is.data.frame(dane),
     is.vector(dodajLp), is.logical(dodajLp), length(dodajLp) == 1, all(!is.na(dodajLp)),
@@ -40,7 +40,7 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
     is.vector(nMin), is.numeric(nMin), length(nMin) == 1, all(!is.na(nMin)),
     is.vector(pomin), is.character(pomin), length(pomin) == 1, all(!is.na(pomin)),
     is.vector(szMin), is.numeric(szMin), length(szMin) == 1,
-    is.vector(backend), is.character(backend), length(backend) == 1, all(backend %in% c('TAB', 'DT', 'knitr'))
+    is.vector(backend), is.character(backend), length(backend) == 1, all(backend %in% c('MLAK', 'DT', 'knitr'))
   )
   if (ncol(dane) == 0 | nrow(dane) == 0) {
     return()
