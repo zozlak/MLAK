@@ -64,8 +64,8 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
 
   wykres = ggplot(data = dane) +
     aes(x = get('x'), y = get('y'), group = get('seria'), shape = get('seria'), linetype = get('seria')) +
-    geom_point(size = 2) +
-    geom_line(data = daneBezNa)
+    geom_line(data = daneBezNa, color = '#999999') +
+    geom_point(size = 2)
   if (is.character(dane$x)) {
     breaks = unique(dane$x)
     breaks = breaks[order(breaks)]
@@ -76,6 +76,7 @@ wykresLiniowy = function(dane, tytul = '', tytulX = NULL, tytulY = NULL, nMin = 
   }
   wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +
     theme(
+      
       title = element_text(vjust = 2),
       axis.title.x = element_text(size = rozmiarTekstu, vjust = 0),
       axis.title.y = element_text(size = rozmiarTekstu, vjust = 1),
