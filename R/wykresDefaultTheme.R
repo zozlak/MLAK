@@ -15,18 +15,20 @@ wykresDefaultTheme = function(wykres, tytul = NULL, tytulX = NULL, tytulY = NULL
   wykres = wykres +
     ggplot2::ylab('') +
     ggplot2::xlab('') +
-    ggplot2::scale_fill_grey() +
+    ggplot2::scale_fill_grey(start = 0.6, end = 0.96) +
+    ggplot2::scale_color_grey(start = 0.9, end = 0.6) +
     ggplot2::labs(fill = '') +
     ggplot2::theme_bw(base_size = rozmiarTekstu) + 
     ggplot2::theme(
+      text              = ggplot2::element_text(family = 'Montserrat'),
       panel.border      = ggplot2::element_rect(fill = NA, colour = NA),
       legend.position   = 'right',
       legend.text       = ggplot2::element_text(size = rozmiarTekstu),
       axis.text.x       = ggplot2::element_text(size = rozmiarTekstu),
       axis.text.y       = ggplot2::element_text(size = rozmiarTekstu),
-      axis.title.x      = ggplot2::element_text(size = rozmiarTekstu * 1.2),
-      axis.title.y      = ggplot2::element_text(size = rozmiarTekstu * 1.2),
-      plot.title        = ggplot2::element_text(size = rozmiarTekstu * 1.3, hjust = 0.5)
+      axis.title.x      = ggplot2::element_text(size = rozmiarTekstu),
+      axis.title.y      = ggplot2::element_text(size = rozmiarTekstu),
+      plot.title        = ggplot2::element_text(size = rozmiarTekstu, hjust = 0)
     )
   
   if (!is.null(tytul)) {
