@@ -75,7 +75,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       suppressWarnings( # różna szerokość słupków generuje "position_stack requires constant width: output may be incorrect"
         geom_histogram(
           breaks = breaks,
-          colour = '#000000',
+          colour = '#999999',
           fill = '#FFFFFF'
         )
       )

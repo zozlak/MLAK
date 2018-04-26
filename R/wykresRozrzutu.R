@@ -67,12 +67,12 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
     geom_point()
   if (min(dane$rozmiar, na.rm = TRUE) != max(dane$rozmiar, na.rm = TRUE)) {
     wykres = wykres +
-      geom_point(aes(size = get('rozmiar'))) +
+      geom_point(aes(size = get('rozmiar')), color = '#999999') +
       scale_size_continuous(name = 'Liczebność grup\na wielkość punktów', range = c(0, maxRozmPkt)) +
       geom_text(aes(y = get('y') + get('offset')), vjust = -0.5, size = 3)
   }else{
     wykres = wykres +
-      geom_point() +
+      geom_point(color = '#999999') +
       geom_text(vjust = -0.5, size = 3)
   }
   wykres = wykresDefaultTheme(wykres, tytul = tytul, tytulX = tytulX, tytulY = tytulY, rozmiarTekstu = rozmiarTekstu) +

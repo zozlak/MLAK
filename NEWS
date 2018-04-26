@@ -1,3 +1,8 @@
+# Zmiany w MLAK 0.9.5 (2018-04-26)
+
+* zmiana domyślnych kolorów punktów i linii w wykesie rozrzutu, liniowym
+  i histogramie na #999999
+
 # Zmiany w MLAK 0.9.4 (2018-04-25)
 
 * rozpoznawanie pozycji w stosie wywołań w ustawWyrownaj() zaktualizowane

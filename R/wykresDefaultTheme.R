@@ -16,6 +16,7 @@ wykresDefaultTheme = function(wykres, tytul = NULL, tytulX = NULL, tytulY = NULL
     ggplot2::ylab('') +
     ggplot2::xlab('') +
     ggplot2::scale_fill_grey(start = 0.6, end = 0.96) +
+    ggplot2::scale_color_grey(start = 0.6, end = 0.6) +
     ggplot2::labs(fill = '') +
     ggplot2::theme_bw(base_size = rozmiarTekstu) + 
     ggplot2::theme(
