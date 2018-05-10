@@ -31,6 +31,7 @@
 #'   (funkcja \code{knitr::kable})
 #' @param ... pozostałe parametry, które zostaną przekazane do funkcji backendu
 #' @return character vector
+#' @import dplyr
 #' @export
 TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^[lL][.]?[pP][.]?$', szMin = NA_real_, backend = 'MLAK', ...){
   stopifnot(
@@ -42,14 +43,7 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
     is.vector(szMin), is.numeric(szMin), length(szMin) == 1,
     is.vector(backend), is.character(backend), length(backend) == 1, all(backend %in% c('MLAK', 'DT', 'knitr'))
   )
-  if (ncol(dane) == 0 | nrow(dane) == 0) {
-    return()
-  }
 
-  if (is.na(szMin)) {
-    szMin = 0.75 / ncol(dane)
-  }
-  
   # Pozbycie się ew. data_frame i factorów, zaradzenie NA w nazwach kolumn
   dane = as.data.frame(dane, stringsAsFactors = FALSE)
   colnames(dane) = paste0(colnames(dane))
@@ -60,7 +54,7 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
   }
   
   # Anonimizacja
-  if (!is.na(kolN)) {
+  if (!is.na(kolN) & nrow(dane) > 0) {
     stopifnot(sum(colnames(dane) %in% kolN) == 1)
     filtr = suppressWarnings(as.numeric(dane[, kolN])) < nMin | is.na(dane[, kolN])
     for (kol in setdiff(colnames(dane)[!grepl(pomin, colnames(dane))], kolN)) {
@@ -74,9 +68,19 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
     dane[is.na(dane[, kolN]), kolN] = '-'
   }
   
+  # Zamiana NA na `-` w kolumnach liczbowych
+  for (kol in setdiff(colnames(dane)[!grepl(pomin, colnames(dane))], kolN)) {
+    if (any(is.na(dane[, kol]))) {
+      dane[, kol] = dplyr::coalesce(dane[, kol], '-')
+    }
+  }
+  
   # Kolumna LP
-  if (dodajLp) {
-    dane = cbind(data.frame('lp' = 1:nrow(dane)), dane)
+  if (dodajLp & nrow(dane) > 0) {
+    tmp = colnames(dane)
+    dane = dane %>% 
+      mutate_(lp = ~row_number()) %>% 
+      select_(.dots = c('lp', tmp))
   }
   
   # Właściwa funkcja
@@ -85,6 +89,10 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
   } else if (backend == 'knitr') {
     knitr::kable(dane, ...)
   } else {
+    if (is.na(szMin)) {
+      szMin = 0.75 / ncol(dane)
+    }
+    
     kolumny = data.frame(stringsAsFactors = FALSE, row.names = NULL,
       naglowek = names(dane), 
       dlNagl = sapply(names(dane), stringi::stri_length), 

@@ -1,3 +1,10 @@
+# Zmiany w MLAK 0.9.6 (2018-05-10)
+
+* funkcja TAB() zamienia wszystkie NA na "-", także te, które znajdowały
+  się w danych wejściowych przed anonimizacją
+* funkcja TAB() poprawnie obsługuje dane wejściowe o zerowej liczbie wierszy
+  drukując tabelę składającą się jedynie z nagłówka
+
 # Zmiany w MLAK 0.9.5 (2018-04-26)
 
 * zmiana domyślnych kolorów punktów i linii w wykesie rozrzutu, liniowym
