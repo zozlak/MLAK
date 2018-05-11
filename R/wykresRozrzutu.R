@@ -68,7 +68,7 @@ wykresRozrzutu = function(x, y, etykiety = NULL, rozmiar = NULL, tytul = '', tyt
   if (min(dane$rozmiar, na.rm = TRUE) != max(dane$rozmiar, na.rm = TRUE)) {
     wykres = wykres +
       geom_point(aes(size = get('rozmiar')), color = '#999999') +
-      scale_size_continuous(name = 'Liczebność grup\na wielkość punktów', range = c(0, maxRozmPkt)) +
+      scale_size_continuous(name = 'Liczebność grup\na wielkość punktów', range = c(2, maxRozmPkt)) +
       geom_text(aes(y = get('y') + get('offset')), vjust = -0.5, size = 3)
   }else{
     wykres = wykres +
