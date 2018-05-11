@@ -79,8 +79,8 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
   if (dodajLp & nrow(dane) > 0) {
     tmp = colnames(dane)
     dane = dane %>% 
-      mutate_(lp = ~row_number()) %>% 
-      select_(.dots = c('lp', tmp))
+      mutate_(lp = ~row_number())
+    dane = dane[, c('lp', tmp)]
   }
   
   # Właściwa funkcja
