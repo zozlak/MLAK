@@ -71,7 +71,7 @@ TAB = function(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10, pomin = '^
   # Zamiana NA na `-` w kolumnach liczbowych
   for (kol in setdiff(colnames(dane)[!grepl(pomin, colnames(dane))], kolN)) {
     if (any(is.na(dane[, kol]))) {
-      dane[, kol] = dplyr::coalesce(dane[, kol], '-')
+      dane[, kol] = dplyr::coalesce(as.character(dane[, kol]), '-')
     }
   }
   
