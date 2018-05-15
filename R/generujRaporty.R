@@ -24,8 +24,6 @@
 #'   (względem pliku szablonu); uwaga! jeśli podany, wtedy pełna ścieżka 
 #'   katalogu wyjściowego nie może zawierać polskich znaków ani spacji (sic!)
 #' @param prefiksPlikow prefiks nazw plików wygenerowanych raportów
-#' @param ramkiTablic czy przekształcać wyjściowy kod TeX-a w celu uzyskania
-#'   ramek w tabelach
 #' @param sprzataj czy usuwać pliki tymczasowe wytworzone w trakcie generowania
 #'   ostatecznych PDF-ów
 #' @param kontynuujPoBledzie czy kontynuować generowania raportów jeśli podczas
@@ -33,11 +31,10 @@
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy = '', prefiksPlikow = '', ramkiTablic = FALSE, sprzataj = TRUE, kontynuujPoBledzie = TRUE){
+generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy = '', prefiksPlikow = '', sprzataj = TRUE, kontynuujPoBledzie = TRUE){
   stopifnot(
     is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
     is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),
-    is.vector(ramkiTablic), is.logical(ramkiTablic), length(ramkiTablic) == 1, all(!is.na(ramkiTablic)),
     is.vector(kontynuujPoBledzie), is.logical(kontynuujPoBledzie), length(kontynuujPoBledzie) == 1, all(!is.na(kontynuujPoBledzie))
   )
   
@@ -70,11 +67,6 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy
     katalogBazowy = sub('[^/\\]+$', '', plikSzablonu)
   }
 
-  if (ramkiTablic) {
-    katalogRoboczy = getwd()
-    on.exit({setwd(katalogRoboczy)})
-  }
-  
   # przerabianie grup odbiorców podanych jako ramka danych na listę
   if (is.data.frame(grupyOdbiorcow)) {
     tmp = list()
@@ -94,7 +86,7 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy
           {
             render(
               input = plikSzablonu, 
-              output_format = pdf_document(keep_tex = ramkiTablic),
+              output_format = pdf_document(),
               output_file = paste0(
                 prefiksPlikow,
                 names(grupyOdbiorcow)[i],
@@ -104,50 +96,6 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy
             )
           }
         )
-      
-        # przerabianie skladni tablic w pliku TeX-a i ponowna generacja PDF-a
-        #TODO dodać dbanie o brak polskich znaków, spacji, itp. w nazwach plików - pdf
-        if (ramkiTablic) {
-          setwd(katalogBazowy)
-          plikTex = paste0(prefiksPlikow, names(grupyOdbiorcow)[i], '.tex')
-          
-          tex = readChar(plikTex, 10^6)
-          tex = gsub("\\\\toprule\\\\addlinespace", "\\\\hline", tex)
-          tex = gsub('\\\\toprule', '\\\\hline', tex)
-          tex = gsub('\\\\midrule', '', tex)
-          tex = gsub('\\\\bottomrule', '', tex)
-          tex = gsub('\\\\tabularnewline', '\\\\tabularnewline\\\\hline', tex)
-          tex = gsub("\\\\\\\\\\\\addlinespace", "\\\\\\\\\\\\hline", tex)
-          tex = gsub('@[{][}]', '|', tex)
-          wzor = '\\\\begin[{]longtable[}]\\[[a-z]\\][{][|][lcr][lcr]*[|][}]'
-          while (grepl(wzor, tex)) {
-            pozycja = regexpr(wzor, tex)
-            definicja = substr(tex, pozycja, pozycja + attr(pozycja, 'match.length') - 1)
-            definicja = gsub('([lcr])([lcr])', '\\1|\\2|', definicja)
-            definicja = sub('[|][|]', '|', paste0('\\', definicja))
-            tex = sub(wzor, definicja, tex)
-          }
-          tex = gsub(paste0('\\\\includegraphics[{]', getwd(), '/'), '\\\\includegraphics{', tex)
-          writeLines(tex, plikTex)
-          
-          komendaKompilacji = sprintf("pdflatex '%s'", plikTex)
-          repeat {
-            wyjscie = system(komendaKompilacji, intern = TRUE) 
-            if (!any(suppressWarnings(grepl('Package rerunfilecheck Warning', wyjscie)))) {
-              break
-            }
-          }
-          if (sprzataj) {
-            unlink(c(
-              plikTex,
-              sub('.tex', '.out', plikTex),
-              sub('.tex', '.log', plikTex),
-              sub('.tex', '.aux', plikTex),
-              sub('.tex', '_files', plikTex)
-            ), recursive = TRUE)
-          }
-          setwd(katalogRoboczy)
-        }
       },
       error = function(e){
         if (!kontynuujPoBledzie) {
