@@ -1,3 +1,10 @@
+# Zmiany w MLAK 0.9.7 (2018-05-16)
+
+* dodanie parametrów "paramRender" oraz "paramPdfDocument" do funkcji
+  generujRaporty() umożliwiających dostosowanie sposobu wsadowego generowania 
+  raportów (w szczególności jako szybkie obejście problemu z nieparsowaniem
+  nagłówka yaml szablonu Rmd, które należy dodać w przyszłości)
+
 # Zmiany w MLAK 0.9.6 (2018-05-10)
 
 * funkcja TAB() zamienia wszystkie NA na "-", także te, które znajdowały

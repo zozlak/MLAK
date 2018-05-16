@@ -28,10 +28,14 @@
 #'   ostatecznych PDF-ów
 #' @param kontynuujPoBledzie czy kontynuować generowania raportów jeśli podczas
 #'   generowania jednego z nich wystąpił błąd
+#' @param paramRender dodatkowe parametry do przekazania funkcji
+#'   \code{\link[rmarkdown]{render}}
+#' @param paramRender dodatkowe parametry do przekazania funkcji
+#'   \code{\link[rmarkdown]{pdf_document}}
 #' @return NULL
 #' @import rmarkdown
 #' @export
-generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy = '', prefiksPlikow = '', sprzataj = TRUE, kontynuujPoBledzie = TRUE){
+generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy = '', prefiksPlikow = '', sprzataj = TRUE, kontynuujPoBledzie = TRUE, paramRender = list(), paramPdfDocument = list()){
   stopifnot(
     is.vector(katalogWy), is.character(katalogWy), length(katalogWy) == 1, all(!is.na(katalogWy)),
     is.vector(prefiksPlikow), is.character(prefiksPlikow), length(prefiksPlikow) == 1, all(!is.na(prefiksPlikow)),
@@ -77,6 +81,9 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy
     grupyOdbiorcow = tmp
   }
   
+  paramRender[['input']] = plikSzablonu
+  paramRender[['output_format']] = do.call(rmarkdown::pdf_document, paramPdfDocument)
+  paramRender[['output_dir']] = katalogWy
   for (i in 1:length(grupyOdbiorcow)) {
     odbiorca = wczytajOdbiorce(grupyOdbiorcow, dane, i)
     tryCatch(
@@ -84,16 +91,8 @@ generujRaporty = function(plikSzablonu, grupyOdbiorcow, dane = list(), katalogWy
         with(
           odbiorca, 
           {
-            render(
-              input = plikSzablonu, 
-              output_format = pdf_document(),
-              output_file = paste0(
-                prefiksPlikow,
-                names(grupyOdbiorcow)[i],
-                '.pdf'
-              ),
-              output_dir = katalogWy
-            )
+            paramRender[['output_file']] = paste0(prefiksPlikow, names(grupyOdbiorcow)[i], '.pdf')
+            do.call(rmarkdown::render, paramRender)
           }
         )
       },
