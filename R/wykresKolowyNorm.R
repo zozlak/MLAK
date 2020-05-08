@@ -19,25 +19,25 @@ wykresKolowyNorm = function(dane, dokl = 1, tytul = '', rozmiarTekstu = NULL, op
   
   dane[is.nan(dane) | is.infinite(dane)] = NA
   dane = stats::na.exclude(dane)
-  if(is.character(dane)){
+  if (is.character(dane)) {
     dane = sub('%$', '', dane)
     dane = sub('^ +', '', dane)
     tmp = names(dane)
     dane = stats::setNames(suppressWarnings(as.numeric(dane)), tmp)
-    if(any(is.na(dane))){
+    if (any(is.na(dane))) {
       return(wykresPusty(tytul = tytul, rysuj = rysuj))
     }
   }
   
   dane = round(dane * 100 / sum(dane), dokl)
-  if(length(dane) > 1){
+  if (length(dane) > 1) {
     dane[1] = 100 - sum(dane[-1])
   }
   tmp = names(dane)
-  dane = stats::setNames(paste0(dane, '%'), tmp)
+  dane = stats::setNames(sprintf(paste0('%.', dokl, 'f%%'), dane), tmp)
   
   wykres = wykresKolowy(dane, tytul = tytul, rozmiarTekstu = rozmiarTekstu, opcjeWykresu = opcjeWykresu, rysuj = FALSE)
-  if(rysuj){
+  if (rysuj) {
     suppressWarnings(print(wykres))
   }
   return(invisible(wykres))
