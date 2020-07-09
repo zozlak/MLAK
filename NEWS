@@ -1,3 +1,8 @@
+# Zmiany w MLAK 0.10.0 (2020-07-09)
+
+* dodanie funkcji wykresCentyle() umożliwiającej rysowanie histogramów z już
+  wyliczonych wartości n-tyli
+
 # Zmiany w MLAK 0.9.7 (2018-05-16)
 
 * dodanie parametrów "paramRender" oraz "paramPdfDocument" do funkcji

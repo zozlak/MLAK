@@ -31,17 +31,17 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
   dane[is.nan(dane) | is.infinite(dane)] = NA
   dane = stats::na.exclude(dane)
   
-  if(length(dane) == 0){
+  if (length(dane) == 0) {
     return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
   }
   
-  if(is.numeric(dane)){
-    if(rownePrzedzialy){
+  if (is.numeric(dane)) {
+    if (rownePrzedzialy) {
       breaks = seq(min(dane), max(dane), length.out = n + 1)
-    }else{
+    } else {
       n = min(n, length(unique(dane)))
       breaks = stats::quantile(dane, seq(0, 1, length.out = n + 1))
-      while(length(breaks) != length(unique(breaks))){
+      while (length(breaks) != length(unique(breaks))) {
         n = n - 1
         breaks = stats::quantile(dane, seq(0, 1, length.out = n + 1))
       }
@@ -51,14 +51,14 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       szer = szer / sum(szer)
       breaksTmp = breaks + 10^-6
       breaksTmp[1] = breaks[1]
-      if(length(breaksTmp) == 1){
+      if (length(breaksTmp) == 1) {
         return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
 #        breaksTmp[2] = breaksTmp[1] + 10^-6
 #        coś jeszcze zrobić z szerokościami
       }
       grupy = cut(dane, breaksTmp, labels = names(szer), right = FALSE)
       nMin = min(table(grupy))
-      if(nMin < nGiodo){
+      if (nMin < nGiodo) {
         return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
       }
       wagi = szer[grupy]
@@ -81,7 +81,7 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       )
   }else{
     nMin = min(table(dane))
-    if(nMin < nGiodo){
+    if (nMin < nGiodo) {
       return(wykresPusty(tytul = tytul, tytulX = tytulX, tytulY = tytulY, rysuj = rysuj))
     }
     wykres = ggplot(data = data.frame(d = dane)) + aes(x = get('d')) +
@@ -99,35 +99,20 @@ wykresHistogram = function(dane, n = 9, tytul = '', tytulX = NULL, tytulY = NULL
       axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)
     )
   
-  if(rownePrzedzialy == FALSE){
+  if (rownePrzedzialy == FALSE) {
     wykres = wykres + theme(axis.line.y = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
   }
   
   # skala osi X dla danych ciągłych
-  if(is.numeric(dane)){
-    # unikanie nachodzących na siebie etykiet
-    odstepMin = (breaks[length(breaks)] - breaks[1]) * ifelse(is.null(rozmiarTekstu), 10, rozmiarTekstu) / pomijajEtykiety
-    etykiety = round(breaks)
-    pop = 1
-    for(i in 1 + seq_along(breaks[-1])){
-      if(breaks[i] - breaks[pop] < odstepMin){
-        etykiety[i] = ''
-      }else{
-        pop = pop + 1
-        while(etykiety[pop] == ''){
-          pop = pop + 1
-        }
-      }
-    }
-    
-    wykres = wykres + scale_x_continuous(breaks = breaks, labels = etykiety)
+  if (is.numeric(dane)) {
+    wykres = etykietyHistogramu(wykres, breaks, rozmiarTekstu, pomijajEtykiety)
   }
   
-  if(!is.null(opcjeWykresu)){
+  if (!is.null(opcjeWykresu)) {
     wykres = wykres + opcjeWykresu
   }
   
-  if(rysuj){
+  if (rysuj) {
     suppressWarnings(print(wykres))
   }
   return(invisible(wykres))
