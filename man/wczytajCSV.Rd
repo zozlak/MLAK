@@ -4,9 +4,18 @@
 \alias{wczytajCSV}
 \title{wczytuje dane z CSV}
 \usage{
-wczytajCSV(plik, sep = ";", quote = "\\"", dec = ",",
-  fileEncoding = "Windows-1250", header = TRUE, fill = T,
-  comment.char = "", stringsAsFactors = FALSE, ...)
+wczytajCSV(
+  plik,
+  sep = ";",
+  quote = "\\"",
+  dec = ",",
+  fileEncoding = "Windows-1250",
+  header = TRUE,
+  fill = T,
+  comment.char = "",
+  stringsAsFactors = FALSE,
+  ...
+)
 }
 \arguments{
 \item{plik}{ścieżka do pliku CSV}

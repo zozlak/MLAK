@@ -4,8 +4,14 @@
 \alias{wykresKolowyZlicz}
 \title{Wykres kołowy ze zliczenia wartości zmiennej}
 \usage{
-wykresKolowyZlicz(dane, etykiety = NULL, tytul = "", rozmiarTekstu = NULL,
-  opcjeWykresu = NULL, rysuj = TRUE)
+wykresKolowyZlicz(
+  dane,
+  etykiety = NULL,
+  tytul = "",
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{dane}{wektor danych}

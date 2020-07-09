@@ -4,9 +4,17 @@
 \alias{wykresMiesieczny}
 \title{Wykres liniowy z dostosowaną skalą osi X}
 \usage{
-wykresMiesieczny(dane, tytul = "", tytulX = NULL, tytulY = NULL,
-  nMin = 3, xNMax = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL,
-  rysuj = TRUE)
+wykresMiesieczny(
+  dane,
+  tytul = "",
+  tytulX = NULL,
+  tytulY = NULL,
+  nMin = 3,
+  xNMax = 36,
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{dane}{ramka danych opisująca serie danych - patrz opis szczegółowy}

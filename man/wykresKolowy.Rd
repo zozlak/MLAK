@@ -4,8 +4,13 @@
 \alias{wykresKolowy}
 \title{Wykres kołowy}
 \usage{
-wykresKolowy(dane, tytul = "", rozmiarTekstu = NULL, opcjeWykresu = NULL,
-  rysuj = TRUE)
+wykresKolowy(
+  dane,
+  tytul = "",
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{dane}{wektor danych}

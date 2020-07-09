@@ -4,8 +4,16 @@
 \alias{TAB}
 \title{rysuje tablicę na podstawie ramki danych}
 \usage{
-TAB(dane, dodajLp = TRUE, kolN = NA_character_, nMin = 10,
-  pomin = "^[lL][.]?[pP][.]?$", szMin = NA_real_, backend = "MLAK", ...)
+TAB(
+  dane,
+  dodajLp = TRUE,
+  kolN = NA_character_,
+  nMin = 10,
+  pomin = "^[lL][.]?[pP][.]?$",
+  szMin = NA_real_,
+  backend = "MLAK",
+  ...
+)
 }
 \arguments{
 \item{dane}{ramka danych do narysowania w postaci tablicy}

@@ -4,8 +4,14 @@
 \alias{wykresKolowyNorm}
 \title{Wykres kołowy z normalizacją przekazanych danych do 100 procent}
 \usage{
-wykresKolowyNorm(dane, dokl = 1, tytul = "", rozmiarTekstu = NULL,
-  opcjeWykresu = NULL, rysuj = TRUE)
+wykresKolowyNorm(
+  dane,
+  dokl = 1,
+  tytul = "",
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{dane}{wektor danych}

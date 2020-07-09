@@ -4,8 +4,17 @@
 \alias{wykresLiniowy}
 \title{Wykres liniowy}
 \usage{
-wykresLiniowy(dane, tytul = "", tytulX = NULL, tytulY = NULL, nMin = 3,
-  xNMax = 36, rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE)
+wykresLiniowy(
+  dane,
+  tytul = "",
+  tytulX = NULL,
+  tytulY = NULL,
+  nMin = 3,
+  xNMax = 36,
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{dane}{ramka danych opisująca serie danych - patrz opis szczegółowy}

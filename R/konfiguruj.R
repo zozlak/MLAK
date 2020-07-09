@@ -1,4 +1,6 @@
 #' @title Konfiguruje działanie pakietu
+#' @param giodo minimalna liczba obserwacji w grupie (statystyki dla mniejszych
+#'   grup są anonimizowane)
 #' @return wektor lub ramka danych
 #' @export
 .konfiguruj = function(giodo = 3){

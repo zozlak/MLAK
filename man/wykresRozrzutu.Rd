@@ -4,9 +4,20 @@
 \alias{wykresRozrzutu}
 \title{Wykres rozrzutu}
 \usage{
-wykresRozrzutu(x, y, etykiety = NULL, rozmiar = NULL, tytul = "",
-  tytulX = NULL, tytulY = NULL, maxRozmPkt = 5, rozmiarMin = 10,
-  rozmiarTekstu = NULL, opcjeWykresu = NULL, rysuj = TRUE)
+wykresRozrzutu(
+  x,
+  y,
+  etykiety = NULL,
+  rozmiar = NULL,
+  tytul = "",
+  tytulX = NULL,
+  tytulY = NULL,
+  maxRozmPkt = 5,
+  rozmiarMin = 10,
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{x}{wektor pozycji na osi X}

@@ -4,8 +4,14 @@
 \alias{wczytajOdbiorce}
 \title{wczytuje wskazanego odbiorcę}
 \usage{
-wczytajOdbiorce(grupy, dane = list(), n = 1, dolacz = TRUE,
-  kodowanie = "Windows-1250", separator = ";")
+wczytajOdbiorce(
+  grupy,
+  dane = list(),
+  n = 1,
+  dolacz = TRUE,
+  kodowanie = "Windows-1250",
+  separator = ";"
+)
 }
 \arguments{
 \item{grupy}{ramka danych, lista lub ścieżka do pliku CSV z definicjami grup 

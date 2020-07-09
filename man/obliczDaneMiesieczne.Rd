@@ -4,9 +4,18 @@
 \alias{obliczDaneMiesieczne}
 \title{Agreguje dane do wykresów miesięcznych}
 \usage{
-obliczDaneMiesieczne(daneAbs, daneMies, zmienne, grupy = character(),
-  dataRel = character(), od = character(), do = character(),
-  odRel = numeric(), doRel = numeric(), statystyka = "mean")
+obliczDaneMiesieczne(
+  daneAbs,
+  daneMies,
+  zmienne,
+  grupy = character(),
+  dataRel = character(),
+  od = character(),
+  do = character(),
+  odRel = numeric(),
+  doRel = numeric(),
+  statystyka = "mean"
+)
 }
 \arguments{
 \item{daneAbs}{ramka danych ze zmiennymi na poziomie absolwenta na kierunku

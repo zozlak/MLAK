@@ -4,11 +4,26 @@
 \alias{wykresRozrzutuIloraz}
 \title{Wykres rozrzutu dla skal ilorazowych}
 \usage{
-wykresRozrzutuIloraz(x, y, etykiety = NULL, rozmiar = NULL, tytul = "",
-  tytulX = NULL, tytulY = NULL, minX = 1, minY = 1, margX = 0.1,
-  margY = 0.1, krokX = 0.25, krokY = 0.25, maxRozmPkt = 5,
-  rozmiarMin = 10, rozmiarTekstu = NULL, opcjeWykresu = NULL,
-  rysuj = TRUE)
+wykresRozrzutuIloraz(
+  x,
+  y,
+  etykiety = NULL,
+  rozmiar = NULL,
+  tytul = "",
+  tytulX = NULL,
+  tytulY = NULL,
+  minX = 1,
+  minY = 1,
+  margX = 0.1,
+  margY = 0.1,
+  krokX = 0.25,
+  krokY = 0.25,
+  maxRozmPkt = 5,
+  rozmiarMin = 10,
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{x}{wektor pozycji na osi X}

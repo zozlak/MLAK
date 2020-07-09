@@ -8,7 +8,6 @@ test_that('generuje sie R2', {
     dane           = c('dane/R2-dane.RData', 'dane/daneMies.RData'),
     katalogWy      = '', 
     prefiksPlikow  = 'R2-',
-    ramkiTablic    = FALSE,
     kontynuujPoBledzie = FALSE
   )
   expect_equal(length(dir('dane', '^R2-.*[.]pdf$')), 8)
@@ -23,7 +22,6 @@ test_that('generuje sie R3', {
     dane           = list(wczytajDane('dane/R3-dane.csv'), wczytajDane('dane/daneMies.RData')),
     katalogWy      = '', 
     prefiksPlikow  = 'R3-',
-    ramkiTablic    = TRUE,
     kontynuujPoBledzie = TRUE
   )
   expect_equal(length(dir('dane', '^R3-.*[.]pdf$')), 5)

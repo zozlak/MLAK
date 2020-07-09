@@ -31,7 +31,9 @@
 #' @param paramRender dodatkowe parametry do przekazania funkcji
 #'   \code{\link[rmarkdown]{render}}
 #' @param paramRender dodatkowe parametry do przekazania funkcji
-#'   \code{\link[rmarkdown]{pdf_document}}
+#'   \code{\link[rmarkdown]{render}}
+#' @param paramPdfDocument parametry do przekazania do funkcji
+#' \code{\link[rmarkdown]{pdf_document}}
 #' @return NULL
 #' @import rmarkdown
 #' @export

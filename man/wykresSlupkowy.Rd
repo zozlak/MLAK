@@ -4,9 +4,17 @@
 \alias{wykresSlupkowy}
 \title{Wykres słupkowy}
 \usage{
-wykresSlupkowy(dane, skumulowany = F, tytul = "", tytulX = NULL,
-  tytulY = NULL, sufiksY = "", rozmiarTekstu = NULL,
-  opcjeWykresu = NULL, rysuj = TRUE)
+wykresSlupkowy(
+  dane,
+  skumulowany = F,
+  tytul = "",
+  tytulX = NULL,
+  tytulY = NULL,
+  sufiksY = "",
+  rozmiarTekstu = NULL,
+  opcjeWykresu = NULL,
+  rysuj = TRUE
+)
 }
 \arguments{
 \item{dane}{wektor danych}

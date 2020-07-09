@@ -4,8 +4,13 @@
 \alias{wykresDefaultTheme}
 \title{Domyślny styl wykresów}
 \usage{
-wykresDefaultTheme(wykres, tytul = NULL, tytulX = NULL, tytulY = NULL,
-  rozmiarTekstu = NULL)
+wykresDefaultTheme(
+  wykres,
+  tytul = NULL,
+  tytulX = NULL,
+  tytulY = NULL,
+  rozmiarTekstu = NULL
+)
 }
 \arguments{
 \item{wykres}{obiekt gpplot2 wykresu}
